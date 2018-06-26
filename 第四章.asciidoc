@@ -1,126 +1,127 @@
 [[testnets]]
-== Ethereum Test Networks (Testnets)
+== 以太坊测试网（Testnets）
 
-=== What is a testnet?
+=== 什么是测试网？
 
-A test network (testnet for short) is used to simulate the behavior of the main Ethereum network. There are some publicly available test networks that are simply alternative Ethereum blockchains. The currency on these networks is worthless, but they are still useful since the functionality of contracts and protocol changes can be tested without disrupting the main Ethereum network or using real money. When any major change to the Ethereum protocol is about to be included in the main network (mainnet for short), its tests are mostly done on these test networks. These test networks are also used by a large number of developers for testing applications before deploying them onto the main network.
+测试网络（简称testnet）用于模拟以太网主网的行为。有一些公开的测试网络可以替代以太坊区块链。这些网络上的货币毫无价值，但它们仍然很有用，因为合约和协议变更的功能可以在不中断以太网主网或使用真实货币的情况下进行测试。当主网（简称mainnet）即将包含对以太坊协议的任何重大改变时，其测试主要在这些测试网络上完成。这些测试网络也被大量开发人员用于在部署到主网之前测试应用程序。
 
-=== Using Testnets
+=== 使用 Testnets
 
-You can either connect to publicly available test networks or spawn a private test network of your own. First, let's use a public testnet for easier setup. To use a public testnet requires some testnet ether and a connection to that network. For testnet ether, "faucets" are used, which distribute test ether slowly, "dripping" out small amount to anyone who asks. To connect to a testnet, you need an Ethereum client, either a full client such as geth, or a gateway to a full client, such as MetaMask.
+你可以连接到公共可用的测试网络或创建你自己的私人测试网络。首先，让我们使用公共测试网来更简单地起步。要使用公共测试网络，需要一些测试网络以及到该网络的连接。对于testnet ether，使用“faucet”，faucet缓慢地分配测试ether，向任何询问的人“滴送”少量ether。要连接到一个测试网络，你需要一个以太坊客户端，完整的客户端，比如geth，或者完整的客户端的网关，比如MetaMask。
 
-=== Getting Test Ether
+=== 获取测试以太网
 
-Since testnets do not operate with real money, the incentive to secure the testnets by miners is low. Therefore, the testnets must protect themselves from abuse and attacks differently. As a result, faucets were created for these testnets to distribute free test ether to developers in a controlled manner (most faucets 'drip' ether at 1 ether every few seconds or so). This controlled distribution of ether prevents users from abusing the chain since giving a limited supply of ether prevents them from writing too much to the chain or executing too many transactions. Additionally, some testnets have implemented Proof of Authentication schemes, where using a faucet requires authentication from a social media site with proper credentials.
+由于测试网不以真正的金钱运作，矿工保护测试网的动机很弱。因此，测试网必须保护自己免受滥用和攻击。因此，为这些测试网创建了水龙头，以受控的方式向开发人员分发免费的测试ether（大多数faucet每隔几秒左右"滴注"ether）。这种以太网的受控分配可防止用户滥用链，因为提供有限的ether供应可防止他们向链中写入过多内容或执行太多交易。另外，一些testnets已经实施了认证证明（Proof of Authentication）方案，使用faucet需要具有适当社交媒体网站的认证的凭证。
 
-
-=== Connecting to Testnets
+=== 连接到Testnets
 
 ==== Metamask
 
-Metamask fully supports the Ropsten, Kovan and Rinkeby testnets, but connecting to other testnets and local networks is also possible. In Metamask, simply clicking the drop down that says 'Main Network' allows you to switch networks. MetaMask also offers an option to "buy" test ether, which directs you to a faucet where you can request free test ether. If the Ropsten testnet is used, ether can be obtained from the Ropsten Test Faucet Service. You can access this faucet from this page. It requires the Metamask extension to work. https://faucet.metamask.io/
+Metamask完全支持Ropsten，Kovan和Rinkeby测试网，但也可以连接到其他测试网和本地网。在Metamask中，只需单击“main network”下拉菜单，即可切换网络。MetaMask还提供了一个“buy”测试ether的选项，该选项将你引导至你可以请求免费测试以太网的faucet。如果使用Ropsten测试网，则可以从Ropsten测试faucet服务中获取ether。你可以从此页面访问此faucet。它需要Metamask扩展才能工作。https://faucet.metamask.io/
 
 ===== Infura
 
-When MetaMask connects to a test network, it uses the Infura service provider for the JSON-RPC interface. Infura was born with the goal of delivering stable and reliable RPC access to the internal projects within ConsenSys. In addition to a JSON-RPC API, Infura also offers a REST (Representational State Transfer) API, IPFS (Interplanetary File System, ie. decentralized storage) API, and a Websockets (ie. streaming) API.
+当MetaMask连接到测试网络时，它使用Infura服务提供商来访问JSON-RPC接口。Infura诞生的目的是为ConsenSys内部项目提供稳定可靠的RPC访问。除了JSON-RPC API之外，Infura还提供REST（表述性状态转移）API，IPFS（星际文件系统，即去中心化存储）API和Websockets（即流式传输）API。
 
-Infura offers gateway APIs to the Ethereum mainnet, Ropsten, Kovan, Rinkeby, and INFURAnet (a custom testnet for Infura).
+Infura为Ethereum主网，Ropsten，Kovan，Rinkeby和INFURAnet（用于Infura的定制测试网络）提供网关API。
 
-To use Infura via MetaMask for low levels of activity, you do not need an account. For direct use of the API, you need to register an account and use an API key provided by Infura.
+要通过MetaMask使用Infura进行较低级别的活动，你不需要账户。要直接使用API，你需要注册一个账户并使用Infura提供的API密钥。
 
-More information on Infura can be found at:
+有关Infura的更多信息，请访问：
 
 https://infura.io/
 
-==== Remix Integrated Development Environment (IDE)
-Remix IDE may be used to deploy and interact with smart contracts on the mainnet and testnets including Ropsten, Rinkeby, and Kovan (Web3 Provider using an Infura address and an API key or via Injected Web3 to use the network chosen in MetaMask) and Ganache (Web3 Provider Endpoint http://localhost:8545) 
+==== Remix集成开发环境（IDE）
+
+Remix IDE可用于在主网和测试网上部署和交互智能合约，包括Ropsten，Rinkeby和Kovan（Web3提供者使用Infura地址和API密钥或通过Injected Web3使用MetaMask中选择的网络）和Ganache（ Web3提供端点http://localhost:8545） 
 
 https://github.com/ethereum/remix/blob/master/docs/run_tab.rst 
 https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b
 
 ==== Geth
-Geth natively supports both the Ropsten and Rinkeby networks. To connect to the Ropsten network use the command-line argument:
+Geth本身支持Ropsten和Rinkeby网络。要连接到Ropsten网络，请使用命令行参数：
 
 ----
 geth --testnet
 ----
 
-This will start syncing the Ropsten blockchain. A new directory named +testnet+ will be created in your main Ethereum data directory. A +keystore+ directory will be created inside +testnet+ and will store the private keys of your testnet accounts. As of writing this, the Ropsten blockchain is significantly smaller than the main Ethereum blockchain: about 14GB of data. Since the testnet requires fewer resources, it is simpler to setup and test your code on the testnet first.
+这将开始同步Ropsten区块链。名为 +testnet+ 的新目录将在你的主Ethereum数据目录中创建。一个 +keystore+ 目录将在 +testnet+ 内部创建，并将存储你的testnet帐户的私钥。在撰写本文时，Ropsten区块链比以太坊主区块链小得多：大约14GB的数据。由于测试网需要的资源较少，因此首先在测试网上设置并测试你的代码会更简单。
 
-Interacting with the testnet is similar to the mainnet. You can start Geth testnet with a console, by running:
+与testnet的交互与mainnet类似。你可以使用控制台启动Geth testnet，方法是运行：
 ----
 geth --testnet console
 ----
 
-This makes it possible to perform operations such as opening a new account, checking your balance, checking the balance of other Ethereum addresses, etc.
-When running outside of the Geth console, operations can be performed similarly to how they would have been performed on the mainnet, simply by adding the `--testnet` parameter to the command-line instruction. As an example to list all the available testnet accounts and their addresses, run:
+这使得执行操作成为可能，例如开设新账户，检查余额，检查其他以太坊地址的余额等。
+在Geth控制台之外运行时，只需将`--testnet`参数添加到命令行指令中，就可以执行类似于在主网上执行的操作。作为列举所有可用的testnet帐户及其地址的示例，请运行：
+
 ----
 geth --testnet account list
 ----
 
 [TIP]
 ====
-Although much smaller, it will still take some time for the testnet to fully sync.
+虽然小得多，但测试网仍需要一些时间才能完全同步。
 ====
 
-You can check if geth has completed syncing the testnet by running the following command in the geth interactive console:
+你可以通过在geth交互式控制台中运行以下命令来检查geth是否已完成同步测试网络：
 
 ----
 eth.getBlock("latest").number
 ----
 
-This should return a number other than 0 once your testnet node is fully in sync. You can compare the number to the latest block in a known testnet block explorer, such as https://ropsten.etherscan.io/
+一旦你的testnet节点完全同步，这应该返回一个非0的数字。你可以将该编号与已知的testnet区块浏览器中的最新块进行比较，例如https://ropsten.etherscan.io/
 
-Similarly, to connect to the Rinkeby test network, use the command-line argument:
+同样，要连接到Rinkeby测试网络，请使用命令行参数：
+
 ----
 geth --rinkeby
 ----
 
 ==== Parity
 
-The Parity client supports the Ropsten and Kovan test networks. You can
-select the network you want to connect to with the +chain+ argument. For example, to sync the Ropsten test network:
+Parity客户端支持Ropsten和Kovan测试网络。你可以用+chain+参数选择你要连接的网络。例如，要同步Ropsten测试网络：
 
 ----
 parity --chain ropsten
 ----
 
-Similarly, to sync the Kovan test network, use:
+同样，要同步Kovan测试网络，请使用：
 
 ----
 parity --chain kovan
 ----
 
-== Ethereum Testnets In Depth
+== 深入以太坊Testnets
 
-At this stage you're probably thinking: "I understand why I might use a test network. But why are there so many of them?"
+在这个阶段你可能会想：“我明白我为什么要使用测试网络，但为什么会有这么多呢？”
 
 https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles
 
-=== Proof-of-Work (Mining) vs. Proof-of-Authority (Federated Signing)
+=== 工作量证明（挖矿）Proof-of-Work (Mining) 与 权威证明（联合签名）Proof-of-Authority (Federated Signing)
 https://github.com/ethereum/guide/blob/master/poa.md
 
-=== Morden (The Original Testnet)
+=== Morden（原始测试网）
 
 https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/
 
 === Ropsten
 
-If you want to begin testing contracts on the Ropsten network, there are several faucets that you can source your Ropsten ethers from. If a faucet does not work, try a different one.
+如果你想开始在Ropsten网络上测试合约，有几个faucet可以供给你Ropsten的ether。如果faucet不起作用，请尝试不同的faucet。
 
-* http://faucet.ropsten.be:3001/ +
-This faucet provides the possibility to queue the address that should receive the test ether.
+* http://faucet.ropsten.be:3001/ 
+这个faucet提供了应该排队接收测试以太的地址的可能性。
 
-* The bitfwd Ropsten Faucet +
-A Ropsten faucet available at https://faucet.bitfwd.xyz/.
+* bitfwd Ropsten Faucet 
+https://faucet.bitfwd.xyz/。
 
-* Kyber Network Ropsten Faucet +
-Another Ropsten faucet available at https://faucet.kyber.network/.
+* Kyber Network Ropsten Faucet 
+https://faucet.kyber.network/。
 
-* MetaMask Ropsten Faucet +
+* MetaMask Ropsten Faucet 
 https://faucet.metamask.io/
 
-* Ropsten Testnet Mining Pool +
+* Ropsten Testnet Mining Pool
 http://pool.ropsten.ethereum.org/
 
 * Etherscan Ropsten Pool
@@ -128,15 +129,14 @@ https://ropsten.etherscan.io/
 
 === Rinkeby
 
-The Rinkeby faucet is located at https://faucet.rinkeby.io/.
-To request test ether it is necessary to make a public post on either Twitter, Google Plus or Facebook.
-https://www.rinkeby.io/
+Rinkeby水龙头位于https://faucet.rinkeby.io/。
+要请求测试ether，有必要在Twitter，Google Plus或Facebook上发布公开信息。https://www.rinkeby.io/
 https://rinkeby.etherscan.io/
 
 === Kovan
 
-The Kovan testnet supports various methods to request test ether.
-Further information can be found in the Kovan testnet GitHub Repository located at https://github.com/kovan-testnet/faucet/blob/master/README.md.
+Kovan testnet支持各种方法来请求测试ether。
+更多信息可以在 https://github.com/kovan-testnet/faucet/blob/master/README.md 找到。
 
 https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f
 
@@ -145,10 +145,11 @@ https://kovan-testnet.github.io/website/
 https://kovan.etherscan.io/
 
 
-== Ethereum Classic Testnets
+== 以太坊经典Testnets
 
 ==== Morden
-Ethereum Classic currently runs a variant of the Morden testnet that is kept at feature parity with the Ethereum Classic live network. You can connect to it through either the gastracker RPC or by providing a flag to `geth` or `parity`
+
+以太坊经典目前运行着Morden测试网的一个变体，与以太坊经典活跃网络保持功能相同。你可以通过gastracker RPC或者为`geth`或`parity`提供一个标志来连接它.
 
 *Faucet:* http://testnet.epool.io/
 
@@ -160,45 +161,44 @@ Ethereum Classic currently runs a variant of the Morden testnet that is kept at 
 
 *Parity flag:* `parity --chain=classic-testnet`
 
-=== History of Ethereum Testnets
+=== 以太坊测试网的历史
+
 Olympic, Morden to Ropsten, Kovan, Rinkeby
 
-Olympic testnet (Network ID: 0) was the first public testnet for Frontier (referred to as Ethereum 0.9). It was launched in early 2015 and deprecated in mid 2015 when it was replaced by Morden.
+Olympic testnet (Network ID: 0) 是Frontier首个公共测试网（简称Ethereum 0.9）。它于2015年初推出，2015年中期被Morden取代时弃用。
 
-Ethereum’s Morden testnet (Network ID: 2) was launched with Frontier and ran from July 2015 until it was deprecated in November 2016. While anyone using Ethereum can create a testnet, Morden was the first "official" public testnet and replaced the Olympic testnet. Due to long sync times stemming from a bloated blockchain, and consensus issues between the Geth and Parity clients, the testnet was rebooted and reborn as Ropsten.
+Ethereum’s Morden testnet (Network ID: 2) 与Frontier一起发布，从2015年7月开始运行，直到2016年11月不再使用。虽然任何使用以太坊的人都可以创建测试网，但Morden是第一个“官方”公共测试网，取代了Olympic测试网。由于臃肿区块链的长同步时间以及Geth和Parity客户端之间的共识问题，测试网络重新启动并重新生成为Ropsten。
 
-Ropsten (Network ID: 3) is a public cross-client testnet for Homestead that was introduced in late 2016 and ran smoothly as the public testnet until the end of February 2017. According to Péter Szilágyi, a core developer for Ethereum, the end of February is when "malicious actors decided to abuse the low PoW and gradually inflated the block gas limits to 9 billion (from the normal 4.7 million), at which point sending in gigantic transactions crippled the entire network". Ropsten was recovered in March 2017. https://github.com/ethereum/ropsten
+Ropsten (Network ID: 3) 是一个针对Homestead的公共跨客户端测试网，于2016年晚些时候推出，并作为公共测试网顺利运行至2017年2月底。根据Ethereum的核心开发人员PéterSzilágyi的说法，二月的时候，“恶意行为者决定滥用低PoW，并逐步将gas限制提高到90亿（从普通的470万），发送巨大交易损害了整个网络”。Ropsten在2017年3月被恢复。https://github.com/ethereum/ropsten
 
-Kovan (Network ID: 42) is a public Parity testnet for Homestead that is powered by Parity’s Proof-of-Authority (PoA) consensus algorithm. The testnet is immune to spam attacks because the Ether supply is controlled by trusted parties. Those trusted parties are companies that are actively developing on Ethereum.
-While it seems like this should be a solution to Ethereum's testnet troubles, there appear to be consensus issues within the Ethereum community regarding the Kovan testnet. https://github.com/kovan-testnet/proposal
+Kovan (Network ID: 42) 是由Parity的权威证明（PoA）共识算法驱动的Homestead的公共Parity测试网络。该测试网不受垃圾邮件攻击的影响，因为ether供应由可信方控制。这些值得信赖的各方是在Ethereum上积极开发的公司。
+尽管看起来这应该是以太坊测试网问题的解决方案，但在以太坊社区内似乎存在关于Kovan测试网的共识问题。https://github.com/kovan-testnet/proposal
 
-Rinkeby (Network ID: 4) is a publc Geth testnet for Homestead that was started in April 2017 by the Ethereum team and uses the PoA consensus protocol. Named after a metro station in Stockholm, is it virtually immune to spam attacks (as Ether supply is controlled by trusted parties). Refer to EIP 225: https://github.com/ethereum/EIPs/issues/225
+Rinkeby (Network ID: 4) 是由Ethereum团队于2017年4月开始的Homestead发布的Geth测试网络，并使用PoA共识协议。以斯德哥尔摩的地铁站命名，它几乎不受垃圾邮件攻击的影响（因为以太网供应由受信任方控制）。请参阅EIP 225：https://github.com/ethereum/EIPs/issues/225
 
-=== Proof-of-Work (Mining) vs. Proof-of-Authority (Federated Signing)
+=== 工作量证明（挖矿）Proof-of-Work (Mining) 与 权威证明（联合签名）Proof-of-Authority (Federated Signing)
 https://github.com/ethereum/guide/blob/master/poa.md
 
-TODO: write up pros and cons of both mechanisms
+Proof-of-Work 是一种协议，必须执行挖矿（昂贵的计算机计算）以在区块链（分布式账本）上创建新的区块（去信任的交易）。
+缺点：能源消耗。集中的哈希算力与集中的采矿农场，不是真正的分布式。挖掘新块体所需的大量计算能力对环境有影响。
 
-Proof-of-Work is a protocol where mining (an expensive computer calculation) must be performed to create new blocks (trustless transactions) on the blockchain (distributed ledger).
-Disadvantages: Inefficient energy consumption. Centralized hashing power with concentrated mining farms instead of being truly distributedd. Massive amount of computing power required to mine new blocks and its impact on the environment.
-
-Proof-of-Authority is a protocol that distributes the minting load only to authorized and trusted signers that may mint new blocks at their own discretion and at any time with a minting frequency. https://github.com/ethereum/EIPs/issues/225
-Advantages: Blockchain participants with the most identity at stake are selected by an algorithm for the right to validate blocks to deliver transactions.
+Proof-of-Authority 是一种协议，它只将造币的负载分配给授权和可信的签名者，他们可以根据自己的判断并随时以发币频率分发新的区块。https://github.com/ethereum/EIPs/issues/225
+优点：具有最显赫的身份的区块链参与者通过算法选择来验证块来交付交易。
 
 https://www.deepdotweb.com/2017/05/21/generalized-proof-activity-poa-forking-free-hybrid-consensus/
 
 
-=== Running Local Testnets
+=== 运行本地测试网
 
-==== Ganache: A personal blockchain for Ethereum development
+==== Ganache: 以太坊开发的个人区块链
 
-You can use Ganache to deploy contracts, develop your applications, and run tests. It is available as a desktop application for Windows, Mac, and Linux.
+你可以使用Ganache部署合约，开发应用程序并运行测试。它可用作Windows，Mac和Linux的桌面应用程序。
 
-Website: http://truffleframework.com/ganache
+网站: http://truffleframework.com/ganache
 
-==== Ganache CLI: Ganache as a command-line tool
+==== Ganache CLI: Ganache 作为命令行工具。
 
-This tool was previously known under the name "ethereumJS TestRPC".
+这个工具以前称为“ethereumJS TestRPC”。
 
 https://github.com/trufflesuite/ganache-cli/
 
@@ -206,10 +206,10 @@ https://github.com/trufflesuite/ganache-cli/
 $ npm install -g ganache-cli
 ----
 
-Let's start a node simulation of the Ethereum blockchain protocol.
-* [ ] Check the `--networkId` and `--port` flag values match your configuration in truffle.js
-* [ ] Check the `--gasLimit` flag value matches the latest mainnet Gas Limit (i.e. 8000000 gas) shown at https://ethstats.net to avoid encountering `out of gas` exceptions unnecessarily. Note that a `--gasPrice` of 4000000000 represents a Gas Price of 4 gwei.
-* [ ] Optionally enter a `--mnemonic` flag value to restore a previous HD wallet and associated addresses
+让我们开始以太坊区块链协议的节点模拟。
+* []检查`--networkId`和`--port`标志值是否与truffle.js中的配置相匹配
+* []检查`--gasLimit`标志值是否与https://ethstats.net上显示的最新主网gas极限（即8000000 gas）相匹配，以避免不必要地遇到`gas'异常。请注意，4000000000的“--gasPrice”代表4 gwei的gas价格。
+* []可以输入一个`--mnemonic'标志值来恢复以前的高清钱包和相关地址
 
 ----
 $ ganache-cli \
@@ -219,3 +219,5 @@ $ ganache-cli \
   --gasLimit=8000000 \
   --gasPrice=4000000000;
 ----
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

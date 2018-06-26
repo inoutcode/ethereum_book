@@ -1,141 +1,141 @@
 [[keys_addresses]]
-== Keys, Addresses
+== 密钥，地址
 
-((("cryptography", "defined")))((("cryptography", see="also keys and addresses")))One of Ethereum's foundational technologies is _cryptography_, which is a branch of mathematics used extensively in computer security. Cryptography means "secret writing" in Greek, but the science of cryptography encompasses more than just secret writing, which is referred to as encryption. Cryptography can also be used to prove knowledge of a secret without revealing that secret (digital signature), or prove the authenticity of data (digital fingerprint). These types of cryptographic proofs are the mathematical tools critical to Ethereum and most blockchain systems, being extensively used in Ethereum applications. ((("encryption")))((("encryption", see="also keys and addresses")))Ironically, encryption is not an important part of Ethereum, as its communications and transaction data are not encrypted and do not need to be encrypted to secure the system. In this chapter we will introduce some of the cryptography used in Ethereum to control ownership of funds, in the form of keys and addresses.
+以太坊的基础技术之一是 _密码学_ _cryptography_，它是数学的一个分支，广泛用于计算机安全。密码学在希腊文中的意思是“秘密写作”，但密码学的科学不仅仅包含秘密协作，它被称为加密。加密也可以用来证明秘密的知识而不泄露该秘密（数字签名），或者证明数据的真实性（数字指纹）。这些类型的密码学证明是以太坊和大多数区块链系统的关键数学工具，广泛用于以太坊应用。讽刺的是，加密并不是以太坊的重要组成部分，因为它的通信和交易数据没有加密，也不需要加密以保护系统。在本章中，我们将以密钥和地址的形式介绍一些以太坊用来控制资金所有权的密码学。
 
 [[keys_addresses_intro]]
-=== Introduction
+=== 简介
 
-Ethereum has two different types of accounts, which can own and control ether: _Externally Owned Accounts_ (EOA) and _Contracts_. In this section we will examine the use of cryptography to establish ownership of ether by externally owned accounts, i.e. private keys.
+以太坊有两种不同类型的账户，可以拥有和控制ether：_外部所有账户_（EOA）和_合同_。在本节中，我们将研究使用密码学来确定外部所有账户（即私人密钥）对ether的所有权。
 
-((("digital keys", see="keys and addresses")))((("digital signatures", "purpose of")))Ownership of ether in EOAs is established through _digital keys_, _Ethereum addresses_, and _digital signatures_. The digital keys are not actually stored on the blockchain or transmitted on the Ethereum network, but are instead created and stored by users in a file, or simple database, called a _wallet_. The digital keys in a user's wallet are completely independent of the Ethereum protocol and can be generated and managed by the user's wallet software without reference to the blockchain or access to the internet. Digital keys enable many of the interesting properties of Ethereum, including decentralized trust and control, and ownership attestation.
+EOAs中以太的所有权通过 _数字密钥_ _digital keys_，_以太坊地址_和_数字签名_ 建立 。数字密钥实际上并不存储在区块链中或在以太坊网络上传输，而是由用户创建并存储在文件或称为_钱包_的简单数据库中。用户钱包中的数字密钥完全独立于以太坊协议，可以由用户的钱包软件生成和管理，无需参考区块链或访问互联网。数字密钥可实现以太坊的许多有趣特性，包括去中心化的信任和控制以及所有权证明。
 
-Ethereum transactions require a valid digital signature to be included in the blockchain, which can only be generated with a secret key; therefore, anyone with a copy of that key has control of the ether. The digital signature in an Ethereum transaction proves the true owner of the funds.
+以太坊交易需要将有效的数字签名包含在区块链中，该签名只能使用密钥生成；因此，任何拥有该密钥副本的人都可以控制ether。以太坊交易中的数字签名证明了资金的真正所有者。
 
-((("public and private keys", "key pairs")))((("public and private keys", see="also keys and addresses")))Digital keys come in pairs consisting of a private (secret) key and a public key. Think of the public key as similar to a bank account number and the private key as similar to the secret PIN, that provides control over the account. These digital keys are very rarely seen by the users of Ethereum. For the most part, they are stored inside the wallet file and managed by Ethereum wallet software.
+数字密钥成对组成，密钥和公钥。将公钥视为类似于银行帐号，私钥类似于私密PIN，用于控制帐户。以太坊的用户很少看到这些数字密钥。在大多数情况下，它们存储在钱包文件内并由以太坊钱包软件管理。
 
-In the payment portion of an Ethereum transaction, the intended recipient is represented by an _Ethereum address_, which is used in the same way as the beneficiary name on a check (i.e., "Pay to the order of"). In most cases, an Ethereum address is generated from and corresponds to a public key. However, not all Ethereum addresses represent public keys; they can also represent contracts, as we will see in <<contracts>>. The Ethereum address is the only representation of the keys that users will routinely see, because this is the part they need to share with the world.
+在以太坊交易的付款部分中，预期收款人由_以太坊地址_表示，该地址与支票上的收款人名称相同（即“付款给谁”）。在大多数情况下，以太坊地址是从公钥生成并对应的。但是，并非所有以太坊地址都代表公钥。他们也可以代表合同，我们将在 <<contracts>> 中看到。以太坊地址是用户常会看到的唯一密钥表示，因为这是他们需要与世界分享的部分。
 
-First, we will introduce cryptography and explain the mathematics used in Ethereum. Next, we will look at how keys are generated, stored, and managed.  Finally, we will review the various encoding formats used to represent private and public keys, and addresses.
+首先，我们将介绍密码学并解释以太坊使用的数学。接下来，我们将看看密钥是如何生成，存储和管理的。最后，我们将回顾用于表示私钥和公钥以及地址的各种编码格式。
 
 [[pkc]]
-=== Public key cryptography and cryptocurrency
+=== 公钥密码技术和加密货币
 
-((("keys and addresses", "overview of", "public key cryptography")))((("digital currencies", "cryptocurrency")))Public key cryptography is a core concept of modern day information security. First publicly invented in the 1970s by Martin Hellman, Whitfield Diffie and Ralph Merkle, it was a monumental breakthrough which incited the first big wave of public interest into the field of cryptography. Before the 70s, strong cryptographic knowledge was held under governmental control with little public research untill the open publication of public key cryptography research.
+公钥密码技术是现代信息安全的核心概念。首先由Martin Hellman，Whitfield Diffie和Ralph Merkle在20世纪70年代公开发明的，这是一个巨大的突破，它激起了公众对密码学领域的广泛兴趣。在70年代以前，强大的密码学知识在政府的控制下，很少有公开的研究，直到公钥密码技术研究的公开发表。
 
-Public key cryptography uses unique keys that are used to secure information. These unique keys are based on mathematical functions that have a unique property: they are easy to calculate in one direction, but very difficult to calculate in the inverse direction. Based on these mathematical functions, cryptography enables the creation of digital secrets and unforgeable digital signatures which are secured by the laws of mathematics.
+公钥密码系统使用唯一的密钥来保护信息。这些独特的密钥基于具有独特属性的数学函数：它们很容易在一个方向上计算，但很难在相反方向上计算。基于这些数学函数，密码学能够创建数字密钥和不可伪造的数字签名，这些签名由数学定律保证。
 
-For example, multiplying two large prime numbers together is trivial. But given the product of two large primes, it is very difficult to find the prime factors (a problem called _prime factorization_). Let's say I present the number 6895601 and tell you it is the product of two primes. Finding those two primes is much harder than it was for me to multiply them to produce 6895601.
+例如，计算两个大素数的乘积是微不足道的。但是给定两个大素数的乘积，很难找到这两个素数（称为_素因式分解_问题）。假设我提供数字6895601并告诉你它是两个素数的乘积。找到这两个素数要比让它们相乘生产6895601要困难得多。
 
-Some of these mathematical functions can be inverted easily if you know some secret information. In our example above, if I tell you that one of the prime factors is 1931, you can trivially find the other one with a simple division: 6895601 / 1931 = 3571. Such functions are called _trapdoor functions_ because given one piece of secret information, you can take a shortcut that makes it trivial to reverse the function.
+如果你知道一些秘密信息，这些数学函数可以很容易地被反转。在我们上面的例子中，如果我告诉你一个主素数是1931，你可以简单地用一个简单的除法找到另一个：6895601/1931 = 3571。这样的函数被称为_trapdoor函数_因为给定一个秘密信息，你可以采取一个快捷方式，使得反转该函数很简单。
 
-Another category of mathematical functions that is useful in cryptography is based on arithmetic operations on an elliptic curve. In elliptic curve arithmetic, multiplication modulo a prime is simple but division is impossible (a problem known as the _discrete logarithm problem_). Elliptic curve cryptography is used extensively in modern computer systems and is the basis of Ethereum's (and other cryptocurrencies') digital keys and digital signatures.
+在密码学中有用的另一类数学函数基于椭圆曲线上的算术运算。在椭圆曲线算术中，乘以模数是简单的，但是除法是不可能的（一个被称为_离散对数_的问题）。椭圆曲线密码术在现代计算机系统中被广泛使用，并且是以太坊（和其他加密货币）数字密钥和数字签名的基础。
 
 [TIP]
 ====
-Read more about cryptography and the mathematical functions that are used in modern cryptography:
+更多关于密码学和现代密码学中使用的数学函数：
 
-Cryptography:
+密码：
 https://en.wikipedia.org/wiki/Cryptography
 
-Trapdoor Function:
+Trapdoor函数：
 https://en.wikipedia.org/wiki/Trapdoor_function
 
-Prime Factorization:
+素因子分解：
 https://en.wikipedia.org/wiki/Integer_factorization
 
-Discrete Logarithm:
+离散对数：
 https://en.wikipedia.org/wiki/Discrete_logarithm
 
-Elliptic Curve Cryptography: https://en.wikipedia.org/wiki/Elliptic_curve_cryptography
+椭圆曲线密码学：
+https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography
 ====
 
-In Ethereum, we use public key cryptography to create a key pair that controls access to ether and allows us to authenticate to contracts. The key pair consists of a private key, a unique public key, and are considered a "pair" because the public key is derived from the private key. The public key is used to receive funds and the private key is used to create digital signatures to sign transactions to spend the funds. Digital signatures are also used to authenticate owners or users of contracts, as we will see in <<contract_authentication>>.
+在以太坊，我们使用公钥加密技术来创建一个密钥对，以控制对ether的访问，并允许我们对合同进行身份验证。密钥对由私钥和唯一公钥组成，并且被认为是“一对儿”，因为公钥是从私钥中派生出来的。公钥用于接收资金，私钥用于创建数字签名来签署交易以支付资金。数字签名也可用于验证合同的所有者或用户，我们将在 << contract_authentication>> 中看到。
 
-There is a mathematical relationship between the public and the private key that allows the private key to be used to generate signatures on messages. This signature can be validated against the public key without revealing the private key.
+公钥和私钥之间存在数学关系，允许私钥用于在消息上生成签名。该签名可以在不公开私钥的情况下使用公钥进行验证。
 
-When spending ether, the current owner presents her public key and a signature (different each time, but created from the same private key) in a transaction. Through the presentation of the public key and signature, everyone in the Ethereum system can independently verify and accept the transaction as valid, confirming that the person transferring the ether owned them at the time of the transfer.
+当使用ether时，当前所有者在交易中呈现她的公钥和签名（每次不同，但是使用相同的私钥创建）。通过公钥和签名，以太坊系统中的每个人都可以独立验证并接受交易的有效性，从而确认在转移ether的人拥有他们。
 
 [TIP]
 ====
-((("keys and addresses", "overview of", "key pairs")))In most wallet implementations, the private and public keys are stored together as a _key pair_ for convenience. However, the public key can be trivially calculated from the private key, so storing only the private key is also possible.
+在大多数钱包实现中，为了方便起见，私钥和公钥一起存储为_key pair_。但是，公钥可以由私钥进行简单计算，因此只存储私钥也是可以的。
 ====
 
-.Why Use Asymmetric Cryptography (Public/Private Keys)?
+.为什么使用不对称加密（公钥/私钥）？
 ****
-((("cryptography", "asymmetric")))((("digital signatures", "asymmetric cryptography and")))((("asymmetric cryptography")))Why is asymmetric cryptography used in Ethereum? It's not used to "encrypt" (make secret) the transactions. Rather, the useful property of asymmetric cryptography is the ability to generate _digital signatures_. A private key can be applied to the digital fingerprint of a transaction to produce a numerical signature. This signature can only be produced by someone with knowledge of the private key. However, anyone with access to the public key and the transaction fingerprint can use them to _verify_ the signature. This useful property of asymmetric cryptography makes it possible for anyone to verify every signature on every transaction, while ensuring that only the owners of private keys can produce valid signatures.
+为什么在以太坊使用非对称密码术？它不习惯“加密”（保密）交易。相反，非对称密码术的有用特性是产生数字签名的能力。私钥可应用产生交易的数字签名。这个签名只能由知道私钥的人制作。但是，任何有权访问公钥和交易签名的人都可以使用它们来验证。非对称加密技术的这一有用特性使任何人都可以验证每笔交易的每个签名，
 ****
 
 [[private_keys]]
-=== Private keys
+=== 私钥
 
-((("keys and addresses", "overview of", "private key generation")))((("warnings and cautions", "private key protection")))A private key is simply a number, picked at random. Ownership and control over the private key is the root of user control over all funds associated with the corresponding Ethereum address, as well as access to contracts that authorize that address. The private key is used to create signatures that are required to spend ether by proving ownership of funds used in a transaction. The private key must remain secret at all times, because revealing it to third parties is equivalent to giving them control over the ether and contracts secured by that key. The private key must also be backed up and protected from accidental loss. If it's lost, it cannot be recovered and the funds secured by it are lost forever too.
+私钥只是一个随机选取的数字。私有密钥的所有权和控制权是用户控制与相应以太坊地址相关联的所有资金的基础，也是对该地址的合同的访问权授权。通过证明交易中使用的资金的所有权，私钥用于创建花费ether所需的签名。私钥在任何时候都必须保密，因为向第三方透露密钥相当于让他们控制以太和由该密钥保证的合同。私钥还必须备份并防止意外丢失。如果它丢失了，无法恢复，它保护的资金也将永远丢失。
 
 [TIP]
 ====
-The Ethereum private key is just a number. You can pick your private keys randomly using just a coin, pencil, and paper: toss a coin 256 times and you have the binary digits of a random private key you can use in an Ethereum wallet. The public key and address can then be generated from the private key.
+以太坊私钥只是一个数字。你可以使用硬币，铅笔和纸随机挑选你的私钥：投掷硬币256次，得到可以在以太坊钱包中使用的随机二进制数字作为私钥。然后可以从私钥生成公钥和地址。
 ====
 
 [[generating_private_key]]
-=== Generating a private key from a random number
+=== 从随机数生成私钥
 
-The first and most important step in generating keys is to find a secure source of entropy, or randomness. Creating an Ethereum private key is essentially the same as "Pick a number between 1 and 2^256^." The exact method you use to pick that number does not matter as long as it is not predictable or repeatable. Ethereum software uses the underlying operating system's random number generator to produce 256 bits of entropy (randomness). Usually, the OS random number generator is initialized by a human source of randomness, which is why you may be asked to wiggle your mouse around for a few seconds, or press random keys on your keyboard.
+生成密钥的第一步也是最重要的一步是找到一个安全的熵源或随机源。创建以太坊私钥基本上与“选择1到2^256^之间的数字”相同。只要不可预测和不可重复，用于选择该数字的确切方法并不重要。以太坊软件使用底层操作系统的随机数生成器生成256位熵（随机性）。通常，操作系统随机数生成器是由一个人为的随机源进行初始化的，这就是为什么可能会要求你将鼠标左右摇摆几秒钟，或者按下键盘上的随机键。
 
-More precisely, the range of possible private keys is slightly less than 2^256^. The private key can be any number between +1+ and +n - 1+, where n is a constant (n = 1.158 * 10^77^, slightly less than 2^256^) defined as the order of the elliptic curve used in Ethereum (see <<elliptic_curve>>). To create such a key, we randomly pick a 256-bit number and check that it is less than +n - 1+. In programming terms, this is usually achieved by feeding a larger string of random bits, collected from a cryptographically secure source of randomness, into a 256-bit hash algorithm such as Keccak-256 or SHA256 (see <<cryptographic_hash_algorithm>>), which will conveniently produce a 256-bit number. If the result is less than +n - 1+, we have a suitable private key. Otherwise, we simply try again with another random number.
+更确切地说，可能的私钥范围略小于2^256^。在以太坊中，私钥可以是+1+和+n-1+之间的任何数字，其中n是定义为使用的椭圆曲线的阶数的常数（n = 1.158*10^77^，略小于2^256^）（参见<<elliptic_curve>>）。为了创建这样的密钥，我们随机选择一个256位数字并检查它是否小于+n-1+。在编程方面，这通常是通过将从密码学安全的随机源收集的更大的随机比特串提供给256位哈希算法（如Keccak-256或SHA256）（参见 <<cryptographic_hash_algorithm>>），产生一个256位数字。如果结果小于+n-1+，我们有一个合适的私钥。否则，我们只需再次尝试使用另一个随机数。
 
 [WARNING]
 ====
-((("random numbers", "random number generation")))((("entropy", "random number generation")))Do not write your own code to create a random number or use a "simple" random number generator offered by your programming language. Use a cryptographically secure pseudo-random number generator (CSPRNG) with a seed from a source of sufficient entropy. Study the documentation of the random number generator library you choose to make sure it is cryptographically secure. Correct implementation of the CSPRNG is critical to the security of the keys.
+不要编写自己的代码来创建随机数或使用你的编程语言提供的“简单”随机数发生器。使用密码学安全的伪随机数字发生器（CSPRNG）和来自足够熵源的种子。研究你选择的随机数生成器库的文档，以确保其是密码学安全的。正确实施CSPRNG对于密钥的安全至关重要。
 ====
 
-The following is a randomly generated private key (k) shown in hexadecimal format (256 bits shown as 64 hexadecimal digits, each 4 bits):
+以下是以十六进制格式显示的随机生成的私钥（k）（256位，显示为64个十六进制数字，每个4位）：
 
 [[prv_key_example]]
 ----
 f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 ----
 
-
 [TIP]
 ====
-The size of Ethereum's private key space, (2^256^) is an unfathomably large number. It is approximately 10^77^ in decimal. For comparison, the visible universe is estimated to contain 10^80^ atoms.
+以太坊的私人密钥空间的大小（2^256^）是一个难以置信的大数目。十进制大约是10^77^。可见宇宙估计含有10^80^原子。
 ====
 
 
 [[pubkey]]
-=== Public keys
+=== 公钥
 
-((("keys and addresses", "overview of", "public key calculation")))((("generator point")))An Ethereum public key is a _point_ on an elliptic curve, meaning it is a set of X and Y coordinates that satisfy the elliptic curve equation.
+以太坊公钥是一个椭圆曲线上的_点_ _point_，意思是它是一组满足椭圆曲线方程的X和Y坐标。
 
-In simpler terms, an Ethereum public key is two numbers, joined together. These numbers are produced from the private key by a calculation that can _only go one way_. That means that it is trivial to calculate a public key if you have the private key. But you cannot calculate the private key from the public key.
+简单来说，以太坊公钥是两个数字，并联在一起。这些数字是通过一次单向的计算从私钥生成的。这意味着，如果你拥有私钥，则计算公钥是微不足道的。但是你不能从公钥中计算私钥。
 
 [[WARNING]]
 ====
-MATH is about to happen! Don't panic. If you find it hard to read the previous paragraph, you can skip the next few sections. There are many tools and libraries that will do the math for you.
+MATH即将发生！不要惊慌。如果你发现难以阅读前一段，则可以跳过接下来的几节。有很多工具和库会为你做数学。
 ====
 
-The public key is calculated from the private key using elliptic curve multiplication, which is irreversible: _K_ = _k_ * _G_, where _k_ is the private key, _G_ is a constant point called the _generator point_, and _K_ is the resulting public key. The reverse operation, known as "finding the discrete logarithm"—calculating _k_ if you know _K_—is as difficult as trying all possible values of _k_, i.e., a brute-force search.
+公钥使用椭圆曲线乘法和私钥计算，这是不可逆的：_K_ = _k_ * _G_，其中_k_是私钥，_G_是一个称为_generator point_的常数点，_K_是结果公钥。如果你知道_K_，那么称为“寻找离散对数”的逆运算就像尝试所有可能的_k_值一样困难，也就是蛮力搜索。
 
-In simpler terms: arithmetic on the elliptic curve is different from "regular" integer arithmetic. A point (G) can be multiplied by an integer (k) to produce another point (K). But there is no such thing as _division_, so it is not possible to simply "divide" the public key K by the point G to calculate the private key k. This is the one-way mathematical function described in <<pkc>>.
+简单地说：椭圆曲线上的算术不同于“常规”整数算术。点（G）可以乘以整数（k）以产生另一点（K）。但是没有_除法_这样的东西，所以不可能简单地用公共密钥K除以点G来计算私钥k。这是<<pkc>>中描述的单向数学函数。
 
 [TIP]
 ====
-Elliptic curve multiplication is a type of function that cryptographers call a "one way" function: it is easy to do in one direction (multiplication) and impossible to do in the reverse direction (division). The owner of the private key can easily create the public key and then share it with the world knowing that no one can reverse the function and calculate the private key from the public key. This mathematical trick becomes the basis for unforgeable and secure digital signatures that prove ownership of Ethereum funds and control of contracts.
+椭圆曲线乘法是密码学家称之为“单向”函数的一种函数：在一个方向（乘法）很容易完成，而在相反方向（除法）不可能完成。私钥的所有者可以很容易地创建公钥，然后与世界共享，因为知道没有人能够反转该函数并从公钥计算私钥。这种数学技巧成为证明以太坊资金所有权和合同控制权的不可伪造和安全数字签名的基础。
 ====
 
-Before we demonstrate how to generate a public key from a private key, let's look at elliptic curve cryptography in a bit more detail.
+在我们演示如何从私钥生成公钥之前，我们先来看一下椭圆曲线加密。
 
 
 [[elliptic_curve]]
-=== Elliptic curve cryptography explained
+=== 椭圆曲线密码学解释
 
-((("keys and addresses", "overview of", "elliptic curve cryptography")))((("elliptic curve cryptography", id="eliptic04")))((("cryptography", "elliptic curve cryptography", id="Celliptic04")))Elliptic curve cryptography is a type of asymmetric or public key cryptography based on the discrete logarithm problem as expressed by addition and multiplication on the points of an elliptic curve.
+椭圆曲线密码术是一种基于离散对数问题的非对称或公钥密码体系，如椭圆曲线上的加法和乘法运算。
 
-<<ecc-curve>> is an example of an elliptic curve, similar to that used by Ethereum.
+<<ecc-curve>> 是椭圆曲线的一个例子，类似于以太坊使用的曲线。
 
 [TIP]
 ====
-Ethereum uses the exact same elliptic curve, called +secp256k1+, as Bitcoin. That makes it possible to re-use many of the elliptic curve libraries and tools from Bitcoin.
+以太坊使用与比特币完全相同的椭圆曲线，称为 +secp256k1+ 。这使得重新使用比特币的许多椭圆曲线库和工具成为可能。
 ====
 
 [[ecc-curve]]
@@ -143,7 +143,7 @@ Ethereum uses the exact same elliptic curve, called +secp256k1+, as Bitcoin. Tha
 .A visualization of an elliptic curve
 image::images/simple_elliptic_curve.png["ecc-curve"]
 
-Ethereum uses a specific elliptic curve and set of mathematical constants, as defined in a standard called +secp256k1+, established by the National Institute of Standards and Technology (NIST). The +secp256k1+ curve is defined by the following function, which produces an elliptic curve:
+以太坊使用特定的椭圆曲线和一组数学常数，由国家标准与技术研究院（NIST）制定的名为 +secp256k1+ 的标准中所定义的。+secp256k1+ 曲线由以下函数定义，该函数产生一个椭圆曲线：
 
 [latexmath]
 ++++
@@ -152,7 +152,7 @@ Ethereum uses a specific elliptic curve and set of mathematical constants, as de
 \end{equation}
 ++++
 
-or
+或
 
 [latexmath]
 ++++
@@ -161,23 +161,23 @@ or
 \end{equation}
 ++++
 
-The _mod p_ (modulo prime number p) indicates that this curve is over a finite field of prime order _p_, also written as latexmath:[\( \mathbb{F}_p \)], where p = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1, a very large prime number.
+_mod p_ (模素数p) 表示该曲线在素数阶_p_的有限域上，也写作 latexmath:[\( \mathbb{F}_p \)], 其中 p = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1, 一个非常大的素数。
 
-Because this curve is defined over a finite field of prime order instead of over the real numbers, it looks like a pattern of dots scattered in two dimensions, which makes it difficult to visualize. However, the math is identical to that of an elliptic curve over real numbers. As an example, <<ecc-over-F17-math>> shows the same elliptic curve over a much smaller finite field of prime order 17, showing a pattern of dots on a grid. The +secp256k1+ Ethereum elliptic curve can be thought of as a much more complex pattern of dots on an unfathomably large grid.
+因为这条曲线是在有限的素数阶上而不是在实数上定义的，所以它看起来像是一个散布在二维中的点的模式，使得难以可视化。然而，数学与实数上的椭圆曲线的数学是相同的。作为一个例子，<<ecc-over-F17-math>> 在一个更小的素数阶17的有限域上显示了相同的椭圆曲线，显示了一个网格上的点的图案。+secp256k1+ 以太坊椭圆曲线可以被认为是一个更复杂的模式，在一个不可思议的大网格上的点。
 
 [[ecc-over-F17-math]]
 [role="smallersixty"]
 .Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17
 image::images/ec_over_small_prime_field.png["ecc-over-F17-math"]
 
-So, for example, the following is a point Q with coordinates (x,y) that is a point on the +secp256k1+ curve:
+例如，以下是坐标为（x，y）的点Q，它是 +secp256k1+ 曲线上的一个点：
 
 [[coordinates_example]]
 ----
 Q = (49790390825249384486033144355916864607616083520101638681403973749255924539515, 59574132161899900045862086493921015780032175291755807399284007721050341297360)
 ----
 
-<<example_1>> shows how you can check this yourself using Python. The variables x and y are the coordinates of the point Q as above. The variable p is the prime order of the elliptic curve (the prime that is used for all the modulo operations). The last line of Python is the elliptic curve equation (the % operator in Python is the modulo operator). If x and y are indeed points on the elliptic curve, then they satisfy the equation and the result is zero (+0L+ is a long integer with value zero). Try it yourself, by typing +python+ on a command line and copying each line (after the prompt +>>>+) from the listing:
+<<example_1>> 显示了如何使用Python检查它。变量x和y是上述点Q的坐标。变量p是椭圆曲线的主要阶数（用于所有模运算的素数）。Python的最后一行是椭圆曲线方程（Python中的％运算符是模运算符）。如果x和y确实是椭圆曲线上的点，那么它们满足方程，结果为零（+0L+是零值的长整数）。通过在命令行上键入+python+ 并复制下面的每行（不包括提示符 +>>>+），亲自尝试一下：
 
 [[example_1]]
 .Using Python to confirm that this point is on the elliptic curve
@@ -196,30 +196,33 @@ Type "help", "copyright", "credits" or "license" for more information.
 ====
 
 [[EC_math]]
-=== Elliptic curve arithmetic operations
+=== 椭圆曲线算术运算
+
+很多椭圆曲线数学看起来很像我们在学校学到的整数算术。具体而言，我们可以定义一个加法运算符，而不是添加数字就是在曲线上添加点。一旦我们有了加法运算符，我们也可以定义一个点和一个整数的乘法，等于重复加法。
+
 
 A lot of elliptic curve math looks and works very much like the integer arithmetic we learned at school. Specifically, we can define an addition operator, which instead of adding numbers is adding points on the curve. Once we have the addition operator, we can also define multiplication of a point and a whole number, such that it is equivalent to repeated addition.
 
-Addition is defined such that given two points P~1~ and P~2~ on the elliptic curve, there is a third point P~3~ = P~1~ + P~2~, also on the elliptic curve.
+加法定义为给定椭圆曲线上的两个点 P~1~ and P~2~ , 第三个点 P~3~ = P~1~ + P~2~, 也在椭圆曲线上。
 
-Geometrically, this third point P~3~ is calculated by drawing a line between P~1~ and P~2~. This line will intersect the elliptic curve in exactly one additional place. Call this point P~3~' = (x, y). Then reflect in the x-axis to get P~3~ = (x, –y).
+在几何上，这个第三点 P~3~ 是通过在 P~1~ 和 P~2~ 之间画一条直线来计算的。这条线将在另外一个地方与椭圆曲线相交。称此点为 P~3~' = (x, y)。然后在x轴上反射得到 P~3~ = (x, –y)。
 
-In elliptic curve math, there is a point called the "point at infinity," which roughly corresponds to the role of the number zero in addition. On computers, it's sometimes represented by x = y = 0 (which doesn't satisfy the elliptic curve equation, but it's an easy separate case that can be checked). There are a couple of special cases that explain the need for the "point at infinity."
+在椭圆曲线数学中，有一个叫做“无穷点”的点，它大致对应于零点的作用。在计算机上，它有时用 x = y = 0表示（它不满足椭圆曲线方程，但它是一个容易区分的情况，可以检查）。有几个特殊情况解释了“无穷点”的需要。
 
-If P~1~ and P~2~ are the same point, the line "between" P~1~ and P~2~ should extend to be the tangent on the curve at this point P~1~. This tangent will intersect the curve in exactly one new point. You can use techniques from calculus to determine the slope of the tangent line. These techniques curiously work, even though we are restricting our interest to points on the curve with two integer coordinates!
+如果 P~1~ 和 P~2~ 是同一点，P~1~ and P~2~ 之间的直线应该延伸到曲线上 P~1~ 的切线。 该切线恰好与曲线在一个新点相交。你可以使用微积分技术来确定切线的斜率。我们将我们的兴趣局限在具有两个整数坐标的曲线上，这些技巧令人好奇地工作！
 
-In some cases (i.e., if P~1~ and P~2~ have the same x values but different y values), the tangent line will be exactly vertical, in which case P3 = "point at infinity."
+在某些情况下（即，如果 P~1~ 和 P~2~ 具有相同的x值但不同的y值），切线将精确地垂直，在这种情况下P3 =“无穷点”。
 
-If P~1~ is the "point at infinity," then P~1~ + P~2~ = P~2~. Similarly, if P~2~ is the point at infinity, then P~1~ + P~2~ = P~1~. This shows how the point at infinity plays the role that zero plays in "normal" arithmetic.
+如果 P~1~ 是“无穷点”，那么 P~1~ + P~2~ = P~2~。 类似地, 如果 P~2~ 是“无穷点”，P~1~ + P~2~ = P~1~。这显示了无穷点如何扮演零在“正常”算术中扮演的角色。
 
-It turns out that pass:[+] is associative, which means that (A pass:[+] B) pass:[+] C = A pass:[+] (B pass:[+] C). That means we can write A pass:[+] B pass:[+] C without parentheses and without ambiguity.
+pass:[+] 是可结合的,  (A pass:[+] B) pass:[+] C = A pass:[+] (B pass:[+] C). 这表示 A pass:[+] B pass:[+] C 不加括号也没有歧义。
 
-Now that we have defined addition, we can define multiplication in the standard way that extends addition. For a point P on the elliptic curve, if k is a whole number, then k pass:[*] P = P + P + P + ... + P (k times). Note that k is sometimes confusingly called an "exponent" in this case
+现在我们已经定义了加法，我们可以用扩展加法的标准方式来定义乘法。对于椭圆曲线上的点P，如果k是整数，则 k pass:[*] P = P + P + P + ... + P (k 次)。请注意，在这种情况下，k有时会被混淆地称为“指数”。
 
 [[public_key_derivation]]
-=== Generating a public key
+=== 生成一个公钥
 
-((("keys and addresses", "overview of", "public key generation")))((("generator point")))Starting with a private key in the form of a randomly generated number _k_, we multiply it by a predetermined point on the curve called the _generator point_ _G_ to produce another point somewhere else on the curve, which is the corresponding public key _K_. The generator point is specified as part of the +secp256k1+ standard and is always the same for all implementations of +secp256k1+ and all keys derived from that curve use the same point _G_:
+以一个随机生成的数字_k_的私钥开始，我们通过将它乘以称为_generator point_ _G_的曲线上的预定点，在曲线上的其他位置产生另一个点，这是相应的公钥_K_。生成点被指定为+secp256k1+标准的一部分，对于+secp256k1+的所有实现始终相同，并且从该曲线派生的所有密钥都使用相同的点_G_：
 
 [latexmath]
 ++++
@@ -228,17 +231,16 @@ Now that we have defined addition, we can define multiplication in the standard 
 \end{equation}
 ++++
 
-where _k_ is the private key, _G_ is the generator point, and _K_ is the resulting public key, a point on the curve. Because the generator point is always the same for all Ethereum users, a private key _k_ multiplied with _G_ will always result in the same public key _K_. The relationship between _k_ and _K_ is fixed, but can only be calculated in one direction, from _k_ to _K_. That's why an Ethereum address (derived from _K_) can be shared with anyone and does not reveal the user's private key (_k_).
+其中_k_是私钥，_G_是生成点，_K_是生成的公钥，即曲线上的一个点。因为所有以太坊用户的生成点始终相同，所以_G_乘以_G_的私钥总是会导致相同的公钥_K_。_k_和_K_之间的关系是固定的，但只能从_k_到_K_的一个方向进行计算。这就是为什么以太坊地址（来自_K_）可以与任何人共享，并且不会泄露用户的私钥（_k_）。
 
-As we described in <<EC_math>>, the multiplication of k * G is equivalent to repeated addition, so G + G + G + ... + G, repeated k times. In summary, to produce a public key _K_, from a private key _k_, we add the generator point _G_ to itself, _k_ times.
+正如我们在 <<EC_math>>中所描述的那样，k * G的乘法相当于重复加，G + G + G + ... + G ，重复k次。总而言之，为了从私钥_k_生成公钥_K_，我们将生成点_G_添加到自己_k_次。
 
 [TIP]
 ====
-A private key can be converted into a public key, but a public key cannot be converted back into a private key because the math only works one way.
+私钥可以转换为公钥，但公钥不能转换回私钥，因为数学只能单向工作。
 ====
 
-Let's apply this calculation to find the public key for the specific private key we showed you in <<private_keys>>:
-
+让我们应用这个计算来找到我们在 <<private_keys>> 中给出的特定私钥的公钥：
 
 [[example_privkey]]
 .Example private key to public key calculation
@@ -246,7 +248,7 @@ Let's apply this calculation to find the public key for the specific private key
 K = f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315 * G
 ----
 
-A cryptographic library can help us calculate K, using elliptic curve multiplication. The resulting public key _K_ is defined as a point +K = (x,y)+:
+密码库可以帮助我们使用椭圆曲线乘法计算K值。得到的公钥_K_被定义为一个点 +K = (x,y)+ ：
 
 [[example_pubkey]]
 .Example public key calculated from the example private key
@@ -259,7 +261,7 @@ x = 6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b
 y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ----
 
-In Ethereum you may see public keys represented as a hexadecimal serialization of 66 hexadecimal characters (33 bytes). This is adopted from a standard serialization format proposed by the industry consortium Standards for Efficient Cryptography Group (SECG), documented in http://www.secg.org/sec1-v2.pdf[Standards for Efficient Cryptography (SEC1)]. The standard defines four possible prefixes that can be used to identify points on an elliptic curve:
+在以太坊中，你可以看到公钥以66个十六进制字符（33字节）的十六进制序列表示。这是从行业联盟标准高效密码组（SECG）提出的标准序列化格式采用的，在http://www.secg.org/sec1-v2.pdf[Standards for Efficient Cryptography（SEC1）]中有记载。该标准定义了四个可用于识别椭圆曲线上点的可能前缀：
 
 [[EC_prefix_table]]
 |===
@@ -270,14 +272,15 @@ In Ethereum you may see public keys represented as a hexadecimal serialization o
 |0x03| Compressed Point with odd Y | 33 |
 |===
 
-Ethereum only uses uncompressed public keys, therefore the only prefix that is relevant is (hex) +04+. The serialization concatenated the X and Y coordinates of the public key:
+以太坊只使用未压缩的公钥，因此唯一相关的前缀是（十六进制）+04+。顺序连接公钥的X和Y坐标：
+
 
 [[concat_coordinates]]
 ----
 04 + X-coordinate (32 bytes/64 hex) + Y coordinate (32 bytes/64 hex)
 ----
 
-Therefore, the public key we calculated in <<example_pubkey>> is serialized as:
+因此，我们在 <<example_pubkey>> 中计算的公钥被序列化为：
 
 [[serialized_pubkey]]
 ----
@@ -285,71 +288,71 @@ Therefore, the public key we calculated in <<example_pubkey>> is serialized as:
 ----
 
 [[EC_lib]]
-=== Elliptic curve libraries
+=== 椭圆曲线库
 
-There are a couple of implementations of the secp256k1 elliptic curve that are used in cryptocurrency related projects:
+加密货币相关项目中使用了secp256k1椭圆曲线的几个实现：
 
-((("OpenSSL cryptographic library")))OpenSSL:: The OpenSSL library offers a comprehensive set of cryptographic primitives, including a full implementation of the secp256k1. For example, to derive the public key, the function +EC_POINT_mul()+ can be used. Find it at https://www.openssl.org/
+OpenSSL:: OpenSSL库提供了一套全面的加密原语，包括secp256k1的完整实现。例如，要派生公钥，可以使用函数+EC_POINT_mul()+。https://www.openssl.org/
 
-((("libsecp256k1 cryptographic library")))libsecp256k1:: Bitcoin Core's libsecp256k1, is a C-language implementation of the secp256k1 elliptic curve and other cryptographic primitives. The libsecp256 of elliptic curve cryptography was written from scratch to replace OpenSSL in Bitcoin Core software, and is considered superior in both performance and security. Find it at: https://github.com/bitcoin-core/secp256k1
+libsecp256k1:: Bitcoin Core的libsecp256k1是secp256k1椭圆曲线和其他密码原语的C语言实现。椭圆曲线密码学的libsecp256是从头开始编写的，代替了Bitcoin Core软件中的OpenSSL，在性能和安全性方面被认为是优越的。https://github.com/bitcoin-core/secp256k1
 
 [[hash_functions]]
-=== Cryptographic hash functions
+=== 加密哈希函数
 
-((("hash function")))Cryptographic hash functions are used throughout Ethereum. In fact, hash functions are used extensively in almost all cryptographic systems, a fact captured by cryptographer Bruce Schneier who said "Much more than encryption algorithms, one-way hash functions are the workhorses of modern cryptography."
+加密哈希函数在整个以太坊使用。事实上，哈希函数几乎在所有密码系统中都有广泛应用，这是密码学家布鲁斯•施奈尔（Bruce Schneier）所说的一个事实，他说：“单向哈希函数远不止于加密算法，而是现代密码学的主要工具。
 
-In this section we will discuss hash functions, understand their basic properties and how those properties make them so useful in so many areas of modern cryptography. We address hash functions here, because they are part of the transformation of Ethereum public keys into addresses.
+在本节中，我们将讨论哈希函数，了解它们的基本属性以及这些属性如何使它们在现代密码学的很多领域如此有用。我们在这里讨论哈希函数，因为它们是将以太坊公钥转换成地址的一部分。
 
-In simple terms, "a hash function is any function that can be used to map data of arbitrary size to data of fixed size." https://en.wikipedia.org/wiki/Hash_function[Source: Wikipedia]. The input to a hash function is called a ((("pre image")))_pre-image_ or _message_. The output is called a _hash_, or _digest_. A special sub-category of hash functions is _cryptographic hash functions_, which have specific properties that are useful to cryptography.
+简而言之，“哈希函数是可用于将任意大小的数据映射到固定大小的数据的函数。” https://en.wikipedia.org/wiki/Hash_function[Source：Wikipedia]。哈希函数的输入称为 _原象_ _ pre-image_ 或 _消息_ _message_。输出被称为  _哈希_ _hash_或 _摘要_ _digest_。哈希函数的一个特殊子类别是 _加密哈希函数_，它具有对密码学有用的特定属性。
 
-A cryptographic hash function is a _one way_ hash function that maps data of arbitrary size to a fixed-size bit string, where it is computationally infeasible to recreate the input if one knows the output. The only way to determine the input is to conduct a brute-force search of possible inputs, checking for a matching output.
+加密哈希函数是一种_单向_哈希函数，它将任意大小的数据映射到固定大小的位串，如果知道输出，计算上不可能重新创建输入。确定输入的唯一方法是对所有可能的输入进行蛮力搜索，检查匹配输出。
 
-Cryptographic hash functions have five main properties (https://en.wikipedia.org/wiki/Cryptographic_hash_function[Source: Wikipedia/Cryptographic Hash Function]):
+加密哈希函数有五个主要属性 (https://en.wikipedia.org/wiki/Cryptographic_hash_function[Source: Wikipedia/Cryptographic Hash Function]):
 
-Determinism:: Any input message always produces the same hash digest.
+确定性:: 任何输入消息总是产生相同的哈希摘要。
 
-Verifiability:: Computing the hash of a message is efficient (linear performance).
+可验证性:: 计算消息的哈希是有效的（线性性能）。
 
-Uncorrelated:: A small change to the message (e.g. one bit change) should change the hash output so extensively that it cannot be correlated to the hash of the original message.
+不相关:: 对消息的小改动（例如，一位改变）会大幅改变哈希输出，以致它不能与原始消息的哈希相关联。
 
-Irreversibility (resistance to first pre-image):: Computing the message from a hash is infeasible, equivalent to a brute force search through possible messages.
+不可逆性:: 从哈希计算消息是不可行的，相当于通过可能的消息进行蛮力搜索。
 
-Collision Protection (resistance to second pre-image):: It should be infeasible to calculate two different messages that produce the same hash output.
+碰撞保护:: 计算两个不同的消息产生相同的哈希输出应该是不可行的。
 
-Resistance to second pre-image is primarily important to prevent digital signature forgery in Ethereum.
+碰撞保护对于防止以太坊中的数字签名伪造至关重要。
 
-The combination of these properties make cryptographic hash functions useful for a broad range of security applications including:
+这些属性的组合使加密哈希函数可用于广泛的安全应用程序，包括：
 
-* Data fingerprinting
-* Message integrity (error detection)
-* Proof-of-Work
-* Authentication (password hashing and key stretching)
-* Pseudo-random number generators
-* Pre-image commitment
-* Unique identifiers
+* 数据指纹识别
+* 消息完整性（错误检测）
+* 工作证明
+* 认证（密码哈希和密钥扩展）
+* 伪随机数发生器
+* 原象承诺
+* 唯一标识符
 
-We will find many of these in Ethereum, as we progress through the various layers of the system.
+通过研究系统的各个层面，我们会在以太坊找到它的很多应用。
 
 [[keccak256]]
-=== Ethereum's cryptographic hash function - Keccak-256
+=== 以太坊的加密哈希函数 - Keccak-256
 
-((("SHA-3 Hash Function")))((("Keccak Hash Function")))((("Keccak-256")))Ethereum uses the _Keccak-256_ cryptographic hash function in many places. Keccak-256 was designed as a candidate for the SHA-3 Cryptographic Hash Function Competition held in 2007 by the ((("NIST")))National Institute of Science and Technology (NIST). Keccak was the winning algorithm that became standardized as ((("FIPS")))Federal Information Processing Standard (FIPS) ((("FIPS-202")))202 in 2015.
+以太坊在许多地方使用_Keccak-256_加密哈希函数。Keccak-256被设计为于2007年举行的SHA-3密码哈希函数竞赛的候选者。Keccak是获胜的算法，在2015年被标准化为 FIPS（联邦信息处理标准）202。
 
-However, during the period when Ethereum was developed, NIST standardization was being finalized. NIST adjusted some of the parameters of Keccak after the completion of the standards process, allegedly to improve its efficiency. This was occurring at the same time as heroic whistleblower ((("Edward Snowden")))Edward Snowden revealed documents that imply that NIST may have been improperly influenced by the National Security Agency to intentionally weaken the ((("Dual_EC_DRBG")))Dual_EC_DRBG random-number generator standard, effectively placing a backdoor in the standard random number generator. The result of this controversy was a backlash against the proposed changes and a significant delay in the standardization of SHA-3. At the time, the Ethereum Foundation decided to implement the original Keccak algorithm, as proposed by its inventors, rather than the SHA-3 standard as modified by NIST.
+然而，在以太坊开发期间，NIST标准化工作正在完成。在标准过程完成后，NIST调整了Keccak的一些参数，据称可以提高效率。这与英雄告密者爱德华斯诺登透露的文件暗示NIST可能受到国家安全局的不当影响同时发生，故意削弱Dual_EC_DRBG随机数生成器标准，有效地在标准随机数生成器中放置一个后门。这场争论的结果是对所提议修改的反对以及SHA-3标准化的严重拖延。当时，以太坊基金会决定实施最初的Keccak算法。
 
 [WARNING]
 ====
-While you may see "SHA3" mentioned throughout Ethereum documents and code, many if not all of those instances actually refer to Keccak-256, not the finalized FIPS-202 SHA-3 standard. The implementation differences are slight, having to do with padding parameters, but they are significant in that Keccak-256 produces different hash output than FIPS-202 SHA-3 given the same input.
+虽然你可能在Ethereum文档和代码中看到“SHA3”，但很多（如果不是全部）这些实例实际上是指Keccak-256，而不是最终确定的FIPS-202 SHA-3标准。实现差异很小，与填充参数有关，但它们的重要性在于Keccak-256在给定相同输入的情况下产生与FIPS-202 SHA-3不同的哈希输出。
 ====
 
-Due to the confusion created by the difference between the hash function used in Ethereum (Keccak-256) and the finalized standard (FIP-202 SHA-3), there is an effort underway to rename all instances of +sha3+ in all code, opcodes and libraries to +keccak256+. See https://github.com/ethereum/EIPs/issues/59[ERC-59] for details.
+由于Ethereum中使用的哈希函数（Keccak-256）与最终标准（FIP-202 SHA-3）之间的差异造成了混淆，因此正在努力将代码中所有的 +sha3+ 的所有实例，操作码和库重新命名为 +keccak256+。详情请参阅https://github.com/ethereum/EIPs/issues/59[ERC-59]。
 
 [[which_hash]]
-=== Which hash function am I using?
+=== 我正在使用哪个哈希函数？
 
-How can you tell if the software library you are using is FIPS-202 SHA-3 or Keccak-256, if both might be called "SHA3"?
+如何判断你使用的软件库是FIPS-202 SHA-3还是Keccak-256（如果两者都可能被称为“SHA3”）？
 
-An easy way to tell is to use a _test vector_, an expected output for a given input. The test most commonly used for a hash function is the _empty input_. If you run the hash function with an empty string as input you should see the following results:
+一个简单的方法是使用_test vector_，一个给定输入的预期输出。最常用于哈希函数的测试是_empty input_。如果你使用空字符串作为输入运行哈希函数，你应该看到以下结果：
 
 [[sha3_test_vectors]]
 .Testing whether the SHA3 library you are using is Keccak-256 of FIP-202 SHA-3
@@ -361,16 +364,16 @@ SHA3("") =
 a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a
 ----
 
-So, regardless of what the function is called, you can test it to see whether it is the original Keccak-256, or the final NIST standard FIPS-202 SHA-3, by running the simple test above. Remember, Ethereum uses Keccak-256, even though it is often called SHA-3 in the code.
+因此，无论调用什么函数，都可以通过运行上面的简单测试来测试它是否是原始的Keccak-256或最终的NIST标准FIPS-202 SHA-3。请记住，以太坊使用Keccak-256，尽管它在代码中通常被称为SHA-3。
 
-Next, let's examine the first application of Keccak-256 in Ethereum, which is to produce Ethereum addresses from public keys.
+接下来，让我们来看一下Ethereum中Keccak-256的第一个应用，即从公钥生成以太坊地址。
 
 [[eth_address]]
-=== Ethereum addresses
+=== 以太坊地址
 
-Ethereum addresses are _unique identifiers_ that are derived from public keys or contracts using a one-way hash function (specifically Keccak-256).
+以太坊地址是 _唯一标识符_ _unique identifiers_，它们是使用单向哈希函数（Keccak-256）从公钥或合约派生的。
 
-In our previous examples, we started with a private key and used elliptic curve multiplication to derive a public key:
+在我们之前的例子中，我们从一个私钥开始，并使用椭圆曲线乘法来派生一个公钥：
 
 Private Key _k_:
 ----
@@ -385,24 +388,24 @@ K = 6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e2b
 
 [WARNING]
 ====
-It is worth noting that the public key is not formatted with the prefix (hex) 04 when the address is calculated.
+值得注意的是，在计算地址时，公钥没有用前缀（十六进制）04格式化。
 ====
 
-We use Keccak-256 to calculate the _hash_ of this public key:
+我们使用Keccak-256来计算这个公钥的_hash_：
 
 [[calculate_hash]]
 ----
 Keccak256(K) = 2a5bc342ed616b5ba5732269001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 ----
 
-Then we keep only the last 20 bytes (the least significant bytes in big-endian), which is our Ethereum address:
+然后我们只保留最后的20个字节（大端序中的最低有效字节），这是我们的以太坊地址：
 
 [[keep_last_20]]
 ----
 001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 ----
 
-Most often you will see Ethereum addresses with the prefix "0x" that indicates it is a hexadecimal encoding, like this:
+大多数情况下，你会看到带有前缀“0x”的以太坊地址，表明它是十六进制编码，如下所示：
 
 [[hex_prefix]]
 ----
@@ -410,36 +413,36 @@ Most often you will see Ethereum addresses with the prefix "0x" that indicates i
 ----
 
 [[eth_address_format]]
-=== Ethereum address formats
+=== 以太坊地址格式
 
-Ethereum addresses are hexadecimal numbers, identifiers derived from the last 20 bytes of the Keccak-256 hash of the public key.
+以太坊地址是十六进制数字，从公钥的Keccak-256哈希的最后20个字节导出的标识符。
 
-Unlike Bitcoin addresses which are encoded in the user interface of all clients to include a built-in checksum to protect against mistyped addresses, Ethereum addresses are presented as raw hexadecimal without any checksum.
+与在所有客户端的用户界面中编码的比特币地址不同，它们包含内置校验和来防止输入错误的地址，以太坊地址以原始十六进制形式呈现，没有任何校验和。
 
-The rationale behind that decision was that Ethereum addresses would eventually be hidden behind abstractions (such as name services) at higher layers of the system and that checksums should be added at higher layers if necessary.
+该决定背后的基本原理是，以太坊地址最终会隐藏在系统高层的抽象（如名称服务）之后，并且必要时应在较高层添加校验和。
 
-In retrospect, this design choice lead to a number of problems, including the loss of funds due to mistyped addresses and input validation errors. Ethereum name services were developed slower than initially expected and alternative encodings such as ICAP were adopted very slowly by wallet developers.
+回想起来，这种设计选择导致了一些问题，包括由于输入错误地址和输入验证错误而导致的资金损失。以太坊名称服务的开发速度低于最初的预期，诸如ICAP之类的替代编码被钱包开发商采用得非常缓慢。
 
 [[ICAP]]
-==== Inter Exchange Client Address Protocol (ICAP)
+==== 互换客户端地址协议 Inter Exchange Client Address Protocol (ICAP)
 
-The _Inter exchange Client Address Protocol (ICAP)_ is an Ethereum Address encoding that is partly compatible with the International Bank Account Number (IBAN) encoding, offering a versatile, checksummed and interoperable encoding for Ethereum Addresses. ICAP addresses can encode Ethereum Addresses or common names registered with an Ethereum name registry.
+_互换客户端地址协议（ICAP）_是一种部分与国际银行帐号（IBAN）编码兼容的以太坊地址编码，为以太坊地址提供多功能，校验和互操作编码。ICAP地址可以编码以太坊地址或通过以太坊名称注册表注册的常用名称。
 
-Read about ICAP on the Ethereum Wiki:https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol
+阅读以太坊Wiki上的ICAP：https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol
 
-IBAN is an international standard for identifying bank account numbers, mostly used for wire transfers. It is broadly adopted in the European Single Euro Payments Area (SEPA) and beyond. IBAN is a centralized and heavily regulated service. ICAP is a decentralized but compatible implementation for Ethereum addresses.
+IBAN是识别银行账号的国际标准，主要用于电汇。它在欧洲单一欧元支付区（SEPA）及其以后被广泛采用。IBAN是一项集中和严格监管的服务。ICAP是以太坊地址的分散但兼容的实现。
 
-An IBAN consists of up to 34 alphanumeric characters (case-insensitive) string containing a country code, checksum, and bank account identifier (which is country-specific).
+一个IBAN由含国家代码，校验和和银行账户标识符（特定国家）的34个字母数字字符（不区分大小写）组成。
 
-ICAP uses the same structure by introducing a non-standard country code "XE" that stands for "Ethereum", followed by a two-character checksum and 3 possible variations of an account identifier:
+ICAP使用相同的结构，通过引入代表“Ethereum”的非标准国家代码“XE”，后面跟着两个字符的校验和以及3个可能的账户标识符变体：
 
-Direct:: Up to 30 alphanumeric character big-endian base-36 integer representing the least significant bits of an Ethereum address. Because this encoding fits less than 155 bits, it only works for Ethereum addresses that start with one or more zero bytes. The advantage is that it is compatible with IBAN, in terms of the field length and checksum. Example: +XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+ (33 characters long)
+Direct:: 最多30个字母数字字符big-endian base-36整数，表示以太坊地址的最低有效位。由于此编码适合小于155位，因此它仅适用于以一个或多个零字节开头的以太坊地址。就字段长度和校验和而言，它的优点是它与IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33个字符长）
 
-Basic:: Same as the "Direct" encoding except that it is 31 characters long. This allows it to encode any Ethereum address, but makes it incompatible with IBAN field validation. Example: +XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+ (35 characters long)
+Baasic:: 与“Direct”编码相同，只是长度为31个字符。这使它可以编码任何以太坊地址，但使其与IBAN字段验证不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35个字符长）
 
-Indirect:: Encodes an identifier that resolves to an Ethereum address through a name registry provider. Uses 16 alphanumeric characters, composed of an _asset identifier_ (e.g. ETH), a name service (e.g. XREG) and a 9-character name (e.g. KITTYCATS), which is a human-readable name. Example: +XEpass:[##]ETHXREGKITTYCATS+ (20 characters long), where the "##" should be replaced by the two computed checksum characters.
+Indrect:: 编码通过名称注册表提供程序解析为以太坊地址的标识符。使用由_asset identifier_（例如ETH），名称服务（例如XREG）和9个字符的名称（例如KITTYCATS）组成的16个字母数字字符，这是一个人类可读的名称。示例：+XEpass:[##] ETHXREGKITTYCATS+（20个字符长），其中“##”应由两个计算校验和字符替换。
 
-We can use the +helpeth+ command-line tool to create ICAP addresses. Let's try with our example private key (prefixed with 0x and passed as a parameter to helpeth):
+我们可以使用 +helpeth+ 命令行工具来创建ICAP地址。让我们尝试使用我们的示例私钥（前缀为0x并作为参数传递给helpeth）：
 
 [[create_ICAP]]
 ----
@@ -450,53 +453,54 @@ ICAP: XE60 HAMI CDXS V5QX VJA7 TJW4 7Q9C HWKJ D
 Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ----
 
-The +helpeth+ command constructs a hexadecimal Ethereum address as well as an ICAP address for us. The ICAP address for our example key is:
++helpeth+ 命令为我们构建了一个十六进制以太坊地址以及一个ICAP地址。我们示例密钥的ICAP地址是：
+
 
 [[ICAP_example]]
 ----
 XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD
 ----
 
-Because our example Ethereum address happens to start with a zero byte, it can be encoded using the "Direct" ICAP encoding method that is valid in an IBAN format. You can tell because it is 33 characters long.
+由于我们的示例以太坊地址恰好以零字节开始，因此可以使用IBAN格式中有效的“Direct”ICAP编码方法进行编码。因为它是33个字符长。
 
-If our address did not start with a zero, it would be encoded with the "Basic" encoding, which would be 35 characters long and invalid as an IBAN format.
+如果我们的地址不是从零开始，那么它将被编码为“Basic”编码，这将是35个字符长并且作为IBAN格式无效。
 
 [TIP]
 ====
-The chances of any Ethereum address starting with a zero byte are 1 in 256. To generate one like that, it will take on average 256 attempts with 256 different random private keys before we find one that works as an IBAN-compatible "Direct" encoded ICAP address.
+以零字节开始的任何以太坊地址的概率是1/256。为了生成这样一个类型，在我们找到一个作为IBAN兼容的“Direct”编码之前，它将平均用256个不同的随机私钥进行256次尝试ICAP地址。
 ====
 
-At this time, ICAP is unfortunately only supported by a few wallets.
+不幸的是，现在，只有几个钱包支持ICAP。
 
 [[EIP55]]
-==== Hex encoding with checksum in capitalization (EIP-55)
+==== 使用大写校验和的十六进制编码 (EIP-55)
 
-Due to the slow deployment of ICAP or name services, a new standard was proposed with Ethereum Improvement Proposal 55 (EIP-55). You can read the details at:
+由于ICAP或名称服务部署缓慢，因此提出了一个新的标准，以太坊改进建议55（EIP-55）。你可以阅读详细信息：
 
 https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md
 
-EIP-55 offers a backward compatible checksum for Ethereum addresses by modifying the capitalization of the hexadecimal address. The idea is that Ethereum addresses are case-insensitive and all wallets are supposed to accept Ethereum addresses expressed in capital or lower-case characters, without any difference in interpretation.
+通过修改十六进制地址的大小写，EIP-55为以太坊地址提供了向后兼容的校验和。这个想法是，以太坊地址不区分大小写，所有钱包都应该接受以大写字母或小写字母表示的以太坊地址，在解释上没有任何区别。
 
-By modifying the capitalization of the alphabetic characters in the address, we can convey a checksum that can be used to protect the integrity of the address against typing or reading mistakes. Wallets that do not support EIP-55 checksums simply ignore the fact that the address contains mixed capitalization. But those that do support it, can validate it and detect errors with a 99.986% accuracy.
+通过修改地址中字母字符的大小写，我们可以传达一个校验和，可以用来保护地址完整性，防止输入或读取错误。不支持EIP-55校验和的钱包简单地忽略地址包含混合大写的事实。但那些支持它的人可以验证它并以99.986％的准确度检测错误。
 
-The mixed-capitals encoding is subtle and you may not notice it at first. Our example address is:
+混合大小写编码很微妙，最初你可能不会注意到它。我们的示例地址是：
 
 ----
 0x001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 ----
 
-with an EIP-55 mixed-capitalization checksum it becomes:
+使用 EIP-55 混合大小写校验和，它变为：
 
 [[mixed_capitalization]]
 ----
 0x001d3F1ef827552Ae1114027BD3ECF1f086bA0F9
 ----
 
-Can you tell the difference? Some of the alphabetic (A-F) characters from the hexadecimal encoding alphabet are now capital, while others are lower case. You might not even have noticed the difference unless you looked carefully.
+你能看出区别吗？一些来自十六进制编码字母表的字母（AF）字符现在是大写字母，而另一些则是小写字母。除非你仔细观察，否则你甚至可能没有注意到其中的差异。
 
-EIP-55 is quite simple to implement. We take the Keccak-256 hash of the lower-case hexadecimal address. This hash acts as a digital fingerprint of the address, giving us a convenient checksum. Any small change in the input (the address) should cause a big change in the resulting hash (the checksum), allowing us to detect errors effectively. The hash of our address is then encoded in the capitalization of the address itself. Let's break it down, step-by-step:
+EIP-55实施起来相当简单。我们采用小写十六进制地址的Keccak-256哈希。这个哈希作为地址的数字指纹，给我们一个方便的校验和。输入（地址）中的任何小改动都会导致哈希结果（校验和）发生很大变化，从而使我们能够有效地检测错误。然后我们的地址的哈希被编码为地址本身的大写字母。让我们一步步分解它：
 
-1. Hash the lower-case address, without the +0x+ prefix:
+1. 计算小写地址的哈希，不带 +0x+ 前缀：:
 
 [[hash_lower_case_address]]
 ----
@@ -505,7 +509,7 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0f9")
 ----
 
 [start=2]
-1. Capitalize each alphabetic address character if the corresponding hex digit of the hash is greater than or equal to +0x8+. This is easier to show if we line up the address and the hash:
+1. 如果哈希的相应十六进制数字大于或等于 +0x8+，则将每个字母地址字符大写。如果我们排列地址和哈希，这将更容易显示：
 
 [[capitalize_input]]
 ----
@@ -513,9 +517,9 @@ Address: 001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 ----
 
-Our address contains an alphabetic character +d+ in the fourth position. The fourth character of the hash is +6+, which is less than +8+. So, we leave the +d+ lower-case. The next alphabetic character in our address is +f+, in the sixth position. The sixth character of the hexadecimal hash is +c+, which is greater than +8+. Therefore, we capitalize the +F+ in the address, and so on. As you can see, we only use the first 20-bytes (40 hex characters) of the hash as a checksum, since we only have 20-bytes (40 hex characters) in the address to capitalize appropriately.
+我们的地址在第四个位置包含一个字母 +d+。哈希的第四个字符是 +6+，小于+8+。所以，我们保持 +d+ 小写。我们地址中的下一个字母字符是 +f+，位于第六位。十六进制哈希的第六个字符是 +c+，它大于+8 +。因此，我们在地址中大写 +F+，等等。正如你所看到的，我们只使用哈希的前20个字节（40个十六进制字符）作为校验和，因为我们只有20个字节（40个十六进制字符）能正确地大写。
 
-Check the resulting mixed-capitals address yourself and see if you can tell which characters were capitalized and which characters they correspond to in the address hash:
+检查自己产生的混合大写地址，看看你是否可以知道在地址哈希中哪些字符被大写和它们对应的字符：
 
 [[capitalize_output]]
 ----
@@ -524,23 +528,23 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 ----
 
 [[EIP55_error]]
-==== Detecting an error in an EIP-55 encoded address
+==== 在EIP-55编码地址中检测错误
 
-Now, let's look at how EIP-55 addresses will help us find an error. Let's assume we have printed out an Ethereum address, which is EIP-55 encoded:
+现在，我们来看看EIP-55地址如何帮助我们发现错误。假设我们已经打印出ETHER-E编码的以太坊地址：
 
 [[correct_address]]
 ----
 0x001d3F1ef827552Ae1114027BD3ECF1f086bA0F9
 ----
 
-Now let's make a basic mistake in reading that address. The character before the last one is a capital "F". For this example let's assume we misread that as a capital "E". We type in the (incorrect address) into our wallet:
+现在，让我们在阅读该地址时犯一个基本错误。最后一个字符之前的字符是大写字母“F”。对于这个例子，我们假设我们误解为大写“E”。我们在钱包中输入（不正确的地址）：
 
 [[incorrect_address]]
 ----
 0x001d3F1ef827552Ae1114027BD3ECF1f086bA0E9
 ----
 
-Fortunately, our wallet is EIP-55 compliant! It notices the mixed capitalization and attempts to validate the address. It converts it to lower case, and calculates the checksum hash:
+幸运的是，我们的钱包符合EIP-55标准！它注意到混合大写字母并试图验证地址。它将其转换为小写，并计算校验和哈希值：
 
 [[hash_demo]]
 ----
@@ -548,9 +552,9 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0e9")
 5429b5d9460122fb4b11af9cb88b7bb76d8928862e0a57d46dd18dd8e08a6927
 ----
 
-As you can see, even though the address has only changed by one character (in fact, only one bit as "e" and "f" are 1-bit apart), the hash of the address has changed radically. That's the property of hash functions that makes them so useful for checksums!
+如你所见，即使地址只改变了一个字符（事实上，“e”和“f”只相隔1位），地址的哈希值已经根本改变了。这是哈希函数的特性，使它们对校验和非常有用！
 
-Now, let's line up the two and check the capitalization:
+现在，让我们排列这两个并检查大小写：
 
 [[incorrect_capitalization]]
 ----
@@ -558,6 +562,9 @@ Now, let's line up the two and check the capitalization:
 5429b5d9460122fb4b11af9cb88b7bb76d892886...
 ----
 
-It's all wrong! Several of the alphabetic characters are incorrectly capitalized. Remember that the capitalization is the encoding of the _correct_ checksum.
+这都是错的！几个字母字符不正确地大写。请记住，大写是_正确的_校验和的编码。
 
-The capitalization of the address we input doesn't match the checksum just calculated, meaning something has changed in the address, and an error has been introduced.
+我们输入的地址的大小写与刚刚计算的校验和不匹配，这意味着地址中的内容发生了变化，并且引入了错误。
+
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
