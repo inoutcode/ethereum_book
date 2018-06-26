@@ -1,214 +1,208 @@
 [[ethereum_clients_chapter]]
-== Ethereum Clients
+== 以太坊客户端
 
-An Ethereum client is a software application that implements the Ethereum specification and communicates over the peer-to-peer network with other Ethereum clients. Different Ethereum clients _interoperate_ if they comply with the reference specification and the standardized communications protocols. While these different clients are implemented by different teams and in different programming languages, they all "speak" the same protocol and follow the same rules.
+以太坊客户端是实现以太坊规范并通过对等网络与其他以太坊客户端进行通信的软件应用程序。不同的以太坊客户端如果符合参考规范和标准化通信协议，就可以互操作。虽然这些不同的客户端由不同的团队和不同的编程语言实现，但他们都“说”相同的协议并遵循相同的规则。
 
-Ethereum is an _open source_ project and the source code is available under an open (LGPL v3.0) license, free to download and use for any purpose. Open source means more than simply free to use. It also means that Ethereum is developed by an open community of volunteers and can be modified by anyone.
+以太坊是一个_open source_项目，源代码可在开放（LGPL v3.0）许可下使用，可免费下载并用于任何目的。开源意味着不仅仅是免费使用。这也意味着以太坊由一个开放的志愿者社区开发，任何人都可以修改。
 
-Ethereum is defined by a formal specification called the "Yellow Paper."
-This is in contrast to, for example, Bitcoin, which is not defined in any formal way. Where Bitcoin's "specification" is the reference implementation Bitcoin Core, Ethereum's specification is documented in a paper that combines an English and a mathematical (formal) specification.
-This formal specification, in addition to various Ethereum Improvement Proposals, defines the standard behavior of an Ethereum client. The Yellow Paper is periodically updated as major changes are made to Ethereum.
+以太坊由名为“黄皮书”的正式规范定义。
+这与比特币相反，比特币没有任何正式的定义。比特币的“规范”是比特币核心的参考实现，以太坊的规范定义在一篇结合了英文和数学的（正式的）规范的论文中。
+这个正式的规范，除了各种以太坊改进建议之外，还定义了以太坊客户端的标准行为。随着对以太坊的重大改变，黄皮书会定期更新。
 
-As a result of Ethereum's clear formal specification, there are a number of independently developed, yet interoperable, software implementations of an Ethereum client. Ethereum has a greater diversity of implementations running on the network than any other blockchain.
+作为以太坊明确的正式规范的结果，以太坊客户端有许多独立开发的，可互操作的软件实现。以太坊在网络上运行的实现方式比任何其他区块链都多。
 
-== Ethereum Networks
+== 以太坊网络
 
-There exist a variety of Ethereum-based networks which largely conform to the formal specification defined in the Ethereum "Yellow Paper," but which may or may not interoperate with each other.
+存在各种基于以太坊的网络，这些网络很大程度上符合以太坊“黄皮书”中定义的正式规范，但它们可能或不能互操作。
 
-Among these Ethereum-based networks are: Ethereum, Ethereum Classic, Ella, Expanse, Ubiq, Musicoin, and many others. While mostly compatible on a protocol-level, these networks often have features or attributes that require maintainers of Ethereum client software to make small changes in order to support each network. Because of this, not every version of Ethereum client software runs on every Ethereum-based blockchain.
+在这些以太坊网络中有：Ethereum，Ethereum Classic，Ella，Expanse，Ubiq，Musicoin等等。虽然大多数在协议级别上兼容，但这些网络通常具需要以太坊客户端软件维护人员进行微小更改以支持每个网络的功能或属性。因此，并非以太坊客户端软件的每个版本都可以在每个以太坊区块链上运行。
 
-Currently, there are six main implementations of the Ethereum protocol written in six different languages: Go (Geth), Rust (parity), C++ (cpp-ethereum), Python (pyethereum), Scala (mantis) and Java (harmony).
+目前，以六种不同语言编写的以太坊协议有六个主要实现：Go（Geth），Rust（parity），C ++（cpp-ethereum），Python（pyethereum），Scala（mantis）和Java（harmony）。
 
-In this section, we will look at the two most common clients, Geth and Parity. We'll learn to set up a node using each client and explore some of their command-line and application programming interfaces (APIs).
+在本节中，我们将看看两个最常见的客户，Geth和Parity。我们将学习如何使用每个客户端启动一个节点，并探索他们的一些命令行和应用程序编程接口（API）。
 
 [[full_node_importance]]
-=== Should I run a full node?
+=== 我应该运行一个完整的节点吗？
 
-The health, resilience, and censorship resistance of blockchains depend on having many independently operated and geographically dispersed full nodes. Each full node can help other new nodes obtain the block data to bootstrap their operation, as well as offer the operator an authoritative and independent verification of all transactions and contracts.
+区块链的健康，弹性和抗审查取决于拥有有多少独立运营和地理上分散的完整节点。每个完整节点都可以帮助其他新节点获取块数据以引导其操作，并为运营商提供对所有交易和合约的权威和独立验证。
 
-However, running a full node will incur a significant cost in hardware resources and bandwidth. A full node must download more than 80GB of data (as of April 2018; depending on client) and store it on a local hard drive. This data burden increases quite rapidly every day as new transactions and blocks are added. More on this topic in <<requirements>>.
+但是，运行完整的节点会导致硬件资源和带宽的巨大成本。完整的节点必须下载超过80GB的数据（截至2018年4月;取决于客户端）并将其存储在本地硬盘上。随着新的交易和区块的添加，这种数据负担每天都会迅速增加。<<requirements>> 中有关于此主题的更多信息。
 
-A full node running on a live network (mainnet) is not necessary for Ethereum development. You can do almost everything you need to do with a _testnet_ node (which stores a copy of the smaller public test blockchain), with a local private blockchain (see <<ganache>>), or with a cloud-based Ethereum client offered by a service provider (see <<infura>>).
+在以太坊开发中，运行在活跃网络（主网）上的完整节点不是必需的。你可以使用_testnet_节点（它存储小型公共测试区块链的副本），或本地私有区块链（参见 <<ganache>>），或服务提供商提供的基于云的以太坊客户端（参见 <<infura>>），做几乎任何事。
 
-You also have the option of running a lightweight client which does not store a local copy of the blockchain or validate blocks and transactions. These clients offer the functionality of a wallet and can create and broadcast transactions.
+你还可以选择运行轻量级客户端，该客户端不会存储区块链的本地副本或验证块和交易。这些客户端提供钱包的功能，并可以创建和广播交易。
 
-Lightweight clients can be used to connect to existing networks, such as your own full node, a public blockchain, a public or permissioned (PoA) testnet, or a private local blockchain. In practice, you will likely use a lightweight client such as MetaMask, Emerald Wallet, MyEtherWallet or MyCrypto as a convenient way to switch between all of the different node options.
+轻量级客户端可用于连接到现有网络，例如你自己的完整节点，公共区块链，公开或许可的（PoA）测试网或私有本地区块链。在实践中，你可能会使用轻量级客户端，如MetaMask，Emerald Wallet，MyEtherWallet或MyCrypto作为在所有不同节点选项之间切换的便捷方式。
 
-The terms "lightweight client" and "wallet" are used interchangeably, though there are some differences. Usually, a lightweight client offers an API (such as the web3js API) in addition to the transaction functionality of a wallet.
+尽管存在一些差异，术语“轻量级客户端”和“钱包”可以互换使用。通常，轻量级客户端除了提供钱包的交易功能外，还提供API（如web3js API）。
 
-Do not confuse the concept of a lightweight wallet in Ethereum with that of a Simplified Payment Verification (SPV) client in Bitcoin. SPV clients validate block headers and use merkle proofs to validate the inclusion of transactions in the blockchain. Ethereum lightweight clients, generally, do not validate block headers or transactions. They entirely trust a full client operated by a third party to give them RPC access to the blockchain.
+不要将以太坊中轻量级钱包的概念与比特币中简化支付验证（SPV）客户端的概念混淆。SPV客户验证区块头并使用merkle证明来验证区块链中是否包含交易。以太坊轻量级客户端通常不验证区块头或交易。他们完全信任由第三方运营的完整客户端，让他们通过RPC访问区块链。
 
 [[full_node_adv_disadv]]
-==== Full Node Advantages and Disadvantages
+==== 完整节点的优点和缺点
 
-Choosing to run a full node helps the various Ethereum-based networks, but also incurs some mild to moderate costs for you. Let's look at some of the advantages and disadvantages.
+选择运行一个完整的节点可以帮助各种基于以太坊的网络，但也会给你带来一些温和的或适中的成本。我们来看看一些优点和缺点。
 
-*Advantages:*
+*优点：*
 
-* Supports the resilience and censorship resistance of Ethereum-based networks.
-* Authoritatively validates all transactions.
-* Can interact with any contract on the public blockchain (without requiring an intermediary).
-* Can query (read-only) the blockchain status (accounts, contracts, etc.) offline, if necessary.
-* Can query the blockchain without letting a third party know the information you're reading.
-* Can directly deploy your own contracts into the public blockchain (without requiring an intermediary).
+* 支持基于以太坊的网络的弹性和抗审查。
+* 权威性验证所有交易。
+* 可以与公共区块链上的任何合约进行交互（无需中介）。
+* 如有必要，可以离线查询（只读）区块链状态（账户，合约等）。
+* 可以在不让第三方知道你正在读取的信息的情况下查询区块链。
+* 可以直接将自己的合约部署到公共区块链中（无需中介）。
 
-*Disadvantages:*
+*缺点：*
 
-* Requires significant and growing hardware and bandwidth resources.
-* Requires several hours or days to fully sync for the first initial download.
-* Must be maintained, upgraded and kept online to remain synced.
+* 需要大量且不断增长的硬件和带宽资源。
+* 需要几个小时或几天才能完成第一次初始下载的同步。
+* 必须维护，升级并保持联机才能保持同步。
 
 [[pub_test_adv_disadv]]
-==== Public Testnet Advantages and Disadvantages
+==== 公共测试网的优点和缺点
 
-Whether or not you choose to run a full node, you will probably want to run a public testnet node. Let's look at some of the advantages and disadvantages of using a public testnet.
+无论你是否选择运行完整节点，你可能都需要运行公共testnet节点。我们来看看使用公共测试网的一些优点和缺点。
 
-*Advantages:*
+*优点：*
 
-* A testnet node needs to sync and store much less data, ~10GB depending on the network (as of April 2018).
-* A testnet node can sync fully in a few hours.
-* Deploying contracts or making transactions requires test ether, which has no value and can be acquired for free from several "faucets".
-* Testnets are public blockchains with many other users and contracts, running "live."
+* 测试网络节点需要同步并存储少得多的数据，根据网络大小约为10GB（截至2018年4月）。
+* 测试网络节点可以在几个小时内完全同步。
+* 部署合约或进行交易需要测试ether，它没有价值，可以从几个“faucet”免费获得。
+* Testnets是与其他许多用户和合约共享的区块链，运行“live”。
 
-*Disadvantages:*
+*缺点：*
 
-* You can't use "real" money on a testnet, it runs on test ether.
-* Consequently, you can't test security against real adversaries, as there is nothing at stake.
-* There are some aspects of a public blockchain that you cannot test realistically on testnet. For example, transaction fees, although necessary to send transactions, are not a consideration on testnet since gas is free. And the testnets do not experience network congestions like the public network.
+* 你不能在测试网上使用“真实”的钱，它以测试ether运转。
+* 因此，你无法针对真正对手进行安全性测试，因为没有任何风险。
+* 公共区块链的某些方面无法在testnet上真实地测试。例如，交易费虽然是发送交易所必需的，但由于gas是免费的，因此不需要在测试网上考虑。测试网不会像公共网络那样经历网络拥塞。
 
 [[testRPC_adv_disadv]]
-==== Local Instance (TestRPC) Advantages and Disadvantages
+==== 本地实例（TestRPC）的优点和缺点
 
-For many testing purposes, the best option is to launch a single instance private blockchain, using the +testrpc+ node. TestRPC creates a local-only, private blockchain that you can interact with, without any other participants. It shares many of the advantages and disadvantages of the public testnet, but also has some differences.
+对于许多测试目的，最好的选择是使用 +testrpc+ 节点启动一个实例私有区块链。TestRPC创建一个本地私有区块链，你可以与之交互，而无需任何其他参与者。它分享了公共测试网的许多优点和缺点，但也有一些差异。
 
-*Advantages:*
+*优点：*
 
-* No syncing and almost no data on disk. You mine the first block yourself.
-* No need to find test ether, you "award" yourself mining rewards that you can use for testing.
-* No other users, just you.
-* No other contracts, just the ones you deploy after you launch it.
+* 不同步，磁盘上几乎没有数据。你自己挖掘第一块。
+* 无需测试ether，你可以将挖矿奖励“奖励”给自己，用于测试。
+* 没有其他用户，只有你。
+* 没有其他合约，只有你启动后部署的合约。
 
-*Disadvantages:*
+*缺点：*
 
-* Having no other users means that it doesn't behave the same as a public blockchain. There's no competition for transaction space or sequencing of transactions.
-* No miners other than you means that mining is more predictable, therefore you can't test some scenarios that occur on a public blockchain.
-* Having no other contracts means you have to deploy everything that you want to test, including dependencies and contract libraries.
-* You can't recreate some of the public contracts and their addresses to test some scenarios (e.g. the DAO contract).
-
+* 没有其他用户意味着它不像公共区块链一样。没有交易空间或交易排序的竞争。
+* 除你之外没有矿工意味着采矿更具可预测性，因此你无法测试公开区块链上发生的一些情况。
+* 没有其他合约意味着你必须部署所有你想测试的内容，包括依赖项和合约库。
+* 你不能重新创建一些公共合约及其地址来测试一些场景（例如DAO合约）。
 
 [[running_client]]
-=== Running an Ethereum client
+=== 运行以太坊客户端
 
-If you have the time and resources, you should attempt to run a full node, even if only to learn more about the process. In the next few sections we will download, compile, and run the Ethereum clients Go-Ethereum (Geth) and Parity. This requires some familiarity with using the command-line interface on your operating system. It's worth installing these clients whether you choose to run them as full nodes, as testnet nodes, or as clients to a local private blockchain.
+如果你有时间和资源，你应该尝试运行一个完整的节点，即使只是为了更多地了解这个过程。在接下来的几节中，我们将下载，编译和运行以太坊客户Go-Ethereum（Geth）和Parity。这需要熟悉在操作系统上使用命令行界面。无论你选择将它们作为完整节点，作为testnet节点还是作为本地私有区块链的客户端运行，都值得安装这些客户端。
 
 [[requirements]]
-==== Hardware Requirements for a Full Node
+==== 完整节点的硬件要求
 
-Before we get started, you should ensure you have a computer with sufficient resources to run an Ethereum full node. You will need at least 80GB of disk space to store a full copy of the Ethereum blockchain. If you also want to run a full node on the Ethereum testnet, you will need at least an additional 15GB. Downloading 80GB of blockchain data can take a long time, so it's recommended that you work on a fast Internet connection. 
+在我们开始之前，你应该确保你有一台具有足够资源的计算机来运行以太坊完整节点。你将需要至少80GB的磁盘空间来存储以太坊区块链的完整副本。如果你还想在以太坊测试网上运行完整节点，则至少需要额外的15GB。下载80GB的区块链数据可能需要很长时间，因此建议你使用快速的Internet连接。
 
-Syncing the Ethereum blockchain is very input-output (I/O) intensive. It is best to have a Solid-State Drive (SSD). If you have a mechanical hard disk drive (HDD), you will need at least 8GB of RAM to use as cache. Otherwise, you may discover that your system is too slow to keep up and sync fully.
+同步以太坊区块链是非常密集的输入输出（I / O）。最好有一个固态硬盘（SSD）。如果你有机械硬盘驱动器（HDD），则至少需要8GB的RAM能用作缓存。否则，你可能会发现你的系统速度太慢，无法完全保持同步。
 
-*Minimum Requirements:*
+*最低要求：*
 
-* CPU with 2+ cores.
-* Solid State Drive (SSD) with at least 80GB free space.
-* 4GB RAM minimum, 8GB+ if you have an HDD and not SSD.
-* 8 MBit/sec download Internet service.
+* 2核心CPU。
+* 固态硬盘（SSD），至少80GB可用空间。
+* 最小4GB内存，如果你使用HDD而不是SSD，则至少8GB。
+* 8+ MBit/sec下载速度的互联网。
 
-These are the minimum requirements to sync a full (but pruned) copy of an Ethereum-based blockchain.
+这些是同步基于以太坊的区块链的完整（但已修剪）副本的最低要求。
 
-At the time of writing (April 2018) the Parity codebase tends to be lighter on resources, if you're running with limited hardware you'll likely see the best results using Parity.
+在编写本文时（2018年4月），Parity代码库的资源往往更轻，如果你使用有限的硬件运行，那么使用Parity可能会看到最好的结果。
 
-If you want to sync in a reasonable amount of time and store all the development tools, libraries, clients, and blockchains we discuss in this book, you will want a more capable computer.
+如果你想在合理的时间内同步并存储我们在本书中讨论的所有开发工具，库，客户端和区块链，你将需要一台功能更强大的计算机。
 
-*Recommended Specifications:*
+*推荐规格：*
 
-* Fast CPU with 4+ cores.
-* 16GB+ RAM.
-* Fast SSD with at least 500GB free space.
-* 25+ MBit/sec download Internet service.
+* 4个以上核心的快速CPU。
+* 16GB+ RAM。
+* 至少有500GB可用空间的快速SSD。
+* 25+ MBit/sec下载速度的互联网。
 
-It’s difficult to predict how fast a blockchain's size will increase and when more disk space will be required, so it’s recommended to check the blockchain's latest size before you start syncing.
+很难预测区块链的大小会增加多快，以及何时需要更多的磁盘空间，所以建议你在开始同步之前检查区块链的最新大小。
 
-*Ethereum:* https://bitinfocharts.com/ethereum/
+*以太坊：* https://bitinfocharts.com/ethereum/
 
-*Ethereum Classic:* https://bitinfocharts.com/ethereum%20classic/
+*以太坊经典：* https://bitinfocharts.com/ethereum%20classic/
 
 [[sw_reqs]]
-==== Software Requirements for Building and Running a Client (Node)
+==== 构建和运行客户端（节点）的软件要求
 
-This section covers Geth and Parity client software. It also assumes you are using a Unix-like command-line environment. The examples show the output and commands as entered on an Ubuntu Linux operating system running the Bash shell (command-line execution environment).
+本节介绍Geth和Parity客户端软件。并假设你正在使用类Unix的命令行环境。这些示例显示了在运行Bash shell（命令行执行环境）的Ubuntu Linux操作系统上输入的输出和命令。
 
-Typically every blockchain will have their own version of Geth, while Parity provides support for multiple Ethereum-based blockchains (Ethereum, Ethereum Classic, Ellaism, Expanse, Musicoin).
+通常，每个区块链都有自己的Geth版本，而Parity支持多个以太坊区块链（Ethereum，Ethereum Classic，Ellaism，Expanse，Musicoin）。
 
-[TIP]
-=====
-((("$ symbol")))((("shell commands")))((("terminal applications")))In many of the examples in this chapter, we will be using the operating system's command-line interface (also known as a "shell"), accessed via a "terminal" application. The shell will display a prompt; you type a command, and the shell responds with some text and a new prompt for your next command. The prompt may look different on your system, but in the following examples, it is denoted by a +$+ symbol. In the examples, when you see text after a +$+ symbol, don't type the +$+ symbol but type the command immediately following it, then press Enter to execute the command. In the examples, the lines below each command are the operating system's responses to that command. When you see the next +$+ prefix, you'll know it's a new command and you should repeat the process.
-=====
+在我们开始之前，我们可能需要满足一些先决条件。如果你从未在你当前使用的计算机上进行任何软件开发，则可能需要安装一些基本工具。对于以下示例，你需要安装 +git+，源代码管理系统; +Golang+，Go编程语言和标准库; 和Rust，一种系统编程语言。
 
-Before we get started, we may need to get some prerequisites satisfied. If you've never done any software development on the computer you are currently using, you will probably need to install some basic tools. For the examples that follow, you will need to install +git+, the source-code management system; +golang+, the Go programming language and standard libraries; and Rust, a systems programming language.
-
-Git can be installed by following the instructions here:
+可以按照以下说明安装Git：
 https://git-scm.com/
 
-Go can be installed by following the instructions here:
+可以按照以下说明安装Go：
 https://golang.org/
 
 [NOTE]
 =====
-Geth requirements vary, but if you stick with Go version 1.10 or greater you should be able to compile any version of Geth you want. Of course, you should always refer to the documentation for your chosen flavor of Geth.
+Geth的要求各不相同，但如果你坚持使用Go版本1.10或更高版本，你应该能够编译你想要的任何版本的Geth。当然，你应该总是参考你选择的Geth的文档。
 
-The version of golang that is installed on your operating system or is available from your system's package manager may be significantly older than 1.10. If so, remove it and install the latest version from golang.org.
+如果安装在你的操作系统上的Golang版本或者从系统的软件包管理器中获得的版本远远早于1.10，请将其删除并从golang.org安装最新版本。
 =====
 
-Rust can be installed by following the instructions here:
+Rust可以按照以下说明进行安装：
 https://www.rustup.rs/
 
 [NOTE]
 =====
-Parity requires Rust version 1.24 or greater.
+Parity需要Rust版本1.24或更高版本。
 =====
 
-Parity also requires some software libraries, such as OpenSSL and libudev. To install these on a Linux (Debian) compatible system:
+Parity还需要一些软件库，例如OpenSSL和libudev。要在Linux（Debian）兼容系统上安装，请执行以下操作：
 
 [[install_parity_dependencies]]
 ----
 $ sudo apt-get install openssl libssl-dev libudev-dev
 ----
 
-For other operating systems, use the package manager of your OS or follow the Wiki instructions (https://github.com/paritytech/parity/wiki/Setup) to install the required libraries.
+对于其他操作系统，请使用操作系统的软件包管理器或遵循Wiki说明（https://github.com/paritytech/parity/wiki/Setup）来安装所需的库。
 
-Now you have +git+, +golang+, +rust+, and necessary libraries installed, let's get to work!
+现在你已经安装了 +git+，+golang+，+rust+ 和必要的库，让我们开始工作吧！
 
 [[parity]]
 ==== Parity
 
-Parity is an implementation of a full node Ethereum client and DApp browser. Parity was written "from the ground up" in Rust, a systems programming language with the aim of building a modular, secure, and scalable Ethereum client. Parity is developed by Parity Tech, a UK company, and is released under a GPLv3 open source license.
+Parity是完整节点以太坊客户端和DApp浏览器的实现。Parity是由Rust从头开始编写的，系统编程语言是为了构建一个模块化，安全和可扩展的以太坊客户端。Parity由英国公司Parity Tech开发，并以GPLv3开源许可证发布。
 
 [NOTE]
 =====
-Disclosure: One of the authors of this book, Gavin Wood, is the founder of Parity Tech and wrote most of the Parity client. Parity represents about 28% of the installed Ethereum client base.
+披露：本书的作者之一Gavin Wood是Parity Tech的创始人，并撰写了大部分Parity客户端。Parity代表了约28%的以太坊客户端。
 =====
 
-To install Parity, you can use the Rust package manager +cargo+ or download the source code from GitHub. The package manager also downloads the source code, so there's not much difference between the two options. In the next section, we will show you how to download and compile Parity yourself.
+要安装Parity，你可以使用Rust包管理器+cargo+或从GitHub下载源代码。软件包管理器也下载源代码，所以两种选择之间没有太大区别。在下一节中，我们将向你展示如何自己下载和编译Parity。
 
 [[install_parity]]
-===== Installing Parity
+===== 安装 Parity
 
-The Parity Wiki offers instructions for building Parity in different environments and containers:
+Parity Wiki提供了在不同环境和容器中构建Parity的说明：
 
 https://github.com/paritytech/parity/wiki/Setup
 
-We'll build Parity from source. This assumes you have already installed Rust using +rustup+ (See <<sw_reqs>>).
+我们将从源代码构建奇偶校验。这假定你已经使用 +rustup+ 安装了Rust（见 <<sw_reqs>>）。
 
-First, let's get the source code from GitHub:
+首先，让我们从GitHub获取源代码：
 
 [[git_clone_parity]]
 ----
 $ git clone https://github.com/paritytech/parity
 ----
 
-Now, let's change to the +parity+ directory and use +cargo+ to build the executable:
+现在，我们转到+parity+目录并使用+cargo+构建可执行文件：
 
 [[parity_build]]
 ----
@@ -216,7 +210,7 @@ $ cd parity
 $ cargo build
 ----
 
-If all goes well, you should see something like:
+如果一切顺利，你应该看到如下所示的内容：
 
 [[parity_build_status]]
 ----
@@ -236,7 +230,7 @@ Finished dev [unoptimized + debuginfo] target(s) in 479.12 secs
 $
 ----
 
-Let's try and run +parity+ to see if it is installed, by invoking the +--version+ option:
+让我们通过调用+--version+选项来运行+parity+以查看它是否已安装：
 
 [[run_parity]]
 ----
@@ -253,14 +247,14 @@ By Wood/Paronyan/Kotewicz/Drwięga/Volf
 $
 ----
 
-Great! Now that Parity is installed, we can sync the blockchain and get started with some basic command-line options.
+现在已安装了Parity，我们可以同步区块链并开始使用一些基本的命令行选项。
 
 [[go_ethereum_geth]]
 ==== Go-Ethereum (Geth)
 
-Geth is the Go language implementation, which is actively developed and considered the "official" implementation of the Ethereum client. Typically, every Ethereum-based blockchain will have its own Geth implementation. If you're running Geth, then you'll want to make sure you grab the correct version for your blockchain using one of the repository links below.
+Geth是Go语言实现的，它被积极开发并被视为以太坊客户端的“官方”实现。通常情况下，每个基于以太坊的区块链都会有自己的Geth实现。如果你正在运行Geth，那么你需要确保使用以下某个存储库链接为区块链获取正确的版本。
 
-===== Repository Links
+===== 版本库链接
 
 *Ethereum:* https://github.com/ethereum/go-ethereum (or https://geth.ethereum.org/)
 
@@ -276,22 +270,22 @@ Geth is the Go language implementation, which is actively developed and consider
 
 [NOTE]
 =====
-You can also skip these instructions and install a precompiled binary for your platform of choice. The precompiled releases are much easier to install and can be found at the "release" section of the repositories above. However, you may learn more by downloading and compiling the software yourself.
+你也可以跳过这些说明并为你选择的平台安装预编译的二进制文件。预编译的版本安装起来更容易，可以在上面版本库的“版本”部分找到。但是，你可以通过自己下载和编译软件来了解更多信息。
 =====
 
 [[cloning_repo]]
-===== Cloning the repository
+===== 克隆存储库
 
-Our first step is to clone the git repository, so as to get a copy of the source code.
+我们的第一步是克隆git仓库，以获得源代码的副本。
 
-To make a local clone of this repository, use the +git+ command as follows, in your home directory or under any directory you use for development:
+要创建此存储库的本地克隆，请使用 +git+ 命令，如下所示，在你的主目录或用于开发的任何目录下：
 
 [[git_clone_geth]]
 ----
 $ git clone <Repository Link>
 ----
 
-You should see a progress report as the repository is copied to your local system:
+在将存储库复制到本地系统时，你应该看到进度报告：
 
 [[cloning_status]]
 ----
@@ -304,12 +298,12 @@ Resolving deltas: 100% (41554/41554), done.
 Checking connectivity... done.
 ----
 
-Great! Now that we have a local copy of Geth, we can compile an executable for our platform.
+现在我们有了Geth的本地副本，我们可以为我们的平台编译一个可执行文件。
 
 [[build_geth_src]]
-===== Building Geth from Source Code
+===== 从源代码构建Geth
 
-To build Geth, change to the directory where the source code was downloaded and use the +make+ command:
+要构建Geth，切换到下载源代码的目录并使用 +make+ 命令：
 
 [[making_geth]]
 ----
@@ -317,7 +311,7 @@ $ cd go-ethereum
 $ make geth
 ----
 
-If all goes well, you will see the Go compiler building each component until it produces the +geth+ executable:
+如果一切顺利，你将看到Go编译器构建每个组件，直到它生成+ geth +可执行文件：
 
 [[making_geth_status]]
 ----
@@ -337,7 +331,7 @@ Run "build/bin/geth" to launch geth.
 $
 ----
 
-Let's run +geth+ to make sure it works before stopping it and changing it's configuration:
+让我们在停止并更改它的配置之前运行 +geth+ 以确保它工作：
 
 [[run_geth]]
 ----
@@ -356,50 +350,49 @@ GOROOT=/usr/local/go
 
 ----
 
-Your +geth version+ command may show slightly different information, but you should see a version report much like the one above.
+你的 +geth version+ 命令可能会稍微不同，但你应该看到类似上面的版本报告。
 
-Finally, we may want to copy the +geth+ command to our operating system's application directory (or a directory on the command-line execution path). On Linux, we'd use the following command:
+最后，我们可能希望将 +geth+ 命令复制到操作系统的应用程序目录（或命令行执行路径上的目录）。在Linux上，我们使用以下命令：
 
 [[copy_geth_binary]]
 ----
 $ sudo cp ./build/bin/geth /usr/local/bin
 ----
-Don't start running +geth+ yet, because it will start synchronizing the blockchain "the slow way," and that will take far too long (weeks). <<first_sync>> explains the challenge with the initial synchronization of Ethereum's blockchain.
 
+先不要开始运行 +geth+，因为它会以“缓慢的方式”开始将区块链同步，这将花费太长的时间（几周）。<<first_sync>> 解释了以太坊区块链的初始同步带来的挑战。
 
 [[first_sync]]
-=== The First Synchronization of Ethereum-based Blockchains
+=== 基于以太坊的区块链首次同步
 
-Normally, when syncing an Ethereum blockchain, your client will download and validate every block and every transaction since the genesis block.
+通常，在同步以太坊区块链时，你的客户端将下载并验证自创世区块以来的每个区块和每个交易。
 
-While it is possible to fully sync the blockchain this way, the sync will take a very long time and has high computing resource requirements (much more RAM and faster storage).
+虽然可以通过这种方式完整同步区块链，但同步会花费很长时间并且对计算资源要求较高（RAM更多，存储速度更快）。
 
-Many Ethereum-based blockchains were the victim of a Denial-of-Service (DoS) attack at the end of 2016. Blockchains affected by this attack will tend to sync slowly when doing a full sync.
+许多基于以太坊的区块链在2016年底遭受了拒绝服务（DoS）攻击。受此攻击影响的区块链在进行完全同步时倾向于缓慢同步。
 
-For example, on Ethereum, a new client will make rapid progress until it reaches block 2,283,397. This block was mined on September 18th, 2016 and marks the beginning of the DoS attacks. From this block and until block 2,700,031 (November 26th, 2016), the validation of transactions becomes extremely slow, memory intensive, and I/O intensive. This results in validation times exceeding 1 minute per block. Ethereum implemented a series of upgrades, using hard forks, to address the underlying vulnerabilities that were exploited in the denial of service. These upgrades also cleaned up the blockchain by removing some 20 million empty accounts created by spam transactions. <<[1]>>
+例如，在以太坊中，新客户端在到达区块2,283,397之前会进展迅速。该块在2016年9月18日开采，标志着DoS攻击的开始。从这个区块到2,700,031区块（2016年11月26日），交易验证变得非常缓慢，内存密集并且I/O密集。这导致每块的验证时间超过1分钟。以太坊使用硬分叉实施了一系列升级，以解决在拒绝服务中被利用的底层漏洞。这些升级还通过删除由垃圾交易创建的大约2000万个空帐户来清理区块链。<<[1]>>
 
-If you are syncing with full validation, your client will slow down and may take several days or longer to validate any blocks affected by this DoS attack.
+如果你正在使用完整验证进行同步，则客户端会放慢速度并可能需要几天或更长时间才能验证受此DoS攻击影响的任何块。
 
-Most Ethereum clients include an option to perform a "fast" synchronization that skips the full validation of transactions until it has synced to the tip of the blockchain, then resumes full validation.
+大多数以太坊客户端包括一个选项，可以执行“快速”同步，跳过交易的完整验证，同步到区块链的顶端后，再恢复完整验证。
 
-For Geth, the option to enable fast synchronization is typically called +--fast+. You may need to refer to the specific instructions for your chosen Ethereum chain.
+对于Geth，启用快速同步的选项通常称为 +--fast+。你可能需要参考你选择的以太坊链的具体说明。
 
-For Parity, the option is +--warp+ for older versions (< 1.6) and is enabled by default (no need to set a configuration option) on newer versions (>= 1.6).
+对于Parity，较旧版本（<1.6），该选项为 +--warp+，较新版本（>=1.6）上默认启用（无需设置配置选项）。
 
 [NOTE]
 =====
-Geth and Parity can only operate fast synchronization when starting with an empty block database. If you have already started syncing without "fast" mode, Geth and Parity cannot switch. It is faster to delete the blockchain data directory and start "fast" syncing from the beginning than to continue syncing with full validation. Be careful to not delete any wallets when deleting the blockchain data!
+Geth和Parity只能在空的区块数据库启动时进行快速同步。如果你已经开始没有“快速”模式的同步，则Geth和Parity无法切换。删除区块链数据目录并从头开始“快速”同步比继续完整验证同步更快。删除区块链数据时请小心不要删除任何钱包！
 =====
 
-
 [[json_rpc]]
-==== JSON-RPC Interface
+==== JSON-RPC接口
 
-Ethereum clients offer an Application Programming Interface (API) and a set of Remote Procedure Call (RPC) commands, which are encoded as JavaScript Object Notation (JSON). You will see this referred to as the _JSON-RPC API_. Essentially, the JSON-RPC API is an interface that allows us to write programs that use an Ethereum client as a _gateway_ into an Ethereum network and blockchain.
+以太坊客户端提供应用程序编程接口（API）和一组远程过程调用（RPC）命令，这些命令被编码为JavaScript对象表示法（JSON）。这被称为_JSON-RPC API_。本质上，JSON-RPC API是一个接口，允许我们将使用以太坊客户端的程序作为_gateway_编写到以太坊网络和区块链中。
 
-Usually, the RPC interface is offered over as an HTTP service on port +8545+. For security reasons it is restricted, by default, to only accept connections from localhost (the IP address of your own computer which is +127.0.0.1+).
+通常，RPC接口作为端口+8545+上的HTTP服务提供。出于安全原因，默认情况下，它仅受限于从本地主机（你自己的计算机的IP地址为+127.0.0.1+）接受连接。
 
-To access the JSON-RPC API, you can use a specialized library, written in the programming language of your choice, which provides "stub" function calls corresponding to each available RPC command. Or, you can manually construct HTTP requests and send/receive JSON encoded requests. You can even use a generic command-line HTTP client, like +curl+, to call the RPC interface. Let's try that (ensure that you have Geth configured and running first):
+要访问JSON-RPC API，可以使用专门的库，用你选择的编程语言编写，它提供与每个可用的RPC命令相对应的“桩（stub）”函数调用。或者，你可以手动构建HTTP请求并发送/接收JSON编码的请求。你甚至可以使用通用命令行HTTP客户端（如 +curl+ ）来调用RPC接口。让我们尝试一下（确保你已经配置并运行了Geth）：
 
 [[curl_web3]]
 .Using curl to call the web3_clientVersion function over JSON-RPC
@@ -412,29 +405,29 @@ http://localhost:8545
 "result":"Geth/v1.8.0-unstable-02aeb3d7/linux-amd64/go1.8.3"}
 ----
 
-In this example, we use +curl+ to make an HTTP connection to address +http://localhost:8545+. We are already running +geth+, which offers the JSON-RPC API as an HTTP service on port 8545. We instruct +curl+ to use the HTTP +POST+ command and to identify the content as +Content-Type: application/json+. Finally, we pass a JSON-encoded request as the +data+ component of our HTTP request. Most of our command line is just setting up +curl+ to make the HTTP connection correctly. The interesting part is the actual JSON-RPC command we issue:
+在这个例子中，我们使用 +curl+ 建立一个HTTP连接来访问 +http://localhost:8545+。我们已经运行了 +geth+，它将JSON-RPC API作为端口8545上的HTTP服务提供。我们指示 +curl+ 使用HTTP +POST+ 命令并将内容标识为 +Content-Type: application/json+。最后，我们传递一个JSON编码的请求作为我们HTTP请求的+data+部分。我们的大多数命令行只是设置 +curl+ 来正确地建立HTTP连接。有趣的部分是我们发布的实际的JSON-RPC命令：
 
 [[JSON_RPC_command]]
 ----
 {"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":4192}
 ----
 
-The JSON-RPC request is formatted according to the JSON-RPC 2.0 specification, which you can see here:
+JSON-RPC请求根据JSON-RPC 2.0规范格式化，你可以在这里看到：
 http://www.jsonrpc.org/specification
 
-Each request contains 4 elements:
+每个请求包含4个元素：
 
-jsonrpc:: Version of the JSON-RPC protocol. This MUST be exactly "2.0".
+jsonrpc:: JSON-RPC协议的版本。这_必须_是“2.0”。
 
-method:: The name of the method to be invoked.
+method:: 要调用的方法的名称。
 
-params:: A structured value that holds the parameter values to be used during the invocation of the method. This member MAY be omitted.
+params:: 一个结构化值，用于保存在调用方法期间要使用的参数值。该元素可以省略。
 
-id:: An identifier established by the Client that MUST contain a String, Number, or NULL value if included. The Server MUST reply with the same value in the Response object if included. This member is used to correlate the context between the two objects.
+id:: 由客户端建立的标识符，必须包含字符串，数字或NULL值（如果包含）。如果包含，服务器必须在Response对象中使用相同的值进行回复。该元素用于关联两个对象之间的上下文。
 
 [TIP]
 ====
-The +id+ parameter is used primarily when you are making multiple requests in a single JSON-RPC call, a practice called _batching_. Batching is used to avoid the overhead of a new HTTP and TCP connection for every request. In the Ethereum context for example, we would use batching if we wanted to retrieve thousands of transactions in one HTTP connection. When batching, you set a different +id+ for each request and then match it to the +id+ in each response from the JSON-RPC server. The easiest way to implement this is to maintain a counter and increment the value for each request.
++id+ 参数主要用于在单个JSON-RPC调用中进行多个请求的情况，这种做法称为_批处理_。批处理用于避免每个请求的新HTTP和TCP连接的开销。例如，在以太坊环境中，如果我们想要在一个HTTP连接中检索数千个交易，我们将使用批处理。批处理时，为每个请求设置不同的 +id+，然后将其与来自JSON-RPC服务器的每个响应中的+id+进行匹配。实现这个最简单的方法是维护一个计数器并为每个请求增加值。
 ====
 
 [[JSON_RPC_response]]
@@ -444,9 +437,9 @@ The response we receive is:
 "result":"Geth/v1.8.0-unstable-02aeb3d7/linux-amd64/go1.8.3"}
 ----
 
-This tells us that the JSON-RPC API is being served by Geth client version 1.8.0.
+这告诉我们JSON-RPC API由Geth客户端版本1.8.0提供服务。
 
-Let's try something a bit more interesting. In the next example, we ask the JSON-RPC API for the current price of gas in wei:
+让我们尝试一些更有趣的事情。在下一个例子中，我们要求JSON-RPC API获取当前的gas价格，以wei为单位：
 
 [[curl_current_gas_price]]
 ----
@@ -456,14 +449,15 @@ http://localhost:8545
 
 {"jsonrpc":"2.0","id":4213,"result":"0x430e23400"}
 ----
-The response, +0x430e23400+, tells us that the current gas price is 1.8 Gwei (gigawei or billion wei).
+
+响应 +0x430e23400+ 告诉我们，当前的gas价格是1.8wei（gigawei或十亿wei）。
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC
 
 [[parity_compatibility_mode]]
-===== Parity's Geth Compatibility Mode
+===== Parity的Geth兼容模式
 
-Parity has a special "Geth Compatibility Mode", where it offers a JSON-RPC API that is identical to that offered by +geth+. To run Parity in Geth Compatibility Mode, use the +--geth+ switch:
+有一个特殊的“Geth兼容模式”，它提供了一个与+geth+相同的JSON-RPC API。要在Geth兼容模式下运行奇偶校验，请使用+--geth+开关：
 
 [[parity_geth]]
 ----
@@ -471,99 +465,102 @@ $ parity --geth
 ----
 
 [[lw_eth_clients]]
-=== Lightweight Ethereum Clients
+=== 轻量级以太坊客户
 
-Lightweight clients offer a subset of the functionality of a full client. They do not store the full Ethereum blockchain, so they are faster to setup and require far less data storage.
+轻量级客户端提供了完整客户端的一部分功能。他们不存储完整的以太坊区块链，因此它们的启动速度更快，所需的数据存储量也更少。
 
-A lightweight client offers one or more of the following functions:
+轻量级客户端提供以下一项或多项功能：
 
-* Manage private keys and Ethereum addresses in a wallet.
-* Create, sign, and broadcast transactions.
-* Interact with smart contracts, using the data payload.
-* Browse and interact with DApps.
-* Offer links to external services such as block explorers.
-* Convert ether units and retrieve exchange rates from external sources.
-* Inject a web3 instance into the web browser as a JavaScript object.
-* Use a web3 instance provided/injected into the browser by another client.
-* Access RPC services on a local or remote Ethereum node.
+* 管理钱包中的私钥和以太坊地址。
+* 创建，签署和广播交易。
+* 使用数据与智能合约进行交互。
+* 浏览并与DApps交互。
+* 提供到区块浏览器等外部服务的链接。
+* 转换ether单位并从外部来源检索汇率。
+* 将web3实例作为JavaScript对象注入到Web浏览器中。
+* 使用另一个客户端提供/注入浏览器的web3实例。
+* 在本地或远程以太网节点上访问RPC服务。
 
-Some lightweight clients, for example mobile (smartphone) wallets, offer only basic wallet functionality. Other lightweight clients are fully-developed DApp browsers. Lightweight clients commonly offer some of the functions of a full node Ethereum client without synchronizing a local copy of the Ethereum blockchain.
+一些轻量级客户端（例如移动（智能手机）钱包）仅提供基本的钱包功能。其他轻量级客户端是完全开发的DApp浏览器。轻量级客户端通常提供完整节点以太坊客户端的某些功能，而无需同步以太坊区块链的本地副本。
 
-Let's look at some of the most popular lightweight clients and the functions they offer.
+我们来看看一些最受欢迎的轻量级客户端及其提供的功能。
 
 [[mobile_wallets]]
-=== Mobile (Smartphone) Wallets
+=== 移动（智能手机）钱包
 
-All mobile wallets are lightweight clients because smartphones do not have adequate resources to run a full Ethereum client.
+所有的移动钱包都是轻量级的客户端，因为智能手机没有足够的资源来运行完整的以太坊客户端。
 
-Popular mobile wallets include Jaxx, Status, and Trust Wallet. We list these as examples of popular mobile wallets (this is not an endorsement or an indication of the security or functionality of these wallets).
+流行的移动钱包包括Jaxx，Status和Trust Wallet。我们列举这些作为流行手机钱包的例子（不是对这些钱包的安全或功能的认可）。
 
-Jaxx:: A multi-currency mobile wallet based on BIP39 mnemonic seeds, with support for Bitcoin, Litecoin, Ethereum, Ethereum Classic, ZCash, a variety of ERC20 tokens and many other currencies. Jaxx is available on Android, iOS, as a browser plugin wallet, and desktop wallet for a variety of operating systems. Find it at https://jaxx.io
+Jaxx :: 基于BIP39助记种子的多币种手机钱包，支持比特币，莱特币，以太坊，以太坊经典，ZCash，各种ERC20代币和许多其他货币。Jaxx可在Android，iOS上作为浏览器插件钱包使用，桌面钱包可用于各种操作系统。可以在https://jaxx.io找到它。
 
-Status:: A mobile wallet and DApp browser, with support for a variety of tokens and popular DApps. Available for iOS and Android smartphones. Find it at https://status.im
+Status:: 移动钱包和DApp浏览器，支持各种代币和流行的DApps。适用于iOS和Android智能手机。可以在https://status.im找到它。
 
-Trust Wallet:: A mobile Ethereum, Ethereum Classic wallet that supports ERC20, and ERC223 tokens. Trust Wallet is available for iOS and Android smartphones. Find it at https://trustwalletapp.com/
+Trust Wallet:: 支持ERC20和ERC223代币的移动以太坊，以太坊经典钱包。Trust Wallet适用于iOS和Android智能手机。可以在https://trustwalletapp.com/找到它。
 
-Cipher Browser::  A full-featured Ethereum-enabled mobile DApp browser and wallet. Allows integration with Ethereum apps and tokens. Find it at https://www.cipherbrowser.com
+Cipher Browser:: 全功能的启用以太坊的移动DApp浏览器和钱包。允许与以太坊应用程序和代币集成。可以在https://www.cipherbrowser.com找到它
 
 [[browser_wallets]]
-=== Browser wallets
+=== 浏览器钱包
 
-A variety of wallets and DApp browsers are available as plugins or extensions of web browsers such as Chrome and Firefox: lightweight clients that run inside your browser.
+各种钱包和DApp浏览器可用作浏览器的插件或扩展，例如Chrome和Firefox：运行在浏览器内的轻量级客户端。
 
-Some of the more popular ones are MetaMask, Jaxx, and MyEtherWallet/MyCrypto.
+一些比较流行的是MetaMask，Jaxx和MyEtherWallet/MyCrypto。
 
 [[MetaMask]]
 ==== MetaMask
 
-MetaMask was introduced in <<intro>>, and is a versatile browser-based wallet, RPC client, and basic contract explorer. It is available on Chrome, Firefox, Opera, and Brave Browser. Find MetaMask at:
+MetaMask 在 <<intro>> 中介绍，它是一个多功能的基于浏览器的钱包，RPC客户端和基本合约浏览器。它可用于Chrome，Firefox，Opera和Brave Browser。在以下位置找到MetaMask：
 
 https://metamask.io
 
-At first glance, MetaMask is a browser-based wallet. But, unlike other browser wallets, MetaMask injects a web3 instance into the browser, acting as an RPC client that connects to a variety of Ethereum blockchains (eg. mainnet, Ropsten testnet, Kovan testnet, local RPC node, etc.). The ability to inject a web3 instance and act as a gateway to external RPC services, makes MetaMask a very powerful tool for developers and users alike. It can be combined, for example, with MyEtherWallet or MyCrypto, acting as an web3 provider and RPC gateway for those tools.
+乍一看，MetaMask是一款基于浏览器的钱包。但是，与其他浏览器钱包不同，MetaMask将web3实例注入浏览器，作为连接到各种以太坊区块链（例如mainnet，Ropsten testnet，Kovan testnet，本地RPC节点等）的RPC客户端。能够注入web3实例并充当外部RPC服务的入口，使MetaMask成为开发人员和用户非常强大的工具。例如，它可以与MyEtherWallet或MyCrypto相结合，充当这些工具的web3提供者和RPC网关。
 
 [[Jaxx]]
 ==== Jaxx
 
-Jaxx, which was introduced as a mobile wallet in <<mobile_wallets>>, is also available as a Chrome and Firefox extension. Find it at:
+在 <<mobile_wallets>> 中作为移动钱包介绍的Jaxx也可用作Chrome和Firefox扩展。可以在这里找到：
 
 https://jaxx.io
 
 [[MEW]]
 ==== MyEtherWallet (MEW)
 
-MyEtherWallet is a browser-based JavaScript lightweight client that offers:
+MyEtherWallet是一款基于浏览器的JavaScript轻量级客户端，提供：
 
-* A software wallet running in JavaScript.
-* A bridge to popular hardware wallets such as the Trezor and Ledger.
-* A web3 interface that can connect to a web3 instance injected by another client (eg. MetaMask).
-* An RPC client that can connect to an Ethereum full client.
-* A basic interface that can interact with smart contracts, given a contract's address and Application Binary Interface (ABI).
+* 在JavaScript中运行的软件钱包。
+* 通往诸如Trezor和Ledger等流行硬件钱包的桥梁。
+* 一个web3界面，可以连接到另一个客户端注入的web3实例（例如MetaMask）。
+* 可以连接到以太坊完整客户端的RPC客户端。
+* 给定合约地址和应用程序二进制接口（ABI），可以与智能合约交互的基本接口。
 
-MyEtherWallet is very useful for testing and as an interface to hardware wallets. It should not be used as a primary software wallet, as it is exposed to threats via the browser environment and is not a secure key storage system.
+MyEtherWallet对于测试和作为硬件钱包界面非常有用。它不应该被用作主要的软件钱包，因为它在浏览器环境中会受到威胁，并且不是一个安全的密钥存储系统。
 
-You must be very careful when accessing MyEtherWallet and other browser-based JavaScript wallets, as they are frequent targets for phishing. Always use a bookmark and not a search engine or link to access the correct web URL. MyEtherWallet can be found at:
+访问MyEtherWallet和其他基于浏览器的JavaScript钱包时，你必须非常小心，因为它们经常是钓鱼攻击的目标。始终使用书签而不是搜索引擎或链接访问正确的网址。MyEtherWallet可以在以下网址找到：
 
 https://MyEtherWallet.com
 
 [[MyCrypto]]
 ==== MyCrypto
 
-Just prior to publication of the first edition of this book, the MyEtherWallet project split into two competing implementations, guided by two independent development teams: a "fork" as it is called in open source development. The two projects are called MyEtherWallet (the original branding) and MyCrypto. At the time of the split, MyCrypto offered identical functionality as MyEtherWallet. It is likely that the two projects will diverge as the two development teams adopt different goals and priorities.
+就在本书第一版出版之前，MyEtherWallet项目分为由两个独立开发团队主导的竞争实现：一个“分叉”，就像在开源开发中所称的那样。这两个项目被称为MyEtherWallet（原始品牌）和MyCrypto。在拆分时，MyCrypto提供与MyEtherWallet相同的功能。由于两个开发团队采取不同的目标和优先事项，这两个项目可能会出现分歧。
 
-As with MyEtherWallet, you must be very careful when accessing MyCrypto in your browser. Always use a bookmark, or type the URL very carefully (then bookmark it for future use).
+与MyEtherWallet一样，在浏览器中访问MyCrypto时必须非常小心。始终使用书签，或者非常小心地输入URL（然后将其书签以备将来使用）。
 
-MyCrypto can be found at:
+MyCrypto可以在以下网址找到：
 
 https://MyCrypto.com
 
 [[Mist]]
 ==== Mist
 
-Mist is the first ever Ethereum enabled browser, built by the Ethereum Foundation. It also contains a browser-based wallet that was the first ever implementation of the ERC20 token standard (Fabian Vogelsteller, author of ERC20 was also the main developer in Mist). Mist was also the first wallet to introduce the camelCase checksum (EIP-155, see <<eip-155>>). Mist runs a full node, and offers a full DApp browser with support for Swarm based storage and ENS addresses. Find it at:
+
+Mist是以太坊基金会创建的第一个启用以太坊的浏览器。它还包含一个基于浏览器的钱包，这是有史以来第一个实现ERC20代币标准的（Fabian Vogelsteller，ERC20的作者也是Mist的主要开发人员）。Mist也是第一个引入camelCase校验和的软件包（EIP-155，参见 <<eip-155>> ）。Mist运行一个完整的节点，并提供完整的DApp浏览器，支持基于Swarm的存储和ENS地址。可以在以下网址找到：
 
 https://github.com/ethereum/mist
 
 [bibliography]
 === References
 - [[[1]]] EIP-161: http://eips.ethereum.org/EIPS/eip-161
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
