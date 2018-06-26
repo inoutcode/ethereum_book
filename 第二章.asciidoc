@@ -1,40 +1,40 @@
 [[intro_chapter]]
-== Ethereum Basics
+== 以太坊基础
 
 [[control_responsibility]]
-=== Control and responsibility
+=== 控制和责任
 
-Open blockchains like Ethereum are secure because they are _decentralized_. That means that each user of Ethereum should control their own keys, which control access to their funds and contracts. Some users choose to give up control over their keys by using a third party custodian, such as an exchange wallet. In this book, we will teach you how to take control and manage your own keys.
+像以太坊这样的开放区块链是安全的，因为它们是_去中心化的_。这意味着以太坊的每个用户都应该控制自己的密钥，这些密钥可以控制对资金和合约的访问。一些用户选择通过使用第三方保管人（比如交易所钱包）放弃对密钥的控制权。在本书中，我们将教你如何控制和管理你自己的密钥。
 
-With that control comes a big responsibility. If you lose your keys, you lose access to funds and contracts. No one can help you regain access - your funds will be locked forever. Here are a few tips to help you manage this responsibility:
+这种控制带来了很大的责任。如果你丢失了你的钥匙，你将无法获得资金和合约。没有人可以帮助你重新获得访问权 - 你的资金将永远锁定。以下是一些帮助你管理这一责任的提示：
 
-* When you are prompted to choose a password: make it strong, back it up and don't share it. If you don't have a password manager, write it down and store it in a locked drawer or safe. This password can be used as long as you have the "keystore" file of your account.
+* 提示你选择密码时：强化它，备份并不共享。如果你没有密码管理器，请将其写下并存放在锁定的抽屉或保险柜中。只要你拥有帐户的“keystore”文件，就可以使用此密码。
 
-* When you are prompted to back up a key or mnemonic words, use pen and paper to make a physical backup. Do not leave that task for "later", you will forget. These can be used in case you lose all data saved on your system.
+* 当系统提示你备份密钥或助记词时，请使用笔和纸进行物理备份。不要把这个任务放在“以后”，你会忘记。这些在你丢失了系统中保存的所有数据时使用。
 
-* Do not store key material (encrypted or not) in digital documents, digital photos, screenshots, online drives, encrypted PDFs, etc. Don't improvise security. Use a password manager or pen and paper.
+* 不要在数字文档，数字照片，屏幕截图，在线驱动器，加密的PDF等中存储密钥材料（加密或不加密），不要临时凑合的安全性。使用密码管理器或笔和纸。
 
-* Before transferring any large amounts, first do a small test transaction (e.g., $1 value). Once you receive the test transaction, try sending it from that wallet. If you forgot your password or can't send the funds for any other reason, it is better to find out with a small loss.
+* 在传输任何大量数据之前，先做一个小的测试交易（例如，1美元）。一旦你收到测试交易，请尝试从该钱包中发送。如果你忘记密码或因任何其他原因无法发送资金，最好是一个小小的损失。
 
-* Do not send money to any of the addresses shown in this book. The private keys are listed in the book and someone will immediately take that money.
+* 请勿将金钱汇入本书所示的任何地址。私人密钥被列在书中，有人会立即拿走这笔钱。
 
 [[ether_units]]
-=== Ether currency units
+=== 以太网货币单位
 
-Ethereum's currency unit is called _ether_, identified also as ETH or with the symbols &#926; (from the Greek letter "Xi" that looks like a stylized capital E) or (less often) &#9830;, for example, 1 ether, or 1 ETH, or &#926;1, or &#9830;1
+以太坊的货币单位称为 _以太_ _ether_，也被称为ETH或符号 &#926; （来自看起来像程式化的大写字母E的希腊字母“Xi”）或（不太常见的）&#9830;，例如，1个以太，或1个ETH，或 &#926;1，或 &#9830;1
 
 [TIP]
 ====
-Use Unicode character 926 for &#926; and 9830 for &#9830;.
+&#926; 使用Unicode字符926，&#9830;使用9830。
 ====
 
-Ether is subdivided into smaller units, down to the smallest unit possible, which is named _wei_. One _ether_ is 1 quintillion _wei_ (1 x 10^18^ or 1,000,000,000,000,000,000). You may hear people refer to the currency "Ethereum" too, but this is a common beginner's mistake. Ethereum is the system, ether is the currency.
+以太被细分为更小的单位，直到可能的最小单位，这被命名为_wei_。一个 ether 是 1×10^18^或1,000,000,000,000,000,000 个 wei。你可能会听到人们也提到货币“以太坊”，但这是一个常见的初学者的错误。以太坊是制度，以太是货币。
 
-The value of ether is always represented internally in Ethereum as an unsigned integer value denominated in _wei_. When you transact 1 ether, the transaction encodes 10000000000000000000 wei as the value.
+以太的值总是在以太坊内部表示为_wei_，无符号整数值。当你处理1个以太网时，交易将编码10000000000000000000 wei作为值。
 
-Ether's various denominations have both a _scientific name_ using the International System of units (_SI_), and a colloquial name that pays homage to many of the great minds of computing and cryptography.
+以太的各种单位既有使用国际单位系统（_SI_）的科学名称，也有口语化的名字，向计算机和密码学的许多伟大思想致敬。
 
-Table <<ether_denominations>> shows the various units, their colloquial (common) name, and their SI name. In keeping with the internal representation of value, the table shows all denominations in wei (first row), with ether shown as 10^18^ wei in the 7th row:
+表 <<ether_denominations>> 显示了各种单位，它们的俗名（通用）名称和他们的SI名称。为了与价值的内部表示保持一致，该表格显示了所有面值的wei（第一行），在第七行中 ether 显示为10^18^ wei：
 
 [[ether_denominations]]
 .Ether Denominations and Unit Names
@@ -53,52 +53,52 @@ Table <<ether_denominations>> shows the various units, their colloquial (common)
 |===
 
 [[choosing_eth_wallet]]
-=== Choosing an Ethereum wallet
+=== 选择一个以太坊钱包
 
-An Ethereum wallet is your gateway to the Ethereum system. It holds your keys and can create and broadcast transactions on your behalf. Choosing an Ethereum wallet can be difficult because there are many different options with different features and designs. Some are more suitable for beginners and some are more suitable for experts. Even if you choose one that you like now, you might decide to switch to a different wallet later on. Ethereum itself is constantly changing and the "best" wallets are often the ones that adapt to them.
+以太坊钱包是你通往以太坊系统的门户。它拥有你的密钥，并且可以代表你创建和广播交易。选择一个以太坊钱包可能很困难，因为有很多不同功能和设计选择。有些更适合初学者，有些更适合专家。即使你现在选择一个你喜欢的，你可能会决定稍后切换到另一个钱包。以太坊本身在不断变化，“最好”的钱包往往是适应它们的。
 
-But don't worry! If you choose a wallet and don't like how it works, you can change wallets quite easily. All you have to do is make a transaction that sends your funds from the old wallet to the new wallet, or move the keys by exporting and importing your private keys.
+别担心！如果你选择一个钱包而不喜欢它的工作方式，那么你可以很容易地更换钱包。你只需进行一项交易，即将资金从旧钱包发送到新钱包，或者通过导出和导入私钥来移动密钥。
 
-To get started, we will choose three different types of wallets to use as examples throughout the book: a mobile wallet, a desktop wallet, and a web-based wallet. We've chosen these three wallets because they represent a broad range of complexity and features. However, the selection of these wallets is not an endorsement of their quality or security. They are simply a good starting place for demonstrations and testing.
+首先，我们将选择三种不同类型的钱包作为整本书的示例：移动钱包，桌面钱包和基于网络的钱包。我们选择了这三款钱包，因为它们代表了广泛的复杂性和功能。然而，选择这些钱包并不是对其质量或安全性的认可。他们只是示范和测试。
 
-Starter wallets:
+起始钱包：
 
-MetaMask:: MetaMask is a browser extension wallet that runs in your browser (Chrome, Firefox, Opera or Brave Browser). It is easy to use and convenient for testing, as it is able to connect to a variety of Ethereum nodes and test blockchains (see <<testnets>>).
+MetaMask:: MetaMask是一款浏览器扩展钱包，可在你的浏览器（Chrome，Firefox，Opera或Brave Browser）中运行。它易于使用且便于测试，因为它可以连接到各种以太坊节点和测试区块链（请参阅“testnets”）。
 
-Jaxx:: Jaxx is a multi-platform and multi-currency wallet that runs on a variety of operating systems including Android, iOS, Windows, Mac, and Linux. It is often a good choice for new users as it is designed for simplicity and ease of use.
+Jaxx:: Jaxx是一款多平台和多币种钱包，可在各种操作系统上运行，包括Android，iOS，Windows，Mac和Linux。对于新用户来说，它通常是一个不错的选择，因为它的设计简单易用。
 
-MyEtherWallet (MEW):: MyEtherWallet is a web-based wallet that runs in any browser. It has multiple sophisticated features we will explore in many of our examples.
+MyEtherWallet (MEW):: MyEtherWallet是一款基于网络的钱包，可在任何浏览器中运行。它具有多个复杂的功能，我们将在许多示例中探讨这些功能。
 
-Emerald Wallet:: Emerald Wallet is designed to work with Ethereum Classic blockchain, but compatible with other Ethereum based blockchains. It's an open source desktop application, works under Windows, Mac and Linux. Emerald wallet can run a full node or connect to a public remote node, working in a "light" mode. It also has a companion tool to do all operations from command line.
+Emerald Wallet:: Emerald钱包设计用于以太坊经典区块链，但与其他以太坊区块链兼容。它是一款开源桌面应用程序，适用于Windows，Mac和Linux。Emerald钱包可以运行一个完整的节点或连接到一个公共的远程节点，工作在“轻量”模式下。它还有一个配套工具来在命令行中执行所有操作。
 
-We'll start by installing MetaMask on our desktop.
+我们将首先在桌面上安装MetaMask
 
 [[installing_MetaMask]]
-=== Installing MetaMask
+=== 安装 MetaMask
 
-Open the Google Chrome browser and navigate to:
+打开Google Chrome浏览器并导航至：
 
 https://chrome.google.com/webstore/category/extensions
 
-Search for "MetaMask" and click on the logo of a fox. You should see the extension's detail page like this:
+搜索“MetaMask”并点击狐狸的标志。你应该看到这样的扩展的详细信息页面：
 
 [[metamask_download]]
 .The detail page of the MetaMask Chrome Extension
 image::images/metamask_download.png["MetaMask Detail Page"]
 
-It's important to verify that you are downloading the real MetaMask extension, as sometimes people are able to sneak malicious extensions past Google's filters. The real one:
+验证你是否下载真正的MetaMask扩展非常重要，因为有时候人们可以将恶意扩展通过Google的过滤器。
 
-* Shows the ID +nkbihfbeogaeaoehlefnkodbefgpgknn+ in the address bar
-* Is offered by https://metamask.io
-* Has more than 800 reviews
-* Has more than 1,000,000 users
+* 在地址栏中显示ID +nkbihfbeogaeaoehlefnkodbefgpgknn+ 
+* 由https://metamask.io提供
+* 有超过800个评论
+* 拥有超过1,000,000名用户
 
-Once you confirm you are looking at the correct extension, click "Add to Chrome" to install it.
+确认你正在查看正确的扩展程序后，请点击“添加到Chrome”进行安装。
 
 [[using_MetaMask]]
-=== Using MetaMask for the first time
+=== 第一次使用MetaMask
 
-Once MetaMask is installed you should see a new icon (head of a fox) in your browser's toolbar. Click on it to get started. You will be asked to accept the terms and conditions and then to create your new Ethereum wallet by entering a password:
+一旦安装了MetaMask，你应该在浏览器的工具栏中看到一个新图标（狐狸头）。点击它开始。它将要求你接受条款和条件，然后通过输入密码来创建新的以太坊钱包：
 
 [[metamask_password]]
 .The password page of the MetaMask Chrome Extension
@@ -106,10 +106,10 @@ image::images/metamask_password.png["MetaMask Password Page"]
 
 [TIP]
 ====
-The password controls access to MetaMask, so that it can't be used by anyone with access to your browser.
+密码控制对MetaMask的访问，任何有权访问你的浏览器的人无法使用它。
 ====
 
-Once you've set a password, MetaMask will generate a wallet for you and show you a _mnemonic backup_ consisting of 12 English words. These words can be used in any compatible wallet to recover access to your funds should something happen to MetaMask or your computer. You do not need the password for this recovery.  The 12 words are sufficient.
+一旦你设置了密码，MetaMask将为你生成一个钱包并向你显示一个_助记词备份_，由12个英文单词组成。如果MetaMask或你的计算机出现问题，可以在任何兼容的钱包中使用这些词来恢复对资金的访问。你不需要通过密码进行恢复。这12个字就足够了。
 
 [[metamask_mnemonic]]
 .The mnemonic backup of your wallet, created by MetaMask
@@ -117,199 +117,196 @@ image::images/metamask_mnemonic.png["MetaMask Mnemonic Page"]
 
 [TIP]
 ====
-Backup your mnemonic (12 words) on paper, twice. Store the two paper backups in two separate secure locations, such as a fire resistant safe, a locked drawer or a safe deposit box. Treat the paper backups like cash of equivalent value as what you store in your Ethereum wallet. Anyone with access to these words can gain access and steal your money.
+在纸上备份助记符（12个字），两次。将两份纸张备份存放在两个单独的安全位置，例如防火安全柜，锁定的抽屉或保险箱。将纸质备份视为你在Ethereum钱包中存储的相同价值的现金。任何能够访问这些文字的人都可以访问并窃取你的资金。
 ====
 
-Once you have confirmed that you have stored the mnemonic securely, MetaMask will display your Ethereum account details:
+一旦确认你已安全存储助记符，MetaMask将显示你的以太坊帐户详细信息：
 
 [[metamask_account]]
 .Your Ethereum account in MetaMask
 image::images/metamask_account.png["MetaMask Account Page"]
 
-Your account page shows the name of your account ("Account 1" by default), an Ethereum address (0x9E713... in the example) and a colorful icon to help you visually distinguish this account from other accounts. At the top of the account page, you can see which Ethereum network you are currently working on ("Main Network" in the example).
+你的帐户页面会显示你帐户的名称（默认情况下为“Account 1”），以太坊地址（示例中为0x9E713 ...）以及彩色图标，以帮助你将此帐户与其他帐户区分开来。在帐户页面的顶部，你可以看到你当前正在使用哪个以太坊网络（示例中的“主网络”）。
 
-Congratulations! You have set up your first Ethereum wallet!
+恭喜！你已经建立了你的第一个以太坊钱包！
 
 [[switching_networks]]
-=== Switching networks
+=== 切换网络
 
-As you can see on the MetaMask account page, you can choose between multiple Ethereum networks. By default, MetaMask will try to connect to the "Main Network". The other choices are public testnets, any Ethereum node of your choice, or nodes running private blockchains on your own computer (localhost):
+正如你在MetaMask帐户页面上所看到的，你可以在多个以太坊网络中进行选择。默认情况下，MetaMask将尝试连接到“主网络”。其他选择是公共测试网，你选择的任何以太坊节点或在你自己的计算机上运行私有区块链的节点（本地主机）：
 
-Main Ethereum Network:: The main, public, Ethereum blockchain. Real ETH, real value, real consequences.
+Main Ethereum Network:: 主要的，公开的以太坊区块链。真正的ETH，真正的价值，真正的后果。
 
-Ropsten Test Network:: Ethereum public test blockchain and network, using Proof-of-Work consensus (mining). ETH on this network has no value. The issue with Ropsten was that the attacker minted tens of thousands of blocks, producing huge reorgs and pushing the gas limit up to 9B. A new public testnet was required then, but later(on 25th March 2017) Ropsten was also revived!
+Ropsten Test Network:: 以太坊公开测试区块链和网络，使用工作证明共识（挖矿）。在这个网络上的ETH没有价值。Ropsten的问题在于攻击者铸造了数以万计的区块，产生巨大的重组并将燃气极限推到9B。当时需要一个新的公共测试网，但之后（2017年3月25日）Ropsten也复活了！
 
-Kovan Test Network:: Ethereum public test blockchain and network, using "Aura" protocol for Proof-of-Authority consensus (federated signing). ETH on this network has no value. This test network is supported by "Parity" only. Other Ethereum clients use 'Clique' protocol, which was proposed later, for Proof-of-Authority.
+Kovan Test Network:: 以太坊公开测试区块链和网络，使用“Aura”协议进行权威证明（Proof-of-Authority）共识（联合签名）。在这个网络上的ETH没有价值。该测试网络仅由“Parity”支持。其他以太坊客户使用稍后提出的"Clique"协议作为权威证明。
 
-Rinkeby Test Network:: Ethereum public test blockchain and network, using "Clique" protocol for Proof-of-Authority consensus (federated signing). ETH on this network has no value.
+Rinkeby Test Network:: 以太坊公开测试区块链和网络，使用“Clique”协议进行权威证明共识（联合签名）。在这个网络上的ETH没有价值。
 
-Localhost 8545:: Connect to a node running on the same computer as the browser. The node can be part of any public blockchain (main or testnet), or a private testnet (see <<ganache>>).
+Localhost 8545:: 连接到与浏览器在同一台计算机上运行的节点。该节点可以是任何公共区块链（主要或测试网络）或私人测试网络的一部分（参见<<ganache>>）。
 
-Custom RPC:: Allows you to connect MetaMask to any node with a geth-compatible Remote Procedure Call (RPC) interface. The node can be part of any public or private blockchain.
+Custom RPC:: 允许你将MetaMask连接到任何具有geth兼容的远程过程调用（RPC）接口的节点。该节点可以是任何公共或私有区块链的一部分。
 
-For more information about the various Ethereum testnets and how to choose between them, see <<testnets>>.
+有关各种以太坊测试网以及如何在它们之间进行选择的更多信息，请参见 <<testnets>>。
 
 [TIP]
 ====
-Your MetaMask wallet uses the same private key and Ethereum address on all the networks it connects to. However, your Ethereum address balance on each Ethereum network will be different. Your keys may control ether and contracts on Ropsten, for example, but not on the Main Network.
+你的MetaMask钱包在连接的所有网络上使用相同的私钥和以太坊地址。但是，每个以太坊网络上的以太坊地址余额将有所不同。例如，你的密钥可以控制Ropsten上的以太和合约，但不能控制主网上的。
 ====
 
 [[getting_test_eth]]
-=== Getting some test ether
+=== 获得一些测试以太
 
-Our first task is to get our wallet funded. We won't be doing that on the Main Network because real ether costs money and handling it requires a bit more experience. For now, we will load our wallet with some testnet ether.
+我们的首要任务是给我们的钱包充值。我们不会在主网上这样做，因为真正的以太网需要花费金钱，处理它需要更多的经验。现在，我们将使用一些testnet ether加载我们的钱包。
 
-Switch MetaMask to the _Ropsten Test Network_. Then click "Buy", and click "Ropsten Test Faucet". MetaMask will open a new web page:
+将MetaMask切换到_Ropsten测试网络_。然后点击“Buy”，然后点击“Ropsten Test Faucet”。MetaMask将打开一个新的网页：
 
 [[metamask_ropsten_faucet]]
 .MetaMask Ropsten Test Faucet
 image::images/metamask_ropsten_faucet.png["MetaMask Ropsten Test Faucet"]
 
-You may notice that the web page already contains your MetaMask wallet's Ethereum address. MetaMask integrates Ethereum enabled web pages (see <<dapps>>) with your MetaMask wallet. MetaMask can "see" Ethereum addresses on the web page, allowing you, for example, to send a payment to an online shop displaying an Ethereum address. MetaMask can also populate the web page with your own wallet's address as a recipient address if the web page requests it. In this page, the faucet application is asking MetaMask for a wallet address to send test ether to.
+你可能会注意到该网页已经包含你的MetaMask钱包的以太坊地址。MetaMask集成了支持以太坊的网页（ 参见 <<dapps>>）与你的MetaMask钱包整合在一起。MetaMask可以在网页上“查看”以太坊地址，例如，你可以向显示以太坊地址的网上商店发送付款。如果网页请求，MetaMask也可以使用自己的钱包地址填入网页，作为收件人地址。在此页面中，faucet应用程序要求MetaMask提供一个钱包地址以发送测试以太网。
 
-Press the green "request 1 ether from faucet" button. You will see a transaction ID appear in the lower part of the page. The faucet app has created a transaction - a payment to you. The transaction ID looks like this:
+按绿色"request 1 ether from faucet"按钮。你会看到一个交易ID出现在页面的下方。faucet应用程序创建了一个交易 - 付款给你。交易ID如下所示：
 
 [[faucet_tx_id]]
 ----
 0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57
 ----
 
-In a few seconds, the new transaction will be mined by the Ropsten miners and your MetaMask wallet will show a balance of 1 ETH. Click on the transaction ID and your browser will take you to a _block explorer_, which is a website that allows you to visualize and explore blocks, addresses, and transactions. MetaMask uses the +etherscan.io+ block explorer, one of the more popular Ethereum block explorers. The transaction containing our payment from the Ropsten Test Faucet is shown in <<ropsten_block_explorer>>
+几秒钟后，新交易将由Ropsten矿工开采，你的MetaMask钱包将显示1 ETH的余额。点击交易ID，你的浏览器会将你带到一个_block explorer_，该网站允许你查看和浏览区块，地址和交易。MetaMask使用 +etherscan.io+ 区块浏览器，这是受欢迎的以太坊区块浏览器之一。包含Ropsten Test Faucet支付的交易显示在 <<ropsten_block_explorer>> 中。
 
 [[ropsten_block_explorer]]
 .Etherscan Ropsten Block Explorer
 image::images/ropsten_block_explorer.png["Etherscan Ropsten Block Explorer"]
 
-The transaction has been recorded on the Ropsten blockchain and can be viewed at any time by anyone, simply by searching for the transaction ID, or visiting the link:
+交易记录在Ropsten区块链中，任何人都可以随时查看，只需搜索交易ID或访问链接即可：
 
 https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57
 
-Try visiting that link, or entering the transaction hash into the +ropsten.etherscan.io+ website, to see it for yourself.
+尝试访问该链接，或将交易哈希值输入到 +ropsten.etherscan.io+ 网站中，亲自查看。
 
 [[sending_eth_MetaMask]]
-=== Sending ether from MetaMask
+=== 使用MetaMask发送ether
 
-Once we've received our first test ether from the Ropsten Test Faucet, we will experiment with sending ether, by trying to send some back to the faucet. As you can see on the Ropsten Test Faucet page, there is an option to "donate" 1 ETH to the faucet. This option is available so that once you're done testing, you can return the remainder of your test ether, so that someone else can use it next. Even though test ether has no value, some people hoard it, making it difficult for everyone else to use the test networks. Hoarding test ether is frowned upon!
+一旦我们从Ropsten Test Faucet接收到我们的第一个测试ether，我们将试着发送一些ether回到faucet。正如你在Ropsten Test Faucet页面上看到的那样，你可以选择“donate”1个ETH。这个选项是可用的，所以一旦你完成了测试，你可以返回剩余的测试ether，以便其他人可以使用它。尽管测试ether没有价值，但有些人囤积测试ether，使其他人难以使用测试网络。囤积测试ether令人不悦！
 
-Fortunately, we are not test ether hoarders and we want practice sending ether anyway.
+幸运的是，我们不是测试ether的囤积者，我们希望练习发送ether。
 
-Click on the orange "1 ether" button to tell MetaMask to create a transaction paying the faucet 1 ether. MetaMask will prepare a transaction and pop-up a window with the confirmation:
-
+点击橙色的“1 ether”按钮来告诉MetaMask创建支付Faucet 1 ether的交易。MetaMask将准备一个交易并弹出一个窗口，并显示确认信息：
 
 [[send_to_faucet]]
 .Sending 1 ether to the faucet
 image::images/send_to_faucet.png["Sending 1 ether to the faucet"]
 
-Oops! You probably noticed you can't complete the transaction. MetaMask says "Insufficient balance for transaction". At first glance this may seem confusing: we have 1 ETH, we want to send 1 ETH, why is MetaMask saying we have insufficient funds?
+哎！你可能注意到你无法完成交易。MetaMask表示“交易余额不足”。乍一看这可能会让人困惑：我们有1个ETH，我们想要发送1个ETH，为什么MetaMask说我们没有足够的资金？
 
-The answer is because of the cost of _gas_. Every Ethereum transaction requires payment of a fee, which is collected by the miners to validate the transaction. The fees in Ethereum are charged in a virtual currency called _gas_. You pay the gas with ether, as part of the transaction.
+答案是因为_gas_的成本。以太坊交易需要支付矿工收取的费用，以验证交易。以太坊的费用以_gas_虚拟货币收取。作为交易的一部分，你使用ether支付gas。
+
 
 [TIP]
 ====
-Fees are required on the test networks too. Without fees, a test network would behave differently from the main network, making it an inadequate testing platform. Fees also protect the test networks from denial of service attacks and poorly constructed contracts (e.g. infinite loops), much like they protect the main network.
+测试网络也需要费用。如果没有费用，测试网络的行为将与主网络不同，从而使其成为不适当的测试平台。费用还可以保护测试网络免受拒绝服务攻击和构造不良的合约（如无限循环），就像保护主网络一样。
 ====
 
-When you sent the transaction, Metamask calculated the average gas price of recent successful transactions at 3 GWEI, which stands for 3 gigawei. Wei is the smallest subdivision of the ether currency, as we discussed in <<ether_units>>. The gas cost of sending a basic transaction is 21000 gas units. Therefore, the maximum amount of ETH you spend is 3 * 21000 GWEI = 63000 GWEI = 0.000063 ETH. Be advised that average gas prices can fluctuate as they are predominantly determined by miners. We will see in a later chapter how you can increase/decrease your gas limit to ensure your transaction takes precedence if need be.
+当你发送交易时，Metamask以3 GWEI（即3 gigawei）计算最近成功交易的平均gas价格。Wei是以太货币的最小的细分，正如我们在 <<ether_units>> 中所讨论的那样。发送基本交易的gas成本为21000个gas单位。因此，你花费的ETH的最大数量为3 * 21000 GWEI = 63000 GWEI = 0.000063 ETH。请注意，平均gas价格可能波动，因为它们主要由矿工决定。我们将在后面的章节中看到如何增加/减少gas限制，以确保你的交易在需要时优先处理。
 
-All this to say: to make a 1 ETH transaction costs 1.000063 ETH. MetaMask confusingly rounds that _down_ to 1 ETH when showing the total, but the actual amount you need is 1.000063 ETH and you only have 1 ETH. Click "Reject" to cancel this transaction.
+这表明：1 ETH交易的成本是1.000063 ETH。MetaMask在显示总数时会将此近似到1 ETH，但你需要的实际金额为1.000063 ETH，并且你只有1个ETH。点击“Reject”取消此交易。
 
-Let's get some more test ether! Click on the green "request 1 ether from the faucet" button again and wait a few seconds. Don't worry, the faucet should have plenty of ether and will give you more if you ask.
+让我们再来测试一下吧！再次点击绿色的“request 1 ether from the faucet”按钮，等待几秒钟。别担心，faucet应该有足够的ether，如果你要的话，会给你更多的东西。
 
-Once you have a balance of 2 ETH, you can try again. This time, when you click on the orange "1 ether" donation button, you have sufficient balance to complete the transaction. Click "Submit" when MetaMask pops-up the payment window. After all of this, you should see a balance of 0.999937 ETH because you sent 1 ETH to the faucet with 0.000063 ETH in gas.
+一旦你有2 ETH的余额，你可以再试一次。这次，当你点击橙色的“1 ether”捐赠按钮时，你有足够的余额来完成交易。MetaMask弹出付款窗口时点击“Submit”。所有这一切之后，你应该看到0.999937 ETH的余额，因为你使用0.000063 ETH的gas发送了1个ETH到faucet。
 
 [[explore_tx_history]]
-=== Exploring the transaction history of an address
+=== 探索地址的交易历史
 
-By now you have become an expert in using MetaMask to send and receive test ether. Your wallet has received at least two payments and sent at least one. Let's see all these transactions, using the +ropsten.etherscan.io+ block explorer. You can either copy your wallet address and paste it into the block explorer's search box, or you can have MetaMask open the page for you. Next to your account icon in MetaMask, you will see a button showing three dots. Click on it to show a menu of account-related options:
+到目前为止，你已经成为使用MetaMask发送和接收测试ether的专家。你的钱包已收到至少两次付款并至少发送了一次。让我们看看所有这些交易，使用 +ropsten.etherscan.io+ 区块浏览器。你可以复制你的钱包地址并将其粘贴到浏览器的搜索框中，或者你可以让MetaMask为你打开该页面。在MetaMask中你的帐户图标旁边，你会看到一个显示三个点的按钮。点击它显示与帐户相关的选项菜单：
 
 [[metamask_account_context_menu]]
 .MetaMask Account Context Menu
 image::images/metamask_account_context_menu.png["MetaMask Account Context Menu"]
 
-Select "View Account on Etherscan", to open a web page in the block explorer, showing your account's transaction history:
+选择 "View Account on Etherscan"，在浏览器中打开一个网页，显示你账户的交易记录：
 
 [[block_explorer_account_history]]
 .Address Transaction History on Etherscan
 image::images/block_explorer_account_history.png["Address Transaction History on Etherscan"]
 
-Here you can see the entire transaction history of your Ethereum address. It shows all the transactions recorded on the Ropsten blockchain, where your address is the sender or recipient of the transaction. Click on a few of these transactions to see more details.
+在这里你可以看到你的以太坊地址的整个交易历史。它显示了Ropsten区块链上记录的所有交易，其中你的地址是交易的发件人或收件人。点击其中几项交易即可查看更多详细信息。
 
-You can explore the transaction history of any address. See if you can explore the transaction history of the Ropsten Test Faucet address (Hint: it is the "sender" address listed in the oldest payment to your address). You can see all the test ether sent from the faucet to you and to other addresses. Every transaction you see can lead you to more addresses and more transactions. Before long you will be lost in the maze of interconnected data. Public blockchains contain an enormous wealth of information, all of which can be explored programmatically, as we will see in the future examples.
+你可以浏览任何地址的交易历史记录。查看你是否可以浏览Ropsten Test Faucet地址的交易历史记录（提示：它是在你的地址中最早付款中列出的“发件人”地址）。你可以看到从faucet发送给你的和其他地址的测试ether。你看到的每笔交易都可能带给你更多的地址和交易。不久之后，你将迷失在相互关联的数据迷宫中。公共区块链包含大量的信息，所有这些都可以通过编程方式进行探索，我们将在未来的例子中看到。
 
 [[intro_world_computer]]
-=== Introducing the world computer
+=== 世界计算机简介
 
-We've created a wallet and we've sent and received ether. So far, we've treated Ethereum as a cryptocurrency. But Ethereum is much, much more. In fact, the cryptocurrency function is subservient to Ethereum's function as a world computer; a decentralized smart contract platform. Ether is meant to be used to pay for running _smart contracts_, which are computer programs that run on an emulated computer called the _Ethereum Virtual Machine (EVM)_.
+我们已经创建了一个钱包，并且我们已经发送并接收了ether。到目前为止，我们已经将以太坊视为一种加密货币。但是以太坊代表了更多。事实上，加密货币功能是服务于以太坊作为世界计算机的功能; 一个去中心化的智能合约平台。以太旨在用于支付运行的 _smart contracts_，这是在称为_Ethereum虚拟机（EVM）_的模拟计算机上运行的计算机程序。
 
-The EVM is a global singleton, meaning that it operates as if it was a global, single-instance computer, running everywhere. Each node on the Ethereum network runs a local copy of the EVM to validate contract execution, while the Ethereum blockchain records the changing _state_ of this world computer as it processes transactions and smart contracts.
+EVM是一个全球性的单例，这意味着它的运作方式就好像它是一个全球性的单实例计算机，无处不在。以太坊网络上的每个节点运行EVM的本地副本以验证合约执行，而以太坊区块链记录此世界计算机在处理交易和智能合约时变化的 _状态_。
 
 [[EOA_contracts]]
-=== Externally Owned Accounts (EOAs) and contracts
+=== 外部所有账户（EOAs）和合约
 
-The type of account we created in the MetaMask wallet is called an _Externally Owned Account (EOA)_. Externally owned accounts are those that have a private key, which controls access to funds or contracts. Now, you're probably guessing there is another type of account. The other type of account is a _contract_ account. A contract account is owned (and controlled) by the logic of a software program recorded on the Ethereum blockchain and executed by the EVM.
+我们在MetaMask钱包中创建的账户类型称为 _Externally Owned Account（EOA）_ 。外部所有账户是那些拥有私人密钥的账户，它控制对资金或合约的访问。现在，你可能猜测还有另一种帐户，_合约_帐户。合约账户由以太坊区块链记录，由EVM执行的软件程序的逻辑所拥有（和控制）。
 
-In the future, all Ethereum wallets might be running as Ethereum contracts, blurring the distinction between Externally Owned Accounts and contracts. But the important distinction that will always remain is this: Humans make decisions through EOA's while software make decisions through contracts.
+将来，所有以太坊钱包可能会作为以太坊合约运行，模糊了外部所有账户和合约账户之间的区别。但是永远保持的重要区别在于：人们通过EOA做出决定，而软件通过合约做出决定。
 
-Contracts have an address, just like EOAs (wallets). Contracts can send and receive ether, just like wallets. When a transaction destination is a contract address, it causes that contract to _run_ in the EVM, using the transaction as its input.
+合约有一个地址，就像EOAs（钱包）一样。合约可以发送和接收ether，就像钱包一样。当交易目的地是合约地址时，它会导致该合约在EVM中_运行_，并将交易作为其输入。
 
-In addition to ether, transactions can contain _data_ indicating which specific function in the contract to run and what parameters to pass to that function. In this way, transactions _call_ functions within contracts. Finally, contracts can generate transactions calling other contracts, building complex execution paths. One typical use of this is Contract A calling Contract B in order to maintain a shared state across users of Contract A.
+除了ether之外，交易还可以包含_数据_，用于指示合约中要运行的特定方法以及传递给该方法的参数。通过这种方式，交易通过合约_调用_方法。最后，合约可以产生调用其他合约的交易，建立复杂的执行路径。其中一个典型的用法是合约A调用合约B，以便在合约A的用户之间保持共享状态。
 
-In the next few sections, we will write our first contract. We will then create, fund, and use that contract with our MetaMask wallet and test ether on the Ropsten test network.
+在接下来的几节中，我们将编写我们的第一份合约。然后，我们将使用MetaMask钱包和测试ether在Ropsten测试网上创建，资助，使用该合约。
 
 [[simple_contract_example]]
-=== A simple contract: a test ether faucet
+=== 一个简单的合约：一个test ether faucet
 
-Ethereum has many different high-level languages, all of which can be used to write a contract and produce EVM bytecode. You can read about many of the most prominent and interesting ones in <<high_level_languages>>. One high-level language is by far the dominant language for smart contract programming: Solidity. Solidity was created by Gavin Wood, the co-author of this book and has become the most widely used language in Ethereum and beyond. We'll use Solidity to write our first contract.
+以太坊有许多不同的高级语言，所有这些语言都可用于编写合约并生成EVM字节码。你可以阅读 <<high_level_languages>>  中许多最成功和有趣的内容。一种智能合约编程的主要高级语言：Solidity。本书的合著者Gavin Wood创建了Solidity，已经成为以太坊及以太坊外最广泛使用的语言。我们将使用Solidity编写我们的第一份合约。
 
-For our first example, we will write a contract that controls a _faucet_. We've already used a faucet to get test ether on the Ropsten test network. A faucet is a relatively simple thing: it gives out ether to any address that asks and can be refilled periodically. You can implement a faucet as a wallet controlled by a human (or a web server), but we will write a Solidity contract that implements a faucet:
+作为我们的第一个例子，我们将编写一个控制_faucet_的合约。我们已经使用了faucent在Ropsten测试网络上获得测试ether。faucet是一件相对简单的事情：它给任何地址发放ether，可以定期补充。你可以将faucet实现为由人类（或网络服务器）控制的钱包，但我们将编写一个实现faucet的Solidity合约：
 
 [[solidity_faucet_example]]
 .Faucet.sol : A Solidity contract implementing a faucet
 [source,solidity,linenums]
 ----
-include::code/Faucet.sol[]
+include::code/Solidity/Faucet.sol[]
 ----
 
-Download +Faucet.sol+ from:
-https://github.com/ethereumbook/ethereumbook/blob/first_edition/code/Faucet.sol
+这是一个非常简单的合约。这也是一个有*缺陷*的合约，显示了一些不良做法和安全漏洞。我们将通过检查后面章节中的所有缺陷来学习。但现在，让我们逐行看下这个合约的作用，以及它是如何工作的。
 
-This is a very simple contract, about as simple as we can make it. It is also a *flawed* contract, demonstrating a number of bad practices and security vulnerabilities. We will learn by examining all of its flaws in later sections. But for now, let's look at what this contract does and how it works, line by line.
-
-The first line is a comment:
+第一行是注释
 
 [[comment]]
 ----
 // Version of Solidity compiler this program was written for
 ----
 
-Comments are for humans to read and are not included in the executable EVM bytecode. We usually put them on the line before the code we are trying to explain, or sometimes on the same line. Comments start with two forward slashes +//+. Everything from the slashes and beyond, until the end of that line, is treated the same as a blank line and ignored.
+注释用于人类阅读，不包含在可执行的EVM字节码中。我们通常将注释放在我们试图解释的代码之前，有时在同一行上。评论从两个正斜杠 +//+ 开始。从斜线和直到该行结束的所有内容都被视为空白行并被忽略。
 
-Ok, the next lines are where our _actual_ contract starts:
+下一行是我们的_真正的_合约开始的地方：
 
 [[contract_definition]]
 ----
 contract Faucet {
 ----
 
-This line declares a contract object, similar to a +class+ declaration in other object-oriented languages like JavaScript, Java or Cpass:[++]. The contract definition includes all the lines between the curly braces pass:[{}] which define a +scope+, much like how curly braces are used in many other programming languages.
+该行声明了一个合约对象，类似于JavaScript，Java或Cpass:[++]等其他面向对象语言中的 +class+ 声明。合约的定义包含了大括号中的所有行 pass:[{}]，它定义了 +范围 +，就像在其他许多编程语言中使用花括号一样。
 
-Next, we declare the first function of the Faucet contract:
+接下来，我们声明faucet合约的第一个函数：
 
 [[withdraw_function]]
 ----
 function withdraw(uint withdraw_amount) public {
 ----
 
-The function is named +withdraw+, which takes one unsigned-integer (+uint+) argument named +withdraw_amount+. It is declared as a +public+ function, meaning it can be called by other contracts. The function definition follows between curly braces:
+函数名为 +withdraw+，它接收一个无符号整数（+uint+）名为 +withdraw_amount+ 的参数。它被声明为 +public+ 函数，意味着它可以被其他合约调用。函数定义在花括号之间：
 
 [[withdraw_limit]]
 ----
 require(withdraw_amount <= 100000000000000000);
 ----
 
-The first part of the +withdraw+ function sets a limit on withdrawals. It uses the built-in Solidity function +require+ to test a precondition, that the +withdraw_amount+ is less than or equal to 100000000000000000 +wei+, which is the base unit of ether (see <<ether_denominations>>) and equivalent to 0.1 ether. If the +withdraw+ function is called with a +withdraw_amount+ greater than that amount, the +require+ function here will cause contract execution to stop and fail with an _exception_.
++withdraw+方法的第一部分设置了取款限制。它使用内置的Solidity函数 +require+ 来测试前提条件，即 +withdraw_amount+ 小于或等于100000000000000000 +wei+，它是ether的基本单位（参见 <<ether_denominations>>），等于0.1 ether。如果使用 +withdraw_amount+ 大于该数量调用 +withdraw+ 函数，则此处的 +require+ 函数将导致合约执行停止并失败，并显示_异常_。
 
-This part of the contract is the main logic of our faucet. It controls the flow of funds out of the contract by placing a limit on withdrawals. It's a very simple control but can give you a glimpse of the power of a programmable blockchain: decentralized software controlling money.
+合约的这部分是我们faucet的主要逻辑。它通过设定提款限额来控制合约的资金流出。这是一个非常简单的控制，但可以让你看到可编程区块链的强大功能：去中心化控制货币的软件。
 
 [[withdraw_command]]
 Next comes the actual withdrawal:
@@ -317,210 +314,209 @@ Next comes the actual withdrawal:
 msg.sender.transfer(withdraw_amount);
 ----
 
-A couple of interesting things are happening here. The +msg+ object is one of the inputs that all contracts can access. It represents the transaction that triggered the execution of this contract. The attribute +sender+ is the sender address of the transaction. The function +transfer+ is a built-in function that transfers ether from the contract to the address it is called from. Reading it backward, this means +transfer+ to the +sender+ of the +msg+ that triggered this contract execution. The +transfer+ function takes an amount as its only argument. We pass the +withdraw_amount+ value that was the parameter to the +withdraw+ function declared a few lines above.
+这里发生了一些有趣的事情。+msg+ 对象是所有合约可以访问的输入之一。它代表触发执行此合约的交易。属性 +sender+ 是交易的发件人地址。函数 +transfer+ 是一个内置函数，它将ether从合约传递到调用它的地址。从后往前读，表示 +transfer+ 到触发此合约执行的 +msg+ 的 +sender+。+transfer+ 函数将一个金额作为唯一的参数。我们传递之前声明为 +withdraw+ 方法的参数的 +withdraw_amount+ 值。
 
-The very next line is the closing curly brace, indicating the end of the definition of our +withdraw+ function.
+紧接着的一行是结束大括号，表示 +withdraw+ 函数定义的结束。
 
-Below we declare one more function:
+下面我们又声明了一个函数：
 
 [[fallback_function]]
 ----
 function () public payable {}
 ----
 
-This function is a so-called _"fallback"_ or _default_ function, which is called if the transaction that triggered the contract didn't name any of the declared functions in the contract, or any function at all, or didn't contain data. Contracts can have one such default function (without a name) and it is usually the one that receives ether. That's why it is defined as a +public+ and +payable+ function, which means it can accept ether into the contract. It doesn't do anything, other than accept the ether, as indicated by the empty definition in the curly brackets pass:[{}]. If we make a transaction that sends ether to the contract address, as if it were a wallet, this function will handle it.
+此函数是所谓的_“fallback”_或_default_函数，如果合约的交易没有命名合约中任何已声明的功能或任何功能，或者不包含数据，则触发此函数。合约可以有一个这样的默认功能（没有名字），它通常是接收ether的那个。这就是为什么它被定义为 +public+ 和 +payable+ 函数，这意味着它可以接受合约中的ether。除了大括号中的空白定义 pass:[{}] 所指示的以外，它不会执行任何操作。如果我们进行一次向这个合约地址发送ether的交易，就好像它是一个钱包一样，该函数将处理它。
 
-Right below our default function is the final closing curly bracket, which closes the definition of the contract +Faucet+. That's it!
+在我们的默认函数下面是最后一个关闭花括号，它关闭了合约 +faucet+ 的定义。就是这样！
 
 [[compile_faucet_contract]]
-=== Compiling the faucet contract
+=== 编译faucet合约
 
-Now that we have our first example contract, we need to use a Solidity compiler to convert the Solidity code into EVM bytecode, so it can be executed by the EVM.
+现在我们已经有了我们的第一个示例合约，我们需要使用Solidity编译器将Solidity代码转换为EVM字节代码，以便它可以由EVM执行。
 
-The Solidity compiler comes as a standalone executable, as part of different frameworks, and also bundled in an _Integrated Development Environment (IDE)_. To keep things simple, we will use one of the more popular IDEs, called Remix.
+Solidity编译器是独立的可执行文件，作为不同框架的一部分，也捆绑在一个_Integrated Development Environment（IDE）_中。为了简单起见，我们将使用一种更流行的IDE，称为Remix。
 
-Use your Chrome browser (with the MetaMask wallet we installed earlier) to navigate to the Remix IDE at:
+使用你的Chrome浏览器（使用我们之前安装的MetaMask钱包）导航到以下位置的Remix IDE：
 
 https://remix.ethereum.org/
 
-When you first load Remix, it will start with a sample contract called +ballot.sol+. We don't need that, so let's close it, clicking on the +x+ on the corner of the tab:
+当你第一次加载Remix时，它将以一个名为 +ballot.sol+ 的示例合约开始。我们不需要这个，所以让我们关闭它，点击标签边的 +x+ ：
 
 [[remix_close_tab]]
 .Close the default example tab
 image::images/remix_close_tab.png["Close the default example tab"]
 
-Now, add a new tab by clicking on the circular-plus-sign in the left toolbar, naming the new file +Faucet.sol+:
+现在，点击左侧工具栏中的圆形加号，添加一个新选项卡，命名新文件 +Faucet.sol+：
 
 [[remix_toolbar]]
 .Click the plus sign to open a new tab
 image::images/remix_toolbar.png["Click the plus sign to open a new tab"]
 
-Once you have a new tab open, copy and paste the code from our example +Faucet.sol+:
+打开新选项卡后，复制并粘贴示例 +Faucet.sol+：
 
 [[remix_faucet_load]]
 .Copy the Faucet example code into the new tab
 image::images/remix_faucet_load.png["Copy the Faucet example code into the new tab"]
 
-Now we have loaded the +Faucet.sol+ contract into the Remix IDE, the IDE will automatically compile the code. If all goes well, you will see a green box with "Faucet" in it appear on the right, under the Compile tab, confirming the successful compilation:
+现在我们已将 +Faucet.sol+ 合约加载到Remix IDE中，IDE将自动编译代码。如果一切顺利，你会看到一个绿色的放开，右边出现一个带有“faucet”的绿色方块，在Compile选项卡下，确认编译成功：
 
 [[remix_compile]]
 .Remix successfully compiles the Faucet.sol contract
 image::images/remix_compile.png[""]
 
-If something goes wrong, the most likely problem is that Remix IDE is using a version of the Solidity compiler that is different from +0.4.19+. In that case, our pragma directive will prevent +Faucet.sol+ from compiling. To change the compiler version, go to the "Settings" tab, set the compiler version to +0.4.19+, and try again.
+如果出现问题，最可能的问题是Remix IDE正在使用与+0.4.19+版本不同的Solidity编译器。在这种情况下，我们的编译指示将阻止+Faucet.sol+编译。要更改编译器版本，请转到“Settings”选项卡，并重试。
 
-The Solidity compiler has now compiled our +Faucet.sol+ into EVM bytecode. If you are curious, the bytecode looks like this:
+Solidity编译器现在已将我们的+ Faucet.sol +编译为EVM字节码。如果你好奇，字节码如下所示：
 
 [[faucet_bytecode]]
 ----
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH2 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0xE5 DUP1 PUSH2 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH1 0x3F JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x2E1A7D4D EQ PUSH1 0x41 JUMPI JUMPDEST STOP JUMPDEST CALLVALUE ISZERO PUSH1 0x4B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x5F PUSH1 0x4 DUP1 DUP1 CALLDATALOAD SWAP1 PUSH1 0x20 ADD SWAP1 SWAP2 SWAP1 POP POP PUSH1 0x61 JUMP JUMPDEST STOP JUMPDEST PUSH8 0x16345785D8A0000 DUP2 GT ISZERO ISZERO ISZERO PUSH1 0x77 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH2 0x8FC DUP3 SWAP1 DUP2 ISZERO MUL SWAP1 PUSH1 0x40 MLOAD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP6 DUP9 DUP9 CALL SWAP4 POP POP POP POP ISZERO ISZERO PUSH1 0xB6 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 PUSH9 0x13D1EA839A4438EF75 GASLIMIT CALLVALUE LOG4 0x5f PUSH24 0x7541F409787592C988A079407FB28B4AD000290000000000
 ----
 
-Aren't you glad you are using a high-level language like Solidity instead of programming directly in EVM bytecode? Me too!
+你是不是很高兴使用像Solidity这样的高级语言，而不是直接在EVM字节码中编程？我也是！
 
 [[create_contract]]
-=== Creating the contract on the blockchain
+=== 在区块链上创建合约
 
-So we have a contract. We've compiled it into bytecode. Now, we need to "register" the contract on the Ethereum blockchain. We will be using the Ropsten testnet to test our contract, so that's the blockchain we want to record it on.
+我们有一个合约，已经将它编译成字节码。现在，我们需要在以太坊区块链上“登记”合约。我们将使用Ropsten测试网来测试我们的合约，所以这就是我们想要记录的区块链。
 
-Registering a contract on the blockchain involves creating a special transaction, whose destination is the address 0x0000000000000000000000000000000000000000, also known as the _zero address_. The zero address is a special address that tells the Ethereum blockchain that you want to register a contract. Fortunately, Remix IDE will handle all of that for you and send the transaction to MetaMask.
+在区块链上注册合约涉及创建一个特殊交易，其目标是地址0x0000000000000000000000000000000000000000，也称为_zero address_。零地址是一个特殊的地址，告诉以太坊区块链你想注册一个合约。幸运的是，Remix IDE将为你处理所有这些交易并将交易发送给MetaMask。
 
-First, switch to the "Run" tab and select "Injected Web3" in the "Environment" drop-down selection box. This connects Remix IDE to the MetaMask wallet, and through MetaMask to the Ropsten Test Network. Once you do that, you can see "Ropsten" under Environment. Also, in the Account selection box it shows the address of your wallet:
+首先，切换到“Run”选项卡，并在“Environment”下拉列表框中选择“Injected Web3”。这将Remix IDE连接到MetaMask钱包，并通过MetaMask连接到Ropsten测试网络。一旦你这样做，你可以在Evironment下看到“Ropsten”。另外，在Account选择框中，它显示你的钱包的地址：
 
 [[remix_run.png]]
 .Remix IDE "Run" tab, with "Injected Web3" environment selected
 image::images/remix_run.png["Remix IDE Run tab, with Injected Web3 environment selected"]
 
-Right below the "Run" settings we just confirmed, is the Faucet contract, ready to be created. Click on the "Create" button:
+在刚刚确认的“Run”设置下方，是Faucet合约，随时可以创建。点击“Create”或“Deploy“按钮：
 
 [[remix_create_contract]]
 .Click the Create button in the Run tab
 image::images/remix_create_contract.png["Click the Create button in the Run tab"]
 
-Remix IDE will construct the special "creation" transaction and MetaMask will ask you to approve it. As you can see from MetaMask, the contract creation transaction has no ether in it, but it has 258 bytes (the compiled contract) and will consume 10 Gwei in gas. Click "Submit" to approve it:
+Remix IDE将构建特殊的“creation“交易，MetaMask会要求你批准它。从MetaMask中可以看到，合约创建交易没有ether，但它有258个字节（编译的合约），并且会消耗10个Gwei。点击“Submit”来批准：
 
 [[remix_metamask_create]]
 .MetaMask showing the contract creation transaction
 image::images/remix_metamask_create.png["MetaMask showing the contract creation transaction"]
 
-Now, wait: It will take about 15 to 30 seconds for the contract to be mined on Ropsten. Remix IDE won't appear to be doing much, be patient.
+现在，等待：合约在Ropsten上开采需要大约15到30秒的时间。Remix IDE似乎不会做太多，耐心等待。
 
-Once the contract is created, it appears at the bottom of the Run tab:
+合约创建后，它会显示在“运行”选项卡的底部：
 
 [[remix_contract_interact]]
 .The Faucet contract is ALIVE!
 image::images/remix_contract_interact.png["The Faucet contract is ALIVE!"]
 
-Notice that the Faucet contract now has an address of its own: Remix shows it as +Faucet at 0x72e....c7829+. The small clipboard symbol to the right allows you to copy the contract address into your clipboard. We will use that in the next section.
+请注意，Faucet合约现在有自己的地址：Remix将其显示为 +Faucet at 0x72e....c7829+。右边的小剪贴板符号允许你将合约地址复制到剪贴板中。我们将在下一节中使用它。
 
 [[interact_contract]]
-=== Interacting with the contract
+=== 与合约交互
 
-Let's recap what we've learned so far: Ethereum contracts are programs that control money, which run inside a virtual machine called the EVM. They are created by a special transaction that submits their bytecode to be recorded on the blockchain. Once they are created on the blockchain, they have an Ethereum address, just like wallets. Anytime someone sends a transaction to a contract address it causes the contract to run in the EVM, with the transaction as its input. Transactions sent to contract addresses may have ether or data or both in them. If they contain ether, it is "deposited" to the contract balance. If they contain data, the data can specify a named function in the contract and call it, passing arguments to the function.
+让我们回顾一下我们迄今为止学到的东西：以太坊合约是控制货币的程序，运行在名为EVM的虚拟机内。它们是由一个特殊的交易创建的，该交易提交它们的字节码以记录在区块链中。一旦他们在区块链上创建，他们就拥有一个以太坊地址，就像钱包一样。只要有人将交易发送到合约地址，它就会导致合约在EVM中运行，并将交易作为其输入。发送到合约地址的交易可能包含以太网或数据或两者都有。如果它们含有ether，则将其“存入”合约余额。如果它们包含数据，则数据可以在合约中指定一个命名函数并调用它，并将参数传递给该函数。
 
 [[view_contract_address]]
-==== Viewing the contract address in a block explorer
+==== 在区块浏览器中查看合约地址
 
-Now, we have a contract recorded on the blockchain and we can see it has an Ethereum address. Let's check it out on the +ropsten.etherscan.io+ block explorer and see what a contract looks like. Copy the address of the contract by clicking on the clipboard icon next to its name:
+现在，我们在区块链中登记了一份合约，我们可以看到它有一个以太坊地址。让我们在 +ropsten.etherscan.io+ 区块浏览器中查看它，看看合约是什么样子。通过点击名称旁边的剪贴板图标来复制合约的地址。
 
 [[remix_contract_address]]
 .Copy the contract address from Remix
 image::images/remix_contract_address.png["Copy the contract address from Remix"]
 
-Keep Remix open in a tab, we'll come back to it again later. Now, navigate your browser to +ropsten.etherscan.io+ and paste the address into the search box. You should see the contract's Ethereum address history:
+保持Remix打开在标签中，我们稍后会再回来。现在，将浏览器导航至 +ropsten.etherscan.io+ 并将地址粘贴到搜索框中。你应该看到合约的以太坊地址记录：
 
 [[etherscan_contract_address]]
 .View the Faucet contract address in the etherscan block explorer
 image::images/etherscan_contract_address.png["View the Faucet contract address in the etherscan block explorer"]
 
 [[fund_contract]]
-==== Funding the contract
+==== 为合约提供资金
 
-For now, the contract only has one transaction in its history: the contract creation transaction. As you can see, the contract also has no ether (zero balance). That's because we didn't send any ether to the contract in the creation transaction, even though we could have.
+现在，合约其历史上只有一笔交易：合约创建交易。如你所见，合约也没有ether（零余额）。这是因为我们没有在创建交易中向合约发送任何提示，尽管我们可以提供。
 
-Let's send some ether to the contract! You should still have the address of the contract in your clipboard (if not, copy it again from Remix). Open MetaMask, and send 1 ether to it, exactly as you would any other Ethereum address:
+让我们向合约发一些ether！你仍然应该在剪贴板中拥有合约的地址（如果没有，请从Remix再次复制）。打开MetaMask，然后向它发送1个ether，就像任何其他以太坊地址一样：
 
 [[metamask_send_to_contract]]
 .Send 1 ether to the contract address
 image::images/metamask_send_to_contract.png[""]
 
-In a minute, if you reload the etherscan block explorer, it will show another transaction to the contract address and an updated balance of 1 ether.
+一分钟后，如果你刷新etherscan区块浏览器，它会向合约地址显示另一个交易，并更新1 ether的余额。
 
-Remember the unnamed default public payable function in our +Faucet.sol+ code? It looked like this:
+还记得我们的 +Faucet.sol+ 代码中的未命名默认公共付费功能？它看起来像这样：
 
 [[fallback_function_review]]
 ----
 function () public payable {}
 ----
 
-When you sent a transaction to the contract address, with no data specifying which function to call, it called this default function. Because we declared it as a +payable+, it accepted and deposited the 1 ether into the contract account balance. Your transaction caused the contract to run in the EVM, updating its balance. We have funded our faucet!
+当你将交易发送到合约地址时，没有指定要调用哪个函数的数据，它将调用默认函数。由于我们将它声明为+payable+，因此它接受1 ether并存入合约账户余额中。你的交易导致合约在EVM中运行，更新其余额。我们资助了我们的faucet！
 
 [[withdraw_from_contract]]
-==== Withdrawing from our contract
+==== 从我们的合约中提取
 
-Next, let's withdraw some funds from the faucet. To withdraw, we have to construct a transaction that calls the +withdraw+ function and passes a +withdraw_amount+ argument to it. To keep things simple for now, Remix will construct that transaction for us and MetaMask will present it for our approval.
+接下来，让我们从faucet中提取一些资金。要提取，我们必须构造一个调用 +withdraw+ 函数并将 +withdraw_amount+ 参数传递给它的交易。为了保持现在简单，Remix将为我们构建该交易，并且MetaMask将提交它以供我们批准。
 
-Return to the Remix tab and look at the contract under the "Run" tab. You should see a red box labeled +withdraw+ with a field entry labeled +uint256 withdraw_amount+ :
+返回到Remix选项卡并在“Run”选项卡下查看合约。你应该看到一个标记为 +withdraw+ 的红色框，其中带有一个标记为 +uint256 withdraw_amount+：
 
 [[remix_contract_interact]]
 .The withdraw function of Faucet.sol, in Remix
 image::images/remix_contract_interact.png["The withdraw function of Faucet.sol, in Remix"]
 
-This is the Remix interface to the contract. It allows us to construct transactions that call the functions defined in the contract. We will enter a +withdraw_amount+ and click the +withdraw+ button to generate the transaction.
+这是合约的Remix界面。它允许我们构造调用合约中定义的函数的交易。我们将输入 +withdraw_amount+ 并点击 +withdraw+ 按钮以生成交易。
 
-First, let's figure out the +withdraw_amount+. We want to try and withdraw 0.1 ether, which is the maximum amount allowed by our contract. Remember that all currency values in Ethereum are denominated in +wei+ internally, and our +withdraw+ function expects the +withdraw_amount+ to be denominated in +wei+ too. The amount we want is 0.1 ether, which is +100000000000000000 wei+ (1 followed by 17 zeros).
-
-
+首先，我们来看看 +withdraw_amount+。我们要试着提取0.1 ether，这是我们合约允许的最高金额。请记住，以太坊中的所有货币值都以 +wei + 计价，而我们的 +withdraw+ 函数预期 +withdraw_amount+ 也以 +wei+ 计价。我们想要的数量是0.1 ether，这是 +100000000000000000 wei+（1后面跟着17个零）。
 
 [TIP]
 ====
-Due to a limitation in JavaScript, a number as large as 10^17 cannot be processed by Remix. Instead, we enclose it in double quotes, to allow Remix to receive it as a string and manipulate it as a +BigNumber+. If we don't enclose it in quotes, the Remix IDE will fail to process it and display "Error encoding arguments: Error: Assertion failed"
+由于JavaScript的限制，Remix无法处理10^17这样大的数字。相反，我们用双引号括起来，让Remix以字符串的形式接收它，并将它作为 +BigNumber+ 进行操作。如果我们不把它放在引号中，那么Remix IDE将无法处理它并显示“Error encoding arguments：Error：Assertion failed” 。
+译者注：翻译此书时，已经支持直接输入数字
 ====
 
-Type "100000000000000000" (with the quotes) into the +withdraw_amount+ box and click on the +withdraw+ button:
+输入“100000000000000000”（带引号）到 +withdraw_amount+ 框中，然后单击 +withdraw+ 按钮：
 
 [[remix_withdraw]]
 .Click "withdraw" in Remix to create a withdrawal transaction
 image::images/remix_withdraw.png[""]
 
-MetaMask will pop-up a transaction window for you to approve. Click "Submit" to send your withdrawal call to the contract:
+MetaMask将弹出一个交易窗口供你批准。点击“Submit”将你的提款通知发送至合约：
 
 [[metamask_withdraw]]
 .MetaMask transaction to call the withdraw function
 image::images/metamask_withdraw.png["MetaMask transaction to call the withdraw function"]
 
-Wait a minute and then reload the +etherscan+ block explorer to see the transaction reflected in the Faucet contract address history:
+等一下，然后重新加载 +etherscan+ 区块浏览器以查看在ether合约地址历史记录中反映的交易：
 
 [[etherscan_withdrawal_tx]]
 .Etherscan shows the transaction calling the withdraw function
 image::images/etherscan_withdrawal_tx.png["Etherscan shows the transaction calling the withdraw function"]
 
+我们现在看到一个新的交易，其中合约地址是目标地址，0 ether。合约余额已经改变，现在是0.9 ether，因为它按要求给了我们0.1 ether。但是我们在合约地址历史记录中看不到“OUT”交易。
 
-We now see a new transaction with the contract address as the destination and zero ether. The contract balance has changed and is now 0.9 ether because it sent us 0.1 ether as requested. But we don't see an "OUT" transaction in the contract address history.
-
-Where's the outgoing withdrawal? A new tab has appeared in the contract's address history page, named "Internal Transactions". Because the 0.1 ether transfer originated from the contract code, it is an internal transaction (also called a _message_). Click on the "Internal Transactions" tab to see it:
-
+提款的交易在哪里？合约的地址历史记录页面中出现了一个名为“内部交易”的新选项卡。由于0.1 ether传输源于合约代码，因此它是一个内部交易（也称为_message_）。点击“内部交易”标签查看：
 
 [[etherscan_withdrawal_internal]]
 .Etherscan shows the internal transaction transferring ether out from the contract
 image::images/etherscan_withdrawal_internal.png["Etherscan shows the internal transaction transferring ether out from the contract"]
 
-This "internal transaction" was sent by the contract in this line of code (from the +withdraw+ function in +Faucet.sol+):
+这个“内部交易”是由合约在这行代码中发送的（+Faucet.sol+ 的 +withdraw+ 方法）
 
 [[withdraw_command_review]]
 ----
 msg.sender.transfer(withdraw_amount);
 ----
 
-To recap: We sent a transaction from our MetaMask wallet that contained data instructions to call the +withdraw+ function with a +withdraw_amount+ argument of 0.1 ether. That transaction caused the contract to run inside the EVM. As the EVM ran the Faucet contract's +withdraw+ function, first it called the +require+ function and validated that our amount was less than or equal to the maximum allowed withdrawal of 0.1 ether. Then it called the +transfer+ function to send us the ether. Running the +transfer+ function generated an internal transaction that deposited 0.1 ether into our wallet address, from the contract's balance. That's the one shown in the "Internal Transactions" tab in +etherscan+.
+回顾一下：我们从MetaMask钱包发送了一个包含数据指令的交易，以 0.1 ether 的+withdraw_amount+ 参数调用 +withdraw+ 函数。该交易导致合约在EVM内部运行。当EVM运行faucet合约的 +withdraw+ 功能时，首先它调用+require+函数并验证我们的金额小于或等于最大允许提款0.1 ether。然后它调用 +transfer+ 函数向我们发送ether。运行 +transfer+ 函数生成一个内部交易，从合约的余额中将0.1以太币存入我们的钱包地址。这就是 +etherscan+ 中“内部交易”标签中显示的内容。
 
 [[intro_conclusion]]
-=== Conclusion
+=== 总结
 
-In this chapter, we've set up a wallet using MetaMask and we've funded it using a faucet on the Ropsten Test Network. We received ether into our wallet's Ethereum address. Then we sent ether to the faucet's Ethereum address.
+本章中，我们使用MetaMask创建了一个钱包，并且使用Ropsten测试网络上的一个faucet为它充值。我们收到了发送到钱包以太坊地址的ether。然后我们把ether发送到faucet的以太坊地址。
 
-Next, we wrote a faucet contract in Solidity. We used the Remix IDE to compile the contract into EVM bytecode. We used Remix to form a transaction and recorded the faucet contract on the Ropsten blockchain. Once recorded, the faucet contract had an Ethereum address and we sent it some ether. Finally, we constructed a transaction to call the +withdraw+ function and successfully asked for 0.1 ether. The contract checked our request and sent us 0.1 ether with an internal transaction.
+接下来，我们在Solidity中写了一个faucet合约。使用Remix IDE将合约编译为EVM字节码。使用Remix进行交易，并在Ropsten区块链上登记faucet合约。一旦登记，faucet合约有一个以太坊地址，我们发送一些ether。最后，我们构建了一个交易来调用 +withdraw+ 函数，并成功请求了0.1 ether。该合约检查了我们的请求，发送给我们0.1 ether并进行内部交易。
 
-It may not seem like much, but we've just successfully interacted with software that controls money on a decentralized world computer.
+可能看起来不多，但我们刚刚成功地与控制去中心化世界计算机上资金的软件进行了交互。
 
-We will do a lot more smart contract programming in <<smart contracts>> and learn about best practices and security considerations.
+我们将在“智能合约”中做更多的智能合约编程，并了解最佳实践和安全考虑。
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
