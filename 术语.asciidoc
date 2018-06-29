@@ -1,6 +1,8 @@
 [preface]
 == 快速术语表
 
+<<前言#,上一章：前言>>
+
 这个快速术语表包含许多与以太坊相关的术语。这些术语在本书中都有使用，所以请将其加入书签以便快速参考。
 
 账户 Account::
@@ -315,5 +317,7 @@ Whisper::
 零地址 Zero address::
    	特殊的以太坊地址，所有20个位都为0，A special Ethereum address, with all 20-bytes as zeros, that is specified as a destination address in the "contract creation transaction".
 
+
+<<第一章#,上一章：什么是以太坊>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
