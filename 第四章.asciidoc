@@ -222,6 +222,6 @@ $ ganache-cli \
   --gasPrice=4000000000;
 ----
 
-<<第五章#,上一章：密钥与地址>>
+<<第五章#,下一章：密钥与地址>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
