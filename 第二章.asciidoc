@@ -1,6 +1,8 @@
 [[intro_chapter]]
 == 以太坊基础
 
+<<第一章#,上一章：什么是以太坊>>
+
 [[control_responsibility]]
 === 控制和责任
 
@@ -518,5 +520,7 @@ msg.sender.transfer(withdraw_amount);
 可能看起来不多，但我们刚刚成功地与控制去中心化世界计算机上资金的软件进行了交互。
 
 我们将在“智能合约”中做更多的智能合约编程，并了解最佳实践和安全考虑。
+
+<<第三章#,下一章：以太坊客服端>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
