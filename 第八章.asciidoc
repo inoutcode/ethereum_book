@@ -1,94 +1,94 @@
 [[smart_contracts_chapter]]
-== Smart contracts
+== 智能合约
 
-As we discovered in <<intro>>, there are two different types of account in Ethereum: Externally Owned Accounts (EOAs) and contract accounts. EOAs are controlled by software, such as a wallet application, that is external to Ethereum. Contract accounts are controlled by software that runs within the Ethereum Virtual Machine (EVM). Both types of accounts are identified by an Ethereum address. In this section, we will discuss the second type, contract accounts, and the software that controls them: smart contracts.
+我们在 <<intro>> 中发现，以太坊有两种不同类型的账户：外部所有账户（EOAs）和合约账户。EOAs由以太坊以外的软件（如钱包应用程序）控制。合约帐户由在以太坊虚拟机（EVM）内运行的软件控制。两种类型的帐户都通过以太坊地址标识。在本节中，我们将讨论第二种类型，合约账户和控制它们的软件：智能合约。
 
 [[smart_contracts_definition]]
-=== What is a smart contract?
+=== 什么是智能合约？
 
-The term _smart contract_ has been used to describe a wide variety of different things. In the 1990’s, cryptographer Nick Szabo coined the term and defined it as  “a set of promises, specified in digital form, including protocols within which the parties perform on the other promises.” Since then, the concept of smart contracts has evolved, especially after the introduction of decentralized blockchains with the invention of Bitcoin in 2009. In this book, we use the term “smart contract” to refer to immutable computer programs that run deterministically in the context of an Ethereum Virtual Machine, which operates as a decentralized world computer.
+术语_smart contract_已被用于描述各种不同的事物。在二十世纪九十年代，密码学家Nick Szabo提出了这个术语，并将其定义为“一组以数字形式规定的承诺，包括各方在其他承诺中履行的协议”。自那时以来，智能合约的概念得到了发展，尤其是在2009年比特币发明引入了去中心化区块链之后。在本书中，我们使用术语“智能合约”来指代在Ethereum虚拟机环境中确定性的运行的不可变的计算机程序，该虚拟机作为一个去中心化的世界计算机而运转。
 
-Let’s unpack that definition:
+让我们拆解这个定义：
 
-Computer programs: Smart contracts are simply computer programs. The word contract has no legal meaning in this context.
-Immutable: Once deployed, the code of a smart contract cannot change. Unlike traditional software, the only way to modify a smart contract is to deploy a new instance.
-Deterministically:  The outcome of a smart contract is the same for everyone who runs it, in the context of the transaction that called it and the state of the Ethereum blockchain at the moment of execution.
-The EVM context: Smart contracts operate with a very limited execution context. They can access their own state, the context of the transaction that called them and some information about the most recent block.
-Decentralized world computer: The EVM runs as a local instance on every Ethereum node, but because all instances of the EVM operate on the same initial state and produce the same final state, the system as a whole operates as a single world computer.
+计算机程序：智能合约只是计算机程序。合约这个词在这方面没有法律意义。
+不可变的：一旦部署，智能合约的代码不能改变。与传统软件不同，修改智能合约的唯一方法是部署新实例。
+确定性的：智能合约的结果对于运行它的每个人来说都是一样的，包括调用它们的交易的上下文，以及执行时以太坊区块链的状态。
+EVM上下文：智能合约以非常有限的执行上下文运行。他们可以访问自己的状态，调用它们的交易的上下文以及有关最新块的一些信息。
+去中心化的世界计算机：EVM在每个以太坊节点上作为本地实例运行，但由于EVM的所有实例都在相同的初始状态下运行并产生相同的最终状态，因此整个系统作为单台世界计算机运行。
 
 [[smart_contract_lifecycle]]
-=== Lifecycle of a smart contract
+=== 智能合约的生命周期
 
-Smart contracts are typically written in a high-level language, such as Solidity. But in order to run, they must be compiled to the low-level bytecode that runs in the EVM (see <<evm>>). Once compiled, they are deployed on the Ethereum blockchain with a transaction to a special contract-creation address. Each contract is identified by an Ethereum address, which is derived from the contract-creation transaction as a function of the originating account and nonce. The Ethereum address of a contract can be used in a transaction as the recipient, sending funds to the contract or calling one of the contract’s functions.
+智能合约通常以高级语言编写，例如Solidity。但为了运行，必须将它们编译为EVM中运行的低级字节码（请参见 <<evm>>）。一旦编译完成，它们就会随着转移到特殊的合约创建地址的交易被部署到以太坊区块链中。每个合约都由以太坊地址标识，该地址源于作为发起账户和随机数的函数的合约创建交易。合约的以太坊地址可以在交易中用作接收者，可将资金发送到合约或调用合约的某个功能。
 
-Importantly, contracts _only run if they are called by a transaction_. All smart contracts in Ethereum are executed by a transaction initiated from an Externally Owned Account. A contract can call another contract that can call another contract etc., but the first contract in such a chain of execution must always be called by a transaction from an EOA. Contracts never run “on their own”, or “run in the background”. Contracts effectively lie “dormant” on the blockchain until a transaction triggers execution, either directly or indirectly as part of a chain of contract calls.
+重要的是，如果合约只有被交易调用时才会运行。以太坊的所有智能合约均由EOA发起的交易执行。合约可以调用另一个合约，其中又可以调用另一个合约，等等。但是这种执行链中的第一个合约必须始终由EOA的交易调用。合约永远不会“自行”运行，或“在后台运行”。在交易触发执行，直接或间接地作为合约调用链的一部分之前，合约在区块链上实际上是“休眠”的。
 
-Transactions are _atomic_, regardless of how many contracts they call or what those contracts do when called. Transactions execute in their entirety, with any changes in the global state (contracts, accounts, etc.) recorded only if a transaction terminates successfully. Successful termination means that the program executed without an error and reached the end of execution. If a transaction fails due to an error, all of its effects (changes in state) are “rolled back” as if the transaction never ran. A failed transaction is still stored on the blockchain and deducts the gas cost from the originating account, but has no other effects on contract or account state.
+交易是 _原子性的_ _atomic_，无论他们调用多少合约或这些合约在被调用时执行的是什么。交易完全执行，仅在交易成功终止时记录全局状态（合约，帐户等）的任何更改。成功终止意味着程序执行时没有错误并且达到执行结束。如果交易由于错误而失败，则其所有效果（状态变化）都会“回滚”，就好像交易从未运行一样。失败的交易仍存储在区块链中，并从原始账户扣除gas成本，但对合约或账户状态没有其他影响。
 
-A contract’s code cannot be changed. However a contract can be “deleted”, removing the code and it’s internal state (variables) from the blockchain. To delete a contract, you execute an EVM opcode called +SELFDESTRUCT+ (previously called +SUICIDE+), which removes the contract from the blockchain. That operation costs “negative gas”, thereby incentivizing the release of stored state. Deleting a contract in this way does not remove the transaction history (past) of the contract, since the blockchain itself if immutable. But it does remove the contract state from all future blocks.
+合约的代码不能更改。然而合约可以被“删除”，从区块链上删除代码和它的内部状态（变量）。要删除合约，你需要执行称为 +SELFDESTRUCT+（以前称为 +SUICIDE+ ）的EVM操作码，该操作码将区块链中的合约移除。该操作花费“负的gas”，从而激励储存状态的释放。以这种方式删除合约不会删除合约的交易历史（过去），因为区块链本身是不可变的。但它确实会从所有未来的区块中移除合约状态。
 
 [[high_level_languages]]
-=== Introduction to Ethereum high-level languages
+=== 以太坊高级语言简介
 
-The EVM is an emulated computer that runs a special form of _machine code_ called _EVM bytecode_, just like your computer's CPU, which runs machine code such as x86_64. We will examine the operation and language of the EVM in much more detail in <<evm>>. In this section we will look at how smart contracts are written to run on the EVM.
+EVM是一台虚拟计算机，运行一种特殊形式的 _机器代码_ ，称为_EVM 字节码_，就像你的计算机CPU运行机器代码x86_64一样。我们将在 <<evm>> 中更详细地检查EVM的操作和语言。在本节中，我们将介绍如何编写智能合约以在EVM上运行。
 
-While it is possible to program smart contracts directly in bytecode.  EVM bytecode is unwieldy and very difficult for programmers to read and understand. Instead, most Ethereum developers use a high-level symbolic language to write programs and a compiler to convert them into bytecode.
+虽然可以直接在字节码中编写智能合约。EVM字节码非常笨重，程序员难以阅读和理解。相反，大多数以太坊开发人员使用高级符号语言编写程序和编译器，将它们转换为字节码。
 
-While any high-level language could be adapted to write smart contracts, that is quite a cumbersome exercise. Smart contracts operate in a highly constrained and minimalistic execution environment (the EVM), where almost all of the usual user interfaces, operating system interfaces and hardware interfaces are missing. It is easier to build a minimalistic smart-contract language, from scratch, than it is to constrain a general-purpose language and make it suitable for writing smart contracts. As a result, a number of special-purpose languages have emerged for programming smart contracts. Ethereum has several such languages, together with the compilers needed to produce EVM-executable bytecode.
+虽然任何高级语言都可以用来编写智能合约，但这是一项非常繁琐的工作。智能合约在高度约束和简约的执行环境（EVM）中运行，几乎所有通常的用户界面，操作系统界面和硬件界面都是缺失的。从头开始构建一个简约的智能合约语言要比限制通用语言并使其适用于编写智能合约更容易。因此，为编程智能合约出现了一些专用语言。以太坊有几种这样的语言，以及产生EVM可执行字节码所需的编译器。
 
-In general, programming languages can be classified in two broad programming paradigms: declarative and imperative, also known as “functional” and “procedural”, respectively. In declarative programming, we write functions that express the _logic_ of a program, but not its _flow_. Declarative programming is used to create programs where there are no _side effects_, meaning that there are no changes to state outside of a function. Declarative programming languages include, for example, Haskell, SQL and HTML. Imperative programming, by contrast, is where a programmer writes a set of procedures that combine the logic and flow of a program. Imperative programming languages include, for example, BASIC, C, C++, and Java. Some languages are “hybrid”, meaning that they encourage declarative programming but can also be used to express an imperative programming paradigm. Such hybrids include Lisp, Erlang, Prolog, JavaScript, and Python. In general, any imperative language can be used to write in a declarative paradigm, but it often results in inelegant code. By comparison, pure declarative languages cannot be used to write in an imperative paradigm. In purely declarative languages, _there are no “variables”_.
+一般来说，编程语言可以分为两种广泛的编程范式：分别是声明式和命令式，也分别称为“函数式”和“过程式”。在声明式编程中，我们编写的函数表示程序的 _逻辑_ _logic_，而不是 _流程_ _flow_。声明式编程用于创建没有 _副作用_ _side effects_ 的程序，这意味着在函数之外没有状态变化。声明式编程语言包括Haskell，SQL和HTML等。相反，命令式编程就是程序员编写一套程序的逻辑和流程结合在一起的程序。命令式编程语言包括例如BASIC，C，C++和Java。有些语言是“混合”的，这意味着他们鼓励声明式编程，但也可以用来表达一个必要的编程范式。这样的混合体包括Lisp，Erlang，Prolog，JavaScript和Python。一般来说，任何命令式语言都可以用来在声明式的范式中编写，但它通常会导致不雅的代码。相比之下，纯粹的声明式语言不能用来写入一个命令式的范例。在纯粹的声明式语言中，_没有“变量”_。
 
-While imperative programming is easier to write and read, and is more commonly used by programmers, it can be very difficult to write programs that execute _exactly as expected_. The ability of any part of the program to change the state makes it difficult to reason about a program’s execution and introduces many opportunities for unintended side effects and bugs. Declarative programming by comparison is harder to write, but avoids side effects, making it easier to understand how a program will behave.
+虽然命令式编程更易于编写和读取，并且程序员更常用，但编写按预期方式 _准确_ 执行的程序可能非常困难。程序的任何部分改变状态的能力使得很难推断程序的执行，并引入许多意想不到的副作用和错误。相比之下，声明式编程更难以编写，但避免了副作用，使得更容易理解程序的行为。
 
-Smart contracts create a very high burden for programmers: bugs cost money. As a result, it is critically important to write smart contracts without unintended effects. To do that, you must be able to clearly reason about the expected behavior of the program. So, declarative languages play a much bigger role in smart contracts than they do in general purpose software. Nevertheless, as you will see below, the most prolific language for smart contracts (Solidity) is imperative.
+智能合约给程序员带来了很大的负担：错误会花费金钱。因此，编写不会产生意想不到的影响的智能合约至关重要。要做到这一点，你必须能够清楚地推断程序的预期行为。因此，声明式语言在智能合约中比在通用软件中扮演更重要的角色。不过，正如你将在下面看到的那样，最丰富的智能合约语言是命令式的（Solidity）。
 
-High-level programming languages for smart contracts include (ordered by approximate age):
+智能合约的高级编程语言包括（按大概的年龄排序）：
 
-LLL:: A functional (declarative) programming language, with Lisp-like syntax. It was the first high-level language for Ethereum smart contracts, but it is rarely used today.
+LLL:: 一种函数式（声明式）编程语言，具有类似Lisp的语法。这是以太坊智能合约的第一个高级语言，但今天很少使用。
 
-Serpent:: A procedural (imperative) programming language with a syntax similar to Python. Can also be used to write functional (declarative) code, though it is not entirely free of side effects. Used sparsely. First created by Vitalik Buterin.
+Serpent:: 一种过程式（命令式）编程语言，其语法类似于Python。也可以用来编写函数式（声明式）代码，尽管它并不完全没有副作用。很少被使用。最早由Vitalik Buterin创建。
 
-Solidity:: A procedural (imperative) programming language with a syntax similar to JavaScript, C++ or Java. The most popular and most frequently used language for Ethereum smart contracts. First created by Gavin Wood (co-author of this book).
+Solidity:: 具有类似于JavaScript，C ++或Java语法的过程式（命令式）编程语言。以太坊智能合约中最流行和最常用的语言。最初由Gavin Wood（本书的合着者）创作。
 
-Vyper:: A more recently developed language, similar to Serpent and with Python-like syntax. Intended to get closer to a pure-functional Python-like language than Serpent, but not to replace Serpent. First created by Vitalik Buterin.
+Vyper:: 最近开发的语言，类似于Serpent，并且具有类似Python的语法。旨在成为比Serpent更接近纯粹函数式的类Python语言，但不能取代Serpent。最早由Vitalik Buterin创建。
 
-Bamboo:: A newly developed language, influenced by Erlang with explicit state transitions and without iterative flows (loops). Intended to reduce side effects and increase auditability. Very new and rarely used.
+Bamboo:: 一种新开发的语言，受Erlang影响，具有明确的状态转换并且没有迭代流（循环）。旨在减少副作用并提高可审计性。非常新，很少使用。
 
-As you can see, there are many languages to choose from. However, of all these Solidity is by far the most popular, to the point of being the de-facto high-level language of Ethereum and even other EVM-like blockchains. We will spend most of our time using Solidity, but will also explore some of the examples in other high-level languages, to gain an understanding of their different philosophies.
+如你所见，有很多语言可供选择。然而，在所有这些中，Solidity是迄今为止最受欢迎的，以至于成为了以太坊甚至是其他类似EVM的区块链的事实上的高级语言。我们将花大部分时间使用Solidity，但也会探索其他高级语言的一些例子，以了解其不同的哲学。
 
 [[building_a_smart_contract_sec]]
-=== Building a smart contract with Solidity
+=== 用Solidity构建智能合约
 
-From Wikipedia:
+来自维基百科：
 
 [quote, "Wikipedia entry for Solidity"]
-Solidity is a "contract-oriented" programming language for writing smart contracts. It is used for implementing smart contracts on various blockchain platforms. It was developed by Gavin Wood, Christian Reitwiessner, Alex Beregszaszi, Liana Husikyan, Yoichi Hirai and several former Ethereum core contributors to enable writing smart contracts on blockchain platforms such as Ethereum.
+Solidity是编写智能合约的“面向合约的”编程语言。它用于在各种区块链平台上实施智能合约。它由Gavin Wood，Christian Reitwiessner，Alex Beregszaszi，Liana Husikyan，Yoichi Hirai和几位以前的以太坊核心贡献者开发，以便在区块链平台（如以太坊）上编写智能合约。
 
-Solidity is developed and currently maintained by a team of developers as the Solidity project on GitHub:
+Solidity由GitHub上的Solidity项目开发团队开发并维护：
 
 https://github.com/ethereum/solidity
 
-The main "product" of the Solidity project is the _Solidity Compiler (solc)_ which converts programs written in the Solidity language to EVM bytecode, as well as producing other artefacts such as an Application Binary Interface (ABI). Each version of the Solidity compiler corresponds to and compiles a specific version of the Solidity language.
+Solidity项目的主要“产品”是_Solidity Compiler（solc）_，它将用Solidity语言编写的程序转换为EVM字节码，并生成其他制品，如应用程序二进制接口（ABI）。Solidity编译器的每个版本都对应于并编译Solidity语言的特定版本。
 
-To get started, we will download a binary executable of the Solidity compiler. Then we will write and compile a simple contract.
+要开始，我们将下载Solidity编译器的二进制可执行文件。然后我们会编写一个简单的合约。
 
-==== Selecting a version of Solidity
+==== 选择一个Solidity版本
 
-Solidity follows a versioning model called _semantic versioning_ (https://semver.org/), which specifies version numbers structured as three numbers separated by dots: +MAJOR.MINOR.PATCH+. The "major" number is incremented for major and _backwards incompatible_ changes, the "minor" number is incremented as backwards compatible features are added in between major releases, and the "patch" number is incremented for bug-fix and security related changes.
+Solidity遵循一个称为_semantic versioning_（https://semver.org/）的版本模型，该模型指定版本号结构为由点分隔的三个数字：+MAJOR.MINOR.PATCH+。"major"用于对主要的和“向前不兼容”的更改的递增，“minor”在主要版本之间添加“向前兼容功能“时递增，“patch”表示错误修复和安全相关的更改。
 
-Currently, Solidity is at version +0.4.21+, where +0.4+ is the major version, 21 is the minor version and anything specified after that is a patch release.  The 0.5 major version release of Solidity is anticipated imminently.
+目前，Solidity的版本是+0.4.21+，其中+0.4+是主要版本，21是次要版本，之后指定的任何内容都是补丁版本。Solidity的0.5版本主要版本即将推出。
 
-As we saw in <<intro>>, your Solidity programs can contain a +pragma+ directive that specifies the minimum and maximum version of Solidity that is compatible with, and can be used to compile your contract.
+正如我们在<<intro>>中看到的那样，你的Solidity程序可以包含一个+pragma+指令，用于指定与之兼容的Solidity的最小和最大版本，并且可用于编译你的合约。
 
-Since Solidity is rapidly evolving it is best to always use the latest release.
+由于Solidity正在快速发展，最好始终使用最新版本。
 
-==== Download/install
+==== 下载/安装
 
-There are a number of methods you can use to download and install Solidity, either as a binary release or to compile from source code. You can find detailed instruction in the Solidity documentation at:
+有许多方法可以用来下载和安装Solidity，无论是作为二进制发行版还是从源代码编译。你可以在Solidity文档中找到详细的说明：
 
 https://solidity.readthedocs.io/en/latest/installing-solidity.html
 
-In <<install_solidity_ubuntu>>, we will install the latest binary release of Solidity on an Ubuntu/Debian operating system, using the +apt+ package manager:
+在<<install_solidity_ubuntu>>中，我们将使用 apt package manager 在Ubuntu/Debian操作系统上安装Solidity的最新二进制版本：
 
 [[install_solidity_ubuntu]]
 .Installing solc on Ubuntu/Debian with apt package manager
@@ -99,7 +99,7 @@ $ sudo apt update
 $ sudo apt install solc
 ----
 
-Once you have +solc+ installed, check the version by running:
+一旦你安装了 +solc+，运行以下命令来检查版本：
 
 ----
 $ solc --version
@@ -107,37 +107,53 @@ solc, the solidity compiler commandline interface
 Version: 0.4.21+commit.dfe3193c.Linux.g++
 ----
 
-There are a number of other ways to install Solidity, depending on your Operating System and requirements, including compiling from the source code directly. For more information see:
+根据你的操作系统和要求，还有许多其他方式可以安装Solidity，包括直接从源代码编译。有关更多信息，请参阅
 
 https://github.com/ethereum/solidity
 
-==== Development environment
+==== 开发环境
 
-To develop in Solidity, you can use any text editor and +solc+ on the command-line. However, you might find that some text editors designed for development, such as Atom, offer additional features such as syntax highlighting and macros that make Solidity development easier.
+要在Solidity中开发，你可以在命令行上使用任何文本编辑器和+solc+。但是，你可能会发现为开发而设计的一些文本编辑器（例如Atom）提供了附加功能，如语法突出显示和宏，这些功能使Solidity开发变得更加简单。
 
-There are also web-based development environments, such as Remix IDE (https://remix.ethereum.org/), and EthFiddle (https://ethfiddle.com/).
+还有基于Web的开发环境，如Remix IDE（https://remix.ethereum.org/）和EthFiddle（https://ethfiddle.com/）。
 
-Use the tools that make you productive. In the end, Solidity programs are just plain-text files. While fancy editors and development environments can make things a bit easier, you don't need anything more than a simple text editor, such as vim (Linux/Unix), TextEdit (MacOS) or even NotePad (Windows). Simply save your program source code with a +.sol+ extension and it will be recognized by the Solidity compiler as a Solidity program.
+使用可以提高生产力的工具。最后，Solidity程序只是纯文本文件。虽然花哨的编辑器和开发环境可以让事情变得更容易，但除了简单的文本编辑器（如vim（Linux / Unix），TextEdit（MacOS）甚至NotePad（Windows）），你无需任何其他东西。只需将程序源代码保存为+.sol+扩展名即可，Solidity编译器将其识别为Solidity程序。
 
 ==== Writing a simple Solidity program
 
-In <<intro>> we wrote our first Solidity program, called +Faucet+.  When we first built the +Faucet+, we used the Remix IDE to compile and deploy the contract. In this section, we will revisit, improve, and embellish +Faucet+.
+在<<intro>>中，我们编写了我们的第一个Solidity程序，名为+Faucet+。当我们第一次构建+Faucet+时，我们使用Remix IDE来编译和部署合约。在本节中，我们将重新查看，改进和修饰+Faucet+。
 
-Our first attempt looked like this:
+我们的第一次尝试是这样的：
 
 .Faucet.sol : A Solidity contract implementing a faucet
 [source,solidity,linenums]
 ----
-include::code/Solidity/Faucet.sol[]
+// Our first contract is a faucet!
+contract Faucet {
+
+    // Give out ether to anyone who asks
+    function withdraw(uint withdraw_amount) public {
+
+        // Limit withdrawal amount
+        require(withdraw_amount <= 100000000000000000);
+
+        // Send the amount to the address that requested it
+        msg.sender.transfer(withdraw_amount);
+    }
+
+    // Accept any incoming amount
+    function () public payable {}
+
+}
 ----
 
-We will build on this first example, starting in <<make_it_better>>.
+从 <<make_it_better>> 开始，我们将在第一个示例的基础上构建。
 
-==== Compiling with the Solidity compiler (solc)
+==== 用Solidity编译器（solc）编译
 
-Now, we will use the Solidity compiler on the command-line to compile our contract directly. The Solidity compiler +solc+ offers a variety of options, which you can see by passing the +--help+ argument.
+现在，我们将使用命令行上的Solidity编译器直接编译我们的合约。Solidity编译器+solc+提供了多种选项，你可以通过+--help+参数来查看。
 
-We use the +--bin+ and +--optimize+ arguments of +solc+ to produce an optimized binary of our example contract:
+我们使用+solc+的 +--bin+ 和 +--optimize+ 参数来生成我们示例合约的优化二进制文件：
 
 [[compile_Faucet_with_solc]]
 .Compiling Faucet.sol with solc
@@ -148,18 +164,18 @@ Binary:
 6060604052341561000f57600080fd5b60cf8061001d6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632e1a7d4d81146040575b005b3415604a57600080fd5b603e60043567016345785d8a0000811115606357600080fd5b73ffffffffffffffffffffffffffffffffffffffff331681156108fc0282604051600060405180830381858888f19350505050151560a057600080fd5b505600a165627a7a723058203556d79355f2da19e773a9551e95f1ca7457f2b5fbbf4eacf7748ab59d2532130029
 ----
 
-The result that +solc+ produces is a hex serialized binary that can be submitted to the Ethereum blockchain.
++solc+产生的结果是一个可以提交给以太坊区块链的十六进制序列化二进制文件。
 
 [[eth_contract_abi_sec]]
-=== Ethereum contract Application Binary Interface (ABI)
+=== 以太坊合约应用程序二进制接口（ABI）
 
-In computer software, an Application Binary Interface (ABI) is an interface between two program modules; often, one at the level of machine code, and the other at the level of a program run by a user. An ABI defines how data structures and functions are accessed in *machine code*; this is not to be confused with an API, which defines this access in high-level, often human-readable format as *source code*. The ABI is thus the primary way of encoding and decoding data into and out of machine code.
+在计算机软件中，应用程序二进制接口（ABI）是两个程序模块之间的接口；通常，一个在机器代码级别，另一个在用户运行的程序级别。ABI定义了如何在*机器码*中访问数据结构和功能；不要与API混淆，API以高级的，通常是人类可读的格式将访问定义为*源代码*。因此，ABI是将数据编码到机器码，和从机器码解码数据的主要方式。
 
-In Ethereum, the ABI is used to encode contract calls for the EVM and to read data out of transactions. The purpose of an ABI is to define which functions in the contract can be invoked and describe how the function will accept arguments and return data.
+在以太坊中，ABI用于编码EVM的合约调用，并从交易中读取数据。ABI的目的是定义合约中的哪些函数可以被调用，并描述函数如何接受参数并返回数据。
 
-The JSON format for a contract's ABI is given by an array of descriptions of functions (see <<solidity_functions>>) and events (see <<solidity_events>>). A function description is a JSON object with fields for `type`, `name`, `inputs`, `outputs`, `constant`, and `payable`. An event description object has fields for `type`, `name`, `inputs`, and `anonymous`.
+合约ABI的JSON格式由一系列函数描述（参见<<solidity_functions>>）和事件（参见<<solidity_events>>）的数组给出。函数描述是一个JSON对象，它包含`type`，`name`，`inputs`，`outputs`，`constant`和`payable`字段。事件描述对象具有`type`，`name`，`inputs`和`anonymous`的字段。
 
-We use the +solc+ command-line Solidity compiler to produce the ABI for our +Faucet.sol+ example contract:
+我们使用+solc+命令行Solidity编译器为我们的+Faucet.sol+示例合约生成ABI：
 
 ----
 solc --abi Faucet.sol
@@ -168,165 +184,184 @@ Contract JSON ABI
 [{"constant":false,"inputs":[{"name":"withdraw_amount","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"}]
 ----
 
-As you can see, the compiler produces a JSON object describing the two functions that are defined by +Faucet.sol+. This JSON object can be used by any application that wants to access the +Faucet+ contract once it is deployed. Using the ABI, an application such as a wallet or DApp browser, can construct transactions that call the functions in +Faucet+, with the correct arguments and argument types. For example, a wallet would know that to call the function +withdraw+ it would have to provide a +uint256+ argument named +withdraw_amount+. The wallet could prompt the user to provide that value, then create a transaction that encodes it and executes the +withdraw+ function.
+如你所见，编译器会生成一个描述由 +Faucet.sol+ 定义的两个函数的JSON对象。这个JSON对象可以被任何希望在部署时访问 +Faucet+ 合约的应用程序使用。使用ABI，应用程序（如钱包或DApp浏览器）可以使用正确的参数和参数类型构造调用 +Faucet+ 中的函数的交易。例如，钱包会知道要调用函数+withdraw+，它必须提供名为 +withdraw_amount+ 的 +uint256+ 参数。钱包可以提示用户提供该值，然后创建一个编码它并执行+withdraw+功能的交易。
 
-All that is needed for an application to interact with a contract is an ABI and the address where the contract has been deployed.
+应用程序与合约进行交互所需的全部内容是ABI以及合约的部署地址。
 
 [[solidity_pragma]]
-==== Selecting Solidity compiler and language version
+==== 选择Solidity编译器和语言版本
 
-As we see in <<compile_Faucet_with_solc>> our +Faucet+ contract compiles successfully with Solidity version 0.4.21. But what if we had used a different version of the Solidity compiler? The language is still in constant flux and things may change in unexpected ways. Our contract is fairly simple, but what if our program used a feature that was only added in Solidity version +0.4.19+ and we tried to compile it with +0.4.18+?
+正如我们在 <<compile_Faucet_with_solc>> 中看到的，我们的 +Faucet+ 合约在Solidity 0.4.21版本中成功编译。但是如果我们使用了不同版本的Solidity编译器呢？语言仍然不断变化，事情可能会以意想不到的方式发生变化。我们的合约非常简单，但如果我们的程序使用了仅添加到Solidity版本+0.4.19+中的功能，并且我们尝试使用+0.4.18+进行编译，该怎么办？
 
-To resolve such issues, Solidity offers a _compiler directive_ known as a _version pragma_ that instructs the compiler that the program expects a specific compiler (and language) version. Let’s look at an example:
+为了解决这些问题，Solidity提供了一个_compiler指令_，称为_version pragma_，指示编译器程序需要特定的编译器（和语言）版本。我们来看一个例子：
 
 [[compiler_version]]
 ----
 pragma solidity ^0.4.19;
 ----
 
-The Solidity compiler reads the version pragma and will produce an error if the compiler version is incompatible with the version pragma. In this case, our version pragma says that this program can be compiled by a Solidity compiler with a minimum version +0.4.19+. The symbol ^ states, however, that we allow compilation of any _minor revisions_ above that +0.4.19+, e.g., +0.4.20+, but not +0.5.0+ (which is a major revision, not a minor revision). Pragma directives are not compiled into EVM bytecode. They are only used by the compiler to check compatibility.
+Solidity编译器读取版本编译指示，如果编译器版本与版本编译指示不兼容，将会产生错误。在这种情况下，我们的版本编译指出，这个程序可以由Solidity编译器编译，最低版本为+0.4.19+。但是，符号^表示我们允许编译任何_minor修订版_在+0.4.19+之上的，例如+0.4.20+，但不是+0.5.0+（这是一个主要版本，不是小修订版） 。Pragma指令不会编译为EVM字节码。它们仅由编译器用来检查兼容性。
 
-Let’s add a pragma directive to our +Faucet+ contract. We will name the new file +Faucet2.sol+, to keep track of our changes as we proceed through these examples:
+让我们在我们的 +Faucet+ 合约中添加一条编译指示。我们将命名新文件 +Faucet2.sol+，以便在我们继续处理这些示例时跟踪我们的更改：
 
 .Faucet2.sol : Adding the version pragma to Faucet
 [source,solidity,linenums]
 ----
-include::code/Solidity/Faucet2.sol[]
+// Version of Solidity compiler this program was written for
+pragma solidity ^0.4.19;
+
+// Our first contract is a faucet!
+contract Faucet {
+
+    // Give out ether to anyone who asks
+    function withdraw(uint withdraw_amount) public {
+
+        // Limit withdrawal amount
+        require(withdraw_amount <= 100000000000000000);
+
+        // Send the amount to the address that requested it
+        msg.sender.transfer(withdraw_amount);
+    }
+
+    // Accept any incoming amount
+    function () public payable {}
+
+}
 ----
 
-Adding a version pragma is a best practice, as it avoids problems with mismatched compiler and language versions. We will explore other best practices and continue to improve the +Faucet+ contract throughout this chapter.
+添加版本 pragma 是最佳实践，因为它避免了编译器和语言版本不匹配的问题。我们将探索其他最佳实践，并在本章中继续改进+Faucet+合约。
 
-=== Programming with Solidity
+=== 使用Solidity编程
 
-In this section, we will look at some of the capabilities of the Solidity language. As we mentioned in <<intro>> our first contract example was very simple and also flawed in many different ways. We'll gradually improve that example, while learning how to use Solidity. This won't be a comprehensive Solidity tutorial however, as Solidity is quite complex and rapidly evolving. We'll cover the basics and give you enough of a foundation to be able to explore the rest on your own. The complete documentation for Solidity can be found at:
+在本节中，我们将看看Solidity语言的一些功能。正如我们在 <<intro>> 中提到的，我们的第一份合约示例非常简单，并且在许多方面也存在缺陷。我们将逐渐改进这个例子，同时学习如何使用Solidity。然而，这不会是一个全面的Solidity教程，因为Solidity相当复杂且快速发展。我们将介绍基础知识，并为你提供足够的基础，以便能够自行探索其余部分。Solidity的完整文档可以在以下网址找到：
 
 https://solidity.readthedocs.io/en/latest/
 
-==== Data types
+==== 数据类型
 
-First, let's look at some of the basic data types offered in Solidity:
+首先，我们来看看Solidity中提供的一些基本数据类型：
 
-boolean (bool):: Boolean value, +true+ or +false+, with logical operators pass:[! (not)], pass:[&& (and)], pass:[|| (or)], pass:[== (equal)], pass:[!= (not equal)].
+boolean (bool):: 布尔值, +true+ 或 +false+, 以及逻辑操作符 pass:[! (not)], pass:[&& (and)], pass:[|| (or)], pass:[== (equal)], pass:[!= (not equal)].
 
-integer (int/uint):: Signed (int) and unsigned (uint) integers, defined in increments of 8 bits from u/int8 to u/int256. Without a size suffix, they are set to 256 bits.
+整数 (int/uint):: 有符号 (int) 和 无符号 (uint) 整数，从 u/int8 到 u/int256以 8 bits 递增，没有大小后缀的话，表示256 bits。
 
-fixed point (fixed/ufixed):: Fixed point numbers, defined as u/fixedMxN where M is the size in bits (increments of 8) and N is the number of decimals after the point.
+定点数 (fixed/ufixed):: 定点数, 定义为 u/fixedMxN，其中 M 是位大小（以8递增），N 是小数点后的十进制数的个数。
 
-address:: A 20-byte Ethereum address. The +address+ object has members +balance+ (returns the account balance) and +transfer+ (transfer ether to the account).
+地址:: 20字节的以太坊地址。+address+ 对象有 +balance+ (返回账户的余额) 和 +transfer+ (转移ether到该账户) 成员方法。
 
-byte array (fixed):: Fixed size arrays of bytes, defined as +bytes1+ through +bytes32+
+字节数组（定长）:: 固定大小的字节数组，定义为+bytes1+到+bytes32+。
 
-byte array (dynamic):: Dynamic size arrays of bytes, defined as +bytes+ or +string+
+字节数组 (动态):: 动态大小的字节数组，定义为+bytes+或+string+。
 
-enum:: User-defined type for enumerating discrete values.
+enum:: 枚举离散值的用户定义类型。
 
-struct:: User-defines data containers for grouping variables.
+struct:: 包含一组变量的用户定义的数据容器。
 
-mapping:: Hash lookup tables for +key => value+ pairs.
+mapping:: +key => value+对的哈希查找表。
 
-In addition to the data types above, Solidity also offers a variety of value literals that can be used to calculate different units:
+除上述数据类型外，Solidity还提供了多种可用于计算不同单位的字面值：
 
-time units:: The units +seconds+, +minutes+, +hours+, and +days+ can be used as a suffix, converting to multiples of the base unit +seconds+.
+时间单位:: +seconds+, +minutes+, +hours+, 和 +days+ 可用作后缀，转换为基本单位 +seconds+ 的倍数。
 
-ether units:: The units +wei+, +finney+, +szabo+, and +ether+ can be used as a suffix, converting to multiples of the base unit +wei+.
+以太的单位:: +wei+, +finney+, +szabo+, 和 +ether+ 可用作后缀, 转换为基本单位 +wei+ 的倍数。
 
-So far, in our +Faucet+ contract example, we used +uint+ (which is an alias for +uint256+), for the +withdraw_amount+ variable. We also indirectly used an +address+ variable, which is +msg.sender+. We will use some more of these data types in our examples, throughout this chapter.
+到目前为止，在我们的+Faucet+合约示例中，我们使用+uint+（这是+uint256+的别名），用于+withdraw_amount+变量。我们还间接使用了+address+变量，它是+ msg.sender+。在本章中，我们将在示例中使用更多数据类型。
 
-Let's use one of the unit multipliers, to improve the readability of our example contract +Faucet+. In the +withdraw+ function we limit the maximum withdrawal, expressing the amount limit as +wei+, the base unit of ether:
+让我们使用单位的倍数之一来提高示例合约+Faucet+的可读性。在+withdraw+函数中，我们限制最大提现额，将数量限制表示为+wei+，以太的基本单位：
 
 ----
 require(withdraw_amount <= 100000000000000000);
 ----
 
-That's not very easy to read, so we can improve our code by using the unit multiplier +ether+, to express the value in ether instead of wei:
+这不是很容易阅读，所以我们可以通过使用单位倍数 +ether+ 来改进我们的代码，以ether而不是wei表示值：
 
 ----
 require(withdraw_amount <= 0.1 ether);
 ----
 
-==== Predefined global variables and functions
+==== 预定义的全局变量和函数
 
-When a contract is executed in the EVM, it has access to a narrow set of global objects. These include the +block+, +msg+ and +tx+ objects. In addition, Solidity exposes a number of EVM opcodes as predefined Solidity functions. In this section we will examine the variables and functions you can access from within a smart contract in Solidity.
+在EVM中执行合约时，它可以访问一组较小范围内的全局对象。这些包括 +block+，+msg+ 和 +tx+ 对象。另外，Solidity公开了许多EVM操作码作为预定义的Solidity功能。在本节中，我们将检查你可以从Solidity的智能合约中访问的变量和函数。
 
-===== Calling transaction/message context
+===== 调用交易/消息上下文
 
-msg:: The +msg+ object is the transaction (EOA originated) or message (contract originated) that launched the contract execution. It contains a number of useful attributes:
+msg:: +msg+对象是启动合约执行的交易（源自EOA）或消息（源自合约）。它包含许多有用的属性：
 
-msg.sender:: We've already used this one. It represents the address that originated the message. If our contracts were called by an EOA transaction, then this is the address that signed the transaction.
+msg.sender:: 我们已经使用过这个。它代表发起消息的地址。如果我们的合约是由EOA交易调用的，那么这是签署交易的地址。
 
-msg.value:: The value of ether sent with the message.
+msg.value:: 与消息一起发送的以太网值。
 
-msg.gas:: The amount of gas left in the message that called our contract. It has been deprecated and will be replaced with the gasleft() function as of Solidity v0.4.21.
+msg.gas:: 调用我们的合约的消息中留下的gas量。它已经被弃用，并将被替换为Solidity v0.4.21中的gasleft()函数。
 
-msg.data:: The data payload of the message that called our contract.
+msg.data:: 调用合约的消息中的数据。
 
-msg.sig:: The first four bytes of the data payload, which is the function selector.
+msg.sig:: 数据的前四个字节，它是函数选择器。
 
 [NOTE]
 ====
-Whenever a contract calls another contract, the values of all the attributes of +msg+ change, to reflect the new caller's information. The only exception to this is the +delegatecall+ function which runs the code of another contract/library within the original +msg+ context.
+每当合约调用另一个合约时，+msg+的所有属性的值都会发生变化，以反映新的调用者的信息。唯一的例外是在原始+msg+上下文中运行另一个合约/库的代码的 +delegatecall+ 函数。
 ====
 
-===== Transaction context
+===== 交易上下文
 
-tx.gasprice:: The gas price in the calling Transaction
+tx.gasprice:: 发起调用的交易中的gas价格。
 
-tx.origin:: The full call stack from the originating (EOA) transaction.
+tx.origin:: 源自（EOA）的交易的完整调用堆栈。
 
-===== Block context
+===== 区块上下文
 
-block:: The block object contains information about the current block.
+block:: 包含有关当前块的信息的块对象。
 
-block.blockhash(blockNumber):: The block hash of the specified block number, up to the last 256 blocks. Deprecated and replaced with the +blockhash()+ function in Solidity v.0.4.22.
+block.blockhash(blockNumber):: 指定块编号的块的哈希，直到之前的256个块。已弃用，并使用Solidity v.0.4.22中的+blockhash()+函数替换。
 
-block.coinbase:: The address of the miner of the current block.
+block.coinbase:: 当前块的矿工地址。
 
-block.difficulty:: The difficulty (Proof-of-Work) of the current block.
+block.difficulty:: 当前块的难度（Proof-of-Work）。
 
-block.gaslimit:: The total block gas limit for the current block.
+block.gaslimit:: 当前块的区块gas限制。
 
-block.number:: The current block number (height).
+block.number:: 当前块号（高度）。
 
-block.timestamp:: The timestamp placed in the current block by the miner, since Unix epoch (seconds).
+block.timestamp:: 矿工在当前块中放置的时间戳，自Unix纪元（秒）开始。
 
 [[solidity_address_object]]
-===== Address object
+===== 地址对象
 
-Any address, either passed as an input, or cast from a contract object, has a number of attributes and methods:
+任何地址（作为输入传递或从合约对象转换而来）都有一些属性和方法：
 
-address.balance:: The balance of the address, in wei. For example, the current contract balance is +address(this).balance+.
+address.balance:: 地址的余额，以wei为单位。例如，当前合约余额是 +address(this).balance+。
 
-address.transfer(amount):: Transfer the amount (wei) to this address, throwing an exception on any error. We used this function in our +Faucet+ example as a method on the +msg.sender+ address, as +msg.sender.transfer()+.
+address.transfer(amount):: 将金额（wei）转移到该地址，并在发生任何错误时抛出异常。我们在+Faucet+示例中的+msg.sender+地址上使用了此函数，+msg.sender.transfer()+。
 
-address.send(amount):: Similar to +transfer+ above, only instead of throwing an exception, it returns +false+ on error.
+address.send(amount):: 类似于前面的+transfer+, 但是失败时不抛出异常，而是返回+false+。
 
-address.call():: Low-level call function, can construct an arbitrary message with +value+, +data+ payloads. Returns +false+ on error.
+address.call():: 低级调用函数，可以用+value+，+data+构造任意消息。错误时返回+false+。
 
-address.delegatecall():: Low-level call function, keeps the +msg+ context of the calling contract, returns +false+ on error.
+address.delegatecall():: 低级调用函数，保持发起调用的合约的+msg+上下文，错误时返回+false+。
 
-===== Built-in functions
+===== 内置函数
 
-addmod, mulmod:: Modulo addition and multiplication. For example, +addmod(x,y,k)+ calculates +pass:[(x + y) % k]+.
+addmod, mulmod:: 模加法和乘法。例如，+addmod(x,y,k)+ 计算 +pass:[ (x + y) % k]+。
 
-keccak256, sha256, sha3, ripemd160:: Functions to calculate hashes with various standard hash algorithms.
+keccak256, sha256, sha3, ripemd160:: 用各种标准哈希算法计算哈希值的函数。
 
-ecrecover:: Recover the address used to sign a message, from the signature.
+ecrecover:: 从签名中恢复用于签署消息的地址。
 
-==== Contract definition
+==== 合约的定义
 
-Solidity's main data type is the _contract_ object, which is defined at the top of our +Faucet+ example. Similar to any object in an object-oriented language, the contract is a container that includes data and methods.
+Solidity的主要数据类型是_contract_对象，它在我们的+Faucet+示例的顶部定义。与面向对象语言中的任何对象类似，合约是一个包含数据和方法的容器。
 
-Solidity offers two other objects that are similar to a contract:
+Solidity提供了另外两个与合约类似的对象：
 
-interface:: An interface definition is structured exactly like a contract, except none of the functions are defined, they are only declared. This type of function declaration is often called a _stub_, as it tells you about the arguments and returns all types of functions without any implementation. It serves to specify a contract interface and if inherited, each of the functions must be specified in the child.
+interface:: 接口定义的结构与合约完全一样，只不过没有定义函数，它们只是声明。这种类型的函数声明通常被称为 _桩_ _stub_，因为它告诉你有关函数的参数和返回值，没有任何实现。它用来指定合约接口，如果继承，每个函数都必须在子类中指定。
 
-library:: A library contract is one that is meant to be deployed only once and used by other contracts, using the +delegatecall+ method (see <<solidity_address_object>>).
+library:: 一个库合约是一个只能部署一次并被其他合约使用的合约，使用+delegatecall+方法（见<<solidity_address_object>>）。
 
-==== Functions
+==== 函数
 
-Within a contract, we define functions that can be called by an EOA transaction or another contract. In our +Faucet+ example, we have two functions: +withdraw+ and the (unnamed) _fallback_ function.
+在合约中，我们定义了可以由EOA交易或其他合约调用的函数。在我们的+Faucet+示例中，我们有两个函数：+withdraw+和（未命名的）_fallback_函数。
 
-Functions are defined with the following syntax:
+函数使用以下语法定义：
 
 *function*{nbsp}FunctionName([_parameters_])
 {*public*|*private*|*internal*|*external*}
@@ -334,39 +369,39 @@ Functions are defined with the following syntax:
 pass:[[]_modifiers_]
 [*returns*{nbsp}(pass:[<]_return types_pass:[>])]
 
-Let's look at each of these components:
+我们来看看每个组件：
 
-FunctionName:: Defines the name of the function, which is used to call the function from a transaction (EOA), other contract, or from within the same contract. One function in each contract may be defined without a name, in which case it is the _fallback_ function, which is called when no other function is named. The fallback function cannot have any arguments or return anything.
+FunctionName:: 定义函数的名称，用于通过交易（EOA），其他合约或同一合约调用函数。每个合约中的一个功能可以定义为不带名称的，在这种情况下，它是_fallback_函数，在没有指定其他函数时调用该函数。fallback函数不能有任何参数或返回任何内容。
 
-parameters:: Following the name, we specify the arguments that must be passed to the function, with their names and types. In our +Faucet+ example we defined +uint withdraw_amount+ as the only argument to the +withdraw+ function.
+parameters:: 在名称后面，我们指定必须传递给函数的参数，包括名称和类型。在我们的+Faucet+示例中，我们将+uint withdraw_amount+定义为+withdraw+函数的唯一参数。
 
-The next set of keywords (public, private, internal, external) specify the function's _visibility_:
+下一组关键字 (public, private, internal, external) 指定了函数的_可见性_：
 
-public:: Public is the default and such functions can be called by other contracts, EOA transactions or from within the contract. In our +Faucet+ example, both functions are defined as public.
+public:: Public是默认的，这些函数可以被其他合约，EOA交易或合约内部调用。在我们的+Faucet+示例中，这两个函数都被定义为public。
 
-external:: External functions are like public, except they cannot be called from within the contract, unless they are prefixed with the keyword +this+.
+external:: 外部函数就像public一样，但除非使用关键字this作为前缀，否则它们不能从合约中调用。
 
-internal:: Internal functions are only "visible" within the contract, cannot be called by another contract or EOA transaction. They can be called by derived contracts (those that inherit them).
+internal:: 内部函数只能在合约内部"可见"，不能被其他合约或EOA交易调用。他们可以被派生合约调用（继承的）。
 
-private:: Private functions are like internal functions but they cannot be called by derived contracts (that inherit them).
+private:: private函数与内部函数类似，但不能由派生的合约调用（继承的）。
+ 
+请记住，术语 +internal+ 和 +private+ 有些误导性。公共区块链中的任何函数或数据总是_可见的_，意味着任何人都可以看到代码或数据。以上关键字仅影响函数的调用方式和时机。
 
-Keep in mind, the terms +internal+ and +private+ are somewhat misleading. Any function or data inside a contract is always _visible_ on the public blockchain, meaning that anyone can see the code or data. The keywords above only affect how and when a function can be _called_.
+下一组关键字（pure, constant, view, payable）会影响函数的行为：
 
-The next set of keywords (pure, constant, view, payable) affect the behavior of the function:
+constant/view:: 标记为_view_的函数，承诺不修改任何状态。术语_constant_是_view_的别名，将被弃用。目前，编译器不强制执行_view_修饰器，只产生一个警告，但这应该成为Solidity v0.5中的强制关键字。
 
-constant/view:: A function marked as a _view_, promises not to modify any state. The term _constant_ is an alias for _view_ that will be deprecated. At this time, the compiler does not enforce the _view_ modifier, only producing a warning, but this is expected to become an enforced keyword in v0.5 of Solidity.
+pure:: 纯(pure)函数不读写任何变量。它只能对参数进行操作并返回数据，而不涉及任何存储的数据。纯函数旨在鼓励没有副作用或状态的声明式编程。
 
-pure:: A pure function is one that neither reads nor write any variables. It can only operate on arguments and return data, without reference to any stored data. Pure functions are intended to encourage declarative-style programming without side-effects or state.
+payable:: payable函数是可以接受付款的功能。没有payable的函数将拒绝收款，除非它们来源于coinbase（挖矿收入）或 作为 +SELFDESTRUCT+（合约终止）的目的地。在这些情况下，由于EVM中的设计决策，合约无法阻止收款。
 
-payable:: A payable function is one that can accept incoming payments. Functions without payable will reject incoming payments, unless they originate in a coinbase (mining income) or as the destination of +SELFDESTRUCT+ (contract termination). In those cases, a contract cannot prevent incoming payments, due to design decisions in the EVM.
+正如你在+Faucet+示例中看到的那样，我们有一个payable函数（fallback函数），它是唯一可以接收付款的函数。
 
-As you can see in our +Faucet+ example, we have one payable function (the fallback function), which is the only function that can receive incoming payments.
+==== 合约构造和自毁
 
-==== Contract constructor and selfdestruct
+有一个特殊函数只能使用一次。创建合约时，它还运行 _构造函数_ _constructor function_（如果存在），以初始化合约状态。构造函数与创建合约时在同一个交易中运行。构造函数是可选的。事实上，我们的+Faucet+示例没有构造函数。
 
-There is a special function that is only used once. When a contract is created, it also runs the _constructor function_ if one exists, to initialize the state of the contract. The constructor is run in the same transaction as the contract creation. The constructor function is optional. In fact, our +Faucet+ example has no constructor function.
-
-Constructors can be specified in two ways. Up to Solidity v.0.4.21, the constructor is a function whose name matches the name of the contract:
+构造函数可以通过两种方式指定。到Solidity v.0.4.21，构造函数是一个名称与合约名称相匹配的函数：
 
 [[old_constructor_style]]
 .Constructor function prior to Solidity v0.4.22
@@ -378,9 +413,9 @@ contract MEContract {
 }
 ----
 
-The difficulty with this format is that if the contract name is changed and the constructor function name is not changed, it is no longer a constructor. This can cause some pretty nasty, unexpected and difficult to notice bugs. Imagine for example if the constructor is setting the "owner" of the contract for purposes of control. Not only will it not set the owner at the time of contract creation, but may also be "callable" like a normal function, allowing any third party to hijack the contract and become the "owner" after contract creation.
+这种格式的难点在于如果合约名称被改变并且构造函数名称没有改变，它就不再是构造函数了。这可能会导致一些非常令人讨厌的，意外的并且很难注意到的错误。想象一下，例如，如果构造函数正在为控制目的而设置合约的“所有者”。它不仅可以在创建合约时设置所有者，还可以像正常功能那样“可调用”，允许任何第三方在合约创建后劫持合约并成为“所有者”。
 
-To address the potential problems with constructor functions being based on having an identical name as the contract, Solidity v0.4.22 introduces a +constructor+ keyword that operates like a constructor function but does not have a name. Renaming the contract does not affect the constructor at all. Also, it is easier to identify which function is the constructor. It looks like this:
+为了解决构造函数的潜在问题，它基于与合约名称相同的名称，Solidity v0.4.22引入了一个+constructor+关键字，它像构造函数一样运行，但没有名称。重命名合约并不会影响构造函数。此外，更容易确定哪个函数是构造函数。看起来像这样：
 
 ----
 pragma ^0.4.22
@@ -391,19 +426,19 @@ contract MEContract {
 }
 ----
 
-So, to summarize, a contract's lifecycle starts with a creation transaction from an EOA or other contract. If there is a constructor, it is called from the same creation transaction and can initialize the state of the contract as it is being created.
+总而言之，合约的生命周期始于EOA或其他合约的创建交易。如果有一个构造函数，它将在相同的创建交易中调用，并可以在创建合约时初始化合约状态。
 
-The other end of the contract's lifecycle is _contract destruction_. contracts are destroyed by a special EVM opcode called +SELFDESTRUCT+. It used to be name +SUICIDE+, but that name was deprecated due to the negative associations of the word. In Solidity, this opcode is exposed as a high level built-in function called +selfdestruct+, which takes one argument: the address to receive any balance remaining in the contract account. It looks like this:
+合约生命周期的另一端是 _合约销毁_ _contract destruction_。合约被称为+SELFDESTRUCT+的特殊EVM操作码销毁。它曾经是+SUICIDE+，但由于该词的负面性，该名称已被弃用。在Solidity中，此操作码作为高级内置函数+selfdestruct+公开，该函数采用一个参数：地址以接收合约帐户中剩余的余额。看起来像这样：
 
 ----
 selfdestruct(address recipient);
 ----
 
-==== Adding a constructor and selfdestruct to our +Faucet+ example
+==== 添加一个构造函数和selfdestruct到我们的+Faucet+示例
 
-The +Faucet+ example contract we introduced in <<intro>> does not have any constructor or selfdestruct functions. It is an eternal contract that cannot be removed from the blockchain. Let's change that, by adding a constructor and selfdestruct function. We probably want the selfdestruct to be callable _only_ by the EOA that originally created the contract. By convention, this is usually stored in an address variable, called +owner+. Our constructor sets the owner variable and the selfdestruct function will first check that the owner called it.
+我们在<<intro>>中引入的+Faucet+示例合约没有任何构造函数或自毁函数。这是永恒的合约，不能从区块链中删除。让我们通过添加一个构造函数和selfdestruct函数来改变它。我们可能希望自毁仅由最初创建合约的EOA来调用。按照惯例，这通常存储在称为+owner+的地址变量中。我们的构造函数设置所有者变量，并且selfdestruct函数将首先检查是否是所有者调用它。
 
-First our constructor:
+首先是我们的构造函数：
 
 ----
 // Version of Solidity compiler this program was written for
@@ -422,11 +457,11 @@ contract Faucet {
 [...]
 ----
 
-We've changed the pragma directive to specify v0.4.22 as the minimum version for this example, as we are using the new constructor keyword that only exists as of v.0.4.22 of Solidity. Our contract now has an +address+ type variable named +owner+. The name "owner" is not special in any way. We could call this address variable "potato" and still use it the same way. The name +owner+ simply makes the intention and purpose clear.
+我们已经更改了pragma指令，将v0.4.22指定为此示例的最低版本，因为我们使用的是仅存在于Solidity v.0.4.22中的constructor关键字。我们的合约现在有一个名为+owner+的+address+类型变量。名称“owner”不是特殊的。我们可以将这个地址变量称为“potato”，仍然以相同的方式使用它。名称+owner+只是简单明了的目的和目的。
 
-Then, our constructor, which runs as part of the contract creation transaction, assigns the address from +msg.sender+ to the +owner+ variable. We've used the +msg.sender+ in the +withdraw+ function to identify the origin of the withdrawal request. In the constructor however, the +msg.sender+ is the EOA or contract address that signed the contract creation transaction. We know this is the case _because_ this is a constructor function: it only runs once and only as a result of the contract creation transaction.
+然后，作为合约创建交易的一部分运行的constructor函数将+msg.sender+的地址分配给+owner+变量。我们使用 +withdraw+ 函数中的 +msg.sender+ 来 标识提款请求的来源。然而，在构造函数中，+msg.sender+是签署合约创建交易的EOA或合约地址。这是事实，因为这是一个构造函数：它只运行一次，并且仅作为合约创建交易的结果。
 
-Ok, now we can add a function to destroy the contract. We need to make sure that only the owner can run this function, so we will use a +require+ statement to control access. Here's how it will look:
+好的，现在我们可以添加一个函数来销毁合约。我们需要确保只有所有者才能运行此函数，因此我们将使用+require+语句来控制访问。看起来像这样：
 
 ----
 // Contract destructor
@@ -436,11 +471,11 @@ function destroy() public {
 }
 ----
 
-If anyone other calls this +destroy+ function from an address other than +owner+, it will fail. But if the same address stored in +owner+ by the constructor calls it, the contract will selfdestruct and send any remaining balance to the +owner+ address.
+如果其他人用 +owner+ 以外的地址调用 destroy 函数，则将失败。但是，如果构造函数存储在 +owner+ 中的地址调用它，合约将自毁，并将剩余余额发送到 +owner+ 地址。
 
-==== Function modifiers
+==== 函数修饰器
 
-Solidity offers a special type of function which is called a _function modifier_. You apply modifiers to functions by adding the modifier name in the function declaration. Modifier functions are most often used to create conditions that apply to many functions within a contract. We have an access control statement already, in our +destroy+ function. Let's create a function modifier that expresses that condition:
+Solidity提供了一种称为_函数修饰器_的特殊类型的函数。通过在函数声明中添加修饰器名称，可以将修饰器应用于函数。修饰器函数通常用于创建适用于合约中许多函数的条件。我们已经在我们的+destroy+函数中有一个访问控制语句。让我们创建一个表达该条件的函数修饰器：
 
 [[function_modifier_onlyowner]]
 .onlyOwner function modifier
@@ -451,13 +486,13 @@ modifier onlyOwner {
 }
 ----
 
-In <<function_modifier_onlyowner>> we see the declaration of a function modifier, named +onlyOwner+. This function modifier sets a condition on any function that it modifies, requiring that the address stored as the +owner+ of the contract is the same as the address of the transaction's +msg.sender+. This is the basic design pattern for access control, allowing only the owner of a contract to execute any function that has the +onlyOwner+ modifier.
+在 <<function_modifier_onlyowner>> 中，我们看到函数修饰器的声明，名为+onlyOwner+。此函数修饰器为其修饰的任何函数设置条件，要求存储为合约的+owner+的地址与交易的+msg.sender+的地址相同。这是访问控制的基本设计模式，只允许合约的所有者执行具有+onlyOwner+修饰器的任何函数。
 
-You may have noticed that our function modifier has a peculiar syntactic "placeholder" in it, an underscore followed by a semicolon (+pass:[_;]+). This placeholder is replaced by the code of the function that is being modified. Essentially, the modifier is "wrapped around" the modified function, placing its code in the location identified by the underscore character.
+你可能已经注意到我们的函数修饰器在其中有一个特殊的语法“占位符”，下划线后跟分号（+pass:[_;]+）。此占位符由正在修饰的函数的代码替换。本质上，修饰器“修饰”修饰过的函数，将其代码置于由下划线字符标识的位置。
 
-To apply a modifier, you add its name to the function declaration. More than one modifier can be applied to a function, as a comma-separated list, applied in the sequence they are declared.
+要应用修饰器，请将其名称添加到函数声明中。可以将多个修饰器应用于一个函数，作为逗号分隔的列表，以声明的顺序应用。
 
-Let's re-write our +destroy+ function to use the +onlyOwner+ modifier:
+让我们重新编写+destroy+函数来使用+onlyOwner+修饰器：
 
 ----
 function destroy() public onlyOwner {
@@ -465,33 +500,33 @@ function destroy() public onlyOwner {
 }
 ----
 
-The function modifier's name (+onlyOwner+) is after the keyword +public+ and tells us that the +destroy+ function is modified by the +onlyOwner+ modifier. Essentially you can read this as "Only the owner can destroy this contract". In practice, the resulting code is equivalent to "wrapping" the code from +onlyOwner+ around +destroy+.
+函数修饰器的名称（+onlyOwner+）位于关键字+public+之后，并告诉我们+destroy+函数由+onlyOwner+修饰器修饰。基本上你可以把它写成：“只有所有者才能销毁这份合约”。实际上，生成的代码相当于由+onlyOwner+ “包装” 的+destroy+代码。
 
-Function modifiers are an extremely useful tool because they allow us to write preconditions for functions and apply them consistently, making the code easier to read and, as a result, easier to audit for security problems. They are most often used for access control, as in the example <<function_modifier_onlyowner>>, but are quite versatile and can be used for a variety of other purposes.
+函数修饰器是一个非常有用的工具，因为它们允许我们为函数编写前提条件并一致地应用它们，使代码更易于阅读，因此更易于审计安全问题。它们最常用于访问控制，如示例中的“function_modifier_onlyowner”，但功能很多，可用于各种其他目的。
 
-Inside a modifier, you can access all the symbols (variables and arguments) visible to the modified function. In this case, we can access the +owner+ variable, which is declared within the contract. However, the inverse is not true: you cannot access any of the modifier's variables inside the modified function.
+在修饰函数内部，可以访问被修饰的函数的的所有可见符号（变量和参数）。在这种情况下，我们可以访问在合约中声明的+owner+变量。但是，反过来并不正确：你无法访问修饰函数中的任何变量。
 
-==== Contract inheritance
+==== 合约继承
 
-Solidity's contract object supports _inheritance_, which is a mechanism for extending a base contract with additional functionality. To use inheritance, specify a parent contract with the keyword +is+:
+Solidity的合约对象支持 _继承_，这是一种用附加功能扩展基础合约的机制。要使用继承，请使用关键字+is+指定父合约：
 
 ----
 contract Child is Parent {
 }
 ----
 
-With this construct, the +Child+ contract inherits all the methods, functionality, and variables of +Parent+. Solidity also supports multiple inheritance, which can be specified by comma-separated contract names after the keyword +is+:
+通过这个构造，+Child+合约继承了+Parent+的所有方法，功能和变量。Solidity还支持多重继承，可以在关键字+is+之后用逗号分隔的合约名称指定多重继承：
 
 ----
 contract Child is Parent1, Parent2 {
 }
 ----
 
-Contract inheritance allows us to write our contracts in such as way as to achieve modularity, extensibility and reuse. We start with contracts that are simple and implement the most generic capabilities, then extend them by inheriting those capabilities in more specialized contracts.
+合约继承使我们能够以实现模块化，可扩展性和重用的方式编写我们的合约。我们从简单的合约开始，实现最通用的功能，然后通过在更具体的合约中继承这些功能来扩展它们。
 
-In our +Faucet+ contract, we introduced the constructor and destructor, together with access control for an owner, assigned on construction. Those capabilities are quite generic: many contracts will have them. We can defined them as generic contracts, then use inheritance to extend them to the +Faucet+ contract.
+在我们的+Faucet+合约中，我们引入了构造函数和析构函数，以及为构建时指定的owner提供的访问控制。这些功能非常通用：许多合约都有它们。我们可以将它们定义为通用合约，然后使用继承将它们扩展到+Faucet+合约。
 
-We start by defining a base contract +owned+, which has an +owner+ variable, setting it in the contract's constructor:
+我们首先定义一个基础合约+owned+，它拥有一个+owner+变量，并在合约的构造函数中设置：
 
 ----
 contract owned {
@@ -510,7 +545,7 @@ contract owned {
 }
 ----
 
-Next, we define a base contract +mortal+, which inherits +owned+:
+接下来，我们定义一个基本合约 +mortal+，继承自 +owned+：
 
 ----
 contract mortal is owned {
@@ -521,9 +556,9 @@ contract mortal is owned {
 }
 ----
 
-As you can see, the +mortal+ contract can utilize the +onlyOwner+ function modifier, defined in +owned+. It indirectly also uses the +owner+ address variable and the constructor defined in +owned+. Inheritance makes each contract simpler and focused on the specific functionality of its class, allowing us to manage the details in a modular way.
+如你所见，+mortal+ 合约可以使用在+owned+中定义的+ownOwner+函数修饰器。它间接地也使用+owner+ address变量和+owned+中定义的构造函数。继承使每个合约变得更简单，并专注于其类的特定功能，使我们能够以模块化的方式管理细节。
 
-Now we can further extend the +owned+ contract, inheriting its capabilities in +Faucet+:
+现在我们可以进一步扩展+owned+合约，在+Faucet+中继承其功能：
 
 ----
 contract Faucet is mortal {
@@ -539,40 +574,40 @@ contract Faucet is mortal {
 }
 ----
 
-By inheriting +mortal+, which in turn inherits +owned+, the +Faucet+ contract now has the constructor and destroy functions, and a defined owner. The functionality is the same as when those functions were within +Faucet+, but now we can reuse those functions in other contracts without writing them again. Code re-use and modularity make our code cleaner, easier to read, and easier to audit.
+通过继承+mortal+，继而继承+owned+，+Faucet+合约现在具有构造函数和销毁函数以及定义的owner。这些功能与+Faucet+中的功能相同，但现在我们可以在其他合约中重用这些功能而无需再次写入它们。代码重用和模块化使我们的代码更清晰，更易于阅读，并且更易于审计。
 
-==== Error handling (assert, require, revert)
+==== 错误处理（assert, require, revert）
 
-A contract call can terminate and return an error. Error handling in Solidity is handled by four functions: +assert+, +require+, +revert+, and +throw+ (now deprecated).
+合约调用可以终止并返回错误。Solidity中的错误由四个函数处理：+assert+, +require+, +revert+, 和 +throw+（现在已弃用）。
 
-When a contract terminates with an error, all the state changes (changes to variables, balances, etc.) are reverted, all the way up the chain of contract calls, if more than one contract were called. This ensures that transactions are atomic, meaning they either complete successfully or have no effect on state and are reverted entirely.
+当合约终止并出现错误时，如果有多个合约被调用，则所有状态变化（变量，余额等的变化）都会恢复，直至合约调用链的源头。这确保交易是原子的，这意味着它们要么成功完成，要么对状态没有影响，并完全恢复。
 
-The +assert+ and +require+ functions operate in the same way, evaluating a condition and stopping execution with an error if the condition is false. By convention, +assert+ is used when the outcome is expected to be true, meaning that we use +assert+ to test internal conditions. By comparison, +require+ is used when testing inputs (such as function arguments or transaction fields), setting our expectations for those conditions.
++assert+和+require+函数以相同的方式运行，如果条件为假，则评估条件并停止执行并返回错误。按照惯例，当结果预期为真时使用+assert+，这意味着我们使用+assert+来测试内部条件。相比之下，在测试输入（例如函数参数或交易字段）时使用+require+，设置我们对这些条件的期望。
 
-We've used +require+ in our function modifier +onlyOwner+, to test that the message sender is the owner of the contract:
+我们在函数修饰器+onlyOwner+中使用了+require+来测试消息发送者是合约的所有者：
 
 ----
 require(msg.sender == owner);
 ----
 
-The +require+ function acts as a _gate condition_, preventing execution of the rest of the function and producing an error if it is not satisfied.
++require+ 函数充当_守护条件_，阻止执行函数的其余部分，并在不满足时产生错误。
 
-As of Solidity v.0.4.22, +require+ can also include a helpful text message, that can be used to show the reason for the error. The error message is recorded in the transaction log. So we can improve our code, by adding an error message in our +require+ function:
+从Solidity v.0.4.22开始，+require+还可以包含有用的文本消息，可用于显示错误的原因。错误消息记录在交易日志中。所以我们可以通过在我们的+require+函数中添加一条错误消息来改进我们的代码：
 
 ----
 require(msg.sender == owner, "Only the contract owner can call this function");
 ----
 
-The +revert+ and +throw+ functions, stops the execution of the contract and revert any state changes. The  +throw+ function is obsolete and will be removed in future versions of Solidity - you should use +revert+ instead. The +revert+ function can also take an error message as the only argument, which is recorded in the transaction log.
++revert+ 和 +throw+ 函数，停止执行合约并还原任何状态更改。+throw+函数已过时，将在未来版本的Solidity中删除 - 你应该使用+revert+代替。+revert+函数还可以将作为唯一参数的错误消息记录在交易日志中。
 
-Certain conditions in a contract will generate errors regardless of whether we explicitly check for them. For example, in our +Faucet+ contract, we don't check whether there is enough ether to satisfy a withdrawal request. That's because the +transfer+ function will fail with an error and revert the transaction if there is insufficient balance to make the transfer:
+无论我们是否明确检查它们，合约中的某些条件都会产生错误。例如，在我们的+Faucet+合约中，我们不检查是否有足够的ether来满足提款请求。这是因为如果没有足够的余额进行转账，+transfer+函数将失败并恢复交易：
 
 .The transfer function will fail if there is an insufficient balance
 ----
 msg.sender.transfer(withdraw_amount);
 ----
 
-However, it might be better to check explicitly and provide a clear error message on failure. We can do that by adding a require statement before the transfer:
+但是，最好明确检查，并在失败时提供明确的错误消息。我们可以通过在转移之前添加一个require语句来实现这一点：
 
 ----
 require(this.balance >= withdraw_amount,
@@ -580,18 +615,17 @@ require(this.balance >= withdraw_amount,
 msg.sender.transfer(withdraw_amount);
 ----
 
-Additional error checking code like this will increase gas consumption slightly, but it offers better error reporting than if omitted. Striking the right balance between gas consumption and verbose error checking is something you will need to decide based on the expected use of your contract. In the case of a +Faucet+ intended for a testnet, we'd probably err on the side of extra reporting even if it costs more gas. Perhaps for a mainnet contract we'd choose to be frugal with our gas usage instead.
+像这样的其他错误检查代码会略微增加gas消耗，但它比不检查提供了更好的错误报告。在gas量和详细错误检查之间取得适当的平衡是你需要根据合约的预期用途来决定的。在为测试网络设计的+Faucet+的情况下，即使额外报告成本更高，我们也不冒险犯错。也许对于一个主网合约，我们会选择节约gas用量。
 
+==== 事件（Events）
 
-==== Events
+事件是便于生产交易日志的Solidity构造。当一个交易完成（成功与否）时，它会产生一个 _交易收据_ _transaction receipt_，就像我们在 <<evm>> 中看到的那样。交易收据包含_log_条目，用于提供有关在执行交易期间发生的操作的信息。事件是用于构造这些日志的Solidity高级对象。
 
-Events are Solidity constructs that facilitate the production of transaction logs. When a transaction completes (successfully or not), it produces a _transaction receipt_, as we will see in <<evm>>. The transaction receipt contains _log_ entries that provide information about the actions that occurred during the execution of the transaction. Events are the Solidity high-level objects that are used to construct these logs.
+事件在轻量级客户端和DApps中特别有用，它可以“监视”特定事件并将其报告给用户界面，或对应用程序的状态进行更改以反映底层合约中的事件。
 
-Events are especially useful in lightweight clients and DApps, which can "watch" for specific events and report them to the user-interface, or make a change in the state of the application to reflect an event in an underlying contract.
+事件对象接收序列化的参数并记录在区块链的交易日志中。你可以在参数之前应用关键字+indexed+，以使其值作为索引表（哈希表）的一部分，可以由应用程序搜索或过滤。
 
-Event objects take arguments that are serialized and recorded in the transaction logs, in the blockchain. You can supply the keyword +indexed+, before an argument, to make the value part of an indexed table (hash table) that can be searched or filtered by an application.
-
-We have not added any events in our +Faucet+ example, so far, so let's do that. We will add two events, one to log any withdrawals and one to log any deposits. We will call these events +Withdrawal+ and +Deposit+ respectively. First, we define the events, in the +Faucet+ contract:
+到目前为止，我们还没有在我们的+Faucet+示例中添加任何事件，所以让我们来做。我们将添加两个事件，一个记录任何提款，一个记录任何存款。我们将分别称这些事件+Withdrawal+和+Deposit+。首先，我们在+Faucet+合约中定义事件：
 
 ----
 contract Faucet is mortal {
@@ -602,9 +636,9 @@ contract Faucet is mortal {
 }
 ----
 
-We've chosen to make the addresses +indexed+, to allow searching and filtering in any user interface built to access our +Faucet+.
+我们选择将地址标记为+indexed+，以允许任何访问我们的+Faucet+的用户界面中搜索和过滤。
 
-Next, we use the +emit+ keyword to incorporate the event data in the transaction logs:
+接下来，我们使用 +emit+ 关键字将事件数据合并到交易日志中：
 
 ----
 // Give out ether to anyone who asks
@@ -619,26 +653,66 @@ function () public payable {
 }
 ----
 
-The resulting +Faucet.sol+ contract looks like this:
++Faucet.sol+ 合约现在看起来像：
 
 [[Faucet8.sol]]
 .Faucet8.sol: Revised Faucet contract, with events
 [source,solidity,linenums]
 ----
 include::code/Solidity/Faucet8.sol['code/Solidity/Faucet8.sol']
+// Version of Solidity compiler this program was written for
+pragma solidity ^0.4.22;
+
+contract owned {
+	address owner;
+	// Contract constructor: set owner
+	constructor() {
+		owner = msg.sender;
+	}
+	// Access control modifier
+	modifier onlyOwner {
+		require(msg.sender == owner, "Only the contract owner can call this function");
+		_;
+	}
+}
+
+contract mortal is owned {
+	// Contract destructor
+	function destroy() public onlyOwner {
+		selfdestruct(owner);
+	}
+}
+
+contract Faucet is mortal {
+	event Withdrawal(address indexed to, uint amount);
+	event Deposit(address indexed from, uint amount);
+
+	// Give out ether to anyone who asks
+	function withdraw(uint withdraw_amount) public {
+		// Limit withdrawal amount
+		require(withdraw_amount <= 0.1 ether);
+		require(this.balance >= withdraw_amount,
+			"Insufficient balance in faucet for withdrawal request");
+		// Send the amount to the address that requested it
+		msg.sender.transfer(withdraw_amount);
+		emit Withdrawal(msg.sender, withdraw_amount);
+	}
+	// Accept any incoming amount
+	function () public payable {
+		emit Deposit(msg.sender, msg.value);
+	}
+}
 ----
 
+===== 捕捉事件
 
-===== Catching Events
+好的，所以我们已经建立了我们的合约来发布事件。我们如何看到交易的结果并“捕捉”事件？+web3.js+库提供一个数据结构，作为包含交易日志的交易的结果。在那里，我们可以看到交易产生的事件。
 
-Ok, so we've setup our contract to emit events. How do we see the results of a transaction and "catch" the events? The +web3.js+ library provides a data structure as the result of a transaction that contains the transaction logs. Within those we can see the events generated by the transaction.
-
-Let's use +truffle+ to run a test transaction on the revised +Faucet+ contract. Follow the instructions in <<truffle>> to setup a project directory and compile the +Faucet+ code. The source code can be found in the book's GitHub repository under:
+让我们使用+truffle+在修订的+Faucet+合约上运行测试交易。按照 <<truffle>> 中的说明设置项目目录并编译+Faucet+代码。源代码可以在本书的GitHub存储库中找到：
 
 ----
 code/truffle/FaucetEvents
 ----
-
 
 [[testing_events_prep]]
 ----
@@ -672,32 +746,31 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 
 ----
 
-After getting the deployed contract, using the +deployed()+ function, we execute two transactions. The first transaction is a deposit (using +send+), which emits a +Deposit+ event in the transaction logs:
+用+deployed()+函数获得部署的合约后，我们执行两个交易。第一笔交易是一笔存款（使用+send+），在交易日志中发出+Deposit+事件：
 
 ----
 Deposit { from: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
   amount: BigNumber { s: 1, e: 18, c: [ 10000 ] } }
 ----
 
-Next, we use the +withdraw+ function to make a withdrawal. This emits a +Withdrawal+ event:
+接下来，我们使用+withdraw+函数进行提款。这会发出+Withdrawal+事件：
 
 ----
 Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
   amount: BigNumber { s: 1, e: 17, c: [ 1000 ] } }
 ----
 
-To get these events, we looked at the +logs+ array returned as a result (+res+) of the transactions. The first log entry (+logs[0]+) contains an event name in +logs[0].event+ and the event arguments in +logs[0].args+. By showing these on the console, we can see the emitted event name and the event arguments.
+为了获得这些事件，我们查看了作为结果（+res+）返回的+logs+数组。第一个日志条目（+logs[0]+）包含+logs[0].event+的事件名称和+logs[0].args+的事件参数。通过在控制台上显示这些信息，我们可以看到发出的事件名称和事件参数。
 
-Events are a very useful mechanism, not only for intra-contract communication, but also for debugging during development.
+事件是一种非常有用的机制，不仅适用于合约内通信，还适用于开发过程中的调试。
 
-==== Calling other contracts (call, send, delegatecall, callcode)
+==== 调用其他合约 (call, send, delegatecall, callcode)
 
-Calling other contracts from within your contract is a very useful but potentially dangerous operation. We'll examine the various ways you can achieve this and evaluate the risks of each method.
+在合约中调用其他合约是非常有用但有潜在危险的操作。我们将研究你可以实现的各种方法并评估每种方法的风险。
 
-===== Creating a new instance
+===== 创建一个新的实例
 
-The safest way to call another contract is if you create that other contract yourself. That way, you are certain of its interfaces and behavior. To do this, you can simply instantiate it, using the keyword +new+, as with any object-oriented language. In Solidity, the keyword +new+ will create the contract on the blockchain and return an object that you can use to reference it. Let's say you want to create and call a +Faucet+ contract, from within another contract called +Token+:
-
+调用另一份合约最安全的方法是你自己创建其他合约。这样，你就可以确定它的接口和行为。要做到这一点，你可以简单地使用关键字+new+来实例化它，就像任何面向对象的语言一样。在Solidity中，关键字+new+将在区块链上创建合约并返回一个可用于引用它的对象。假设你想从另一个名为+Token+的合约中创建并调用+Faucet+合约：
 
 ----
 contract Token is mortal {
@@ -709,7 +782,7 @@ contract Token is mortal {
 }
 ----
 
-This mechanism for contract construction ensures that you know the exact type of contract and its interface. The contract +Faucet+ must be defined within the scope of +Token+, which you can do with an +import+ statement, if the definition is in another file:
+这种合约建造机制确保你知道合约的确切类型及其接口。合约+Faucet+必须在+Token+范围内定义，如果定义位于另一个文件中，你可以使用+import+语句来执行此操作：
 
 ----
 import "Faucet.sol"
@@ -723,7 +796,7 @@ contract Token is mortal {
 }
 ----
 
-The +new+ keyword can also accept optional parameters to specify the +value+ of ether transfer on creation, and arguments passed to the new contract's constructor, if any:
++new+关键字还可以接受可选参数来指定创建时传输的ether+值+以及传递给新合约构造函数的参数（如果有）：
 
 ----
 import "Faucet.sol"
@@ -737,7 +810,7 @@ contract Token is mortal {
 }
 ----
 
-If we endow the created +Faucet+ with some ether, we can also then call the +Faucet+ functions, which operate just like a method call. In this example, we call the +destroy+ function of +Faucet+, from within the +destroy+ function of +Token+:
+如果我们赋予创建的+Faucet+一些ether，我们也可以调用+Faucet+函数，它们就像方法调用一样操作。在这个例子中，我们从+Token+的+destroy+函数中调用+Faucet+的+destroy+函数：
 
 ----
 import "Faucet.sol"
@@ -755,9 +828,9 @@ contract Token is mortal {
 }
 ----
 
-===== Addressing an existing instance
+===== 访问现有的实例
 
-Another way we can use to call a contract, is to cast the address of an existing instance of the contract. With this method, we apply a known interface to an existing instance. It is therefore critically important that we know, for sure, that the instance we are addressing is in fact of the same type as we assume. Let's look at an example:
+我们可以用来调用合约的另一种方法是将现有合约的地址转换为实例。使用这种方法，我们将已知接口应用于现有实例。因此，我们需要确切地知道，我们正在处理的事例实际上与我们所假设的类型相同，这一点非常重要。我们来看一个例子：
 
 ----
 import "Faucet.sol"
@@ -773,13 +846,13 @@ contract Token is mortal {
 }
 ----
 
-Here, we take an address provided as an argument to the constructor and we cast it as a +Faucet+ object. This is much riskier than the previous mechanism, because we don't in fact know whether that address is in fact a +Faucet+ object. When we call +withdraw+, we are assuming that it accepts the same arguments and executes the same code as our +Faucet+ declaration, but we can't be sure. For all we know, the +withdraw+ function at this address could execute something completely different from what we expect, even if it is named the same. Using addresses passed as input and casting them into specific objects is therefore much more dangerous than creating the contract ourselves.
+在这里，我们将地址作为参数提供给构造函数，并将其作为+Faucet+对象进行转换。这比以前的机制风险大得多，因为我们实际上并不知道该地址是否实际上是+Faucet+对象。当我们调用+withdraw+时，我们假设它接受相同的参数并执行与我们的+Faucet+声明相同的代码，但我们无法确定。就我们所知，在这个地址的+withdraw+函数可以执行与我们所期望的完全不同的事情，即使它的命名相同。因此，使用作为输入传递的地址并将它们转换成特定的对象中比自己创建合约要危险得多。
 
-===== Raw call, delegatecall
+===== 原始调用, delegatecall
 
-Solidity offers some even more "low-level" functions for calling other contracts. These correspond directly to EVM opcodes of the same name and allow us to construct a contract-to-contract call manually. As such, they represent the most flexible *and* the most dangerous mechanisms for calling other contracts.
+Solidity为调用其他合约提供了一些更“低级”的功能。它们直接对应于具有相同名称的EVM操作码，并允许我们手动构建合约到合约的调用。因此，它们代表了调用其他合约最灵活和最危险的机制。
 
-Here's the same example, using a +call+ method:
+以下是使用 +call+ 方法的相同示例：
 
 ----
 contract Token is mortal {
@@ -789,7 +862,7 @@ contract Token is mortal {
 }
 ----
 
-As you can see, this type of +call+, is a _blind_ call into a function, very much like constructing a raw transaction, only from within a contract's context. It can expose our contract to a number of security risks, most importantly _reentrancy_, which we will talk about in more detail in <<reentrancy>>. The +call+ function will return false if there is a problem, so we can evaluate the return value, for error handling:
+正如你所看到的，这种类型的+call+，是一个函数的_盲_ _blind_调用，就像构建一个原始交易一样，只是在合约的上下文中。它可能会使我们的合约面临一些安全风险，最重要的是 _可重入性_ _reentrancy_，我们将在 <<reentrancy>> 中更详细地讨论。如果出现问题，+call+函数将返回false，所以我们可以评估返回值以进行错误处理：
 
 ----
 contract Token is mortal {
@@ -801,26 +874,56 @@ contract Token is mortal {
 }
 ----
 
-Another variant of +call+ is +delegatecall+, which replaced the more dangerous +callcode+. The +callcode+ method will be deprecated soon, so it should not be used.
++call+的另一个变体是+delegatecall+，它取代了更危险的+callcode+。+callcode+方法很快就会被弃用，所以不应该使用它。
 
-As mentioned in <<solidity_address_object>>, a +delegatecall+ is different from a +call+, in that the +msg+ context does not change. For example, whereas a +call+ changes the value of +msg.sender+ to be the calling contract, a +delegatecall+ keeps the same +msg.sender+ as it is in the calling contract. Essentially, +delegatecall+ runs the code of another contract inside the context of the current contract. It is most often used to invoke code from a +library+.
+正如<<solidity_address_object>>中提到的，+delegatecall+不同于+call+，因为+msg+上下文不会改变。例如，+call+ 将 +msg.sender+ 的值更改为发起调用的合约，而+delegatecall+保持与发起调用的合约中的+msg.sender+相同。基本上，+delegatecall+在当前合约的上下文中运行另一个合约的代码。它最常用于从+library+调用代码。
 
-The +delegate+ call should be used with great caution. It can have some unexpected effects, especially if the contract you call was not designed as a library.
+应该谨慎使用+delegatecall+。它可能会有一些意想不到的效果，特别是如果你调用的合约不是作为库设计的。
 
-Let's use an example contract, to demonstrate the various call semantics used by +call+ and +delegatecall+ for calling libraries and contracts. We use an event to log the origin of each call and see how the calling context changes depending on the call type:
+让我们使用示例合约来演示+call+和+delegatecall+用于调用库和合约的各种调用语义。我们使用一个事件来记录每个调用的来源，并根据调用类型了解调用上下文如何变化：
 
 [[call_examples_code]]
 .CallExamples.sol: An example of different call semantics.
 [source,solidity,linenums]
 ----
 include::code/truffle/CallExamples/contracts/CallExamples.sol["code/truffle/CallExamples/contracts/CallExamples.sol"]
+
+pragma solidity ^0.4.22;
+
+contract calledContract {
+	event callEvent(address sender, address origin, address from);
+	function calledFunction() public {
+		emit callEvent(msg.sender, tx.origin, this);
+	}
+}
+
+library calledLibrary {
+	event callEvent(address sender, address origin,  address from);
+	function calledFunction() public {
+		emit callEvent(msg.sender, tx.origin, this);
+	}
+}
+
+contract caller {
+
+	function make_calls(calledContract _calledContract) public {
+
+		// Calling the calledContract and calledLibrary directly
+		_calledContract.calledFunction();
+		calledLibrary.calledFunction();
+
+		// Low level calls using the address object for calledContract
+		require(address(_calledContract).call(bytes4(keccak256("calledFunction()"))));
+		require(address(_calledContract).delegatecall(bytes4(keccak256("calledFunction()"))));
+	}
+}
 ----
 
-Our main contract is +caller+, which calls a library +calledLibrary+ and a contract +calledContract+. Both the called library and contract have identical functions +calledFunction+, which emit an event +calledEvent+. The event +calledEvent+ logs three pieces of data: +msg.sender+, +tx.origin+, and +this+. Each time +calledFunction+ is called it may have a different execution context (different values for example in +msg.sender+), depending on whether it is called direclty or through +delegatecall+.
+我们的主要合约是+caller+，它调用库 +calledLibrary+ 和合约 +calledContract+。被调用的库和合约有相同的函数 +calledFunction+，发送+calledEvent+事件。+calledEvent+事件记录三个数据：+msg.sender+, +tx.origin+, 和 +this+。每次调用+calledFunction+时，都会有不同的上下文（不同的 +msg.sender+）取决于它是直接调用还是通过 +delegatecall+ 调用。
 
-In +caller+, we first call the contract and library directly, by invoking the +calledFunction+ in each. Then, we explicitly use the low-level functions +call+ and +delegatecall+ to call the +calledContract.calledFunction+. This way we can see how the various calling mechanisms behave.
+在+caller+中，我们首先直接调用合约和库的calledFunction()。然后，我们直接使用低级函数+call+和+delegatecall+调用+calledContract.calledFunction+。观察多种调用机制的行为。
 
-Let's run this in a truffle development environment and capture the events, to see how it looks:
+让我们在truffle开发环境中运行并捕捉事件：
 
 ----
 truffle(develop)> migrate
@@ -853,15 +956,15 @@ truffle(develop)> callerDeployed.make_calls(calledContract.address).then(res => 
 
 ----
 
-Let's see what happened here. We called the +make_calls+ function and passed the address of +calledContract+, then caught the four events emitted by each of the different calls. Look at the +make_calls+ function and let's walk through each step.
+让我们看看发生了什么。我们调用+make_calls+函数并传递+calledContract+的地址，然后捕获不同调用发出的四个事件。查看+make_calls+函数，让我们逐步了解每一步。
 
-The first call is:
+第一个调用：
 
 ----
 _calledContract.calledFunction();
 ----
 
-Here, we're calling the +calledContract.calledFunction+ directly, using the high-level ABI for +calledFunction+. The event emitted is:
+在这里，我们直接调用+calledContract.calledFunction+，使用称为callFunction的高级ABI。发出的事件是：
 
 ----
 sender: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f',
@@ -869,15 +972,15 @@ origin: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 from: '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
 ----
 
-As you can see, +msg.sender+ is the address of the +caller+ contract. The +tx.origin+ is the address of our wallet +web3.eth.accounts[0]+ that sent the transaction to +caller+. The event was emitted by +calledContract+, as we can see from the last argument in the event.
+如你所见，+msg.sender+是+caller+合约的地址。+tx.origin+是我们的钱包+web3.eth.accounts[0]+的地址，钱包将交易发送给+caller+。该事件由+calledContract+发出，我们从事件中的最后一个参数可以看到。
 
-The next call in +make_calls+, is to the library:
++make_calls+中的下一次调用是对库的调用：
 
 ----
 calledLibrary.calledFunction();
 ----
 
-It looks identical to how we called the contract, but behaves *very* differently. Let's look at the second event emitted:
+它看起来与我们调用合约的方式完全相同，但行为非常不同。我们来看看发出的第二个事件：
 
 ----
 sender: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
@@ -885,56 +988,56 @@ origin: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 from: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f'
 ----
 
-This time, the +msg.sender+ is not the address of +caller+. Instead it is the address of our wallet, and is the same as the transaction origin. That's because when you call a library, the call is always +delegatecall+ and runs within the context of the caller. So, when +calledLibrary+ code was running, it inherited the execution context of +caller+, as if its code was running inside +caller+. The variable +this+ (shown as +from+ in the event emitted) is the address of +caller+, even though it is accessed from within +calledLibrary+.
+这一次，+msg.sender+不是+caller+的地址。相反，它是我们钱包的地址，与交易来源相同。这是因为当你调用一个库时，这个调用总是+delegatecall+并且在调用者的上下文中运行。所以，当+calledLibrary+代码运行时，它继承+caller+的执行上下文，就好像它的代码在+caller+中运行一样。变量+this+（在发出的事件中显示为+from+）是+caller+的地址，即使它是从+calledLibrary+内部访问的。
 
-The next two calls, using the low-level +call+ and +delegatecall+, verify our expectations, emitting events that mirror what we just saw above.
+接下来的两个调用，使用低级+call+和+delegatecall+，验证我们的期望，发出与我们刚刚看到的事件相同的结果。
 
 [[gas_sec]]
-=== Gas considerations
+=== Gas 的考虑
 
-Gas is described in more in detail in the <<gas>> section and is an incredibly important consideration in smart contract programming. Gas is a resource constraining the maximum amount of computation that Ethereum will allow a transaction to consume. If the gas limit is exceeded during computation, the following series of events occurs:
+Gas在 <<gas>> 一节中有更详细的描述，在智能合约编程中是一个非常重要的考虑因素。gas是限制以太坊允许交易消耗的最大计算量的资源。如果在计算过程中超过了gas限制，则会发生以下一系列事件：
 
-* An "out of gas" exception is thrown.
-* The state of the contract prior to the function's execution is restored (reverted).
-* The entire amount of the gas is given to the miner as a transaction fee, it is *not* refunded.
+* 引发“out of gas”异常。
+* 函数执行前的合约状态被恢复。
+* 全部gas作为交易费用交给矿工，不予退还。
 
-Because gas is paid by the user who creates that transaction, users are discouraged from calling functions that have a high gas cost. It is thus in the programmer's best interest to minimize the gas cost of a contract's functions. To this end, there are certain practices that are recommended when constructing smart contracts, so as to minimize the gas costs surrounding a function call.
+由于gas由创建该交易的用户支付，因此不鼓励用户调用gas成本高的函数。因此，程序员最大限度地减少合约函数的gas成本。为此，在构建智能合约时建议采用某些做法，以尽量减少函数调用的gas成本。
 
-==== Avoid dynamically-sized arrays
+==== 避免动态大小的数组
 
-Any loop through a dynamically sized array wherein a function performs operations on each element or searches for a particular element introduces the risk of using too much gas. The contract may run out of gas before finding the desired result, or before acting on every element.
+函数中任何动态大小的数组循环，对每个元素执行操作或搜索特定元素会引入使用过多gas的风险。在找到所需结果之前，或在对每个元素采取行动之前，合约可能会用尽gas。
 
-==== Avoid calls to other contracts
+==== 避免调用其他合约
 
-Calling other contracts, especially when the gas cost of their functions is not known, introduces the risk of running out of gas. Avoid using libraries that are not well tested and broadly used. The less scrutiny a library has received from other programmers, the greater the risk of using it.
+调用其他合约，尤其是在其函数的gas成本未知的情况下，会导致用尽gas的风险。避免使用未经过良好测试和广泛使用的库。库从其他程序员收到的审查越少，使用它的风险就越大。
 
-==== Estimating gas cost
+==== 估算gas成本
 
-In case that you need to estimate the gas necessary to execute a certain method of a contract considering its call arguments, you could, for instance, use the following procedure;
+例如，如果你需要根据调用参数估计执行某种合约函数所需的gas，则可以使用以下过程;
 
 [source, JavaScript]
 var contract = web3.eth.contract(abi).at(address);
 var gasEstimate = contract.myAweSomeMethod.estimateGas(arg1, arg2, {from: account});
 
-*gasEstimate* will tell us the number of gas units needed for its execution.
+*gasEstimate* 会告诉我们执行需要的gas单位。
 
-To obtain the *gas price* from the network you can use;
+为了获得网络的 *gas价格* 可以使用：
 
 [source, JavaScript]
 var gasPrice = web3.eth.getGasPrice();
 
-And from there, estimate the *gas cost*;
+然后估算 *gas成本*
 
 [source, JavaScript]
 var gasCostInEther = web3.fromWei((gasEstimate * gasPrice), 'ether');
 
-Let's apply our gas estimation functions to estimating the gas cost of our +Faucet+ example, using the code from the book's repository found here:
+让我们应用我们的天然气估算函数来估计我们的+Faucet+示例的天然气成本，使用此书代码库中的代码：
 
 ----
 code/truffle/FaucetEvents
 ----
 
-We start truffle in development mode, and execute a JavaScript file +gas_estimates.js+, which contains:
+我们以开发模式启动truffle，并执行一个JavaScript文件+gas_estimates.js+，其中包含：
 
 [source, JavaScript]
 .gas_estimates.js: Using the estimateGas function
@@ -962,7 +1065,7 @@ FaucetContract.web3.eth.getGasPrice(function(error, result) {
 });
 ----
 
-Here's how that looks in the truffle development console:
+truffle开发控制台显示：
 
 ----
 $ truffle develop
@@ -976,97 +1079,83 @@ gas cost estimation = 627940000000000 wei
 gas cost estimation = 0.00062794 ether
 ----
 
-It is recommended that you evaluate the gas cost of functions as part of your development workflow, to avoid any surprises when deploying contracts to the mainnet.
-
+建议你将函数的gas成本评估作为开发工作流程的一部分进行，以避免将合约部署到主网时出现意外。
 
 [[security_sec]]
-=== Security considerations
+=== 安全考虑
 
-Security is one of the most important considerations when writing smart contracts. As with other programs, a smart contract will execute exactly what is written, which is not always what the programmer intended. Furthermore, all smart contracts are public and any user can interact with them simply by creating a transaction. Any vulnerability can be exploited and losses are almost always impossible to recover.
+在编写智能合约时，安全是最重要的考虑因素之一。与其他程序一样，智能合约将完全按写入的内容执行，这并不总是程序员所期望的。此外，所有智能合约都是公开的，任何用户都可以通过创建交易来与他们进行交互。任何漏洞都可以被利用，损失几乎总是无法恢复。
 
-In the field of smart-contract programming, mistakes are costly and easily exploited. It is therefore critical to follow best practices and use well tested design patterns.
+在智能合约编程领域，错误代价高昂且容易被利用。因此，遵循最佳实践并使用经过良好测试的设计模式至关重要。
 
-_Defensive programming_ is a style of programming that is particularly well suited to programming smart contracts and has the following characteristics:
+_防御性编程_ _Defensive programming_是一种编程风格，特别适用于智能合约编程，具有以下特点：
 
-Minimalism/Simplicity:: Complexity is the enemy of security. The simpler the code, the less it does, the lower the chance of a bug or unforeseen effect. When first engaging in smart-contract programming, developers are tempted to try to write a lot of code. Instead, you should look through your smart-contract code and try to find ways to do less, with fewer lines of code, with less complexity and with fewer "features". If someone tells you that their project has produced "thousands of lines of code", you should question the security of that project. Simpler is more secure.
+极简/简约:: 复杂性是安全的敌人。代码越简单，代码越少，发生错误或无法预料的效果的可能性就越小。当第一次参与智能合约编程时，开发人员试图编写大量代码。相反，你应该仔细查看你的智能合约代码，并尝试找到更少的方法，使用更少的代码行，更少的复杂性和更少的“功能”。如果有人告诉你他们的项目产生了“数千行代码”，那么你应该质疑该项目的安全性。更简单更安全。
 
-Code re-use:: As much as possible, try not to "reinvent the wheel". If a library or contract already exists that does most of what you need, re-use it. Within your own code, follow the DRY principle: Do not Repeat Yourself. If you see any snippet of code repeat more than once, ask yourself whether it could be written as a function or library and re-used. Code that has been extensively used and tested is likely more secure than any new code you write. Beware of Not-Invented-Here attitude, where you are tempted to "improve" a feature or component by building it from scratch. The security risk is often greater than the improvement value.
+代码重用::
+尽可能不要“重新发明轮子”。如果库或合约已经存在，可以满足你的大部分需求，请重新使用它。在你自己的代码中，遵循DRY原则：不要重复自己。如果你看到任何代码片段重复多次，请问自己是否可以将其作为函数或库进行编写并重新使用。已被广泛使用和测试的代码可能比你编写的任何新代码更安全。谨防“Not-Invented-Here”的态度，如果你试图通过从头开始构建“改进”某个功能或组件。安全风险通常大于改进值。
 
-Code quality:: Smart-contract code is unforgiving. Every bug can lead to monetary loss. You should not treat smart-contract programming the same way as general purpose programming. Rather, you should apply rigorous engineering and software development methodologies, akin to aerospace engineering or a similarly unforgiving engineering discipline. Once you "launch" your code, there's little you can do to fix any problems.
+代码质量::
+智能合约代码是无情的。每个错误都可能导致经济损失。你不应该像通用编程一样对待智能合约编程。相反，你应该采用严谨的工程和软件开发方法论，类似于航空航天工程或类似的不容乐观的工程学科。一旦你“启动”你的代码，你就无法解决任何问题。
 
-Readability/Auditability:: Your code should be easy to comprehend and clear. The easier it is to read, the easier it is to audit. Smart contracts are public, as anyone can reverse engineer the bytecode. Therefore, you should develop your work in public, using collaborative and open source methodologies. You should write code that is well documented and easy to read, following the style conventions and naming conventions that are part of the Ethereum community.
+可读性/可审核性::
+你的代码应易于理解和清晰。阅读越容易，审计越容易。智能合约是公开的，因为任何人都可以对字节码进行逆向工程。因此，你应该使用协作和开源方法在公开场合开发你的工作。你应该编写文档良好，易于阅读的代码，遵循作为以太坊社区一部分的样式约定和命名约定。
 
-Test coverage:: Test everything that you can test. Smart contracts run in a public execution environment, where anyone can execute them with whatever input they want. You should never assume that input, such as function arguments, is well formed, properly bounded and has a benign purpose. Test all arguments to make sure they are within expected ranges and properly formatted.
+测试覆盖::
+测试你可以测试的所有内容。智能合约运行在公共执行环境中，任何人都可以用他们想要的任何输入执行它们。你绝不应该假定输入（比如函数参数）是正确的，并且有一个良性的目的。测试所有参数以确保它们在预期的范围内并且格式正确。
 
-==== Common security risks
+==== 常见的安全风险
 
-Smart contract programmers should be familiar with many of the most common security risks, so as to be able to detect and avoid the programming patterns that leave them exposed to these risks.
+智能合约程序员应该熟悉许多最常见的安全风险，以便能够检测和避免使他们面临这些风险的编程模式。
 
-===== Re-entrancy
+===== 重入 Re-entrancy
 
-Re-entrancy is a phenomenon in programming in which a function or program is interrupted and then called again before its previous invocations have finished. In the context of smart contract programming, re-entrancy can occur when contract A calls a function in contract B, which in turn calls the same function in contract A, leading to a recursive execution. This can be particularly dangerous in a situation where the state of the contract is not updated until after the critical call is finished.
+重入是编程中的一种现象，函数或程序被中断，然后在先前调用完成之前再次调用。在智能合约编程的情况下，当合约A调用合约B中的一个函数时，可能会发生重入，合约B又调用合约A中的相同函数，导致递归执行。在合约状态在关键性调用结束之后才更新的情况下，这可能是特别危险的。
 
-To understand this, imagine a withdrawal by a wallet contract calling a bank contract. Contract A calls the withdraw function in contract B, attempting to withdraw amount X. This scenario would involve the following actions:
+为了理解这一点，想象一下通过钱包合约调用银行合约的提现操作。合约A在合约B中调用提现功能，试图提取金额X。这种情况将涉及以下操作：
 
-1. Contract B checks whether A has the necessary balance to withdraw X
-2. B transfers X to the address of A (runs A's payable fallback function)
-3. B updates A's balance to reflect the withdrawal
+1. 合约B检查A是否有必要的余额来提取X。
+2. B将X传送到A的地址（运行A的payable fallback函数）
+3. B更新A的余额以反映此次提现
 
-Whenever a payment is sent to a contract, as in this example, the recipient contract (A) has the opportunity to execute a _payable_ function, such as the default fallback function. However, malicious attackers can take advantage of this execution. Imagine that in A's payable fallback function, contract A calls bank B's withdraw function _again_. The withdrawal function of B will now experience re-entrancy, as the same initial transaction is now causing a circular call.
-
-"(1) A calls B which (2) calls A's payable function which (1) calls B again"
-
-In the second iteration of B's withdrawal function, B will again check if A has the available balance. Since step 3 (which updates A's balance) has yet to be executed, it will appear to B that A still has the available funds to withdraw, no matter how many times this function is re-invoked. This cycle can be repeated as long as there is gas available to keep running. When A detects that gas is running low, it can stop calling B in the payable function. B will finally execute step 3, deducting X from A's balance. Yet, by this point, B may have executed hundreds of transfers and only deducted the amount once. A has effectively drained funds from B with this attack.
-
-This exploit is particularly famous because of its relevance in the DAO attack. A user took advantage of the fact that the balance in a contract was changed after a call to transfer funds was made and withdrew millions of dollars worth of ether.
-
-To guard against re-entrancy, the best practice is for a programmer to use the _Checks-Effects-Interactions_ pattern, wherein the effects of a function call (such as decreasing the balance) occur before making the call. In our example, this would mean switching steps 3 and 2: updating a user's balance before transfer.
-
-In Ethereum, this is perfectly okay, because all effects of a transaction are atomic, meaning it is impossible for the balance to update without the user also being paid out. Either both occur, or an exception is thrown and neither occurs. This guards against re-entrancy attacks because all subsequent calls into the original withdrawal function will encounter the correct modified balance. By switching the two steps, A would be prevented from withdrawing more than their balance.
-
-====== Delegatecall
-
-The call method, as mentioned previously, "calls" into a function from within the calling contract's context.
+无论何时向合约发送付款（如本例中），接收方合约（A）都有机会执行_payable_函数，例如默认的fallback函数。但是，恶意攻击者可以利用这种执行。想象一下，在A的payable fallback中，合约A_再次_调用B银行的提款功能。B的提现功能现在将经历重入，因为现在相同的初始交易正在引发循环调用。
 
 
-////
-TODO: expand Delegate Call section ^
-////
+"(1) A 调用 B  (2) B 调用 A 的 payable 函数 (1) A 再次调用 B "
 
+在B的退出提现函数的第二次迭代中，B将再次检查A是否有可用余额。由于步骤3（其更新了A的余额）尚未执行，所以对于B来说，无论该函数被重新调用多少次，A仍然具有可用资金来提现。只要有gas可以继续运行，就可以重复该循环。当A检测到gas量不足时，它可以在payable函数中停止呼叫B. B将最终执行步骤3，从A的余额中扣除X. 然而，这时，B可能已经执行了数百次转账，并且只扣除了一次费用。在这次袭击中，A有效地洗劫了B的资金。
 
-====== Overflow and Underflow
+这个漏洞因其与DAO攻击的相关性而特别出名。用户利用了这样一个事实，即在调用转移并提取价值数百万美元的ether后，合约中的余额才发生变化。
 
-////
-TODO: expand
-////
+为了防止重入，最好的做法是让程序员使用_Checks-Effects-Interactions_模式，在进行调用之前应用函数调用的影响（例如减少余额）。在我们的例子中，这意味着切换步骤3和2：在传输之前更新用户的余额。
 
-
+在以太坊，这是完全没问题的，因为交易的所有影响都是原子的，这意味着在没有支付给用户的情况下更新余额是不可能的。要么都发生，要么抛出异常，都不会发生。这样可以防止重入攻击，因为所有后续调用原始提现函数的操作都会遇到正确的修改后余额。通过切换这两个步骤，可以防止A的提现金额超过其余额。
 
 [[design_patterns_sec]]
-==== Design Patterns
+==== 设计模式
 
-Software developers of any programming paradigm generally experience reoccurring design challenges centered around the topics of behavior, structure, interaction, and creation. Often these problems can be generalized and re-applied to future problems of a similar nature. When given a formal structure, these generalizations are called *Design Patterns*. Smart contracts have their own set of reoccurring design problems that can be solved using some of the patterns described below.
+任何编程范式的软件开发人员通常都会遇到以行为，结构，交互和创建为主题的重复设计挑战。通常这些问题可以概括并重新应用于未来类似性质的问题。当给定正式结构时，这些概括称为*设计模式*。智能合约有自己的一系列重复出现的设计问题，可以使用下面描述的一些模式来解决。
 
-There is an endless number of design problems in the development of smart contracts, making it impossible to discuss all of them
-here. For that reason, this section will focus on three of the most pervasive problem classifications in smart contract design: *access control*, *state flow*, and *fund disbursement*.
+在智能合约的发展中存在着无数的设计问题，因此无法讨论所有这些问题
+这里。因此，本节将重点讨论智能合约设计中最常见的三类问题分类：*访问控制（access control）*，*状态流（state flow）*和*资金支出（fund disbursement）*。
 
-Throughout this section, we will be working on a contract that will ultimately incorporate all three of these design patterns. This contract will run a voting system that allows users to vote on "truth". The contract will suggest a claim such as "The Cubs won the World Series." or "It is raining in New York City" and then users will have
-the opportunity to vote either true or false. The contract will consider the proposition as true if the majority of participants voted for true and likewise if the majority of participants voted for false. To incentivize truthfulness, every vote must send 100 ether to the contract and the funds contributed by the losing minority will be split up amongst the majority. Every participant in the majority will receive their portion of winnings from the minority as well as their initial investment.
+在本节中，我们将制定一份合约，最终将包含所有这三种设计模式。该合约将运行投票系统，允许用户对“真相”进行投票。该合约将提出一项声明，例如“小熊队赢得世界系列赛”。或者“纽约市正在下雨”，然后用户会有机会选择真或假。如果大多数参与者投票赞成"真"合约就认为该声明为真，如果大多数参与者投票赞成“假”，则合约将认为该声明为“假”。为了激励真实性，每次投票必须向合约发送100 ether，而失败的少数派出的资金将分给大多数。大多数参与者将从少数人中获得他们的部分奖金以及他们的初始投资。
 
-This "truth voting" system is actually the foundation of Gnosis, a forecasting tool built on top of Ethereum. More information about Gnosis can be found here: https://gnosis.pm/
+这个“真相投票”系统实际上是Gnosis的基础，Gnosis是一个建立在以太坊之上的预测工具。有关Gnosis的更多信息，请访问：https://gnosis.pm/
 
 [[access_control_sec]]
-===== Access control
+===== 访问控制 Access control
 
-Access control restricts which users may call contract functions. For the example, the owner of the truth voting contract may decide to limit those who can participate in the vote.
-To accomplish this the contract must impose two access restrictions:
+访问控制限制哪些用户可以调用合约功能。例如，真相投票合约的所有者可能决定限制那些可以参与投票的人。
+为了达到这个目标，合约必须施加两个访问限制：
 
-. Only an owner of the contract may add new users to the list of "allowed voters"
-. Only allowed voters may cast a vote
+. 只有合约的所有者可以将新用户添加到“允许的选民”列表中
+. 只有允许的选民可以投票
 
-Solidity function modifiers offer a concise way to implement these restrictions.
+Solidity函数修饰器提供了一个简洁的方式来实现这些限制。
 
-_Note: The following example uses an underscore semicolon within the modifier bodies. This is a Solidity feature used to tell the compiler when to run the modified function's body. A developer can act as if the modified function's body will be copied to the position of the underscore._
+_Note: 以下示例在修改器主体内使用下划线分号。这是Solidity的功能，用于告知编译器何时运行被修饰的函数的主体。开发人员可以认为被修饰的函数的主体将被复制到下划线的位置。
+
 [source,solidity]
 ----
 pragma solidity ^0.4.21;
@@ -1121,27 +1210,26 @@ contract TruthVote {
     }
 }
 ----
-*Description of Modifiers and Functions:*
+*修饰器和函数的说明：*
 
-- *onlyOwner*: this modifier can decorate a function such that the function will then only be callable by a sender with an address that matches that of *owner*.
-- *onlyVoter*: this modifier can decorate a function such that the function will then only be callable by a registered voter.
-- *addVoter(voter)*: this function is used to add a voter to the list of voters. This function uses the *onlyOwner* modifier so only the owner of this contract may call it.
-- *vote(val)*: this function is used by a voter to vote either true or false to the presented proposition. It is decorated with the *onlyVoter* modifier so only registered voters may call it.
+- *onlyOwner*: 这个修饰器可以修饰一个函数，使得函数只能被地址与*owner*相同的发送者调用。
+- *onlyVoter*: 这个修饰器可以修饰一个函数，使得函数只能被已登记的选举人调用。
+- *addVoter(voter)*: 此函数用于将选民添加到选民列表。该功能使用*onlyOwner*修饰器，因此只有该合约的所有者可以调用它。
+- *vote(val)*: 这个函数被投票者用来对所提出的命题投下真或假。它用*onlyVoter*修饰器装饰，所以只有已登记的选民可以调用它。
 
 [[state_flow_sec]]
-===== State flow
+===== 状态流 State flow
 
-Many contracts will require some notion of operation state. The state of a contract will determine how the contract will behave and what operations it offers
-at a given point in time. Let's return to our truth voting system for a more concrete example.
+许多合约将需要一些操作状态的概念。合约的状态将决定合约的行为方式以及在给定的时间点提供的操作。让我们回到我们的真实投票系统来获得更具体的例子。
 
-The operation of our voting system can be broken down into 3 distinct states.
+我们投票系统的运作可以分为三个不同的状态。
 
-. *Register*: The service has been created and the owner can now add voters.
-. *Vote*:  All voters cast their votes.
-. *Disperse*: Vote payments are divided and sent to the majority participants.
+. *Register*: 服务已创建，所有者现在可以添加选民。
+. *Vote*: 所有选民投票。
+. *Disperse*: 投票付款被分给大多数参与者。
 
-The following code continues to build on the access control code, but further restricts functionality to specific states.
-In Solidity, it is commonplace to use enumerated values to represent states.
+以下代码继续建立在访问控制代码的基础上，但进一步将功能限制在特定状态。
+在Solidity中，使用枚举值来表示状态是司空见惯的事情。
 
 [source,solidity]
 ----
@@ -1260,25 +1348,23 @@ contract TruthVote {
 }
 ----
 
-*Description of Modifiers and Functions:*
+*修饰器和函数的说明：*
 
-- *isCurrentState*: this modifier will require that the contract is in a specified state before continuing execution of the decorated function.
-- *pretransition*: this modifier will transition to the next state before executing the rest of the decorated function
-- *goToNextState*: function that transitions the contract to the next state
-- *disperse*: function that calculates the majority and disperses winnings accordingly. Only the owner may call this function to officially close voting.
-- *startVote*: function that the owner can use to start a vote.
+- *isCurrentState*: 在继续执行装饰函数之前，此修饰器将要求合约处于指定状态。
+- *pretransition*: 在执行装饰函数的其余部分之前，此修饰器将转换到下一个状态
+- *goToNextState*: 将合约转换到下一个状态的函数
+- *disperse*: 计算大多数以及相应的瓜分奖金的功能。只有owner可以调用这个函数来正式结束投票。
+- *startVote*: 所有者可用于开始投票的功能。
 
-It may be important to note that allowing the owner to close the voting process at will opens this contract up to abuse. In a more genuine implementation, the voting period should close after a publicly understood period of time. For the sake of this example, this is fine.
+注意到允许所有者随意关闭投票流程可能会导致合约的滥用很重要。在更真实的实现中，投票期应在公众理解的时间段后结束。对于这个例子，这没问题。
 
-The additions made now ensure that voting is only allowed when the owner decides to start the voting period, users can only be registered by the owner before the vote happens, and funds are only dispersed after the vote closes.
+现在增加的内容确保只有在owner决定开始投票阶段时才允许投票，用户只能在投票前由owner注册，并且在投票结束后才能分配资金。
 
 [[withdraw_sec]]
-===== Withdraw
+===== 提现 Withdraw
 
-Many contracts will offer some way for a user to retrieve money from it. In our working example, users of the majority are sent money directly when the contract
-begins dispersing funds. Although this appears to work, it is an under-thought solution. The receiving address of the *addr.send()* call in *disperse* could be a contract that
-has a fallback function which fails and consequently breaks *disperse*. This effectively stops all further majority participants from receiving their earning.
-A better solution is to provide a withdraw function that a user can call to collect their earnings.
+许多合约将为用户从中提取资金提供一些方法。在我们的示例中，属于大多数的用户在合约开始分配资金时直接接收资金。虽然这看起来有效，但它是一种欠考虑的解决方案。在*disperse*中*addr.send()*调用的接收地址可以是一个合约，具有一个会失败的fallback函数，会打断*disperse*。这有效地阻止了更多的参与者接收他们的收入。
+一个更好的解决方案是提供一个用户可以调用来收取收入的提款功能。
 
 [source,solidity]
 ----
@@ -1351,26 +1437,17 @@ function withdraw()
 ...
 ----
 
-*Description of Modifiers and (Updated) Functions:*
+*修饰器和（更新）功能的说明：*
 
-- *posttransition*: transitions to the next state after the function call
-- *determine*: this function is very similar to the previous *disperse* function except it now just calculates the winner and winning compensation and does not actually send any funds.
-- *vote*: votes are now added to the votes mapping and true/false counters are incremented.
-- *withdraw*: allows a voter to collect winnings (if any).
+- *posttransition*: 函数调用后转换到下一个状态。
+- *determine*: 此功能与以前的*disperse*功能非常相似，除了现在只计算赢家和获胜赔偿金额，实际上并未发送任何资金。
+- *vote*: 投票现在被添加到votes mapping，并使用真/假计数器。
+- *withdraw*: 允许投票者提取胜利果实（如果有）。
 
-
-
-This way, if the send fails, it will only fail on the specific caller's case and not hinder all other user's ability to collect their winnings.
-
-[[modularity_and_side_effects_sec]]
-==== Modularity and side effects
-
-////
-TODO: add paragraph
-////
+这样，如果发送失败，则只在一个特定的调用者上失败，不影响其他用户提取他们的胜利果实。
 
 [[contract_libraries_sec]]
-==== Contract libraries
+==== 合约库
 
 Github link: https://github.com/ethpm
 
@@ -1381,7 +1458,7 @@ Website: https://www.ethpm.com/
 Documentation: https://www.ethpm.com/docs/integration-guide
 
 [[security_best_practices_sec]]
-==== Security best practices
+==== 安全最佳实践
 
 Github: https://github.com/ConsenSys/smart-contract-best-practices/
 
@@ -1391,31 +1468,30 @@ https://blog.zeppelin.solutions/onward-with-ethereum-smart-contract-security-97a
 
 https://medium.com/zeppelin-blog/the-hitchhikers-guide-to-smart-contracts-in-ethereum-848f08001f05#.cox40d2ut
 
-Perhaps the most fundamental software security principle is to maximize reuse of trusted code. In blockchain technologies, this is even condensed in an adage: "Do not roll your own crypto". In the case of smart contracts, this amounts to profiting as much as possible from freely available libraries that have been thoroughly vetted by the community.
+也许最基本的软件安全原则是最大限度地重用可信代码。在区块链技术中，这甚至会凝结成一句格言：“Do not roll your own crypto”。就智能合约而言，这意味着尽可能多地从经社区彻底审查的免费库中获益。
 
-In Ethereum, the most widely used solution is the https://openzeppelin.org/[OpenZeppelin] suite, an ample library of contracts ranging from implementations of `ERC20` and `ERC721` tokens, to many flavors of crowdsale models, to simple behaviors commonly found in contracts such as `Ownable`, `Pausable` or `LimitBalance`. The contracts in this repository have been extensively tested and in some cases even function as _de facto_ standard implementations. They are free to use, and are built and mantained by https://zeppelin.solutions[Zeppelin] together with an ever growing list of external contributors.
+在Ethereum中，使用最广泛的解决方案是https://openzeppelin.org/[OpenZeppelin]套件，从ERC20和ERC721的Token实现，到众多众包模型，到常见于“Ownable”，“Pausable”或“LimitBalance”等合约中的简单行为。该存储库中的合约已经过广泛的测试，并且在某些情况下甚至可以用作_de facto_标准实现。它们可以免费使用，并且由https://zeppelin.solutions[Zeppelin]和不断增长的外部贡献者列表构建和修复。
 
-Also from Zeppelin is https://zeppelinos.org/[zeppelin_os], an open source platform of services and tools to develop and manage smart contract applications securely. zeppelin_os provides a layer on top of the EVM that makes it easy for developers to launch upgradeable DApps linked to an on-chain library of well tested contracts that are themselves upgradeable. Different versions of these libraries can coexist in the blockchain, and a vouching system allows users to propose or push improvements in different directions. A set of off-chain tools to debug, test, deploy and monitor decentralized applications is also provided by the platform.
-
+同样来自Zeppelin的是https://zeppelinos.org/[zeppelin_os]，一个用于安全地开发和管理智能合约应用程序的服务和工具的开源平台。zeppelin_os在EVM之上提供了一个层，使开发人员可以轻松发布可升级的DApp，它们与经过良好测试的可自行升级的链上合约库链接。这些库的不同版本可以共存于区块链中，凭证系统允许用户在不同方向上提出或推动改进。该平台还提供了一套用于调试，测试，部署和监控DApp的脱链工具。
 
 [[further_reading_sec]]
-==== Further reading
+==== 进一步阅读
 
-The Application Binary Interface (ABI) is strongly typed, known at compilation time and static. All contracts have the interface definitions of any contracts they intend to call available at compile-time.
+应用程序二进制接口（ABI）是强类型的，在编译时和静态时都是已知的。所有合约都有他们打算在编译时调用的任何合约的接口定义。
 
-A more rigorous and in-depth explanation of the Ethereum ABI can be found at
+关于Ethereum ABI的更严格和更深入的解释可以在这找到：
 `https://solidity.readthedocs.io/en/develop/abi-spec.html`.
-The link includes details about the formal specification of encoding and various helpful examples.
+该链接包括有关编码的正式说明和各种有用示例的详细信息。
 
 [[deploying_smart_contracts_sec]]
-=== Deploying smart contracts
+=== 部署智能合约
 
 ////
 TODO: add paragraph
 ////
 
 [[testing_frameworks]]
-=== Testing smart contracts
+=== 测试智能合约
 
 ////
 TODO: add paragraph
@@ -1423,21 +1499,21 @@ TODO: add paragraph
 
 
 [[testing_frameworks_sec]]
-==== Testing Frameworks
+==== 测试框架
 
-There are several commonly-used test frameworks (in no particular order):
+有几个常用的测试框架（没有特定的顺序）：
 
-Truffle Test:: Part of the Truffle framework, Truffle allows for unit tests to be written in JavaScript (Mocha based) or Solidity. These tests are run against TestRPC/Ganache. More details on writing these tests are located at <<truffle>>
+Truffle Test:: Truffle框架的一部分，Truffle允许使用JavaScript（基于Mocha）或Solidity编写单元测试。这些测试是针对TestRPC/Ganache运行的。编写这些测试的更多细节位于 <<truffle>>。
 
 ////
 TODO: add anchor for <<truffle>>
 ////
 
-Embark Framework Testing:: Embark integrates with Mocha to run unit tests written in JavaScript. The tests are in turn run against contracts deployed on TestRPC/Ganache. The Embark Framework automatically deploys smart contracts and will automatically redeploy the contracts when they are changed. It also keeps track of deployed contracts and deploys contracts when truly needed. Embark includes a testing library to rapidly run and test your contracts in an EVM, with functions like ```assert.equal()```. ```embark test``` will run any test files under directory test/.
+Embark Framework Testing:: Embark与Mocha集成，运行用JavaScript编写的单元测试。这些测试使用在TestRPC/Ganache上部署的合约执行。Embark框架自动部署智能合约，并在合约被更改时自动重新部署它们。它还跟踪已部署的合约，并在真正需要时部署合约。Embark包括一个测试库，它可以在EVM中快速运行和测试你的合约，并使用assert.equal()等函数。Embark测试将在目录测试下运行任何测试文件。
 
-DApp:: DApp uses native Solidity code (a library called ds-test) and a Parity built Rust library called Ethrun to execute Ethereum bytecode and then assert correctness. The ds-test library provides assertion functions for validating correctness and events for logging data in the console.
+DApp:: DApp使用本地Solidity代码（一个名为ds-test的库）和一个Parity构建的Rust库（称为Ethrun）执行以太坊字节码，然后断言正确性。ds-test库提供用于验证控制台中数据记录的正确性和事件的断言功能。
 
-Assertions Functions includes
+断言函数包括
 ....
 assert(bool condition)
 assertEq(address a, address b)
@@ -1448,7 +1524,7 @@ assertEq0(bytes a, bytes b)
 expectEventsExact(address target)
 ....
 
-Logging Events will log information to the console, making them useful for debugging.
+日志事件将信息记录到控制台，使其易于调试。
 ....
 logs(bytes)
 log_bytes32(bytes32)
@@ -1460,7 +1536,7 @@ log_named_decimal_int(bytes32 key, int val, uint decimals)
 log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 ....
 
-Populus:: Populus uses python and its own chain emulator to run contracts written in Solidity. Unit tests are written in Python with the pytest library. Populus supports writing contracts that are specifically for testing. These contract filenames should match the glob pattern ```Test*.sol``` and be located anywhere under the project tests directory ```./tests/```.
+Populus:: Populus使用python和自己的链仿真器来运行用Solidity编写的合约。单元测试是用pytest库编写的。Populus支持专门用于测试的书面合约。这些合约文件名应该与glob模式 ```Test*.sol``` 匹配，并且位于项目测试目录```./tests/```下的任何位置。
 
 |=======
 |Framework | Test Language(s)    | Testing Framework | Chain Emulator       | Website
@@ -1470,39 +1546,28 @@ Populus:: Populus uses python and its own chain emulator to run contracts writte
 |Populus   | Python              | Pytes             | Python chain emulator| populus.readthedocs.io
 |=======
 
-=======
-If you this is your first time using geth, it might take a while to sync up to the network.
-Then set up your variables with:
-----
-> var foo = eth(<CONTENTS_OF_ABI_FILE>)
-> var byteCode = '0x<CONTENTS_OF_BIN_FILE>)
-----
-Fill in the parameters with the outputs from the more commands above.
-Then finally deploy your contract with:
-----
-> var deploy = {from eth.coinbase, data:byteCode, gas:2000000}
-> var fooInstance = foo(bar, baz)
-----
-=======
 
 [[on_blockchain_testing_sec]]
-==== On-Blockchain Testing
+==== 在区块链上测试
 
-Although most testing shouldn't occur on deployed contracts, a contract's behavior can be checked via Ethereum clients.  The following commands can be used to assess a smart contract's state. These commands should be typed at the '+geth+' terminal, although any web3 calls will also support these commands.
+尽管大多数测试不应发生在部署的合约上，但可以通过以太坊客户端检查合约的行为。以下命令可用于评估智能合约的状态。这些命令应该在'+geth+'终端输入，尽管任何web3调用也会支持这些命令。
 
 ....
 eth.getTransactionReceipt(txhash);
 ....
-Can be used to get the address of a contract at `+txhash+`.
+可用于获得在`+txhash+`处的合约地址。
 ....
 eth.getCode(contractaddress)
 ....
-Gets the code of a contract deployed at `+contractaddress+`. This can be used to verify proper deployment.
+获取部署在`+contractaddress+`的合约代码。这可以用来验证正确的部署。
 ....
 eth.getPastLogs(options)
 ....
-Gets the full logs of the contract located at address, specified in options. This is helpful for viewing the history of a contract's calls.
+获取位于地址的合约的完整日志，在选项中指定。这有助于查看合约调用的历史记录。
 ....
 eth.getStorageAt(address, position)
 ....
-Gets the storage located at `+address+` with an offset of `+position+` shows the data stored in that contract.
+获取位于 +address+ 的存储，并使用 +position+ 的偏移量显示该合约中存储的数据。
+
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

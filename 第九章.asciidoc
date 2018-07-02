@@ -1,37 +1,39 @@
-= Development Tools, Frameworks and Libraries
+= 开发工具，框架和库
 
-== Frameworks
+== 框架
 
-Frameworks can be used to ease Ethereum smart contracts development. By doing everything yourself you get a better understanding of how everything fits together, but it's a lot of tedious, repetitive work. The frameworks listed below can automate certain tasks and make development a breeze.
+框架可使以太坊智能合约开发变得轻松。自己做所有事情，你可以更好地理解所有事物如何结合在一起，但这是一项繁琐而重复的工作。下面列出的框架可以自动执行某些任务并使开发变得轻而易举。
 
 === Truffle
 
-Github link; https://github.com/trufflesuite/truffle
+Github; https://github.com/Trufflesuite/Truffle
 
-Website link; https://truffleframework.com
+网站; https://Truffleframework.com
 
-Documentation link; https://truffleframework.com/docs
+文档; https://Truffleframework.com/docs
 
-Truffle Boxes link; http://truffleframework.com/boxes/
+Truffle Boxes; http://Truffleframework.com/boxes/
 
-+npm+ package repository link; https://www.npmjs.com/package/truffle
++npm+ package repository; https://www.npmjs.com/package/Truffle
 
 
-[[installing_truffle]]
-==== Installing the truffle framework
+[[installing_Truffle]]
+==== 安装 Truffle 框架
 
-The truffle framework is made of several +NodeJS+ packages. Before we install +truffle+, we need to have an up-to-date and working installation of +NodeJS+ and the Node Package Manager (+npm+).
+Truffle 框架由多个 +NodeJS+包组成。在我们安装+Truffle+之前，我们需要安装+NodeJS+和Node Package Manager（+npm+）的最新版。
 
-The recommended way to install +NodeJS+ and +npm+, is to use the Node Version Manager (NVM), +nvm+. Once we install +nvm+, it will handle all the dependencies and updates for us. We'll follow the instructions found at:
+推荐的安装 +NodeJS+ 和 +npm+ 的方法是使用node版本管理器（NVM）+nvm+。一旦我们安装了+nvm+，它将为我们处理所有依赖和更新。我们将按照以下网址中的说明进行操作：
+
 http://nvm.sh
 
-Once +nvm+ is installed on your operating system, installing +NodeJS+ is simple. We use the +--lts+ flag to tell nvm that we want the most recent "Long Term Support (LTS)" version of +NodeJS+
+一旦在你的操作系统上安装了+nvm+，安装+NodeJS+就很简单了。我们使用+--lts+标志告诉nvm我们想要最新的“长期支持（LTS）”版本+NodeJS+ 
 
 ----
 $ nvm install --lts
 ----
 
-Confirm you have +node+ and +npm+ installed:
+
+确认你已安装 +node+ 和 +npm+：
 
 ----
 $ node -v
@@ -40,35 +42,35 @@ $ npm -v
 5.6.0
 ----
 
-Create a hidden file .nvmrc that contains the Node.js version supported by your DApp so developers just need to run `nvm install` in the root of the project directory and it will automatically install and switch to using that version.
+创建一个包含DApp支持的Node.js版本的隐藏文件.nvmrc，这样开发人员只需要在项目目录的根目录下运行`nvm install`，它就会自动安装并切换到使用该版本。
 
 ----
 $ node -v > .nvmrc
 $ nvm install
 ----
 
-Looking good. Now to install truffle:
+看起来不错。现在安装Truffle：
 
 ----
-$ npm -g install truffle
+$ npm -g install Truffle
 
-+ truffle@4.0.6
++ Truffle@4.0.6
 installed 1 package in 37.508s
 ----
 
-[[truffle_box]]
-==== Integrating a pre-built Truffle project (Truffle Box)
+[[Truffle_box]]
+==== 集成预编译的 Truffle 项目 (Truffle Box)
 
-If we want to use or create a DApp that builds upon a pre-built boilerplate, then at the Truffle Boxes link we can choose an existing Truffle project, and then run the following to download and extract it:
+如果我们想要使用或创建一个建立在预先构建的样板上的DApp，那么在Truffle Boxes链接中，我们可以选择一个现有的Truffle项目，然后运行以下命令来下载并提取它：
 
 ----
-$ truffle unbox <BOX_NAME>
+$ Truffle unbox <BOX_NAME>
 ----
 
-[[truffle_project_directory]]
-==== Creating a truffle project directory
+[[Truffle_project_directory]]
+==== 创建 Truffle 项目目录
 
-For each project where we will use truffle, we create a project directory and initialize truffle within that directory. Truffle will create the necessary directory structure inside our project directory. Customarily, we give the project directory a name that describes our project. For this example, we will use truffle to deploy our faucet contract from <<simple_contract_example>>, and therefore we will name the project folder +Faucet+.
+对于我们将使用Truffle的每个项目，我们创建一个项目目录并在该目录中初始化Truffle。Truffle将在我们的项目目录中创建必要的目录结构。通常，我们为项目目录指定一个描述我们项目的名称。对于这个例子，我们将使用Truffle从 <<simple_contract_example>> 部署我们的Faucet合约，因此我们将命名项目文件夹+Faucet+。
 
 ----
 $ mkdir Faucet
@@ -76,13 +78,13 @@ $ cd Faucet
 Faucet $
 ----
 
-Once inside the +Faucet+ directory, we initialize truffle:
+一旦进入 +Faucet+ 目录，我们初始化 Truffle：
 
 ----
-Faucet $ truffle init
+Faucet $ Truffle init
 ----
 
-Truffle creates a directory structure and some default files:
+Truffle创建了一个目录结构和一些默认文件：
 
 ----
 Faucet
@@ -91,11 +93,11 @@ Faucet
 ├── migrations
 │   └── 1_initial_migration.js
 ├── test
-├── truffle-config.js
-└── truffle.js
+├── Truffle-config.js
+└── Truffle.js
 ----
 
-We will also use a number of JavaScript (nodeJS) support packages, in addition to truffle itself. We can install these with npm. We initialize the npm directory structure and accept the defaults suggested by npm:
+除了Truffle本身之外，我们还将使用一些JavaScript（nodeJS）支持包。我们可以用npm安装这些。我们初始化npm目录结构并接受npm建议的默认值：
 
 ----
 $ npm init
@@ -103,7 +105,7 @@ $ npm init
 package name: (faucet)
 version: (1.0.0)
 description:
-entry point: (truffle-config.js)
+entry point: (Truffle-config.js)
 test command:
 git repository:
 keywords:
@@ -115,7 +117,7 @@ About to write to Faucet/package.json:
   "name": "faucet",
   "version": "1.0.0",
   "description": "",
-  "main": "truffle-config.js",
+  "main": "Truffle-config.js",
   "directories": {
     "test": "test"
   },
@@ -130,30 +132,30 @@ About to write to Faucet/package.json:
 Is this ok? (yes)
 ----
 
-Now, we can install the dependencies that we will use to make working with truffle easier:
+现在，我们可以安装我们用来使Truffle变得更容易的依赖关系：
 
 ----
-$ npm install dotenv truffle-wallet-provider ethereumjs-wallet
+$ npm install dotenv Truffle-wallet-provider ethereumjs-wallet
 ----
 
-You now have a +node_modules+ directory with several thousand files, inside your Faucet directory.
+你现在有一个带有数千个文件的+node_modules+目录。
 
-Prior to deploying the DApp to a cloud production or continuous integration environment it is important to specify the `"engines"` field so that your Dapp is built with the correct Node.js version and it's associated dependencies are installed.
+在将DApp部署到云生产或持续集成环境之前，指定 engines 字段非常重要，以便你的Dapp使用正确的Node.js版本进行构建，并且会安装相关的依赖关系。
 
-Package.json "engines" field configuration link; https://docs.npmjs.com/files/package.json#engines
+Package.json“engines”字段配置链接; https://docs.npmjs.com/files/package.json#engines 
 
-==== Configuring truffle
+==== 配置 Truffle
 
-Truffle creates some empty configuration files, +truffle.js+ and +truffle-config.js+. On Windows systems the +truffle.js+ name may cause a conflict when you try to run the command +truffle+ and Windows attempts to run +truffle.js+ instead. To avoid this, we will delete +truffle.js+ and use +truffle-config.js+, in support of Windows users who, honestly, suffer enough already.
+Truffle 创建一些空的配置文件，+Truffle.js+和+Truffle-config.js+。在Windows系统上，当你尝试运行命令+Truffle+，Windows尝试运行+Truffle.js+时，+ Truffle.js+名称可能会导致冲突。为了避免这种情况，我们将删除+Truffle.js+并使用+Truffle-config.js+来支持Windows用户，他们的确已经受够了。
 
 ----
-$ rm truffle.js
+$ rm Truffle.js
 ----
 
-Now we edit truffle-config.js and replace the contents with:
+现在我们编辑 Truffle-config.js 并用下面的内容替换：
 
-[[truffle_config]]
-.truffle-config.js - a truffle configuration to get us started
+[[Truffle_config]]
+.Truffle-config.js - a Truffle configuration to get us started
 [source,javascript,linenums]
 ----
 module.exports = {
@@ -167,15 +169,15 @@ module.exports = {
 };
 ----
 
-The configuration above is a good starting point. It sets up one default Ethereum network (named +localnode+), which assumes you are running an Ethereum client (such as parity), either as a full node, or as a light client. This configuration will instruct truffle to communicate with the local node over RPC, on port 8545. Truffle will use whatever Ethereum network the local node is connected to, such as the Ethereum main network, or a test network like Ropsten. The local node will also be providing the wallet functionality.
+以上配置是一个很好的起点。它设置了一个默认的以太坊网络（名为+localnode+），该网络假定你正在运行以太坊客户端（如Parity），既可以作为完整节点，也可以作为轻客户端。该配置将指示Truffle与端口8545上的本地节点通过RPC进行通信。Truffle将使用本地节点连接的任何以太网（如Ethereum主网络）或测试网络（如Ropsten）。本地节点也将提供钱包功能。
 
-In following sections, we will configure additional networks for truffle to use, such as the +ganache+ test-RPC blockchain and Infura, a hosted network provider. As we add more networks, the configuration file will get more complex, but it will also give us more options for our testing and development workflow.
+在下面的章节中，我们将配置其他网络供Truffle使用，比如+ganache+ test-RPC区块链和托管网络提供商Infura。随着我们添加更多网络，配置文件将变得更加复杂，但它也将为我们的测试和开发工作流程提供更多选择。
 
-==== Using truffle to deploy a contract
+==== 使用Truffle部署合约
 
-We now have a basic working directory for our +Faucet+ project, and we have truffle and its dependencies configured. Contracts go in the +contracts+ subdirectory of our project. The directory already contains a "helper" contract, +Migrations.sol+ which manages contract upgrades for us. We'll examine the use of +Migrations.sol+ in a later section.
+我们现在有一个针对我们的 +Faucet+ 项目的基本工作目录，并且我们已经配置了Truffle和它的依赖关系。合约在我们项目的+contracts +子目录中。该目录已经包含一个“helper”合约，+Migrations.sol+管理合约升级。我们将在后面的章节中研究 +Migrations.sol+ 的使用。
 
-Let's copy the +Faucet.sol+ contract (from <<solidity_faucet_example>>) into the +contracts+ subdirectory, so that the project directory looks like this:
+让我们将 +Faucet.sol+ 合约（<<solidity_faucet_example>>）复制到+contracts+子目录中，以便项目目录如下所示：
 
 ----
 Faucet
@@ -185,61 +187,73 @@ Faucet
 ...
 ----
 
-We can now ask truffle to compile the contract for us:
+我们现在可以让Truffle编译我们的合约：
 
 ----
-$ truffle compile
+$ Truffle compile
 Compiling ./contracts/Faucet.sol...
 Compiling ./contracts/Migrations.sol...
 Writing artifacts to ./build/contracts
 ----
 
-==== Truffle migrations - understanding deployment scripts
+==== Truffle migrations - 理解部署脚本
 
-Truffle offers a deployment system called a _migration_. If you have worked in other frameworks, you may have seen something similar: Ruby on Rails, Python Django and many other languages and frameworks have a +migrate+ command.
+Truffle提供了一个名为_migration_的部署系统。如果你曾在其他框架中工作过，你可能会看到类似的东西：Ruby on Rails，Python Django和许多其他语言和框架都有+migrate+命令。
 
-In all those frameworks, the purpose of a migration is to handle changes in the data schema between different versions of the software. The purpose of migrations in Ethereum is slightly different. Because Ethereum contracts are immutable and cost gas to deploy, truffle offers a migration mechanism to keep track of which contracts (and which versions) have already been deployed. In a complex project with dozens of contracts and complex dependencies, you would not want to have to pay to redeploy contracts that haven't changed. You would also not want to manually track which versions of which contracts have been deployed already. The truffle migration mechanism does all that by deploying the smart contract +Migrations.sol+, which then keeps track of all other contract deployments.
+在所有这些框架中，migration的目的是处理不同版本软件之间数据模式的变化。以太坊migration的目的略有不同。因为以太坊合约是不可变的，而且要消耗gas部署，所以Truffle提供了一个migration机制来跟踪哪些合约（以及哪些版本）已经部署。在一个拥有数十个合约和复杂依赖关系的复杂项目中，你不希望为了重新部署尚未更改的合约而支付gas。你也不想手动跟踪哪些合约的哪些版本已经部署了。Trufflemigration机制通过部署智能合约+Migrations.sol+完成所有这些工作，然后跟踪所有其他合约部署。
 
-We have only one contract, +Faucet.sol+, which means that the migration system is overkill, to say the least. Unfortunately, we have to use it. But, by learning how to use it for one contract, we can start practicing some good habits for our development workflow. The effort will pay off as things get more complicated.
+我们只有一份合约，+Faucet.sol+，这至少意味着migration系统是大材小用的。不幸的是，我们必须使用它。但是，通过学习如何将它用于一个合约，我们可以开始练习一些良好的开发工作习惯。随着事情变得更加复杂，这项努力将会得到回报。
 
-Truffle's +migrations+ directory is where the migration scripts are found. Right now, there's only one script +1_initial_migration.js+, which deploys the +Migrations.sol+ contract itself:
+Truffle的+migrations+目录是找到迁移脚本的地方。现在，只有一个脚本 +1_initial_migration.js+，它会部署 +Migrations.sol+ 合约本身：
 
 [[1_initial_migration]]
 .1_initial_migration.js - the migration script for Migrations.sol
 [source,javascript,linenums]
 ----
-include::code/Faucet/migrations/1_initial_migration.js
+include::code/truffle/Faucet/migrations/1_initial_migration.js
+
+var Migrations = artifacts.require("./Migrations.sol");
+
+module.exports = function(deployer) {
+  deployer.deploy(Migrations);
+};
 ----
 
-We need a second migration script, to deploy +Faucet.sol+. Let's call it +2_deploy_contracts.js+. It is very simple, just like +1_initial_migration.js+, with only a few small changes. In fact, you can copy the contents of +1_initial_migration.js+ and simply replace all instances of +Migrations+ with +Faucet+:
+我们需要第二个migration脚本来部署 +Faucet.sol+。我们称之为+2_deploy_contracts.js+。它非常简单，就像+1_initial_migration.js+一样，只需稍作修改即可。实际上，你可以复制+ 1_initial_migration.js+的内容，并简单地将+Migrations+的所有实例替换为+Faucet+：
 
 [[2_deploy_contracts]]
 .2_deploy_contracts.js - the migration script for Faucet.sol
 [source,javascript,linenums]
 ----
-include::code/Faucet/migrations/2_deploy_contracts.js
+include::code/truffle/Faucet/migrations/2_deploy_contracts.js
+
+var Faucet = artifacts.require("./Faucet.sol");
+
+module.exports = function(deployer) {
+  deployer.deploy(Faucet);
+};
 ----
 
-The script initializes a variable +Faucet+, identifying the +Faucet.sol+ Solidity source code as the artifact that defines +Faucet+. Then, it calls the deploy function to deploy this contract.
+脚本初始化变量+Faucet+，将+Faucet.sol+ Solidity源代码标识为定义+Faucet+的工件。然后，它调用部署功能来部署此合约。
 
-We're all set. Let's use +truffle migrate+ to deploy the contract. We have to specify on which network to deploy the contract, using the +--network+ argument. We only have one network specified in the configuration file, which we named +localnode+. Make sure your local Ethereum client is running and then type:
+我们都准备好了。我们使用 +truffle migrate+ 来部署合约。我们必须使用+--network+参数指定在哪个网络上部署合约。我们只在配置文件中指定了一个网络，我们将其命名为+localnode+。确保你的本地以太坊客户端正在运行，然后输入：
 
 ----
-Faucet $ truffle migrate --network localnode
+Faucet $ Truffle migrate --network localnode
 ----
 
-Because we are using a local node to connect to the Ethereum network and manage our wallet, we have to authorize the transaction that truffle creates. I'm running +parity+ connected to the Ropsten test blockchain, so during the truffle migration I will see a pop-up on parity's web console:
+因为我们使用本地节点连接到以太坊网络并管理我们的钱包，所以我们必须授权Truffle创建的交易。我正在运行+parity+连接到Ropsten测试区块链，所以在Trufflemigration期间，我会在parity的Web控制台上看到一个弹出窗口：
 
 [[parity_deployment_confirmation]]
 .Parity asking for confirmation to deploy Faucet
 image::images/parity_deployment_confirmation.png["Parity asking for confirmation to deploy Faucet"]
 
-You will see four transactions, total. One to deploy +Migrations+, one to update the deployments counter to +1+, one to deploy +Faucet+ and one to update the deployments counter to +2+.
+你将看到四笔交易，总计。一个部署+Migrations+，一个用于将部署计数器更新为+1+，一个用于部署+Faucet+，另一个用于将部署计数器更新为+2+。
 
-Truffle will show the migrations completing, show each of the transactions and show the contract addresses:
+Truffle将显示migration完成情况，显示每个交易并显示合约地址：
 
 ----
-$ truffle migrate --network localnode
+$ Truffle migrate --network localnode
 Using network 'localnode'.
 
 Running migration: 1_initial_migration.js
@@ -258,23 +272,23 @@ Saving successful migration to network...
 Saving artifacts...
 ----
 
-==== Using the truffle console
+==== 使用Truffle控制台
 
-Truffle offers a JavaScript console that we can use to interact with the Ethereum network (via the local node), interact with deployed contracts, and interact with the wallet provider. In our current configuration (+localnode+), the node and wallet provider is our local parity client.
+Truffle提供了一个JavaScript控制台，我们可以使用这个控制台与Ethereum网络（通过本地节点）进行交互，与已部署的合约进行交互，并与钱包提供商进行交互。在我们当前的配置（+localnode+）中，节点和钱包提供商是我们的本地parity客户端。
 
-Let's start the truffle console and try some commands:
-
-----
-$ truffle console --network localnode
-truffle(localnode)>
-----
-
-Truffle presents a prompt, showing the selected network configuration (+localnode+). It's important to remember and be aware of which network we are using. You wouldn't want to accidentally deploy a test contract or make a transaction on the Ethereum main network. That could be an expensive mistake!
-
-The truffle console offers an auto-complete function that makes it easy for us to explore the environment. If we press +Tab+ after a partially-completed command, truffle will complete the command for us. Pressing +Tab+ twice will show all possible completions if more than one command matches our input. In fact, if we press +Tab+ twice on an empty prompt, truffle lists all commands:
+让我们开始Truffle控制台并尝试一些命令：
 
 ----
-truffle(localnode)>
+$ Truffle console --network localnode
+Truffle(localnode)>
+----
+
+Truffle提示一个提示符，显示所选的网络配置（+localnode+）。记住并了解我们正在使用哪个网络很重要。你不希望在Ethereum主网络上意外部署测试合约或进行交易。这可能是一个昂贵的错误！
+
+Truffle控制台提供了自动补全功能，使我们可以轻松探索环境。如果我们在部分完成的命令后按+Tab+，Truffle将为我们完成命令。如果有多个命令与我们的输入相匹配，按+Tab+两次将显示所有可能的完成。事实上，如果我们在空提示符下按两次+Tab+，Truffle将列出所有命令：
+
+----
+Truffle(localnode)>
 Array Boolean Date Error EvalError Function Infinity JSON Math NaN Number Object RangeError ReferenceError RegExp String SyntaxError TypeError URIError decodeURI decodeURIComponent encodeURI encodeURIComponent eval isFinite isNaN parseFloat parseInt undefined
 
 ArrayBuffer Buffer DataView Faucet Float32Array Float64Array GLOBAL Int16Array Int32Array Int8Array Intl Map Migrations Promise Proxy Reflect Set StateManager Symbol Uint16Array Uint32Array Uint8Array Uint8ClampedArray WeakMap WeakSet WebAssembly XMLHttpRequest _ assert async_hooks buffer child_process clearImmediate clearInterval clearTimeout cluster console crypto dgram dns domain escape events fs global http http2 https module net os path perf_hooks process punycode querystring readline repl require root setImmediate setInterval setTimeout stream string_decoder tls tty unescape url util v8 vm web3 zlib
@@ -282,76 +296,74 @@ ArrayBuffer Buffer DataView Faucet Float32Array Float64Array GLOBAL Int16Array I
 __defineGetter__ __defineSetter__ __lookupGetter__ __lookupSetter__ __proto__ constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf
 ----
 
-The vast majority of the wallet and node related functions are provided by the +web3+ object, which is an instance of the +web3.js+ library. The +web3+ object abstracts the RPC interface into our parity node. You will also notice two objects with familiar names: +Migrations+ and +Faucet+. Those represent the contracts we just deployed. We will use the truffle console to interact with a contract. First, let's check our wallet via the +web3+ object:
+绝大多数钱包和节点相关功能由+web3+对象提供，该对象是 +web3.js+库的一个实例。+web3+对象将RPC接口抽象为我们的parity节点。你还会注意到两个熟悉名称的对象：+Migrations+ 和 +Faucet+。这些代表我们刚刚部署的合约。我们将使用Truffle控制台与合约进行交互。首先，让我们通过 +web3+ 对象检查我们的钱包：
 
 ----
-truffle(localnode)> web3.eth.accounts
+Truffle(localnode)> web3.eth.accounts
 [ '0x9e713963a92c02317a681b9bb3065a8249de124f',
   '0xdb5dc1a13e3a55cf3b4587cd8d1e5fdeb6738145' ]
 ----
 
-Our parity client has two wallets, with some test ether on Ropsten. The +web3.eth.accounts+ attribute contains a list of all the accounts. We can check the balance of the first account, using the +getBalance+ function:
+我们的parity客户端有两个钱包，Ropsten有一些测试ether。+web3.eth.accounts+ 属性包含所有帐户的列表。我们可以使用 +getBalance+ 函数检查第一个帐户的余额：
 
 ----
-truffle(localnode)> web3.eth.getBalance(web3.eth.accounts[0]).toNumber()
+Truffle(localnode)> web3.eth.getBalance(web3.eth.accounts[0]).toNumber()
 191198572800000000
-truffle(localnode)>
+Truffle(localnode)>
 ----
 
-The +web3.js+ is a large JavaScript library that offers a comprehensive interface to the Ethereum system, via a provider such as a local client. We will examine +web3.js+ in more detail in <<web3js>>. Now let's try to interact with our contracts:
++web3.js+ 是一个大型JavaScript库，通过提供者（如本地客户端）为以太坊系统提供全面的界面。我们将在<<web3js>>中更详细地研究+web3.js+。现在让我们尝试与我们的合约进行交互：
 
 ----
-truffle(localnode)> Faucet.address
+Truffle(localnode)> Faucet.address
 '0xd01cd8e7bd29e4bff8c1693f59eee46137a9f300'
-truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
+Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
 0
-truffle(localnode)>
+Truffle(localnode)>
 ----
 
-Next, we'll use +sendTransaction+ to send some test ether to fund the +Faucet+. Note the use of +web3.toWei+ to convert ether units for us. Typing eighteen zeros without making a mistake is both difficult and dangerous, so it's always better to use a unit converter for values. Here's how we send the transaction:
+接下来，我们将使用 +sendTransaction+ 发送一些测试ether，为 +Faucet+ 提供资金。请注意使用+web3.toWei+为我们转换ether单位。在没有出错的情况下输入十八个零既困难又危险，因此使用单位转换器来获取值总是更好。以下是我们发送交易的方式：
 
 ----
-truffle(localnode)> web3.eth.sendTransaction({from:web3.eth.accounts[0], to:Faucet.address, value:web3.toWei(0.5, 'ether')});
+Truffle(localnode)> web3.eth.sendTransaction({from:web3.eth.accounts[0], to:Faucet.address, value:web3.toWei(0.5, 'ether')});
 '0xf134c75b985dc0e0c27c2f0412251e0860eb530a5055e660f21e7483ab336808'
 ----
 
-Switch to the web console on +parity+, where you will see a pop-up asking you to confirm this transaction. Wait a minute and once the transaction is mined, you will be able to see the balance of our +Faucet+ contract:
+切换到+parity+的Web控制台，你将看到一个弹出窗口，要求你确认该交易。等一下，一旦交易开始，你将能够看到我们的+Faucet+合约的余额：
 
 ----
-truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
+Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
 500000000000000000
 ----
 
-Let's call the +withdraw+ function now, to withdraw some test ether from the Faucet:
+我们调用+withdraw+函数，从Faucet中取出一些测试ether：
 
 ----
-truffle(localnode)> Faucet.deployed().then(instance => {instance.withdraw(web3.toWei(0.1, 'ether'))}).then(console.log)
+Truffle(localnode)> Faucet.deployed().then(instance => {instance.withdraw(web3.toWei(0.1, 'ether'))}).then(console.log)
 ----
 
-Again, you will need to approve the transaction in the parity web console. The balance of the +Faucet+ has decreased, and our test wallet has received +0.1+ ether:
+同样，你需要批准parity Web控制台中的交易。+Faucet+的余额已经下降，我们的测试钱包已经收到+0.1+ ether：
 
 ----
-truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
+Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
 400000000000000000
 ----
 
-
 ----
-truffle(localnode)> Faucet.deployed().then(instance => {instance.withdraw(web3.toWei(1, 'ether'))})
+Truffle(localnode)> Faucet.deployed().then(instance => {instance.withdraw(web3.toWei(1, 'ether'))})
 ----
 
 ----
 StatusError: Transaction: 0xe147ae9e3610334ada8d863c9028c12bd0501be2d0cfd05865c18612b92d3f9c exited with an error (status 0).
 ----
 
-
 === Embark
 
-Github link; https://github.com/embark-framework/embark/
+Github; https://github.com/embark-framework/embark/
 
-Documentation link; https://embark.status.im/docs/
+文档; https://embark.status.im/docs/
 
-+npm+ package repository link; https://www.npmjs.com/package/embark
++npm+ package repository; https://www.npmjs.com/package/embark
 
 ----
 $ npm -g install embark
@@ -359,15 +371,16 @@ $ npm -g install embark
 
 === OpenZeppelin
 
-https://openzeppelin.org/[OpenZeppelin] is an open framework of reusable and secure smart contracts in the Solidity language.
+https://openzeppelin.org/[OpenZeppelin] 是Solidity语言的一个可重复使用且安全的智能合约的开放框架。
 
-It is community-driven, led by the https://zeppelin.solutions/[Zeppelin] team, with over a hundred external contributors. The main focus of the framework is security, achieved by applying industry standard contract security patterns and best practices, taking advantage of all the experience the Zeppelin devs have gained from https://blog.zeppelin.solutions/tagged/security[auditing] a huge amount of contracts, and through the constant testing and auditing from the community that uses the framework as a base for their real world applications.
+它由社区驱动，由https://zeppelin.solutions/[Zeppelin]团队领导，拥有超过一百名外部贡献者。该框架的主要重点是安全，通过应用行业标准合约安全模式和最佳实践，利用zeppelin开发者从https://blog.zeppelin.solutions/tagged/security[auditing]中获得的所有经验大量的合约，并通过社区的持续测试和审计，使用该框架作为其实际应用的基础。
 
-The OpenZeppelin framework is the most widely used solution for Ethereum smart contracts. This is due to the community discussing every proposed solution and learning from the implementation and integration of these solutions, which turns into a growing feedback loop that improves the existing contracts and finds new possibilities to combine them in a clear and secure architecture. It has resulted in the constant addition of new reusable contracts to solve increasingly complex challenges or explore exciting new possibilities on top of the Ethereum blockchain. As mentioned before, the framework currently has an ample library of contracts ranging from implementations of `ERC20` and `ERC721` tokens, to many flavors of crowdsale models, to simple behaviors commonly found in contracts such as `Ownable`, `Pausable` or `LimitBalance`. The contracts in this repository in some cases even function as _de facto_ standard implementations.
+OpenZeppelin框架是以太坊智能合约使用最广泛的解决方案。这是由于社区讨论每个提议的解决方案并从这些解决方案的实施和整合中学习，这将变成一个不断增长的反馈循环，改进现有合约并找到将它们结合在一个清晰安全的体系结构中的新可能性。它不断增加新的可重用合约来解决越来越复杂的挑战，或在以太坊区块链上探索激动人心的新可能性。如前所述，该框架目前拥有丰富的合约库，从ERC20和ERC721 token的实现，到众多的crowdsale模型，到简单的行为，例如`Ownable`，`Pausable`或`LimitBalance`。
+在某些情况下，此存储库中的合约甚至作为_de facto_标准实现。
 
-The framework has an MIT license, and all the contracts have been designed with a modular approach to guarantee ease of reuse and extension. These are clean and basic building blocks, ready to be used on your next Ethereum project. Let's set up the framework and build a simple crowdsale using the OpenZeppelin contracts, as an example of how easy it is to use. This example also stresses the importance of reusing secure components instead of writing them by yourself, and gives a small sample of the ideas that the Ethereum platform and its community are making possible.
+该框架拥有MIT许可证，并且所有合约都采用模块化方法进行设计，以确保易用性和扩展性。这些都是干净而基本的构建块，可以在你的下一个以太坊项目中使用。让我们设置框架，并使用OpenZeppelin合约构建一个简单的crowdsale，作为使用它的简单例子。这个例子还强调了重用安全组件的重要性，而不是自己编写安全组件，并给出了以太坊平台及其社区成为可能的想法的一个小样本。
 
-First, we will need to install the openzepelin-solidity library from npm into our workspace. The latest release as of the time of this writing is `v1.9.0`, so we will use that one.
+首先，我们需要将npm中的openzepelin-solidity库安装到我们的工作区中。截至撰写本文时的最新版本是`v1.9.0`，所以我们将使用该版本。
 
 ----
 mkdir sample-crowdsale
@@ -376,33 +389,90 @@ npm install openzeppelin-solidity@1.9.0
 mkdir contracts
 ----
 
-For the crowdsale, we will need to define a token that we will give to the investors in exchange for their ether. At the time of writing, OpenZeppelin includes multiple basic token contracts that follow the ERC20, ERC721 and ERC827 standards, with different characteristics for emission, limits, vesting, lifecycle, etc.
+对于crowdsale而言，我们需要定义一个token，我们会给予投资者以换取其ether。在撰写本文时，OpenZeppelin包含了遵循ERC20，ERC721和ERC827标准的多个基本token合约，具有不同的发行，限制，兑现，生命周期等特征。
 
-Let's make an ERC20 token that's mintable, meaning that the initial supply starts at 0 and new tokens can be created by the token owner (in our case, the crowdsale contract) and assigned to the investors. In order to do this, create a `contracts/SampleToken.sol` file with the following contents:
+让我们制作一个ERC20 token，这意味着初始供应从0开始，token所有者（在我们的例子中，是crowdsale合约）可以创建新的 token并分配给投资者。为此，使用以下内容创建`contracts/SampleToken.sol`文件：
 
 ----
 include::code/OpenZeppelin/contracts/SampleToken.sol
+
+pragma solidity 0.4.23;
+
+import 'openzeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
+
+contract SampleToken is MintableToken {
+  string public name = "SAMPLE TOKEN";
+  string public symbol = "SAM";
+  uint8 public decimals = 18;
+}
 ----
 
-OpenZeppelin already provides a MintableToken contract that we can use as a base for our token, so we only define the details that are specific to our case. You can trust that the community has put great effort to ensure the correctness of the contract, but it's always better to verify this by ourselves. Take a look at the source code for https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/MintableToken.sol[MintableToken], https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/StandardToken.sol[StandardToken], and https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/ownership/Ownable.sol[Ownable] to understand the implementation details of your new token and the capabilities it supports. Also, take a look at the https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/MintableToken.test.js[automated tests] it has, to make sure that all the possible scenarios have been covered and that the code is safe.
+OpenZeppelin已经提供了一个MintableToken合约，我们可以用它作为token的基础，所以我们只定义特定于我们案例的细节。你可以相信社区已经付出很大的努力来确保合约的正确性，但最好自己核实一下。看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/MintableToken.sol[MintableToken]，https://github.com/OpenZeppelin的源代码/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/StandardToken.sol[StandardToken]和https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/ownership/Ownable.sol[Ownable]了解新token的实现细节及其支持的功能。另外，看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/MintableToken.test.js[automated tests]以确保所有可能的场景都已经被覆盖，并且代码是安全的。
 
-Next, let's make the crowdsale contract. Just like with tokens, OpenZeppelin already provides a wide variety of crowdsale flavors. Currently, you will find contracts for scenarios involving distribution, emission, price, and validation. So, let’s say that you want to set a goal for your crowdsale and if it’s not met by the time the sale finishes, you want to refund all your investors. For that, you can use the https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/RefundableCrowdsale.sol[RefundableCrowdsale] contract. Maybe you want to define a crowdsale with an increasing price to incentivize early buyers; there is the https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/price/IncreasingPriceCrowdsale.sol[IncreasingPriceCrowdsale] contract just for that. Or maybe end the crowdsale when a specified amount of ether has been received by the contract https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/CappedCrowdsale.sol[CappedCrowdsale], or set a finishing time with the https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/TimedCrowdsale.sol[TimedCrowdsale] contract, or a whitelist of buyers with the https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/WhitelistedCrowdsale.sol[WhitelistedCrowdsale] contract.
+接下来，我们来制作Crowdsale（ICO）合约。就像 token一样，OpenZeppelin已经提供了各种各样的Crowdsale。目前，你将找到涉及分配、发行，价格和验证的方案的合约。因此，假设你想为Crowdsale设定一个目标，并且如果在销售完成时没有达到目标，你想要退还所有投资者。为此，你可以使用https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/RefundableCrowdsale.sol[RefundableCrowdsale]合约。也许你想定义一个价格上涨的众筹来激励早期买家：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/price/IncreasingPriceCrowdsale.sol[IncreasingPriceCrowdsale]，或者设定一个截止时间：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/TimedCrowdsale.sol[TimedCrowdsale]，或者设定购买者白名单：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/WhitelistedCrowdsale.sol[WhitelistedCrowdsale]。
 
-As we said before, the OpenZeppelin contracts are basic building blocks. These crowdsale contracts have been designed to be combined, just read the source code of the base https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/Crowdsale.sol[Crowdsale] contract for directions on how to extend it. For the crowdsale of our token, we need to mint tokens when the ether is received by the crowdsale contract, so let's use https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/emission/MintedCrowdsale.sol[MintedCrowdsale] as a base. And to make it more interesting, let's make it also a https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol[PostDeliveryCrowdsale] so the tokens can only be withdrawn after the crowdsale ends. Write the following into `contracts/SampleCrowdsale.sol`:
+正如我们之前所说的，OpenZeppelin合约是基本的构建块。这些crowdsale合约被设计为可组合的，只需阅读 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/Crowdsale.sol[Crowdsale]合约的源代码即可了解关于如何扩展它的指导。对于我们token的crowdsale，我们需要在crowdsale合约收到ether时才发行token，所以让我们使用https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/emission/MintedCrowdsale.sol[MintedCrowdsale] 作为基础。为了让它更有趣，让我们把它做成 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol[PostDeliveryCrowdsale]， token只能在众筹结束后赎回。将以下内容写入`contracts/SampleCrowdsale.sol`：
 
 ----
 include::code/OpenZeppelin/contracts/SampleCrowdsale.sol
+
+pragma solidity 0.4.23;
+
+import './SampleToken.sol';
+import 'openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol';
+import 'openzeppelin-solidity/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol';
+
+contract SampleCrowdsale is PostDeliveryCrowdsale, MintedCrowdsale {
+
+  constructor(
+    uint256 _openingTime,
+    uint256 _closingTime
+    uint256 _rate,
+    address _wallet,
+    MintableToken _token
+  )
+    public
+    Crowdsale(_rate, _wallet, _token)
+    PostDeliveryCrowdsale(_openingTime, _closingTime)
+  {
+  }
+}
 ----
 
-Again, we almost didn't have to write any code, but just to reuse the already battle-tested code that the OpenZeppelin community made available for us. However, it is important to note that this case is different than the one of our `SampleToken` contract. If you go to the https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.9.0/test/crowdsale[Crowdsale automated tests] you will see that they are tested in isolation. When you integrate different units of code into a bigger component, it's not enough to test all the units separately because the interactions between them might cause behaviors that you didn't expect. In particular, you will see that here we introduced multiple inheritance, which can surprise the developer if they don't understand the implementation details of the Solidity compiler. Our `SampleCrowdsale` is simple, and it will work just as we expect because the framework was designed to make cases like these straightforward; but do not relax your security because of the simplicity that this framework introduces. Every time you integrate parts of the OpenZeppelin framework to build a more complex solution, you must fully test every aspect of your solution to ensure that all the interactions of the units work as you intend.
+同样，我们几乎不需要编写任何代码，只是为了重用OpenZeppelin社区为我们提供的已经经过测试的代码。但是，需要注意的是，这种情况与我们的`SampleToken`合约不同。如果你访问https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.9.0/test/crowdsale[Crowdsale自动化测试]，你会看到它们被隔离测试。当你将不同的代码单元集成到一个更大的组件中时，单独测试所有的单元是不够的，因为它们之间的交互可能会导致你没有预料到的行为。特别是，你会看到在这里我们介绍了多重继承，如果他们不了解Solidity编译器的实现细节，这可能会让开发人员感到意外。我们的`SampleCrowdsale`非常简单，并且能够像我们所期望的那样工作，因为框架旨在使这些案例变得简单明了；但不要因为这个框架引入的简单性，放松你的安全性。每当你集成部分OpenZeppelin框架以构建更复杂的解决方案时，你必须全面测试解决方案的每个方面，以确保单元的所有交互按照你的意图运行。
 
-Finally, after we are happy with our solution and we have tested it thoroughly, we need to deploy it. OpenZeppelin integrates well with Truffle, so we can just write a migrations file as explained in the Truffle section above. Write the following in migrations/2_deploy_contracts.js:
+最后，在我们对我们的解决方案感到满意并且我们已经彻底测试之后，我们需要部署它。OpenZeppelin与Truffle很好地集成在一起，所以我们可以按照上面的Truffle部分所述编写一个migration文件。在 migrations/2_deploy_contracts.js 中写入以下内容：
 
 ----
 include::code/OpenZeppelin/migrations/2_deploy_contracts.js
+
+const SampleCrowdsale = artifacts.require('./SampleCrowdsale.sol');
+const SampleToken = artifacts.require('./SampleToken.sol');
+
+module.exports = function(deployer, network, accounts) {
+  const openingTime = web3.eth.getBlock('latest').timestamp + 2; // two secs in the future
+  const closingTime = openingTime + 86400 * 20; // 20 days
+  const rate = new web3.BigNumber(1000);
+  const wallet = accounts[1];
+
+  return deployer
+    .then(() => {
+      return deployer.deploy(SampleToken);
+    })
+    .then(() => {
+      return deployer.deploy(
+        SampleCrowdsale,
+        openingTime,
+        closingTime,
+        rate,
+        wallet,
+        SampleToken.address
+      );
+    });
+};
 ----
 
-This was just a quick overview of a few of the contracts that are part of the OpenZeppelin framework. There are many more, and the community is always proposing ideas for new ones, implementing new strategies to make them safer, simpler and clearer, and trying to find holes early to prevent vulnerabilities on the mainnet contracts. You are welcome to join the community to learn and contribute.
+这只是OpenZeppelin框架中一些合约的简要概述。还有更多，社区总是提出新的想法，实施新的策略以使它们更安全，更简单，更清晰，并尽早发现漏洞以防止主要网络合约中的漏洞。欢迎你加入社区进行学习和贡献。
 
 Github link; https://github.com/OpenZeppelin/openzeppelin-solidity
 
@@ -411,36 +481,36 @@ Website link; https://openzeppelin.org/
 Docs link; https://openzeppelin.org/api/docs/open-zeppelin.html
 
 === zeppelin_os
-https://github.com/zeppelinos[zeppelin_os] is an open-source, distributed platform of tools and services on top of the EVM
-to develop and manage smart contract applications securely. 
+https://github.com/zeppelinos[zeppelin_os] 是一款开源的分布式工具和服务平台，位于EVM之上，安全地开发和管理智能合约应用程序。
 
-Unlike OpenZeppelin's code, which needs to be re-deployed with each application every time, zeppelin_os's code lives on-chain. Applications that need a given functionality, say, an ERC20 token, not only do not have to re-design and re-audit its implementation (something that OpenZeppelin solved) but do not even need to deploy it. With zeppelin_os, an application interacts with the token's on-chain implementation directly, in much the same way as a desktop application interacts with the components of its underlying OS.
+与OpenZeppelin的代码每次都需要重新部署每个应用程序不同，zeppelin_os的代码处于链上。需要特定功能的应用程序（例如ERC20 token）不仅不需要重新设计和重新审计其实施（OpenZeppelin解决了这些问题），而且甚至不需要部署它。使用zeppelin_os，应用程序可直接与 链上的token实现进行交互，这与桌面应用程序与其底层操作系统的组件进行交互的方式大致相同。
 
-Applications that make use of OpenZeppelin avoid having to "reinvent the wheel" by reusing the library's curated and peer reviewed contracts. However, every single time an application uses an ERC20 token implementation, the same ERC20 bytecode is deployed into the blockchain, over and over again. Such bytecode exists duplicated in the network countless times. Now, applications that make use of zeppelin_os avoid this unnecessary duplication. Instead of deploying their own ERC20 implementation, they link to a contract that defines the latest ERC20 implementation accepted by the community. This single, central implementation is deployed in the blockchain only once, much like Solidity's libraries, but are considerably more sophisticated.
+利用OpenZeppelin的应用程序通过重用库的组织和同行评审合约避免了“重新发明轮子”。然而，每当应用程序使用ERC20 token实现时，同一个ERC20字节码会一次又一次地部署到区块链中。这种字节码在网络中无数次重复存在。现在，使用zeppelin_os的应用程序可以避免这种不必要的重复。他们并没有部署自己的ERC20实施，而是链接到定义了社区接受的最新ERC20实现的合约。这种单一的中央实现仅部署在区块链中，与Solidity的库非常相似，但却相当复杂。
 
-Unlike Solidity's libraries, the implementations offered by zeppelin_os can be treated like regular contracts, i.e. they have storage. Also, they are upgradeable. If a vulnerability is ever found in one of the OS's official implementations, it can simply be swapped with an upgraded one. In the case of the ERC20 token, an upgrade to its implementation would instantly ripple to all the applications that use it. The OS not only provides upgradeability for all of its implementations, but also for the user's own contracts, and even for it's own codebase! Developers decide when and how an application should implement an upgrade, and even which "flavor" of an implementation to adhere to. 
+与Solidity的库不同，zeppelin_os提供的实现可以像常规合约一样对待，即它们具有存储空间。而且，它们是可升级的。如果在其中一个OS的官方实现中发现了一个漏洞，它可以简单地与升级的漏洞交换。对于ERC20 token，对其实施的升级会立即波及到所有使用它的应用程序。操作系统不仅为其所有实现提供可升级性，还为用户自己的合约提供升级能力，甚至为其自己的代码库提供升级能力！开发人员决定应用程序何时以及如何实施升级，甚至决定要遵守哪种实施方案。
 
-At the core of zeppelin_os sits a very clever contract known as a "proxy". A proxy is a contract that is capable of wrapping any other contract, exposing its interface without having to manually implement setters and getters for it, and can upgrade it without losing state. In Solidity terms, it can be seen as a normal contract whose business logic is contained within a library, which can be swapped by a new library at any time without losing its state. The way in which the proxy links to its implementation is completely automated and encapsulated for the developer. Practically any contract can be made upgradeable with little to no change in its code. More about zeppelin_os's proxy mechanism can be found in Zeppelin's blog: https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage], and an example of how to use it can be found here: https://github.com/zeppelinos/zos-lib/tree/master/examples/single.
+zeppelin_os的核心是一个非常聪明的合约，被称为“代理（proxy）”。代理是一种能够包装任何其他合约，暴露其接口而无需手动实现setter和getter的合约，并且可以在不丢失状态的情况下进行升级。在Solidity术语中，它可以被看作是一个正常的合约，其业务逻辑包含在一个库中，随时可以由一个新库来交换，而不会丢失其状态。代理链接到其实现的方式是完全自动的，并且封装给开发人员。实际上，任何合约都可以升级，代码几乎不变。关于zeppelin_os的代理机制的更多信息可以在Zeppelin的博客中找到：https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage]，
 
-The OS wraps its implementations in packages or "releases" that can be vouched for using ZepTokens. ZepTokens can hence be staked against a release, signaling it as the community's accepted implementation set. Anyone can submit new releases that can be scrutinized by the community and eventually accepted as official. As a reward, developers of a release receive tokens each time it is vouched for. As a Dapp developer, vouching provides a measurable way to determine how much is staked for a given release, and hence how much it can be trusted. 
+操作系统将其实现封装在可使用ZepTokens担保(vouched)的软件包或“发行版”中。因此，可以针对某个版本押注ZepTokens，将其标识为社区可接受的实现集。任何人都可以提交新的发行版，由社区审查并最终被接受为官方的新版本。作为奖励，发行版的开发者在它每次被押注时都会收到token。作为一名Dapp开发人员，担保(vouching)提供了一种可测量的方式来确定给定发行版获得的支持，以及可信度。
 
-Developing applications using zeppelin_os is similar to developing Javascript applications using NPM. An AppManager handles an application package for each version of the application. A package is simply a directory of contracts, each of which can have one or more upgradeable proxies. The AppManager does not only provide proxies for application-specific contracts, but does so also for zeppelin_os implementations in the form of a standard library. To see a full example of this, please visit: https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex].
+使用Zeppelin_os开发应用程序与使用NPM开发Javascript应用程序类似。AppManager处理应用程序的每个版本的应用程序包。包只是一个合约目录，每个合约都可以有一个或多个可升级的代理。AppManager不仅为特定于应用程序的合约提供代理，而且还以标准库的形式为Zeppelin_os实现提供代理。要查看这方面的完整示例，请访问：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
+
 //// TODO: the example provided above is still a WIP - link to a tutorial once it's finished
 
-Although currently in development, zeppelin_os aims to provide a wide set of additional features, such as developer tools, a scheduler that automates background operations within contracts, development bounties, a marketplace that facilitates communication and exchange of value between applications and much more. All of this is described in zeppelin_os's https://zeppelinos.org/zeppelin_os_[whitepaper].pdf.
+虽然目前正在开发中，但zeppelin_os旨在提供一系列附加功能，例如开发人员工具，自动执行合约中后台操作的调度程序，开发奖励，促进应用程序之间进行通信和交换价值的市场等等。所有这些都在zeppelin_os的https://zeppelinos.org/zeppelin_os_[whitepaper].pdf中描述。
 
 Github link; https://github.com/zeppelinos
 Website link; https://zeppelinos.org
 Blog: https://blog.zeppelinos.org
 Github: https://github.com/zeppelinos
 
-== Utilities
+== 实用程序
 
-=== ethereumJS helpeth: A command line utility
+=== ethereumJS helpeth: 命令行实用程序
 
-helpeth is a command line tool for key and transaction manipulation that makes a developer's job a lot easier.
+helpeth是一个命令行工具，使开发人员更容易的操作密钥和交易。
 
-It is part of the ethereumjs collection of JavaScript based libraries and tools.
+它是基于JavaScript的库和工具集合ethereumjs的一部分。
 
 https://github.com/ethereumjs/helpeth
 
@@ -478,7 +548,7 @@ Options:
 
 https://dapp.tools/
 
-Installing:
+安装:
 ----
 $ curl https://nixos.org/nix/install | sh
 $ nix-channel --add https://nix.dapphub.com/pkgs/dapphub
@@ -497,7 +567,7 @@ https://dapp.tools/hevm/
 
 ==== SputnikVM
 
-SputnikVM is a standalone pluggable virtual machine for different Ethereum-based blockchains. It's written in Rust, can be used as a binary, cargo crate, shared library, or integrated through FFI, Protobuf and JSON interface. It has a separate binary sputnikvm-dev intended for testing purposed, which emulates most of JSON RPC API and block mining.
+SputnikVM是一个独立的可插拔的用于不同的基于以太坊的区块链的虚拟机。它是用Rust编写的，可以用作二进制，货物箱，共享库，或者通过FFI，Protobuf和JSON接口集成。它有一个单独的用于测试目的的二进制sputnikvm-dev，它模拟大部分JSON RPC API和区块挖掘。
 
 Github link; https://github.com/etcdevteam/sputnikvm
 
@@ -505,7 +575,7 @@ Github link; https://github.com/etcdevteam/sputnikvm
 
 === web3.js
 
-web3.js is the Ethereum compatible JS API for communicating with clients via JSON RPC, developed by the Ethereum foundation.
+web3.js是以太坊兼容的JS API，用于通过以太坊基金会开发的JSON RPC与客户进行通信。
 
 Github link; https://github.com/ethereum/web3.js
 
@@ -517,7 +587,7 @@ Documentation link for web3.js API 1.0.0-beta.xx; https://web3js.readthedocs.io/
 
 === web3.py
 
-web3.py is a Python library for interacting with the Ethereum blockchain. It now lives in the Ethereum Foundation's GitHub too.
+web3.py 是一个用于与以太坊区块链进行交互的Python库。它现在也在以太坊基金会的GitHub中。
 
 Github link; https://github.com/ethereum/web3.py
 
@@ -527,7 +597,7 @@ Documentation link; https://web3py.readthedocs.io/
 
 === EthereumJS
 
-a collection of libraries and utilities for Ethereum.
+以太坊的库和实用程序集合。
 
 Github link; https://github.com/ethereumjs
 
@@ -535,7 +605,7 @@ Website link; https://ethereumjs.github.io/
 
 === web3j
 
-web3j is the Java and Android library for integrating with Ethereum clients and working with smart contracts.
+web3j 是Java和Android库，用于与Ethereum客户端集成并使用智能合约。
 
 Github link; https://github.com/web3j/web3j
 
@@ -545,13 +615,14 @@ Documentation link; https://docs.web3j.io
 
 === Etherjar
 
-Etherjar is another Java library for integrating with Ethereum and working with smart contracts. It's designed for server side projects based on Java 8+, provides low level access and high level wrapper around RPC, Ethereum data structures and Smart Contract access
+
+Etherjar 是与Ethereum集成并与智能合约一起工作的另一个Java库。它专为基于Java 8+的服务器端项目而设计，提供RPC的低层和高层封装，以太坊数据结构和智能合约访问。
 
 Github link; https://github.com/infinitape/etherjar
 
 === Nethereum
 
-Nethereum is the .Net integration library for Ethereum.
+Nethereum 是以太坊的.Net集成库。
 
 Github link; https://github.com/Nethereum/Nethereum
 
@@ -561,7 +632,7 @@ Documentation link; https://nethereum.readthedocs.io/en/latest/
 
 === ethers.js
 
-The ethers.js library is a compact, complete, full-featured, extensively tested Ethereum library fully licensed under the MIT license, and has received a DevEx grant from the Ethereum Foundation to extend and maintain.
+ethers.js 库是一个紧凑，完整，功能齐全，经过广泛测试的以太坊库，完全根据MIT许可证获得，并且已收到来自以太坊基金会的DevEx资助以扩展和维护。
 
 GitHub link: https://github.com/ethers-io/ethers.js
 
@@ -570,8 +641,11 @@ Documentation: https://docs.ethers.io
 
 === Emerald Platform
 
-Emerald Platform provides libraries and UI components to build Dapps on top of Ethereum. Emerald JS and Emerald JS UI provides set of modules and React components to build Javascript applications and websites, Emerald SVG Icons is a set of blockchain related icons. In addition to Javascript libraries it has Rust library to operate private keys and transaction signatures. All Emerald libraries and components are licensed under Apache 2 license.
+Emerald Platform提供了库和UI组件，可以在以太坊上构建Dapps。Emerald JS和Emerald JS UI提供了一组模块和React组件来构建Javascript应用程序和网站，Emerald SVG Icons是一组区块链相关的图标。除了Javascript库之外，它还有Rust库来操作私钥和交易签名。所有Emerald库和组件都使用 Apache 2许可。
 
 Github link; https://github.com/etcdevteam/emerald-platform
 
 Documentation link; https://docs.etcdevteam.com
+
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
