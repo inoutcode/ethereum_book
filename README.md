@@ -26,7 +26,7 @@
 
 [第九章 开发工具，框架和库](第九章.asciidoc)
 
-[第十章 代币](第十章.asciidoc)
+[第十章 Tokens](第十章.asciidoc)
 
 [第十一章 去中心化应用（DApps）](第十一章.asciidoc)
 
