@@ -968,9 +968,7 @@ Crowdfunding:: 提供Token销售的能力，例如通过拍卖，市场销售，
 如前所述，扩展具有附加功能的Token标准的决定代表了创新/风险与互操作性/安全性之间的权衡。
 
 [[Tokens_ico]]
-=== Tokens and ICOs
-
-Token和ICO
+=== Tokens 和 ICOs
 
 Token已经成为以太坊生态系统中的爆炸性发展。它们可能是所有智能合约平台（如以太坊）中非常重要的基础组件。
 
