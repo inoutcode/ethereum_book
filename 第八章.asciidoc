@@ -1,3 +1,5 @@
+<<第七章#,上一章：交易>>
+
 [[smart_contracts_chapter]]
 == 智能合约
 
@@ -1569,5 +1571,6 @@ eth.getStorageAt(address, position)
 ....
 获取位于 +address+ 的存储，并使用 +position+ 的偏移量显示该合约中存储的数据。
 
+<<第九章#,下一章：开发工具，框架和库>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
