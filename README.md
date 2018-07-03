@@ -56,5 +56,7 @@ Wechat: 121402213
 
 注：transaction 有两种翻译：交易，事务，在不同场景下使用不同的译法。
 
+[下一章：前言](前言.asciidoc)
+
 ### 打赏
 ![](images/thanks.jpeg)

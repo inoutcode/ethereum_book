@@ -1,6 +1,8 @@
 [[wallets_chapter]]
 == 钱包
 
+<<第五章#,上一章：密钥与地址>>
+
 在以太坊中，“钱包”一词有几个不同的含义。
 
 在较高层次上，钱包是作为主要用户界面的应用程序。钱包控制对用户资金的访问，管理密钥和地址，追踪余额以及创建和签署交易。另外，一些以太坊钱包还可以与合约（如代币）进行交互。
@@ -415,5 +417,6 @@ https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 | m/44++'++/2++'++/0++'++/0/1 | The second private key in the Litecoin main account, for signing transactions
 |=======
 
+<<第七章#,下一章：交易>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

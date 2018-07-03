@@ -1,6 +1,8 @@
 [[ethereum_clients_chapter]]
 == 以太坊客户端
 
+<<第二章#,上一章：以太坊基础>>
+
 以太坊客户端是实现以太坊规范并通过对等网络与其他以太坊客户端进行通信的软件应用程序。不同的以太坊客户端如果符合参考规范和标准化通信协议，就可以互操作。虽然这些不同的客户端由不同的团队和不同的编程语言实现，但他们都“说”相同的协议并遵循相同的规则。
 
 以太坊是一个_open source_项目，源代码可在开放（LGPL v3.0）许可下使用，可免费下载并用于任何目的。开源意味着不仅仅是免费使用。这也意味着以太坊由一个开放的志愿者社区开发，任何人都可以修改。
@@ -562,5 +564,7 @@ https://github.com/ethereum/mist
 [bibliography]
 === References
 - [[[1]]] EIP-161: http://eips.ethereum.org/EIPS/eip-161
+
+<<第四章#,下一章：以太坊测试网>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
