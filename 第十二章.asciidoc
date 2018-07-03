@@ -1,73 +1,75 @@
+<<第十一章#,上一章：去中心化应用 (DApps)>>
+
 [[oracles_chap]]
 == Oracles
 
-A key property of the Ethereum Virtual Machine is its ability to execute smart contract bytecode in a fully deterministic fashion. The EVM guarantees that the same operations will return identical outputs, regardless of the computer upon which they were actually run. This characteristic, although key to Ethereum's security assurances, limits the functionality of smart contracts by preventing them from retrieving and processing off-chain data.
+以太坊虚拟机的一个关键属性是它能够以完全确定的方式执行智能合约字节码。EVM保证相同的操作将返回相同的输出，而不管它们实际运行的计算机。这一特性虽然是以太坊安全保证的关键，但它通过阻止智能合约检索和处理脱链数据来限制智能合约的功能。
 
-However, many blockchain applications require access to extrinsic information. This is where *oracles* come into play. Oracles can be defined as authoritative sources of off-chain data that allow smart contracts to receive and condition execution using extrinsic information—they can be thought of as a mechanism for bridging the gap between on and off-chain. Allowing smart contracts to enforce contractual relationships based on real-world events and data broadens their scope dramatically. Examples of data that might be provided by oracles include:
+但是，许多区块链应用程序需要访问外部信息。这就是*oracles*发挥作用的地方。可以将Oracles定义为离线数据的权威来源，允许智能合约使用外部信息接收和条件执行 - 它们可以被视为弥合链上链下之间鸿沟的机制。允许智能合约根据实际事件和数据强制执行合约关系，大大扩展了其范围。可能由oracles提供的数据示例包括：
 
-* Random numbers/entropy from physical sources (e.g. quantum/thermal phenomenon): to fairly select a winner in a lottery smart contract
-* Parametric triggers indexed to natural hazards: triggering of catastrophe bond smart contracts (e.g. wind speed for a hurricane bond)
-* Exchange rate data: accurate pegging of stablecoins to fiat currency
-* Capital markets data: pricing baskets of tokenized assets/securities
-* Benchmark reference data: incorporating interest rates into smart financial derivatives
-* Static/pseudo-static data: security identifiers, country codes, currency codes
-* Time and Interval data: Event triggers grounded in precise SI time measurement
-* Weather data: insurance premium calculation based on a weather forecast
-* Political events: prediction market resolution
-* Sporting events: prediction market resolution and fantasy sports contracts
-* Geo-location data: supply chain tracking
-* Damage verification: insurance contracts
-* Events occurring on other blockchains: interoperability functions
-* Transaction gas price: gas price oracles
-* Flight delays: insurance contracts
+* 来自物理来源的随机数/熵（例如量子/热现象）：公平地选择彩票智能合约中的赢家
+* 与自然灾害相关的参数触发器：触发巨灾债券智能合约（对于飓风债券来说的风速）
+* 汇率数据：将稳定币与法定货币准确挂钩
+* 资本市场数据：代币化资产/证券的定价篮子
+* 基准参考数据：将利率纳入智能金融衍生品
+* 静态/伪静态数据：安全标识符，国家/地区代码，货币代码
+* 时间和间隔数据：事件触发器以精确的SI时间测量为基础
+* 天气数据：基于天气预报的保险费计算
+* 政治事件：预测市场决议
+* 体育赛事：预测市场决议和幻想体育合约
+* 地理位置数据：供应链跟踪
+* 损害赔偿：保险合约
+* 其他区块链上发生的事件：互操作函数
+* 交易天然气价格：gas价格oracles
+* 航班延误：保险合约
 
-In this section, we will examine the primary functions of oracles, oracle subscription patterns, computation oracles, decentralized oracles, and oracle client implementations in Solidity.
+在本节中，我们将在Solidity中检查oracles的主要功能，oracle订阅模式，计算oracles，去中心化的oracles和oracle客户端实现。
 
 [[primary_functions_sec]]
-=== Primary functions
+=== 主要功能
 
-In practical terms, an oracle might be implemented as a system of on-chain smart contracts and off-chain infrastructure used to monitor requests, retrieve and return data. A request for data from a decentralized application would typically be an asynchronous process involving a number of steps.
+实际上，oracle可以实现为链上智能合约系统和用于监控请求，检索和返回数据的离线基础设施。来自去中心化应用的数据请求通常是涉及许多步骤的异步过程。
 
-Firstly, an externally-controlled account would transact with a decentralized application, resulting in an interaction with a function defined in the oracle smart contract. This function initiates the request to the oracle, with the associated arguments detailing the data requested in addition to supplementary information that might include callback functions and scheduling parameters. Once this transaction has been validated, the oracle request can be observed as an EVM event emitted by the oracle contract, or as a state change; the arguments can be retrieved and used to perform the actual query from the off-chain data source. The oracle may also require payment for processing the request, gas payment for the callback, and permissions/rights to access the requested data. Finally, the resulting data is signed by the oracle owner, essentially attesting to the value of the data at a given time, and delivered in a transaction to the decentralized application that made the request—either directly or via the oracle contract. Depending on the scheduling parameters, the oracle may broadcast further transactions updating the data at regular intervals, e.g. end of day pricing information.
+首先，外部所有帐户将与去中心化应用进行交易，从而与oracle智能合约中定义的函数进行交互。此函数初始化对oracle的请求，除了可能包含回调函数和调度参数的补充信息之外，还使用相关参数详细说明所请求的数据。一旦验证了此事务，就可以将oracle请求视为oracle合约发出的EVM事件，或者状态更改； 参数可以被取出并用于从脱链数据源执行实际查询。oracle可能需要处理请求的费用，回调的gas费用，以及访问所请求数据的权限/权限。最后，结果数据由oracle所有者签署，基本上证明在给定时间数据的价值，并在交易中交付给作出请求的去中心化应用 - 直接或通过oracle合约。根据调度参数，oracle可以定期广播进一步更新数据的事务，例如日终定价信息。
 
-A range of alternative schemes are also possible. Data can be requested from and returned directly by an externally-controlled account, removing the need for an oracle smart contract. Similarly, the request and response could be made to and from an Internet of Things enabled hardware sensor. Therefore, oracles can be human, software, or hardware-based.
+可能有一系列替代方案。可以从外部所有帐户请求数据并直接返回数据，从而无需使用oracle智能合约。类似地，可以向物联网启用的硬件传感器发出请求和响应。因此，oracles可以是人类，软件或基于硬件的。
 
-The primary functions of an oracle may be summarized as follows:
+oracle的主要功能可概括如下：
 
-* Responding to queries from decentralized applications
-* Parsing the query
-* Checking that payment and data permissions/rights obligations are met
-* Retrieving data from an off-chain source
-* Signing of data within a transaction
-* Broadcasting transactions to the network
-* Further scheduling of transactions
+* 回应去中心化应用的查询
+* 解析查询
+* 检查是否符合付款和数据权限/权利义务
+* 从脱链源检索数据
+* 在交易中签署数据
+* 向网络广播交易
+* 进一步安排交易
 
 [[subscription_paterns_sec]]
-=== Subscription patterns
+=== 订阅模式
 
-The subscription pattern described above is a typical request-response pattern, commonly seen in client-server architectures. While this is a useful messaging pattern which allows applications to have a two-way conversation, it is a relatively simple pattern and perhaps inappropriate under certain conditions. For example, a smart bond requiring an interest rate from an oracle might have to request the data on a daily basis under a request-response pattern in order to ensure the rate is always correct. Given that interest rates change infrequently, a publish-subscribe pattern may be more appropriate here—especially when taking into consideration Ethereum's limited bandwidth.
+上述订阅模式是典型的请求——响应模式，常见于客户端——服务器体系结构中。虽然这是一种有用的消息传递模式，允许应用程序进行双向对话，但它是一种相对简单的模式，在某些条件下可能不合适。例如，需要oracle提供利率的智能债券可能需要在请求-响应模式下每天请求数据，以确保利率始终是正确的。鉴于利率不经常变化，发布——订阅模式在这里可能更合适，尤其是考虑到以太坊的有限带宽。
 
-Publish–subscribe is a pattern where publishers—here, oracles—do not send messages directly to receivers, but instead categorize published messages into distinct classes. Subscribers are able to express an interest in one or more classes and retrieve only those messages which are of interest. Under such a pattern, an oracle might write the interest rate to its own internal storage, when and only when it changes. Multiple subscribed decentralized applications can simply read it from the oracle contract, thereby reducing the impact on network bandwidth while minimizing storage costs.
+发布——订阅是一种模式，其中发布者，这里是oracles，不直接向接收者发送消息，而是将发布的消息分到不同的类中。订阅者能够表达对一个或多个类的兴趣并仅检索那些感兴趣的消息。在这种模式下，oracle可以将利率写入其自己的内部存储，当且仅当它发生变化时。多个订阅的去中心化应用可以简单地从oracle合约中读取它，从而减少对网络带宽的影响，同时最大限度地降低存储成本。
 
-In a broadcast or multicast pattern, an oracle would post all messages to a channel and subscribing contracts would listen to the channel under a variety of subscription modes. For example, an oracle might publish messages to a cryptocurrency exchange rate channel. A subscribing smart contract could request the full content of the channel if it required the time series for, e.g., a moving average calculation; another might require only the last rate for a spot price calculation. A broadcast pattern is appropriate where the oracle does not need to know the identity of the subscribing contract.
+在广播或多播模式中，oracle会将所有消息发布到一个频道，订阅合约将在各种订阅模式下收听该频道。例如，oracle可能会将消息发布到加密货币汇率通道。订阅智能合约如果需要时间序列，例如移动平均计算，则可以请求信道的全部内容; 另一个可能只需要最后一个价格来计算现货价格。在oracle不需要知道订阅合约的身份的情况下，广播模式是合适的。
 
 [[data_authentication_sec]]
-=== Data Authentication
+=== 数据认证
 
-If we assume that the source of data being queried by a decentralized application is both authoritative and trustworthy, an outstanding question remains: given that the oracle and the query/response mechanism may be operated by distinct entities, how are we able trust this mechanism? There is a distinct possibility that data may be tampered with whilst in transit, so it is critical that off-chain methods are able to attest to the returned data's integrity. Two common approaches to data authentication are authenticity proofs and Trusted Execution Environments (TEEs).
+如果我们假设去中心化应用查询的数据源既具有权威性又值得信赖，那么一个悬而未决的问题仍然存在：假设oracle和查询/响应机制可能由不同的实体操作，我们如何才能信任这种机制？数据在传输过程中可能会被篡改，因此脱链方法能够证明返回数据的完整性至关重要。数据认证的两种常用方法是真实性证明和可信执行环境（TEE）。
 
-Authenticity proofs are cryptographic guarantees that prove that data has not been tampered with. Based on a variety of attestation techniques (e.g. digitally signed proofs), they effectively shift the trust from the data carrier to the attestor, i.e. the provider of the attestation method. By verifying the authenticity proof on-chain, smart contracts are able to verify the integrity of the data before operating upon it. Oraclize [1] is an example of an oracle service leveraging a variety of authenticity proofs. One such proof that is currently available for data queries from the Ethereum main network is the TLSNotary Proof [2]. TLSNotary Proofs allow a client to provide evidence to a third party that HTTPS web traffic occurred between the client and a server. While HTTPS is itself secure, it doesn’t support data signing. As a result, TLSNotary Proofs rely on TLSNotary (via PageSigner [3]) signatures. TLSNotary Proofs leverage the Transport Layer Security (TLS) protocol, enabling the TLS master key, which signs the data after it has been accessed, to be split between three parties: the server (the oracle), an auditee (Oraclize), and an auditor. Oraclize uses an Amazon Web Services (AWS) virtual machine instance as the auditor which can be verified as having been unmodified since instantiation [4]. This AWS instance stores the TLSNotary secret, allowing it to provide honesty proofs. Although it offers higher assurances against data tampering than a purely trusted query/response mechanism, this approach does require the assumption that Amazon itself will not tamper with the VM instance.
+真实性证明是加密保证，证明数据未被篡改。基于各种证明技术（例如，数字签名证明），它们有效地将信任从数据载体转移到证明者，即证明方法的提供者。通过在链上验证真实性，智能合约能够在对其进行操作之前验证数据的完整性。Oraclize[1]是利用各种真实性证明的oracle服务的一个例子。目前可用于以太坊主网络的数据查询是TLSNotary Proof [2]。TLSNotary Proofs允许客户端向第三方提供客户端和服务器之间发生HTTPS Web流量的证据。虽然HTTPS本身是安全的，但它不支持数据签名。结果是，TLSNotary证明依赖于TLSNotary（通过PageSigner [3]）签名。TLSNotary Proofs利用传输层安全性（TLS）协议，使得在访问数据后对数据进行签名的TLS主密钥在三方之间分配：服务器（oracle），受审核方（Oraclize）和核数师。Oraclize使用Amazon Web Services（AWS）虚拟机实例作为审核员，可以证明自它实例化以来未经修改[4]。此AWS实例存储TLSNotary机密，允许其提供诚实证明。虽然它提供了比纯信任查询/响应机制更高的数据篡改保证，但这种方法确实需要假设亚马逊本身不会篡改VM实例。
 
-TownCrier [5,6] is an authenticated data feed oracle system based on Trusted Execution Environment; such methods adopt a different approach that utilizes hardware-based secure enclaves to verify data integrity. TownCrier uses Intel's SGX (Software Guard eXtensions) to ensure that responses from HTTPS queries can be verified as authentic. SGX provides guarantees of integrity, ensuring that applications running within an enclave are protected by the CPU against tampering by any other process. It also provides confidentiality, ensuring that an application's state is opaque to other processes when running within the enclave. And finally, SGX allows attestation, by generating a digitally signed proof that an application—securely identified by a hash of its build—is actually running within an enclave. By verifying this digital signature, it is possible for a decentralized application to prove that a TownCrier instance is running securely within an SGX enclave. This, in turn, proves that the instance has not been tampered with and that the data emitted by TownCrier is therefore authentic. The confidentiality property additionally enables TownCrier to handle private data by allowing data queries to be encrypted using the TownCrier instance's public key. By operating an oracle's query/response mechanism within an enclave such as SGX, it can effectively be thought of as running securely on trusted third party hardware, ensuring that the requested data is returned untampered (assuming that we trust Intel/SGX).
+TownCrier [5,6]是基于可信执行环境的经过身份验证的数据馈送oracle系统; 这些方法采用不同的机制，利用基于硬件的安全区域来验证数据的完整性。TownCrier使用英特尔的SGX（Software Guard eXtensions）来确保HTTPS查询的响应可以被验证为可靠。SGX提供完整性保证，确保在安全区内运行的应用程序受到CPU的保护，防止任何其他进程被篡改。它还提供机密性，确保在安全区内运行时应用程序的状态对其他进程不透明。最后，SGX允许证明，通过生成数字签名的证据，证明应用程序 - 通过其构建的哈希安全地识别 - 实际上是在安全区内运行。通过验证此数字签名，去中心化式应用程序可以证明TownCrier实例在SGX安全区内安全运行。反过来，这证明实例没有被篡改，因此TownCrier发出的数据是真实的。机密性属性还允许TownCrier通过允许使用TownCrier实例的公钥加密数据查询来处理私有数据。通过在诸如SGX的安全区内运行oracle的查询/响应机制，可以有效地将其视为在受信任的第三方硬件上安全运行，确保所请求的数据被返回到未被禁用的状态（假设我们信任Intel/SGX）。
 
 [[computation_oracles_sec]]
-=== Computation oracles
+=== 计算 oracles
 
-So far, we have only discussed oracles in the context of requesting and delivering data. However, oracles can also be used to perform arbitrary computation, a function which can be especially useful given Ethereum’s inherent block gas limit and comparatively expensive computation costs; with Vitalik himself pointing out the fact that the computational cost on Ethereum is less efficient by a factor of a million when compared to existing centralized services [7]. Rather than just relaying the results of a query, computation oracles can be used to perform a relevant computation on a set of inputs and return a calculated result that may have been infeasible to calculate on-chain. For example, one might use a computation oracle to perform a computationally-intensive regression calculation in order to estimate the yield of a bond contract.
+到目前为止，我们只是在请求和提供数据的背景下讨论了oracles。然而，oracles也可用于执行任意计算，这一功能在以太坊固有的区块gas限制和相对昂贵的计算成本的情况下特别有用; Vitalik本人指出，与现有的集中服务相比，以太坊的计算成本效率低了一百万倍[7]。计算oracles可以用于对一组输入执行相关计算，而不是仅仅中继查询结果，并返回计算结果，这可能是在链上计算不可行的。例如，可以使用计算oracle执行计算密集型回归计算，以估计债券合约的收益率。
 
-Oraclize provides a service that allows decentralized applications to request the output of a computation performed in a sandboxed AWS virtual machine. The AWS instance creates an executable container, from a user-configured Dockerfile packed in an archive that is uploaded to IPFS. On request, Oraclize retrieves this archive using its hash, and then initializes and executes the Docker container on AWS, passing any arguments that are provided to the application as environment variables. The containerized application performs the calculation, subject to a time constraint, and must have the result written to standard output where it can be retrieved by Oraclize and returned to the decentralized application. Oraclize currently offers this service on an auditable t2.micro AWS instance.
+Oraclize提供的服务允许去中心化应用请求输出在沙盒AWS虚拟机中执行的计算。AWS实例从包含在上传到IPFS的存档中的用户配置的Dockerfile创建可执行容器。根据请求，Oraclize使用其哈希检索此存档，然后在AWS上初始化并执行Docker容器，将作为环境变量提供给应用程序的任何参数传递。容器化应用程序根据时间限制执行计算，并且必须将结果写入标准输出，Oraclize可以将其返回到去中心化应用。Oraclize目前在可审核的t2.micro AWS实例上提供此服务。
 
-The concept of a 'cryptlet' as a standard for verifiable oracle truths has been formalized as part of Microsoft's wider ESC Framework [8].  Cryptlets execute within an encrypted capsule that abstracts away the infrastructure, such as I/O, and has the CryptoDelegate attached so incoming and outgoing messages are signed, validated, and proven automatically.  Cryptlets support distributed transactions so that contract logic can take on complex multi-step, multi-blockchain and external system transactions in an ACID manner.  This allows developers to create portable, isolated, and private resolutions of the truth for use in smart-contracts.  Cryptlets follow the format below:
+作为可验证的oracle真理的标准，“cryptlet”的概念已被正式化为Microsoft更广泛的ESC框架[8]的一部分。Cryptlet在加密的封装内执行，该封装抽象出基础设施，例如I/O，并附加了CryptoDelegate，以便自动对传入和传出的消息进行签名，验证和验证。Cryptlet支持分布式事务，因此合约逻辑可以以ACID方式处理复杂的多步骤，多区块链和外部系统事务。这允许开发人员创建便携，隔离和私有的真相解决方案，以便在智能合约中使用。Cryptlet遵循以下格式：
 
 ----
 public class SampleContractCryptlet : Cryptlet
@@ -79,28 +81,27 @@ public class SampleContractCryptlet : Cryptlet
                 new CryptletMessageApi(GetType().FullName, new SampleContractConstructor())
 ----
 
+TrueBit [9]是可扩展和可验证的离线计算的解决方案。它引入了一个求解器和验证器系统，分别执行计算和验证。如果解决方案受到挑战，则在链上执行对计算子集的迭代验证过程 - 一种“验证游戏”。游戏通过一系列循环进行，每个循环递归地检查计算的越来越小的子集。游戏最终进入最后一轮，挑战是微不足道的，以至于评委 - 以太坊矿工 - 可以对挑战是否合理，在链上进行最终裁决。实际上，TrueBit是一个计算市场的实现，允许去中心化应用支付可在网络外执行的可验证计算，但依靠以太坊来强制执行验证游戏的规则。理论上，这使无信任的智能合约能够安全地执行任何计算任务。
 
-TrueBit [9] is a solution for scalable and verifiable off-chain computation. It introduces a system of solvers and verifiers, who are incentivized to perform computations and verification of those computations, respectively. Should a solution be challenged, an iterative verification process on subsets of the computation are performed on-chain—a kind of 'verification game'. The game proceeds through a series of rounds, each recursively checking a smaller and smaller subset of the computation. The game eventually reaches a final round, where the challenge is sufficiently trivial such that the judges–Ethereum miners–can make a final ruling on whether the challenge was justified, on-chain. In effect, TrueBit is an implementation of a computation market, allowing decentralized applications to pay for verifiable computation to be performed outside of the network, but relying on Ethereum to enforce the rules of the verification game. In theory, this enables trustless smart contracts to securely perform any computation task.
-
-A broad range of applications exist for systems like TrueBit, ranging from machine learning to verification of any proof-of-work. An example of the latter is the Doge-Ethereum bridge, which utilizes TrueBit to verify Dogecoin’s proof-of-work, Scrypt, a memory-hard and computationally intensive function that cannot be computed within the Ethereum block gas limit. By performing this verification on TrueBit, it has been possible to securely verify Dogecoin transactions within a smart contract on Ethereum's Rinkeby testnet.
+TrueBit等系统有广泛的应用，从机器学习到任何工作量证明的验证。后者的一个例子是Doge-Ethereum桥，它利用TrueBit来验证Dogecoin的工作量证明，Scrypt，一种难以在以太坊块gas限制内计算的内存密集和计算密集型函数。通过在TrueBit上执行此验证，可以在以太坊的Rinkeby测试网络上的智能合约中安全地验证Dogecoin交易。
 
 [[decentralized_orackes_sec]]
-=== Decentralized oracles
+=== 去中心化的 oracles
 
-The mechanisms outlined above all describe centralized oracle systems reliant on trusted authorities. While they should suffice for many applications, they do however represent central points of failure in the Ethereum network. A number of schemes have been proposed around the idea of decentralized oracles as a means of ensuring data availability, and the creation of a network of individual data providers with an on-chain data aggregation system.
+上面概况的机制都描述了依赖于可信任权威的集中式oracle系统。虽然它们应该足以满足许多应用，但它们确实代表了以太坊网络中的中心故障点。已经提出了许多围绕去中心化oracle作为确保数据可用性手段的方案，以及利用链上数据聚合系统创建独立数据提供者网络。
 
-ChainLink [10] have proposed a decentralized oracle network consisting of three key smart contracts: a reputation contract, an order-matching contract, an aggregation contract, and an off-chain registry of data providers. The reputation contract is used to keep track of data provider's performance. Scores in the reputation contract are used to populate the off-chain registry. The order-matching contract selects bids from oracles using the reputation contract. It then finalizes a Service Level Agreement (SLA), which includes query parameters and the number of oracles required. This means that the purchaser needn’t transact with the individual oracles directly. The aggregation contract collects responses, submitted using a commit/reveal scheme, from multiple oracles, calculates the final collective result of the query, and feeds the results back into the reputation contract.
+ChainLink [10]提出了一个去中心化oracle网络，包括三个关键的智能合约：信誉合约，订单匹配合约，汇总合约和数据提供商的脱链注册。信誉合约用于跟踪数据提供商的绩效。声誉合约中的分数用于填充离线注册表。订单匹配合约使用信誉合约从oracles中选择出价。然后，它最终确定服务级别协议（SLA），其中包括查询参数和所需的oracles数量。这意味着购买者无需直接与个别的oracles交易。聚合合约从多个oracles收集使用提交/显示方案提交的响应，计算查询的最终集合结果，
 
-One of the main challenges with such a decentralized approach is the formulation of the aggregation function. ChainLink proposes calculating a weighted response, allowing a validity score to be reported for each oracle response. Detecting an 'invalid' score here is non-trivial since it relies on the premise that outlying data points, measured by deviations from responses provided by peers, are incorrect. Calculating a validity score based on the location of an oracle response amongst a distribution of responses risks penalizing correct answers over average ones. Therefore, ChainLink offers a standard set of aggregation contracts, but also allow customized aggregation contracts to be specified.
+这种去中心化方法的主要挑战之一是汇总函数的制定。ChainLink建议计算加权响应，允许为每个oracle响应报告有效性分数。在这里检测“无效”分数是非常重要的，因为它依赖于前提：由对等体提供的响应偏差测量的外围数据点是不正确的。基于响应分布中的oracle响应的位置来计算有效性分数可能会使正确答案超过普通答案。因此，ChainLink提供了一组标准的聚合合约，但也允许指定自定义的聚合合约。
 
-A related idea is the SchellingCoin protocol [11]. Here, multiple participants report values and the median is taken as the 'correct' answer. Reporters are required to provide a deposit which is redistributed in favor of values that are closer to the median, therefore incentivizing the reporting of values that are similar to others. A common value, also known as the Schelling Point, which respondents might consider as the natural and obvious target around which to coordinate is expected to be close to the actual value.
+一个相关的想法是SchellingCoin协议[11]。在这里，多个参与者报告价值，并将中位数作为“正确”答案。报告者必须提供重新分配的存款，以支持更接近中位数的价值，从而激励报告与其他价值相似的价值。一个共同的价值，也称为Schelling Point，受访者可能认为这是一个自然而明显的协调目标，预计将接近实际价值。
 
-Teutsch recently proposed a new design for a decentralized off-chain data availability oracle [12]. This design leverages a dedicated proof-of-work blockchain which is able to correctly report on whether or not registered data is available during a given epoch. Miners attempt to download, store, and propagate all currently registered data, therefore guaranteeing data is available locally. While such a system is expensive in the sense that every mining node stores and propagates all registered data, the system allows storage to be reused by releasing data after the registration period ends.
+Teutsch最近提出了一种新的去中心化脱链数据可用性设计oracle [12]。该设计利用专用的工作证明区块链，该区块链能够正确地报告在给定时期内的注册数据是否可用。矿工尝试下载，存储和传播所有当前注册的数据，因此保证数据在本地可用。虽然这样的系统在每个挖掘节点存储和传播所有注册数据的意义上是昂贵的，但是系统允许通过在注册周期结束之后释放数据来重用存储。
 
 [[oracle_client_interfaces_in_solidity_sec]]
-=== Oracle client interfaces in Solidity
+=== Solidity中的Oracle客户端接口
 
-Below is a Solidity example demonstrating how Oraclize can be used to continuously poll for the ETH/USD price from an API and store the result in a usable manner. :
+下面是一个Solidity示例，演示如何使用API从Oraclize连续轮询ETH/USD价格并以可用的方式存储结果。：
 
 ----
 /*
@@ -160,14 +161,14 @@ contract EthUsdPriceTicker is usingOraclize {
 }
 ----
 
-To integrate with Oraclize, the contract EthUsdPriceTicker must be a child of usingOraclize; the usingOraclize contract is defined in the oraclizeAPI file. The data request is made using the oraclize_query() function which is inherited from the usingOraclize contract. This is an overloaded function that expects at least two arguments:
+要与Oraclize集成，合约EthUsdPriceTicker必须是usingOraclize的子项；usingOraclize合约在oraclizeAPI文件中定义。数据请求是使用oraclize_query()函数生成的，该函数继承自usingOraclize合约。这是一个重载函数，至少需要两个参数：
 
-* The supported datasource to use, such as URL, WolframAlpha, IPFS, or computation
-* The argument for the given datasource, which may include the use of JSON or XML parsing helpers
+* 支持的数据源，例如URL，WolframAlpha，IPFS或计算
+* 给定数据源的参数，可能包括使用JSON或XML解析助手
 
-The price query is performed in the queryTicker() function. In order to perform the query, Oraclize requires the payment of a small fee in ether, covering the gas cost for transmitting and processing the result to the __callback() function and accompanying surcharge for the service. This amount is dependent on the datasource, and where specified, the type of authenticity proof that is required. Once the data has been retrieved, the __callback() function is called by an Oraclize controlled account permissioned to do the callback; it passes in the response value and a unique queryId argument, which as an example, can be used to handle and track multiple pending callbacks from Oraclize.
+价格查询在queryTicke()函数中执行。为了执行查询，Oraclize要求在以太网中支付少量费用，包括将结果传输和处理到__callback()函数的gas成本以及随附的服务附加费。此数量取决于数据源，如果指定，则取决于所需的真实性证明类型。一旦检索到数据，__callback()函数由Oraclize控制的帐户调用，该帐户被允许进行回调; 它传递响应值和唯一的queryId参数，作为示例，它可用于处理和跟踪来自Oraclize的多个挂起的回调。
 
-Financial data provider Thomson Reuters also provides an oracle service for Ethereum, called BlockOne IQ, allowing market and reference data to be requested by smart contracts running on private or permissioned networks [13]. Below is the interface for the oracle, and a client contract that will make the request:
+金融数据提供商Thomson Reuters还为以太坊提供了一项名为BlockOne IQ的oracle服务，允许在私有或许可网络上运行的智能合约请求市场和参考数据[13]。下面是oracle的接口，以及将发出请求的客户端合约：
 
 ----
 pragma solidity ^0.4.11;
@@ -225,16 +226,15 @@ contract OracleB1IQClient {
 }
 ----
 
-The data request is initiated using the initRequest() function, which allows the query type (in this example, a request for an intraday price) to be specified in addition to two callback functions.
-This returns a uint256 identifier which can then be used to provide additional arguments. The addArgumentToRequestString() function is used to specify the RIC (Reuters Instrument Code), here for IBM stock, and addArgumentToRequestUint() allows the timestamp to be specified. Now, passing in an alias for block.timestamp will retrieve the current price for IBM. The request is then executed by the executeRequest() function. Once the request has been processed, the oracle contract will call the onSuccess callback function with the query identifier, allowing the resulting data to be retrieved, else the onFailure callback with an error code in the event of retrieval failure. The available fields that can be retrieved on success include open, high, low, close (OHLC) and bid/ask prices.
+使用initRequest()函数启动数据请求，该函数除了两个回调函数之外，还允许指定查询类型（在此示例中，是对日内价格的请求）。
+这将返回一个uint256标识符，然后可以使用该标识符提供其他参数。addArgumentToRequestString()函数用于指定RIC（Reuters Instrument Code），此处用于IBM股票，addArgumentToRequestUint()允许指定时间戳。现在，传入block.timestamp的别名将检索IBM的当前价格。然后由executeRequest()函数执行该请求。处理完请求后，oracle合约将使用查询标识符调用onSuccess回调函数，允许检索结果数据，否则在检索失败时使用错误代码进行onFailure回调。成功检索的可用字段包括开盘价，最高价，最低价，收盘价（OHLC）和买/卖价。
 
-Reality Keys [14] allows requests for facts to be made off-chain using POST requests. Responses are cryptographically signed, allowing them to be verified on-chain. Here, a request is made to check the balance of an account on the Bitcoin blockchain at a specific time using the blockr.io API:
-
+Reality Keys [14]允许使用POST请求对事实进行离线请求。响应以加密方式签名，允许在链上进行验证。在这里，请求使用blockr.io API在特定时间检查比特币区块链上的账户余额：
 ----
 wget -qO- https://www.realitykeys.com/api/v1/blockchain/new --post-data="chain=XBT&address=1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX&which_total=total_received&comparison=ge&value=1000&settlement_date=2015-09-23&objection_period_secs=604800&accept_terms_of_service=current&use_existing=1"
 ----
 
-For this example, arguments allow the blockchain to be specified, the amount to be queried (total received or final balance) and the result to be compared with a provided value, allowing a true or false response. The resulting JSON object includes the returned value, in addition to the "signature_v2" field which allows the result to be verified in a smart contract using the ecrecover() function:
+对于此示例，参数允许指定区块链，要查询的金额（总收到金额或最终余额）以及要与提供的值进行比较的结果，从而允许真或假的响应。除了“signature_v2”字段之外，生成的JSON对象还包括返回值，该字段允许使用ecrecover()函数在智能合约中验证结果：
 
 ----
 "machine_resolution_value" : "29665.80352",
@@ -249,7 +249,7 @@ For this example, arguments allow the blockchain to be specified, the amount to 
 }
 ----
 
-To verify the signature, ecrecover() can determine that the data was indeed signed by ethereum_address as follows. The fact_hash and signed_value are hashed, and passed to ecrecover() with the three signature parameters:
+为了验证签名，ecrecover()可以确定数据确实由ethereum_address签名，如下所示。fact_hash和signed_value经过哈希处理，并将三个签名参数传递给ecrecover（）：
 
 ----
 bytes32 result_hash = sha3(fact_hash, signed_value);
@@ -260,7 +260,7 @@ uint256 result = uint256(signed_value) / base_unit;
 ----
 
 [[references_sec]]
-=== References
+=== 参考
 
 [1] http://www.oraclize.it/ +
 [2] https://tlsnotary.org/ +
@@ -278,7 +278,7 @@ uint256 result = uint256(signed_value) / base_unit;
 [14] https://www.realitykeys.com
 
 [[other_links_sec]]
-=== Other links
+=== 其他链接
 
 https://ethereum.stackexchange.com/questions/201/how-does-oraclize-handle-the-tlsnotary-secret +
 https://blog.oraclize.it/on-decentralization-of-blockchain-oracles-94fb78598e79 +
@@ -293,3 +293,7 @@ https://blog.oraclize.it/on-decentralization-of-blockchain-oracles-94fb78598e79 
 https://www.reddit.com/r/ethereum/comments/73rgzu/is_solving_the_oracle_problem_a_paradox/ +
 https://medium.com/truebit/a-file-system-dilemma-2bd81a2cba25
 https://medium.com/@roman.brodetski/introducing-oracul-decentralized-oracle-data-feed-solution-for-ethereum-5cab1ca8bb64
+
+<<第十三章#,下一章：Gas>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

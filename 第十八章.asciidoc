@@ -1,33 +1,30 @@
+<<第十七章#,上一章：DevP2P协议>>
+
 [appendix]
 [[ethereum_standards]]
-== Ethereum Standards
+== 以太坊标准
 
 [[eips]]
-=== Ethereum Improvement Proposals (EIPs)
+=== 以太坊改进提案（EIPs）
 
 https://eips.ethereum.org/
 
-From EIP-1:
+来自EIP-1：
 
- EIP stands for Ethereum Improvement Proposal. An EIP is a design document providing information to the Ethereum community, or describing a new feature for Ethereum or its processes or environment. The EIP should provide a concise technical specification of the feature and a rationale for the feature. The EIP author is responsible for building consensus within the community and documenting dissenting opinions.
-
+ EIP代表以太坊改进提案。EIP是一个设计文档，为以太坊社区提供信息，或描述以太坊或其过程或环境的新功能。EIP应提供该功能的简明技术规范和该功能的基本原理。EIP作者负责在社区内建立共识并记录不同意见。
+ 
 [[eip_workflow]]
-.Ethereum Improvement Proposal Workflow
+.Ethereum改进提案工作流程
 image::images/eip_workflow.png["Ethereum Improvement Proposal Workflow"]
 
 [[ercs]]
-=== Ethereum Request for Comments (ERCs)
-Request for Comments(RFC) is a method being used to introduce technical and organizational guidelines for the internet as they are proposed by the https://www.ietf.org[Internet Engineering Task Force]. ERCS include similar guidelines to setup standards for the Ethereum network. Developed and accepted by the ethereum developer community and a current list of them are available in a following section. 
+=== 以太坊征求意见（ERCs）
+Request for Comments（RFC）是一种用于为互联网引入技术和组织指南的方法，因为它们是由https://www.ietf.org[Internet Engineering Task Force]提出的。ERCS包括为以太坊网络设置标准的类似指南。以下部分提供了由以太坊开发人员社区开发和接受的最新列表。
 
-Additions to the ERCs are done through https://github.com/ethereum/EIPs[EIPs], Ethereum Improvement Protocol, a homage to Bitcoin's own BIPs. EIPs are written by developers and submitted for peer review where it is evaluated on it's usefulness and it's ability to add to the usefulness of existing ERCs. If they are accepted, they are finalized to become part of the ERC standard. 
-
-[[bips]]
-=== Bitcoin Improvement Proposals (BIPs)
-
-==== Standards from Bitcoin used in Ethereum
+ERCs的增加是通过https://github.com/ethereum/EIPs[EIPs]，以太坊改进协议来完成的，这是对比特币自己的BIP的致敬。EIP由开发人员编写并提交给同行评审，评估其有用性，并且能够增加现有ERC的实用性。如果他们被接受，他们最终将成为ERC标准的一部分。
 
 [[eip_table]]
-=== Table of Most Important EIPs and ERCs
+=== 最重要的EIP和ERC表
 
 .Important EIPs and ERCs
 [options="header"]
@@ -90,3 +87,7 @@ Additions to the ERCs are done through https://github.com/ethereum/EIPs[EIPs], E
 | https://github.com/ethereum/EIPs/issues/827[EIP-827]                             | ERC-827 A extension of the standard interface ERC20 for tokens with methods that allows the execution of calls inside transfer and approvals. This standard provides basic functionality to transfer tokens, as well as allow tokens to be approved so they can be spent by another on-chain third party. Also it allows to execute calls on transfers and approvals.                                     | Augusto Lemble                            | ERC | Draft    |
 | https://github.com/ethereum/EIPs/issues/930[EIP-930]                             | ERC-930 The ES (Eternal Storage) contract is owned by an address that have write permissions. The storage is public, which means everyone has read permissions. It store the data on mappings, using one mapping per type of variable. The use of this contract allows the developer to migrate the storage easily to another contract if needed.                                     | Augusto Lemble                            | ERC | Draft    |
 |===
+
+<<第十九章#,下一章：以太坊分叉历史>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

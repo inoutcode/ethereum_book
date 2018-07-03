@@ -1,108 +1,105 @@
+<<第十四章#,上一章：以太坊虚拟机>>
+
 [Consensus]
 
-== Consensus
+== 共识
 
-Consensus within the Ethereum network refers to the capacity for multiple nodes or agents to agree on the state of the blockchain at a given point in time. This is closely related but distinct from the conventional definition of consensus, which is defined as a general agreement between individuals or groups. In this context, the community must solve the challenges of coming to consensus both technically (within the network) and socially (to ensure that the protocol does not fork or fracture). This chapter will outline some of the technical methods for establishing consensus. 
+以太坊网络中的共识是指多个节点或代理在给定的时间点就区块链状态达成一致的能力。这与传统的定义为个人或群体之间的一般协议的共识密切相关但不同。在这里，社区必须解决在技术上（在网络内）和社交上达成共识的挑战（以确保协议不会分叉或破裂）。本章将概述建立共识的一些技术方法。
 
-When it comes to the core function of decentralized record keeping and verification on the blockchain, it can become problematic to rely on trust alone to ensure that information added to the ledger is correct. This challenge is more pronounced in decentralized networks because there is no central entity to decide what should and should not be considered as truth. The lack of a central decision-making entity is one of the main attractions within the blockchain's popularity because of the systems' resulting capacity to resist censorship and the lack of dependence on authority for permission or access to information. However, these benefits come at a potential cost because without a trusted arbitrator any disagreements, deceptions or differences need to be reconciled using mathematical, economic or social techniques. A decentralised system is therefore more resilient to attack but can be less decisive in responding to changes. 
+当涉及区块链上分散记录保存和验证的核心功能时，单独依靠信任来确保添加到账本的信息是正确的可能会成为问题。这种挑战在去中心化网络中更为明显，因为没有中央实体来决定什么应该和不应该被视为是真实的。缺乏一个中央决策实体是区块链受欢迎程度的主要吸引力之一，因为系统能够抵抗审查制度，并且无需对许可或信息获取权限的依赖。然而，这些好处可能带来成本，因为如果没有可信的仲裁员，任何分歧，欺骗或差异都需要使用数学，经济或社会技术进行协调。因此，分散的系统更有抵御攻击的能力，但在应对变化时却不那么果断。
 
-The capacity to come to consensus and trust information will have important implications for the future adoption and utility of blockchain technology as an asset class and technology. To address this challenge and maintain the valued property of decentralisation, the community continues to experiment with different models of consensus which are explored within this chapter.  
+获得共识和信任信息的能力将对区块链技术作为资产类别和技术的未来采用和实用具有重要意义。为了应对这一挑战并保持权力下放的重要性，社区不断尝试不同共识模式，我们将在本章中探讨。  
 
+=== 共识度量
 
-=== Consensus Metrics
+共识度量是可测量的数据，区块链网络的节点必须在该数据上达成一致，以便为每个块中包含的数据建立并保持一致。在区块链技术中，每次将新块添加到链中时，每个网络节点都会测量并批准一致性度量。作为共识度量的结果，区块链充当了从一个确定可验证的事实延伸到下一个事实的真理链。由于共识度量，区块链协议的节点变为 _迷你公证人_ _mini-notaries_，能够从真实的节点中立即分辨出区块链的错误副本，并将该事实报告给整个网络。这些措施是必需的，以便阻止通过提交包含虚假信息的区块来欺骗网络不良行为者。由于一致性度量，区块链不仅建立了的完整性，而且长期保持不变。共识度量有多种形式，但对于此讨论而言，最重要的两种是基于风险的度量和基于工作量的度量。
 
-A consensus metric is a measurable datum on which a blockchain network's nodes must agree in order to establish and maintain consensus for the data contained in each block.  In blockchain technology, consensus metrics are measured and approved by each network node every time a new block is to be added to the chain. As a result of the consensus metric, blockchains act as chains of truth extended from one certainly verifiable fact to the next. Because of the consensus metric, a blockchain protocol's nodes become _mini-notaries_, instantly able to tell a false copy of the blockchain from the true one and report that fact to the entire network. These measures are required in order to keep bad actors from defrauding the network by submitting blocks containing false information. As a result of the consensus metric of a blockchain, its integrity is not only established but maintained over the long run. Consensus metrics take a variety of forms, but the two most important for this discussion are risk-based metrics and work-based metrics.
+=== 基于Hash的度量
 
-=== Hash-Based Metrics
+通常称为工作量证明（PoW）度量，这些度量建立了共识，因为使用它们的协议将计算机设置为查找难题的答案。找到适合网络参数的散列的难题要求节点提交处理能力并使用电力与其他节点竞争以提出有效的哈希。为了便于说明，可以考虑超级计算机，它的唯一工作就是在整数空间中搜索素数。现在考虑由普通计算机组成的整个网络。这些计算机放在一起时，可以说具有超级计算机的组合计算能力。这个计算机网络的唯一工作类似于搜索另一种称为SHA-256哈希的数字的可能数字。这些数字具有独特的属性，就像素数一样，尽管在生成符合网络设定标准的哈希方面存在很大困难，但在发现时可以轻松验证它们。想象计算哈希和验证哈希的一种方法是使用拼图游戏类比。这个难题非常困难且耗时，但是一眼就能看出它是否已经完成。
 
-Commonly known as Proof-of-Work (PoW) metrics, these metrics establish consensus because protocols that use them set computers to work on finding difficult numbers. The difficulty in finding a hash that fits the parameters of the network requires nodes to commit processing power and use electricity to compete with other nodes to come up with a valid hash. For the sake of illustration, consider supercomputers whose only job in life is to search integer-space for prime numbers. Now consider a whole network of average computers. These computers, when put together, might be said to have the combined computational power of a supercomputer. The only job for this network of computers is similarly to search possible numbers for another kind of number called a SHA-256 hash. These numbers have unique properties, just like prime numbers, that make them easily identifiable when discovered despite the significant difficulty in producing a hash that fits the criteria set by the network. One way of imagining the difference between computing a hash and verifying if a hash fits the parameters is to use the analogy of a jigsaw puzzle. This puzzle would be quite difficult and time consuming to do, but it would be easy to tell at a glance if it has been completed.
+当准确计算SHA-256哈希值时，它们可用作证明已使用一定量的计算能力来查找数字的证明。最新的素数是asciimath：[2^(77,232,917）- 1]。它是由计算机发现的，就像计算机发现的SHA-256哈希一样。SHA-256哈希比新素数更容易找到，但是找到哈希的固有难点在于基于哈希的度量得出它们的能力。
 
-When SHA-256 hashes are computed accurately they serve as an attestation that a certain amount of computing power has been used to find the number. The most recent prime number to be found is asciimath:[2^(77,232,917) − 1]. It was found by a computer just like SHA-256 hashes are found by computers. SHA-256 hashes are easier to find than new prime numbers, however the difficulty inherent in finding hashes is where hash-based metrics derive their power.
+每个SHA-256哈希都有64个十六进制字符。例如，这里是单词“yank”的SHA-256哈希。
+`“yank”（SHA-256）= 45F1B9FC8FD5F760A2134289579DF920AA55830F2A23DCF50D34E16C1292D7E0`
 
-Every SHA-256 hash has 64 hexadecimal characters in it. For example, here is the SHA-256 hash for the word "yank".
-`"yank"(SHA-256) = 45F1B9FC8FD5F760A2134289579DF920AA55830F2A23DCF50D34E16C1292D7E0`
+将其与三个字母“yan”的SHA-256哈希：
 
-Compare this to the SHA-256 hash of the three letters "yan".
+`“yan”（SHA-256）= 281ACA1A80B52620BD717E8B14A0386B8ADA92AE859AC2C8A2AC222EFA0​​2EDBB` 
 
-`"yan"(SHA-256)  = 281ACA1A80B52620BD717E8B14A0386B8ADA92AE859AC2C8A2AC222EFA02EDBB` 
+两个字母“ya”的SHA-256哈希：
 
-Compare this alternately to the SHA-256 hash of the two letters "ya".
+`“ya”（SHA-256）= 6663103A3E47EFC879EA31FA38458BE23BE0CE0895F3D8B27B7EA19A1120B3D4`
 
-`"ya"(SHA-256)   = 6663103A3E47EFC879EA31FA38458BE23BE0CE0895F3D8B27B7EA19A1120B3D4`
+单个字母“y”的SHA-256哈希：
 
-Lastly, compare this to the SHA-256 hash of the single letter "y".
+`“y”（SHA-256）= A1FCE4363854FF888CFF4B8E7875D600C2682390412A8CF79B37D0B11148B0FA`
 
-`"y"(SHA-256)    = A1FCE4363854FF888CFF4B8E7875D600C2682390412A8CF79B37D0B11148B0FA`
+=== 基于哈希的度量验证
 
-=== Validation for Hash-Based Metrics
+如果你对足够多的随机短语进行了哈希，有点像打字机上的猴子，最终你会发现一个匹配特定模式的哈希。在哈希为“ya”的情况下，请注意它以模式“666”开头。这类似于比特币，但比特币要求找到与以“000”开头的模式匹配的哈希值。可以通过将前一个区块中的信息插入到SHA-256哈希算法中来创建的任何哈希，并用于创建下一个块，只要它在数字中具有正确数量的前导零，网络就会认可，并且区块奖励将是你的。
 
-If you hash enough random phrases, kind of like monkeys on a typewriter, eventually you will find a hash that matches a certain pattern. In the case of the hash for "ya", note that it begins with the pattern "666". This is similar to Bitcoin, except Bitcoin requires that hashes be found matching the pattern beginning with "000". Any hash that can be created by plugging information from the previous block into the SHA-256 hashing algorithm can be used to create the next block, as long as it has the right amount of leading zeros in the number, the network will agree on it and the block reward will be yours.
+由于想要挖掘比特币的人数不断增加，因此每秒寻找SHA-256哈希值的算力总是越来越多。比特币软件通过自动调整共识度量的难度来处理这种意外事件，增加前导零的数量以形成共识。这可以保证新块的创建时间与前面的块大致相同。对于比特币网络，为十分钟，但可以轻松更改。在以太坊中，平均区块生成时间约为10秒。
 
-Since the amount of total people wanting to mine Bitcoin is increasing, there is constantly more power per-second going into finding SHA-256 hashes. The Bitcoin software deals with this contingency by automatically adjusting the difficulty of the consensus metric, requiring an increased amount of leading zeros to form consensus. This acts as insurance that new blocks are created in roughly the same increments of time as previous blocks. For the Bitcoin network, that increment is ten minutes, though it can easily be changed. In Ethereum, the average block time is about 10 seconds. 
+== 基于风险的度量
 
+通常称为Proof-of-Stake（PoS）度量，这些度量基于以下事实建立共识：选择创建无效区块的每个人都会失去比通过创建有效区块获得的更多的东西。该度量是通过关于链内数据的共识创造的，而不是关于链外数据的共识。基于哈希的共识度量主要关注SHA-256哈希的质量和精确性。基于风险的度量主要关注任何特定节点在添加新块时所承担的风险。
 
-== Risk-Based Metrics
+所有节点在这里达成一致的度量是哪些节点创建了正确的块，哪些节点没有。在某种程度上，这已经内置在比特币协议中。比特币协议假定正确的块是大多数节点正在挖掘的块。它假设矿工不会选择不正确的区块，因为这不利于挖掘坏区块。
 
-Commonly known as Proof-of-Stake (PoS) metrics, these establish consensus based on the fact that everyone who chooses to create invalid blocks stands to lose a great deal more than they have to gain by creating valid ones. This metric is manufactured by consensus not about external offchain data, but about internal onchain data. Hash-based consensus metrics are primarily concerned with the quality and precise nature of SHA-256 hashes. Risk-based metrics are primarily concerned with the risk which any particular node takes when adding a new block. 
+另一方面，基于风险的链依赖于对未能创建网络中其他节点认可的块的创建者的快速，即时和不可逆转的影响。通过强制执行资源丢失的风险，基于哈希的度量（也依赖于不想浪费资源的人员）过程可以以更简单的方式进行缩短和实施。目前正在研究在以太坊中实现这种共识度量模型。
 
+工作量证明是一种共识协议，它将网络中的有效区块链视为创建计算成本最高的链。这里提到的计算工作是将所有块添加到当前区块链所必须完成的工作。这项工作由网络节点完成，并且必须在计算上很困难，以便使工作变得非常重要，但也必须是可行的，以便在经过合理的努力之后可以实现。最终，网络将依赖于提供此PoW的节点以维持区块链，因此，网络的最佳利益是需要合理的PoW。
 
-The metric that all nodes agree upon here is which nodes have created correct blocks and which have not. In a way, this is already built into the Bitcoin protocol. The Bitcoin protocol assumes that the correct block is the one which the most nodes are mining. It assumes that the miners will not choose an incorrect block, as that is not in their best interests to mine bad blocks.
+在以太坊网络以及许多其他区块链网络中，获取PoW需要找到要添加到区块链的块的哈希。这个哈希是通过散列由块的数据和随机数组成的字符串获得的（创建此字符串的方法可能会有所不同，但整个过程是相同的）。该哈希必须小于某个阈值（由网络的难度确定），并且一旦节点发现产生该哈希的随机数，则接受相应的块并将其添加到区块链中。
 
-Risk-based chains on the other hand, depend upon quick, immediate, and irreversible repercussions to any block creators that fail to create what other nodes in the network consider to be quality blocks. By enforcing risk of resources lost, the process of hash-based metrics (which also relies on people not wanting to waste resources to work) can be shortcutted and implemented in a simpler way. Research is currently underway  to implement this model of consensus metric in Ethereum.
-
-
-Proof of work is a consensus protocol that considers the valid blockchain in the network to be the chain that was most computationally expensive to create. The computational work that is referred to here is the work that had to be done to add all of the blocks to the current blockchain. This work is done by network nodes and must be computationally difficult, so as to make the work non-trivial, but must also be feasible, so as to be attainable after a reasonable amount of effort is exerted. Ultimately, the network will rely on nodes providing this PoW in order to maintain the blockchain and is, therefore, in the best interest of the network to require a sensible PoW.
-
-In the Ethereum network, as well as in many other blockchain networks, obtaining the PoW requires finding a hash of the block that is to be added to the blockchain. This hash is obtained by hashing a string consisting of the block's data and a nonce (the method of creating this string may vary but the overall process is the same). This hash must be less than a certain threshold (determined by the difficulty of the network) and as soon as a node presents a nonce that produces this hash, the corresponding block is accepted and added to the blockchain. 
-
-The way this valid hash is found is by modifying the nonce, usually initializing it to zero and incrementing at each iteration until a hash that is below the network threshold is produced. This process is called mining. Due to the nature of the hash functions used in mining the only way to find a valid nonce is through brute force, i.e. checking every possible value of the nonce until a hash that meets the network requirements is found. It is for this reason that providing a valid nonce is considered a PoW.
+找到这个有效散列的方法是修改nonce，通常将其初始化为零并在每次迭代时递增，直到产生低于网络阈值的哈希。此过程称为挖掘。由于挖掘中使用的哈希函数的性质，找到有效随机数的唯一方法是通过暴力搜索，即检查随机数的每个可能值，直到找到满足网络要求的散列。因此，提供有效的随机数被认为是PoW。
 
 === PoS 
 
-Proof of Stake (PoS) is a category of consensus algorithms for public blockchains that depend on a validator's economic stake in the network. In proof of work (PoW) based public blockchains (e.g. Bitcoin and the current implementation of Ethereum), the algorithm rewards participants who solve cryptographic puzzles in order to validate transactions and create new blocks (i.e. mining). In PoS-based public blockchains (e.g. Ethereum's upcoming Casper implementation), a set of validators take turns proposing and voting on the next block, and the weight of each validator's vote depends on the size of its deposit (i.e. stake). Significant advantages of PoS include security, reduced risk of centralization, and energy efficiency.
+权益证明（PoS，Proof-of-Stake）是公共区块链的一类共识算法，它依赖于验证者在网络中的经济利益。在基于工作量证明（PoW）的公共区块链（例如比特币和以太坊的当前实现）中，该算法奖励解密加密谜题的参与者，以便验证交易并创建新的块（即挖掘）。在基于PoS的公共区块链中（例如以太坊即将发布的Casper实现），一组验证者轮流对下一个块进行建议和投票，每个验证者的投票权重取决于其存款的大小（即赌注）。PoS的显着优势包括安全性，降低集中风险和能源效率。
 
-In general, a proof of stake algorithm looks as follows. The blockchain keeps track of a set of validators, and anyone who holds the blockchain's base cryptocurrency (in Ethereum's case, ether) can become a validator by sending a special type of transaction that locks up their ether into a deposit. The process of creating and agreeing to new blocks is then done through a consensus algorithm that all current validators can participate in.
+通常，权益证明算法如下。区块链跟踪一组验证者，任何持有区块链基本加密货币的人（在以太坊的情况下是ether）都可以通过发送一种特殊类型的交易来将其以太币锁定到存款中，从而成为验证者。然后，通过所有当前验证者都可以参与的一致性算法来完成创建和同意新块的过程。
 
-There are many kinds of consensus algorithms, and many ways to assign rewards to validators who participate in the consensus algorithm, so there are many "flavors" of proof of stake. From an algorithmic perspective, there are two major types: chain-based proof of stake and BFT-style proof of stake.
+有许多种共识算法，以及许多方法可以为参与共识算法的验证人分配奖励，因此有许多“口味”的权益证明。从算法的角度来看，有两种主要类型：基于链的权益证明和BFT风格的权益证明。
 
-* In chain-based proof of stake, the algorithm pseudo-randomly selects a validator during each time slot (eg. every period of 10 seconds might be a time slot), and assigns that validator the right to create a single block, and this block must point to some previous block (normally the block at the end of the previously longest chain), and so over time most blocks converge into a single constantly growing chain.
+* 在基于链的证明中，算法在每个时隙中伪随机地选择一个验证者（例如，每个10秒的周期可能是一个时隙），并为该验证者分配创建单个块的权限，这个块必须指向一些前一个块（通常是前一个最长链末端的块），因此随着时间的推移，大多数块会聚成一个不断增长的链。
 
-* In BFT-style proof of stake, validators are randomly assigned the right to propose blocks, but agreeing on which block is canonical is done through a multi-round process where every validator sends a "vote" for some specific block during each round, and at the end of the process all (honest and online) validators permanently agree on whether or not any given block is part of the chain. Note that blocks may still be chained together; the key difference is that consensus on a block can come within one block, and does not depend on the length or size of the chain after it.
+* 在BFT风格的股权证明中，验证者被随机分配提出区块的权利，但是通过多轮过程来确定哪个区块是规范的，其中每个验证者在每轮中发送对某个特定区块的“投票”，在流程结束时，所有（诚实和在线）验证者永久同意任何给定的块是否属于链条的一部分。请注意，块可能仍然链接在一起; 关键的区别在于块上的共识可以在一个块内，并且不依赖于它之后的链的长度或大小。
 
 ==== PoA
 
-Proof of Authority (PoA) is a subset of PoS consensus algorithms mainly used by testnets and private or consortium networks.  In PoA-based blockchains, transaction validity is ultimately determined by a set of approved on-chain accounts, referred to as 'authority nodes'.  The criteria for determining authority nodes are decided deterministically through an approach codified in the network's governance structure.
+授权证明（PoA）是PoS一致性算法的子集，主要由测试网和私有或联盟网络使用。在基于PoA的区块链中，交易有效性最终由一组经批准的链上账户确定，称为“授权节点”。确定授权节点的标准是通过网络治理结构中编写的方法确定性地决定的。
 
-PoA is widely considered to be the fastest route to consensus but relies on the assumption that the validating node has not been compromised. Non-validating actors can access and use the network just as they would a public ethereum network (by leveraging p2p transactions, contracts, accounts etc.)
+PoA被广泛认为是达成共识的最快途径，但依赖于验证节点尚未受到损害的假设。非验证参与者可以像公共以太网那样访问和使用网络（通过利用p2p交易，合约，账户等）
 
-PoA consensus relies on the validators reputation and past performance.  The idea is that the validator node is staking its identity/reputation to mine.  An important aspect in private consortium networks is the link between on-chain addresses to known, real world identities. Thus, We can say that the validating nodes are staking their "identity" or "reputation" (rather than their economic holdings). This creates some level of accountability for validators and is best suited for enterprise, private, or test networks.
+PoA共识依赖于验证者的声誉和过去的表现。这个想法是验证者节点将其身份/声誉放到我的身上。私人联盟网络的一个重要方面是链上地址与已知的现实世界身份之间的联系。因此，我们可以说验证节点正在盯着他们的“身份”或“声誉”（而不是他们的经济持有）。这为验证者创建了一定程度的问责制，最适合企业，私有或测试网络。
 
-PoA is currently employed by the test network Kovan, the PoA network, and can be configured easily in Parity for private consortiums networks.
+PoA目前由测试网络Kovan（PoA网络）使用，并且可以在Parity中轻松配置用于私人联盟网络。
 
 ==== DPoS
 
-Delegated Proof of Stake (DPoS) is a modified form of Proof of Stake where network participants vote to elect an array of delegates (also called witnesses) to validate and secure the blockchain. These delegates are somewhat similar to authority nodes in PoA, except their authority may be revoked by the voters.
+代理权益证明（DPoS）是一种经过修改的权益证明形式，网络参与者投票选举一系列代表（也称为证人）来验证和保护区块链。这些代表有点类似于PoA中的权威节点，除非他们的权限可能被选民撤销。
 
-In DPoS consensus, like in PoS, the weight of the vote is proportional to the amount of stake injected by the user.  This creates a scenario where larger token holders have proportionally more voting power than smaller ones.  This makes sense from a game theoretical perspective, as those with the more economic 'skin-in-the-game' will naturally have a larger incentive to elect the most efficient delegate witnesses.
+在DPoS共识中，与PoS一样，投票权重与用户注入的投注金额成正比。这就产生了一个场景，即较多token持有者比较少token的持有者拥有更多的投票权。从游戏理论的角度来看，这是有道理的，因为那些具有更多经济的“游戏中的皮肤”的人自然会有更大的动力来选出最有效的代表证人。
 
-In addition, delegate witnesses recieve a reward for validating each block and thus are incentivised to remain honest and efficient - so as to not be replaced.  However, there are ways to make a “bribe” that are quite plausible; for example, an exchange can offer interest rates for deposits (or, even more ambiguously, use the exchange’s own money to build a great interface and features), with the exchange operator using the large quantity of deposits to vote as they wish in a DPoS consensus.
+此外，代表证人会收到验证每个区块的奖励，因此被激励保持诚实和有效 - 以免被替换。然而，有一些方法可以使“贿赂”变得相当合理; 例如，交易所可以提供存款利率（或者更加含糊地，使用交易所自己的资金建立一个很好的界面和功能），交易所运营商可以使用大量存款进行DPoS共识投票。。
 
+== 以太坊的共识
 
-== Consensus Of Ethereum
+=== Ethash简介
 
-=== Introduction To Ethash
+Ethash是以太坊*工作量证明（PoW）算法*，它依赖于数据集的初始纪元的生成，该数据集的大小约为1GB，称为有向无环图（*DAG*）。*DAG*使用* Dagger-Hashimoto算法*的版本，它是*Vitalik Buterin的Dagger算法*和*Thaddeus Dryja的Hashimoto算法*的组合。* Dagger-Hashimoto算法*是以太坊1.0使用的挖掘算法。随着时间的推移，*DAG*线性增长，每*纪元*（30,000块，125小时）更新一次。
 
-Ethash is an Ethereum *Proof of Work (PoW) algorithm* that is dependent on the generation of the initial epoch of a dataset that is approximately 1GB in size known as the Directed Acyclic Graph (*DAG*). The *DAG* uses a version of the *Dagger-Hashimoto Algorithm*, which is a combination of *Vitalik Buterin's Dagger algorithm* and *Thaddeus Dryja's Hashimoto algorithm*. The *Dagger-Hashimoto Algorithm* is the mining algorithm used by Ethereum 1.0. Over time the *DAG* grows linearly and is updated once every *epoch* (30,000 blocks, 125 hours).
+==== 种子，缓存，数据生成
 
-==== Seed, Cache, Data Generation
+*PoW算法*涉及： +
+- 通过扫描*DAG*的先前块头来计算每个块的*Seed*。+
+- *Cache* 是一个16MB的伪随机缓存，根据种子计算，用于轻量级客户端中的存储。 +
+- 来自cache的*DAG* *Data Generation* 在完整客户端和矿工上用于存储 (数据集中的每一项只依赖cache中的一小部分项目）+
+- *矿工*通过随机抽取数据集的片段并将它们混合在一起进行挖掘。可以使用存储的缓存和低内存进行验证，以重新生成所需的数据集的特定部分。
 
-The *PoW algorithm* involves: +
-- *Seed* is computed for each block by scanning through prior block headers of the *DAG*. +
-- *Cache* is a 16MB pseudorandom cache that is computed from the seed for storage in Light Clients. +
-- *Data Generation* of the *DAG* from the cache to use for storage on Full Clients and Miners (where each item in the dataset only depends on a small number of items from the cache). +
-- *Miners* undertake mining by taking random slices of the dataset and hashing them together. Verification may be performed using the stored cache and low memory to regenerate specific pieces of the dataset required.
-
-.References:
+.参考：
 - Ethash-DAG: https://github.com/ethereum/wiki/wiki/Ethash-DAG
 - Ethash Specification: https://github.com/ethereum/wiki/wiki/Ethash
 - Mining Ethash DAG: https://github.com/ethereum/wiki/wiki/Mining#ethash-dag
@@ -111,39 +108,29 @@ The *PoW algorithm* involves: +
 - Ethash in Ethereum Yellowpaper: https://ethereum.github.io/yellowpaper/paper.pdf#appendix.J
 - Ethash C API Example Usage: https://github.com/ethereum/wiki/wiki/Ethash-C-API
 
-==== PoW Function 
+=== Polkadot简介
 
-==== Why GPU Does Matter ?
+Polkadot是一种链间区块链协议，包括与权益证明（PoS）链的整合，允许Parachain在没有内部共识的情况下获得共识。
 
+.Polkadot包括：
 
-=== Introduction To Casper 
+-  *Relay-Chains* 连接到所有Parachains并协调区块链之间的共识和交易传递，并使用*验证函数*通过验证PoV候选块的正确性来促进Parachain交易的最终确定。
+-  *Parachains*（跨网络的并行链），它们是区块链，用于收集和并行处理交易以实现可伸缩性。 
+-  无需信任，交易直接在区块链之间转移，而不是通过中间人或分散交易所。
+- *汇总安全*，根据共识协议规则（*Rules*）检查Parachain交易有效性。通过结合由动态治理系统确定的每个集团成员的一定比例的权益token资本来实现安全性。群组成员资格需要绑定来自Validators和Nominators的赌注token的输入，如果出现不良行为，可以在试验中使用不当行为证明进行扣除。
+-  *Bridges* 通过解耦具有不同共识架构机制的区块链网络之间的链接来提供可扩展性。
+-  *Collators* 负责监管和维护特定的Parachain，方法是将其可用交易整理为有效性证明（PoV）候选块，向Validators报告以证明交易有效并在块中正确执行。如果它有winning ticket（由最接近Golden Ticket的Polkadot地址的Collator签名）并且变得规范和最终确定，则通过支付他们从创建PoV候选区块所收集的任何交易费来激励他们。Collators被给予Polkadot地址。胶合剂不与铆接标记粘合。
+-  *Golden Ticket*是包含奖励的每个Parachain的每个区块中的特定Polkadot地址。Collators被赋予一个Polkadot地址，并向Validator提供由Collator签名的PoV候选块。奖励的获奖者在PoV候选区块中有一个Collator Polkadot地址，该区域最接近Golden Ticket Polkadot地址
+-  *Fisherman* 监控Polkadot网络交易，以发现Polkadot社区的不良行为。将验证者带到法庭并证明他们表现得很糟糕的Fisherman会被确认者的债券激励，因为债券被用作惩罚不良行为的惩罚。
+-  *验证者* 是Parachain社区中的维护者，他们被部署到不同的Parachains来监管系统。验证者同意Merkle Trees的根源。验证者必须使交易可用。渔民可以将验证员带到法庭，因为没有进行交易，相关的Collat​​ors可能会质疑该交易是否可以作为整理证明。
+-  *提名者*（类似于PoW挖掘）被动监督并投票给他们认为可以通过赌注代币资助他们认可的确认者。
 
-==== PoS
-The PoS consensus algorithm is expected to be introduced to the project. The functionality of PoS functions can be found as described above.
+Polkadot的Relay-Chains使用*Proof of Stake（PoS*系统，其中结构化状态机（SM）并行执行多个拜占庭容错（BFT）共识，以便SM过程收敛于越多个Parachain维度的包含有效候选者的解决方案跨的块。每个Parachain中的有效候选块是根据交易的可用性和有效性确定的，因为根据共识机制，目标验证者（下一个块）只有在具有足够的交易信息时才能从源验证者（前一个块）执行传入消息。可用和有效。验证人投票选择Collators使用规则达成共识的有效候选区块。
 
-==== Slash Protocol
-
-TODO
-
-
-=== Introduction The Polkadot
-
-Polkadot is an inter-chain blockchain protocol that will include integration with the Proof of Stake (PoS) chain, allowing the parachain to gain consensus without its own internal consensus. 
-
-.Polkadot comprises:
-- *Relay-Chains* that are connected to all Parachains and coordinate Consensus and transaction delivery between constituent blockchains, and uses a *Validation Function* to facilitate finalisation of Parachain transactions by verifying the correctness of PoV block candidates.
-- *Parachains* (parallelised chains across the network) that are constituent blockchains which gather and parallelise the processing of transactions to achieve scalability. 
-- *Trust-free Transaction Relaying* directly between constituent blockchains instead of through intermediaries or decentralised exchanges.
-- *Pooled Security* that checks Parachain transaction validity against Consensus Protocol Rules (*Rules*). Security is achieved by bonding a proportion of Staking Token capital from each Group Member that is determined through dynamic Governance System. Group Membership requires the bonding of input of staking tokens from Validators, and Nominators, which may be deducted in the event of bad behaviour with Proofs of Misbehaviour in Tries.
-- *Bridges* provide extensibility by decoupling the linkage between blockchain networks that have different consensus architecture mechanisms.
-- *Collators* that are responsible for policing and maintaining a specific Parachain by collating its Available transactions into Proof of Validity (PoV) candidate blocks, reporting to Validators to prove that the transactions are valid and correctly execute in a block. Collators are incentivised with payment of any transaction fees they collected from creating the PoV candidate block if it has the winning ticket (signed by a Collator with the closest Polkadot address to the Golden Ticket) and becomes canonical and finalised. Collators are given a Polkadot address. Collators are not bonded with staking tokens. 
-- *Golden Ticket* that is a specific Polkadot address in every block for each Parachain that contains a reward. Collators are given a Polkadot address and feed Validators with PoV candidate blocks that are signed by the Collator. Winners of the reward have a Collator Polkadot address in the PoV candidate block that is closest to the Golden Ticket Polkadot address 
-- *Fisherman* that monitor the Polkadot network transactions to discover bad behaviour in the Polkadot Community. Fisherman who take a Validator to a Tribunal and prove they behaved badly are incentivised with a proportion of the Validator's bond, since bonds are used as punishment to pay for bad behaviour. 
-- *Validators* that are maintainers in the Parachain Community who are deployed to different Parachains to police the system. Validators agree on the root of Merkle Trees. Validators must make transactions available. Validators may be taken to a Tribunal by a Fisherman for not making a transaction Available and associated Collators may challenge whether the transaction was made available a Proof of Collator.
-- *Nominators* (similar to PoW mining) passively oversee and vote for Validators they deem to be acceptable by funding them with staking tokens.
-
-Polkadot's Relay-Chains use a *Proof of Stake (PoS)* system where a structured State Machine (SM) performs multiple Byzantine-Fault Tolerant (BFT) Consensus' in parallel so as the SM progresses it converges on a solution that comprises valid candidate blocks across multiple Parachain dimensions. Valid candidate blocks in each Parachain is determined based on the Availability and Validity of transactions, since according to the Consensus Mechanism the Destination Validators (next block) may only enact incoming messages from Source Validators (previous block) when they have sufficient transaction information that is both Available and Valid. Validators vote for valid candidate blocks that are proposed by Collators using Rules to reach Consensus.
-
-.References
+.参考
 - Polkadot link: https://polkadot.network
 - Polkadot presentation at Berlin Parity Ethereum link: https://www.youtube.com/watch?v=gbXEcNTgNco
+
+<<第十六章#,下一章：Vyper：面向合约的编程语言>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

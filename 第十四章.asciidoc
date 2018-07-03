@@ -1,155 +1,158 @@
+<<第十三章#,上一章：Gas>>
+
 [[evm_chapter]]
-== Ethereum Virtual Machine
+== 以太坊虚拟机
 
 [[evm_description]]
-=== What is it?
-The part of the protocol that actually handles internal state and computation is referred to as the Ethereum Virtual Machine (EVM). From a practical standpoint, the EVM can be thought of as a large decentralized computer containing millions of objects.
+=== 这是什么？
+实际处理内部状态和计算的协议部分称为以太坊虚拟机（EVM）。从实际角度来看，EVM可以被认为是包含数百万个对象的大型去中心化计算机。
 
 [[evm_comparison]]
-==== Compare to
+==== 比较
 
-* Virtual Machine (Virtualbox, QEMU, cloud computing)
+* 虚拟机（Virtual Machine）（Virtualbox, QEMU, 云计算）
 
-* Java VM
+* Java 虚拟机（VM）
 
-Virtual Machine technologies such as Virtualbox and QEMU/KVM differ from the EVM in that their purpose is to provide hypervisor functionality, or a software abstraction that handles system calls, task scheduling, and resource management between a guest OS and the underlying host OS and hardware.
+虚拟机技术（如Virtualbox和QEMU / KVM）与EVM的不同之处在于它们的目的是提供管理程序功能，或者处理客户操作系统与底层主机操作系统和硬件之间的系统调用，任务调度和资源管理的软件抽象。
 
-Certain aspects of the Java VM (JVM) specification however, do contain similarities to the EVM. From a high-level overview, the JVM is designed to provide a runtime environment that is irrespective of the underlying host OS or hardware, enabling compatibility across a wide variety of systems. High level program languages such as Java or Scala that run on the JVM are compiled into the respective instruction set bytecode. This is comparable to compiling a Solidity source file to run on the EVM.
+然而，Java VM（JVM）规范的某些方面确实包含与EVM的相似之处。从高级概述来看，JVM旨在提供与底层主机操作系统或硬件无关的运行时环境，从而实现各种系统的兼容性。在JVM上运行的高级程序语言（如Java或Scala）被编译到相应的指令集字节码中。这与编译要在EVM上运行的Solidity源文件相当。
 
 [[evm_bytecode_overview]]
-==== EVM Machine Language (Bytecode Operations)
+==== EVM机器语言（字节码操作）
 
-The EVM Machine Language is divided into specific instruction set groups, such as arithmetic operations, logical and comparison operations, control flow, system calls, stack operations, and memory operations. In addition to the typical bytecode operations, the EVM must also manage account information (i.e. address and balance), current gas price, and block information.
+EVM机器语言分为特定的指令集组，例如算术运算，逻辑和比较运算，控制流，系统调用，堆栈操作和存储器操作。除典型的字节码操作外，EVM还必须管理账户信息（即地址和余额），当前gas价格和区块信息。
+
 [[common_stack_opcodes]]
-Common Stack Operations:: Opcode instructions for stack and memory management:
+通用堆栈操作:: 堆栈和内存管理的操作码指令：
 
 ----
-POP     //Pop item off the stack
-PUSH    //Push item on the stack
-MLOAD   //Load item into memory
-MSTORE  //Store item in memory
-JUMP    //Alter the location of program counter (PC)
-PC      //Program counter
-MSIZE   //Active memory size
-GAS     //Amount of available gas for transaction
-DUP     //Stack item duplication
-SWAP    //Stack item exchange operation
+POP     // 项目出栈
+PUSH    // 项目入栈
+MLOAD   // 将项目加载到内存中
+MSTORE  // 在内存中存储项目
+JUMP    // 改变程序计数器的位置
+PC      // 程序计数器
+MSIZE   // 活动的内存大小
+GAS     // 交易可用的gas数量
+DUP     // 复制栈项目
+SWAP    // 交换栈项目
 ----
 
 [[common_system_opcodes]]
-Common System Operations:: Opcode instructions for the system executing the program:
+通用系统操作:: 执行程序的系统的操作码指令：
 
 ----
-CREATE  //Create a new account
-CALL    //Instruction for message passing between accounts
-RETURN  //Execution halt
-REVERT  //Execution halt, reverting state changes
-SELFDESTRUCT //Execution halt, and flag account for deletion
+CREATE  // 创建新的账户
+CALL    // 在账户间传递消息的指令
+RETURN  // 执行停机
+REVERT  // 执行停机，恢复状态更改
+SELFDESTRUCT // 执行停机，并标记账户为删除的
 ----
 
 [[common_arithmetic_opcodes]]
-Arithmetic Operations:: Common arithmetic opcode instructions:
+算术运算:: 通用算术运算代码指令：
 
 ----
-ADD      //Add
-MUL      //Multiplication
-SUB      //Subtraction
-DIV      //Integer division
-SDIV     //Signed integer division
-MOD      //Modulo (Remainder) operation
-SMOD     //Signed modulo operation
-ADDMOD   //Modulo addition
-MULMOD   //Modulo multiplication
-EXP      //Exponent operation
-STOP     //Halt operation
+添加//添加
+MUL //乘法
+SUB //减法
+DIV //整数除法
+SDIV //有符号整数除法
+MOD // Modulo（剩余）操作
+SMOD //签名模运算
+ADDMOD //模数加法
+MULMOD //模数乘法
+EXP //指数运算
+STOP //停止操作
 ----
 
 [[common_environment_opcodes]]
-Environmental Opcodes:: Common opcodes dealing with execution environment information:
+环境操作码:: 处理执行环境信息的通用操作码：
 
 ----
-ADDRESS        //Address of current execution account
-BALANCE        //Account balance
-CALLVALUE      //Transaction value for execution environment
-ORIGIN         //Origin address of execution environment
-CALLER         //Address of execution caller
-CODESIZE       //Execution environment code size
-GASPRICE       //Gas price state
-EXTCODESIZE    //An account's code size
-RETURNDATACOPY //Copy of data output from previous memory call
+ADDRESS //当前执行账户的地址
+BALANCE	//账户余额
+CALLVALUE //执行环境的交易值
+ORIGIN //执行环境的原始地址
+CALLER //执行调用者的地址
+CODESIZE //执行环境代码大小
+GASPRICE //gas价格状态
+EXTCODESIZE //账户的代码大小
+RETURNDATACOPY //从先前的内存调用输出的数据的副本
 ----
 
 [[evm_state_descriptions]]
-==== State
+==== 状态
 
-As with any computing system, the concept of state is an important one. Just like a CPU keeping track of a process in execution, the EVM must keep track of the status of various components in order to support a transaction. The status or _state_ of these components ultimately drives the level of change in the overarching blockchain. This aspect leads to the description of Ethereum as a _transaction-based state machine_ containing the following components:
+与任何计算系统一样，状态概念也很重要。就像CPU跟踪执行过程一样，EVM必须跟踪各种组件的状态以支持交易。这些组件的状态最终会推动总体区块链的变化程度。这方面导致将以太坊描述为_基于交易的状态机_，包含以下组件：
 
-World State:: A mapping between 160-bit address identifiers and account state, maintained in an immutable _Merkle Patricia Tree_ data structure.
+World State:: 160位地址标识符和账户状态之间的映射，在不可变的_Merkle Patricia Tree_数据结构中维护。
 
-Account State:: Contains the following four components:
+Account State:: 包含以下四个组件：
 
-* _nonce_: A value representing the number of transactions sent from this respective account.
+* _nonce_：表示从该相应账户发送的交易数量的值。
 
-* _balance_: The number of _wei_ owned by the account address.
+* _balance_：账户地址拥有的_wei_的数量。
 
-* _storageRoot_: A 256-bit hash of the Merkle Patricia Tree's root node.
+* _storageRoot_：Merkle Patricia Tree根节点的256位哈希值。
 
-* _codeHash_: An immutable hash value of the EVM code for the respective account.
+* _codeHash_：各个账户的EVM代码的不可变哈希值。
 
-Storage State:: Account specific state information maintained at runtime on the EVM.
+Storage State:: 在EVM上运行时维护的账户特定状态信息。
 
-Block Information:: The state values needed for a transaction include the following:
+Block State:: 交易所需的状态值包括以下内容：
 
-* _blockhash_: The hash of the most recently completed blocks.
+* _blockhash_：最近完成的块的哈希值。
 
-* _coinbase_: The address of the recipient.
+* _coinbase_：收件人的地址。
 
-* _timestamp_: The current block's timestamp.
+* _timestamp_：当前块的时间戳。
 
-* _number_: The current block's number.
+* _number_：当前块的编号。
 
-* _difficulty_: The current block's difficulty.
+* _difficulty_：当前区块的难度。
 
-* _gaslimit_: The current block's gas-limit.
+* _gaslimit_：当前区块的gas限制。
 
-Runtime Environment Information:: Information used to facilitate transactions.
+Runtime Environment Information:: 用于使用交易的信息。
 
-* _gasprice_: Current gas price, which is specified by the transaction initiator.
+* _gasprice_：当前汽油价格，由交易发起人指定。
 
-* _codesize_: Size of the transaction codebase.
+* _codesize_：交易代码库的大小。
 
-* _caller_: Address of the account executing the current transaction.
+* _caller_：执行当前交易的账户的地址。
 
-* _origin_: Address of the current transactions original sender.
+* _origin_：当前交易原始发件人的地址。
 
 
+状态转换使用以下函数计算：
 
-State transitions are calculated with the following functions:
+以太坊状态转换函数:: 用于计算_valid state transition_。
 
-Ethereum State Transition Function:: Used to calculate a _valid state transition_.
+区块终结状态转换函数:: 用于确定最终块的状态，作为挖矿过程的一部分，包含区块奖励。
 
-Block Finalization State Transition Function:: Used to determine the state of a finalized block as part of the mining process, including block reward.
+区块级状态转换函数:: 应用于交易状态时的区块终结状态转换函数的结果状态。
 
-Block Level State Transition Function:: The resulting state of the Block Finalization State Transition Function when applied to a transaction state.
 
 [[compiling_solidity_to_evm]]
-==== Compiling Solidity to EVM bytecode
+==== 将Solidity编译为EVM字节码
 
 [[solc_help]]
-Compiling a Solidity source file to EVM bytecode can be accomplished via the command line. For a list of additional compile options, simply run the following command:
+可以通过命令行完成将Solidity源文件编译为EVM字节码。有关其他编译选项的列表，只需运行以下命令：
 
 ----
 $ solc --help
 ----
 
 [[solc_opcodes_option]]
-Generating the raw opcode stream of a Solidity source file is easily achieved with the _--opcodes_ command line option. This opcode stream leaves out some information (the _--asm_ option produces the full information), but is sufficient for this first introduction. For example, compiling an example Solidity file _Example.sol_ and populating the opcode output into a directory named _BytecodeDir_ is accomplished with the following command:
+使用_--opcodes_命令行选项可以轻松实现生成Solidity源文件的原始操作码流。此操作码流会遗漏一些信息（_--asm_选项会生成完整信息），但这对于第一次介绍是足够的。例如，编译示例Solidity文件_Example.sol_并将操作码输出填充到名为_BytecodeDir_的目录中，使用以下命令完成：
 
 ----
 $ solc -o BytecodeOutputDir --opcodes Example.sol
 ----
 
-or
+或
 
 [[solc_asm_option]]
 ----
@@ -157,13 +160,13 @@ $ solc -o BytecodeOutputDir --asm Example.sol
 ----
 
 [[solc_bin_option]]
-The following command will produce the bytecode binary for our example program:
+以下命令将为我们的示例程序生成字节码二进制文件：
 
 ----
 $ solc -o BytecodeOutputDir --bin Example.sol
 ----
 
-The output opcode files generated will depend on the specific contracts contained within the Solidity source file. Our simple Solidity file _Example.sol_ <<simple_solidity_example>> has only one contract named "example".
+生成的输出操作码文件将取决于Solidity源文件中包含的特定合约。我们的简单Solidity文件_Example.sol_ <<simple_solidity_example>>只有一个名为“example”的合约。
 
 [[simple_solidity_example]]
 ----
@@ -179,15 +182,15 @@ contract example {
 }
 ----
 
-
-If you look in the _BytecodeDir_ directory, you will see the opcode file _example.opcode_ (see <<simple_solidity_example>>) which contains the EVM machine language opcode instructions of the "example" contract. Opening up the _example.opcode_ file in a text editor will show the following:
+如果查看_BytecodeDir_目录，你将看到操作码文件_example.opcode_（请参阅<<simple_solidity_example>>），其中包含“example”合约的EVM机器语言操作码指令。在文本编辑器中打开_example.opcode_文件将显示以下内容：
 
 [[opcode_output]]
 ----
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF MUL NOT AND SWAP1 DUP4 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e 0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9 PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
-Compiling the example with the _--asm_ option produces a file labed _example.evm_ in our _BytecodeDir_ directory. This contains the detailed EVM machine language instructions:
+使用_--asm_选项编译示例会在_BytecodeDir_目录中生成一个文件 _example.evm_。这包含详细的EVM机器语言说明：
+
 
 [[asm_output]]
 ----
@@ -244,7 +247,7 @@ sub_0: assembly {
 }
 ----
 
-The _--bin_ option produces the following:
+_--bin_ 选项产生以下内容：
 
 [[bin_output]]
 ----
@@ -255,66 +258,66 @@ ffffffffffffffffffffffffffffffffffffffff
 160217905550603580605b6000396000f3006060604052600080fd00a165627a7a7230582056b99dcb1e
 ----
 
-Let's examine the first two instructions (reference <<common_stack_opcodes>>):
+让我们检查前两条指令（参考<<common_stack_opcodes>>）：
 
 [[opcode_analysis_1]]
 ----
 PUSH1 0x60 PUSH1 0x40
 ----
 
-Here we have the _mnemonic_ "PUSH1" followed with a raw byte of value "0x60". This corresponds to the EVM instruction of interpreting the single byte following the opcode as a literal value and pushing it onto the stack. It is possible to push values of size up to 32 bytes onto the stack. For example, the following bytecode pushes a 4 byte value onto the stack:
+这里我们有_mnemonic_“PUSH1”，后跟一个值为“0x60”的原始字节。这对应于EVM指令，该操作将操作码之后的单字节解释为文字值并将其推入堆栈。可以将大小最多为32个字节的值压入堆栈。例如，以下字节码将4字节值压入堆栈：
 
 [[opcode_analysis_2]]
 ----
 PUSH4 0x7f1baa12
 ----
 
-The second push opcode stores "0x40" onto the stack (on top of "0x60" already present there).
+第二个push操作码将“0x40”存储到堆栈中（在那里已存在的“0x60”之上）。
 
-Moving on to the next two instructions:
+接下来的两个指令：
 
 [[opcode_analysis_3]]
 ----
 MSTORE CALLVALUE
 ----
 
-MSTORE is a stack/memory operation (see <<common_stack_opcodes>>) that saves a value to memory, while CALLVALUE is an environmental opcode (see <<common_environment_opcodes>>) that returns the deposited value of the executing message call.
+MSTORE是一个堆栈/内存操作（参见<<common_stack_opcodes>>），它将值保存到内存中，而CALLVALUE是一个环境操作码（参见<<common_environment_opcodes>>），它返回正在执行的消息调用的存放值。
 
 [[evm_bytecode_execution]]
-==== Execution of EVM bytecode
+==== 执行EVM字节码
 
 [[gas_accounting_execution]]
-==== Gas, Accounting
+==== Gas，会计
 
-For every transaction, there is an associated _gas-limit_ and _gas-price_ which make up the fees of an EVM execution. These fees are used to facilitate the necessary resources of a transaction, such as computation and memory. Gas is also used for the creation of accounts and smart-contracts.
+对于每个交易，都有一个关联的_gas-limit_和_gas-price_，它们构成了EVM执行的费用。这些费用用于促进交易的必要资源，例如计算和存储。gas还用于创建账户和智能合约。
 
 [[turing_completeness_and_gas]]
-==== Turing Completeness and Gas
+==== 图灵完备性和gas
 
-In simple terms, a system or programming language is _Turing complete_ if it can solve any problem you feed into it. This is discussed in the Ethereum Yellow Paper:
+简单来说，如果系统或编程语言可以解决你输入的任何问题，它是_图灵完备的_。这在以太坊黄皮书中讨论过：
 
 [quote, Gavin Wood, ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER]
 ____________________________________________________________________
 It is a _quasi_-Turing complete machine; the quasi qualification comes from the fact that the computation is intrinsically bounded through a parameter, gas, which limits the total amount of computation done.
 ____________________________________________________________________
 
-While the EVM can theoretically solve any problem it receives, gas is what might prevent it from doing so. This could occur in a few ways:
+虽然EVM理论上可以解决它收到的任何问题，但gas可能会阻止它这样做。这可能在以下几个方面发生：
 
-1) Blocks that get mined in Ethereum have a gas limit associated with them; that is, the total gas used by all the transactions inside the block can not exceed a certain limit.
-2) Since gas and gas price go hand-in-hand, even if the gas limit restrictions were lifted, highly complex transactions may be economically infeasible.
+1）在以太坊开采的块具有与之相关的gas限制; 也就是说，区块内所有交易所使用的总gas不能超过一定限度。
+2）由于gas和gas价格齐头并进，即使取消了gas限制，高度复杂的交易也可能在经济上不可行。
 
-For the majority of use cases, however, the EVM can solve any problem provided to it.
+但是，对于大多数用例，EVM可以解决提供给它的任何问题。
 
 [[bytecode_vs_runtime_bytecode]]
-==== Bytecode vs. Runtime Bytecode
+==== 字节码与运行时字节码
 
-When compiling a contract, you can either get the _contract bytecode_ or the _runtime bytecode_.
+编译合约时，你可以获得_合约字节码_或_运行时字节码_。
 
-The contract bytecode contains the bytecode of what will actually end up sitting on the blockchain _plus_ the bytecode needed to place that bytecode on the blockchain and run the contract's constructor.
+合约字节码包含实际上最终位于区块链上的字节码_以及_将字节码放在区块链上并运行合约构造函数所需的字节码。
 
-The runtime bytecode, on the other hand, is _only the bytecode that ends up sitting on the blockchain_. This does not include the bytecode needed to initialize the contract and place it on the blockchain.
+另一方面，运行时字节码只是最终位于区块链上的字节码。这不包括初始化合约并将其放在区块链上所需的字节码。
 
-Let's take the simple `Faucet.sol` contract we created earlier as an example.
+让我们以前面创建的简单`Faucet.sol`合约为例。
 
 [[faucet_example]]
 ----
@@ -340,30 +343,30 @@ contract Faucet {
 }
 ----
 
-To get the contract bytecode, we would run `solc --bin Faucet.sol`. If we instead wanted just the runtime bytecode, we would run `solc --bin-runtime Faucet.sol`.
+要获得合约字节码，我们将运行`solc --bin Faucet.sol`。如果我们只想要运行时字节码，我们将运行`solc --bin-runtime Faucet.sol`。
 
-If you compare the output of these commands, you will see that the runtime bytecode is a subset of the contract bytecode. In other words, the runtime bytecode is entirely contained within the contract bytecode.
+如果比较这些命令的输出，你将看到运行时字节码是合约字节码的子集。换句话说，运行时字节码完全包含在合约字节码中。
 
 [[disassembling_the_bytecode]]
-==== Disassembling the Bytecode
+==== 反汇编字节码
 
-Disassembling EVM bytecode is a great way to understand how high-level Solidity acts in the EVM. There are a few disassemblers you can use to do this:
+反汇编EVM字节码是了解高级别Solidity在EVM中的作用的好方法。你可以使用一些反汇编程序来执行此操作：
 
-- *Porosity* is a popular open-source decompiler: https://github.com/comaeio/porosity
-- *Ethersplay* is an EVM plugin for Binary Ninja, a disassembler: https://github.com/trailofbits/ethersplay
-- *IDA-Evm* is an EVM plugin for IDA, another disassembler: https://github.com/trailofbits/ida-evm
+- *Porosity* 是一个流行的开源反编译器：https://github.com/comaeio/porosity
+- *Ethersplay* 是Binary Ninja的EVM插件，一个反汇编程序：https://github.com/trailofbits/ethersplay
+- *IDA-Evm* 是IDA的EVM插件，另一个反汇编程序：https://github.com/trailofbits/ida-evm
 
-In this section, we will be using the *Ethersplay* plugin for Binary Ninja.
+在本节中，我们将使用 Binary Ninja 的 *Ethersplay* 插件。
 
-After getting the runtime bytecode of Faucet.sol, we can feed it into Binary Ninja (after importing the Ethersplay plugin) to see what the EVM instructions look like.
+在获取Faucet.sol的运行时字节码后，我们可以将其提供给Binary Ninja（在导入Ethersplay插件之后）以查看EVM指令。
 
 [[Faucet_disassembled]]
 .Disassembling the Faucet runtime bytecode
 image::images/Faucet_disassembled.png["Faucet.sol runtime bytecode disassembled"]
 
-When you send a transaction to a smart contract, the transaction first interacts with that smart contract's **dispatcher**. The dispatcher reads in the data field of the transaction and sends it to the appropriate function.
+当你将交易发送到智能合约时，交易首先会与该智能合约的**调度员（dispatcher）**进行交互。调度程序读入交易的数据字段并将其发送到适当的函数。
 
-After the familiar MSTORE instruction, we see the following insturctions in our compiled Faucet.sol contract:
+在熟悉的MSTORE指令之后，我们在编译的Faucet.sol合约中看到以下创建：
 
 [[faucet_instructions]]
 ----
@@ -374,7 +377,7 @@ PUSH1 0x3f
 JUMPI
 ----
 
-"PUSH1 0x4" places 0x4 onto the top of the stack, which is otherwise empty. "CALLDATASIZE" gets the size in bytes of the received transaction's calldata and pushes it onto the stack. The current stack looks like as follows:
+"PUSH1 0x4" 将0x4置于堆栈顶部，栈初始为空。“CALLDATASIZE”获取接收到的交易的calldata的大小（以字节为单位）并将其推送到堆栈中。当前堆栈如下所示：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -384,20 +387,20 @@ JUMPI
 |length of calldata from tx (msg.data)
 |======================
 
-This next instruction is "LT", short for “less than”. The LT instruction checks whether the top item on the stack is less than the next item on the stack. In our case, it checks to see if the result of CALLDATASIZE is less than 4 bytes.
+下一条指令是“LT”，是“小于（less than）”的缩写。LT指令检查堆栈上的顶部项是否小于堆栈上的下一项。在我们的例子中，它检查CALLDATASIZE的结果是否小于4个字节。
 
-Why does the EVM check to see that the calldata of the transaction is at least 4 bytes? Because of how function identifiers work. Each function is identified by the first four bytes of its keccak256 hash. By placing the function's name and what arguments it takes into a keccak256 hash function, we can deduce its function identifier. In our contract, we have:
+为什么EVM会检查交易的calldata是否至少为4个字节？因为函数标识符的工作原理。每个函数由其keccak256哈希的前四个字节标识。通过将函数的名称和它所采用的参数放入keccak256哈希函数，我们可以推导出它的函数标识符。在我们的合约中，我们有：
 
 [[faucet_function_identifier]]
 ```
 keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 ```
 
-Thus, the function identifier for the "withdraw(uint256)" function is 0x2e1a7d4d, since these are the first four bytes of the resulting hash. A function identifier is always 4 bytes long, so if the entire data field of the transaction sent to the contract is less than 4 bytes, then there’s no function with which the transaction could possibly be communicating, unless a _fallback function_ is defined. Because we implemented such a fallback function in Faucet.sol, the EVM jumps to this function when the calldata's length is less than 4 bytes.
+因此，“withdraw（uint256）”函数的函数标识符是0x2e1a7d4d，因为它们是结果哈希的前四个字节。函数标识符总是4个字节长，所以如果发送给合约的交易的整个数据字段小于4个字节，那么除非定义了_fallback函数_，否则没有交易可能与之通信的函数。因为我们在Faucet.sol中实现了这样的fallback函数，所以当calldata的长度小于4个字节时，EVM会跳转到此函数。
 
-If the msg.data field is less than 4 bytes, LT pops off the top two values of the stack and pushes 1 onto it. Otherwise, it pushes 0. In our example, let's assume the msg.data field of the transaciton sent to our contract _was_ less than 4 bytes. 
+如果msg.data字段少于4个字节，LT将弹出堆栈的前两个值并将1推到其上。否则，它会推入0。在我们的例子中，让我们假设发送给我们的合约的transaciton的msg.data字段_was_少于4个字节。
 
-The "PUSH1 0x3f" instruction pushes the byte "0x3f" onto the stack. After this instruction, the stack looks as follows:
+“PUSH1 0x3f”指令将字节“0x3f”压入堆栈。在此指令之后，堆栈如下所示：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -407,22 +410,20 @@ The "PUSH1 0x3f" instruction pushes the byte "0x3f" onto the stack. After this i
 |0x3f
 |======================
 
-The next instruction is "JUMPI", which stands for "jump if". It works like so:
+下一条指令是“JUMPI”，代表“jump if”。它的工作原理如下：
 
 [[faucet_jump_instruction_text]]
 ----
 jumpi(label, cond) // Jump to "label" if "cond" is true
 ----
 
-In our case, "label" is 0x3f, which is where our fallback function lives in our smart contract. The "cond" argument is 1, which was from the result of the LT instruction earlier. To put this entire sequence into words, the contract jumps to the fallback function if the transaction data is less than 4 bytes.
-
-At 0x3f, only a "STOP" instruction follows, because though we declared a fallback function, we kept it empty. Had we not implemented a fallback function, the contract would throw an exception instead.
+在我们的例子中，“label”是0x3f，这是我们的fallback函数存在于我们的智能合约中的地方。“cond”参数为1，它来自之前LT指令的结果。要将整个序列放入单词中，如果交易数据少于4个字节，则合约将跳转到fallback函数。
 
 [[Faucet_jumpi_instruction]]
 .JUMPI instruction leading to fallback function
 image::images/Faucet_jumpi_instruction.png["JUMPI instruction leading to fallback function"]
 
-Let's examine the central block of the dispatcher. Assuming we received calldata that was greater than 4 bytes in length, the "JUMPI" instruction would not jump to the fallback function. Instead, code execution would follow with the next instructions:
+我们来看一下调度员的核心代码块。假设我们收到的长度大于4个字节的calldata，“JUMPI”指令不会跳转到回退函数。相反，代码执行将遵循下一条指令：
 
 [[faucet_instructions]]
 ----
@@ -440,14 +441,14 @@ PUSH1 0x41
 JUMPI
 ----
 
-"PUSH1 0x0" pushes 0 onto the stack, which is otherwise empty. "CALLDATALOAD" accepts as an argument an index within the calldata sent to the smart contract and reads 32 bytes from that index, like so:
+“PUSH1 0x0”将0压入堆栈，否则为空。“CALLDATALOAD”接受发送到智能合约的calldata中的索引作为参数，并从该索引读取32个字节，如下所示：
 
 [[faucet_calldataload_instruction_text]]
 ----
 calldataload(p) // call data starting from position p (32 bytes)
 ----
 
-Since 0 was the index passed to it from the PUSH1 0x0 command, CALLDATALOAD reads 32 bytes of calldata starting at byte 0, and then pushes it to the top of the stack (after popping the original 0x0). After the "PUSH29 0x1000000..." instruction, the stack looks as follows:
+由于0是从PUSH1 0x0命令传递给它的索引，因此CALLDATALOAD从字节0开始读取32字节的calldata，然后将其推送到堆栈的顶部（在弹出原始0x0之后）。在“PUSH29 0x1000000 ...”指令之后，堆栈如下所示：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -457,7 +458,7 @@ Since 0 was the index passed to it from the PUSH1 0x0 command, CALLDATALOAD read
 |0x1000000... (29 bytes in length)
 |======================
 
-"SWAP1" switches the top element on the stack with the _ith_ element after it. In this case, it swaps 0x1000000... with the calldata. The new stack looks as follows: 
+“SWAP1”用它后面的_第i个_元素交换堆栈顶部元素。在这里，它与密钥数据交换0x1000000 ... 新堆栈如下所示：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -467,21 +468,20 @@ Since 0 was the index passed to it from the PUSH1 0x0 command, CALLDATALOAD read
 |32 bytes of calldata starting at byte 0
 |======================
 
-The next instruction is "DIV", which works as follows:
+下一条指令是“DIV”，其工作方式如下：
 
 [[faucet_div_instruction_text]]
 ----
 div(x, y) // x / y
 ----
 
-In this case, x = 32 bytes of calldata starting at byte 0, and y = 0x100000000... (29 bytes total). Can you think of why the dispatcher is doing the division? Here's a hint: we read 32 bytes from calldata earlier starting at index 0. The first four bytes of that calldata is the function identifier. 
+在这里，x = 32字节的calldata从字节0开始，y = 0x100000000 ...（总共29个字节）。你能想到调度员为什么要进行划分吗？这是一个提示：我们从索引0开始从calldata读取32个字节。该calldata的前四个字节是函数标识符。
 
+我们之前推送的0x100000000 ....长度为29个字节，由开头的1组成，后跟全0。将我们的32字节的calldata除以此0x100000000 ....将只留下从索引0开始的callataload的_topmost 4字节_这四个字节 - 从索引0开始的calldataload中的前四个字节 - 是函数标识符，并且这就是EVM如何提取该字段。
 
-The 0x100000000.... we pushed earlier is 29 bytes long, consisting of a 1 at the beginning, followed by all 0s. Dividing our 32 bytes of calldata by this 0x100000000.... will leave us only the _topmost 4 bytes_ of our calldataload starting at index 0. These four bytes – the first four bytes in calldataload starting at index 0 – are the function identifier, and this is how the EVM extracts that field.
+如果你不清楚这一部分，可以这样想：在base~10~，1234000/1000 = 1234。在base~16~中，这没有什么不同。不是每个地方都是10的倍数，它是16的倍数。正如在我们的较小的例子中除以10^3^（1000）只保留最顶部的数字，将我们的32字节基数~16~值除以16^29^做同样的事。
 
-If this part isn’t clear to you, think of it like this: in base~10~, 1234000 / 1000 = 1234. In base~16~, this is no different. Instead of every place being a multiple of 10, it is a multiple of 16. Just as dividing by 10^3^ (1000) in our smaller example kept only the topmost digits, dividing our 32 byte base~16~ value by 16^29^ does the same.
-
-The result of the DIV (the function identifier) gets pushed on the stack, and our new stack is as follows:
+DIV（函数标识符）的结果被推送到堆栈上，我们的新堆栈如下：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -490,7 +490,7 @@ The result of the DIV (the function identifier) gets pushed on the stack, and ou
 |function identifier sent in msg.data
 |======================
 
-Since the "PUSH4 0xffffffff" and "AND" instructions are redundant, we can ignore them entirely, as the stack will remain the same after they are done. The "DUP1" instruction duplicates the 1^st^ item on the stack, which is the function identifier. The next instruction, "PUSH4 0x2e1a7d4d", pushes the calculated function identifier of the withdraw(uint256) function onto the stack. The stack now looks as follows:
+由于“PUSH4 0xffffffff”和“AND”指令是冗余的，我们可以完全忽略它们，因为堆栈在完成后将保持不变。“DUP1”指令复制堆栈上的1^st^项，这是函数标识符。下一条指令“PUSH4 0x2e1a7d4d”将抽取（uint256）函数的计算函数标识符推送到堆栈。堆栈现在看起来如下：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -501,9 +501,9 @@ Since the "PUSH4 0xffffffff" and "AND" instructions are redundant, we can ignore
 |0x2e1a7d4d
 |======================
 
-The next instruction, "EQ", pops off the top two items of the stack and compares them. This is where the dispatcher does its main job: it compares whether the function identifier sent in the msg.data field of the transaction matches that of withdraw(uint256). If they are equal, EQ pushes 1 onto the stack, which will ultimately get used to jump to the withdraw function. Otherwise, EQ pushes 0 onto the stack.
+下一条指令“EQ”弹出堆栈的前两项并对它们进行比较。这是调度程序完成其主要工作的地方：它比较交易的msg.data字段中发送的函数标识符是否与withdraw（uint256）匹配。如果它们相等，则EQ将1推入堆栈，这最终将用于跳转到fallback函数。否则，EQ将0推入堆栈。
 
-Assuming the transaction sent to our contract indeed began with the function identifier for withdraw(uint256), our new stack looks as follows:
+假设发送给我们合约的交易确实以withdraw（uint256）的函数标识符开头，我们的新栈看起来如下：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -513,7 +513,7 @@ Assuming the transaction sent to our contract indeed began with the function ide
 |1
 |======================
 
-Next, we have "PUSH1 0x41", which is the address at which the withdraw(uint256) function lives in the contract. After this instruction, the stack looks as follows:
+接下来，我们有“PUSH1 0x41”，这是withdraw（uint256）函数在合约中的地址。在此指令之后，堆栈如下所示：
 
 .Current stack
 [width="40%",frame="topbot",options="header,footer"]
@@ -524,8 +524,14 @@ Next, we have "PUSH1 0x41", which is the address at which the withdraw(uint256) 
 |0x41
 |======================
 
-The JUMPI instruction is next, and it once again accepts the top two elements on the stack as arguments. In this case, we have "jumpi(0x41, 1)", which tells the EVM to execute the jump to the location of the withdraw(uint256) function.
+接下来是JUMPI指令，它再次接受堆栈上的前两个元素作为参数。在这种情况下，我们有“jumpi（0x41,1）”，它告诉EVM执行跳转到withdraw（uint256）函数的位置。
 
 [[evm_tools_references]]
-=== EVM Tools References
-* [ByteCode To Opcode Disassembler](https://etherscan.io/opcode-tool) (Useful to check/debug if compilation ran with integrity and for reverse-engineering purposes if the source code wasn't published)
+=== EVM工具参考
+* [ByteCode To Opcode Disassembler](https://etherscan.io/opcode-tool) (用于检查/调试编译是否完整运行，如果源代码未发布则可用于逆向工程)
+
+
+<<第十五章#,下一章：共识>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

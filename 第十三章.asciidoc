@@ -1,87 +1,73 @@
+<<第十二章#,上一章：Oracles>>
+
 [[gas]]
-== Gas
+== gas（Gas）
 
-////
-Add high-level introduction, from a transactional and network perspective. then move to transactional - what is gas (unit to measure computational resources?), who needs it - when and why, how do you know how much is needed, how do you get it, what if I have too much, what if I don't have enough. move to block level, how does this transaction fit overall in a block (prioritization), who decides size, who decides fixed gas, gas refund. Future of gas.
-////
+**Gas**是以太坊用于衡量程序执行一个或一组动作所需计算量的单位。交易或合约执行的每项操作都需要一定数量的gas; 所需的gas数量与正在执行的计算步骤的类型和数量有关。与仅以千字节（kB）计算交易规模的比特币交易费相比，以太坊交易费必须考虑智能合约代码可以执行的任意数量的计算步骤。程序执行的操作数越多，运行完成的成本就越高。
 
-**Gas** is Ethereum's unit for measuring how much computational work a program takes to perform an action or a set of actions. Every operation performed by a transaction or contract costs a certain number of gas; the number of gas required is related to the type and number of computational steps that are being executed. In contrast to Bitcoin transaction fees, which only take into account the size of a transaction in kilobytes (kB), Ethereum transaction fees must account for an arbitrary number of computational steps that can be performed by smart contract code. The higher the number of operations a program performs, the higher the cost to run it to completion.
+每次操作都需要固定量的gas。以太坊黄皮书的的一些例子：
 
-Each operation requires a fixed amount of gas. Some examples from the Ethereum yellow paper:
+* 添加两个数字需要3个gas
+* 计算Keccak256哈希值，需要30个gas+ 每256位数据被哈希6个gas
+* 发送交易成本为21000 gas
 
-* Adding two numbers costs 3 gas
-* Calculating a Keccak256 hash costs 30 gas + 6 more gas for every 256 bits of data being hashed
-* Sending a transaction costs 21000 gas
+gas是以太坊的重要组成部分，具有双重作用。一，作为以太坊价格（具有波动性）和矿工对其工作的奖励之间的抽象层。另一种是抵御拒绝服务攻击。为了防止网络中的意外或恶意无限循环或其他计算浪费，每个交易的发起者需要设置他们愿意花费在gas上的金额的限制。因此，gas系统阻止攻击者发送垃圾邮件交易，因为他们必须按比例支付他们消耗的计算，带宽和存储资源。
 
-Gas is a crucial component of Ethereum and serves a dual role. One, as a layer of abstraction between the price of ethereum(with its volatility) and the reward to miners for the work they do. And the other being a defense against denial of service attacks. In order to prevent accidental or malicious infinite loops or other computational wastage in the network, the initiator of each transaction is required to set a limit to the amount they are willing to spend on gas. The gas system, therefore, disincentivizes attackers from sending spam transactions, as they must pay proportionately for the computational, bandwidth, and storage resources that they consume.
+=== 停机问题
 
-=== Halting Problem
+交易费和会计的想法似乎很实用，但你可能想知道为什么以太坊首先需要gas。gas是关键，因为它不仅可以解决停机问题，而且对安全和活力也至关重要。什么是停机问题，安全和活力，为什么要关心？
 
-////
-TODO
-////
+=== 支付gas
 
-The idea of transaction fees and accounting seems practical, though you might wonder why Ethereum requires gas in the first place. Gas is pivotal, as it not only attends to the halting problem but is also critical for safety and liveness. What is the halting problem, safety, and liveness, and why should you care?
+虽然gas有价格，但它不能“拥有”也不能“花”。gas仅存在于以太坊虚拟机（EVM）内部，作为计算工作量的计数。发起方被收取ether交易费，然后转换为gas，然后转回到ether，作为矿工的块奖励。这些转换步骤用于将计算的价格（与“工作量”相关）与ether的价格（与市场波动相关）分开。
 
-=== Paying for gas
+=== gas成本与gas价格
 
-While gas has a price, it cannot be "owned" nor "spent". Gas exists only inside the Ethereum Virtual Machine (EVM) as a count of how much computational work is being performed. The sender is charged a transaction fee in ether, which is then converted to gas and then back to ether as block rewards for the miners. These conversion steps are in place to separate the price for the computation (tied to amount of "work") from the price of ether (tied to market fluctuations).
+虽然**gas成本**是EVM中执行的操作步骤的度量，但gas本身也具有以ether测量的**gas价格**。在执行交易时，发起方指定他们愿意为每个gas单位支付的gas价格（以ether为单位），允许市场决定ether的价格与计算操作的成本之间的关系（以gas衡量） 。
 
-=== Gas cost vs. gas price
+`total gas used * gas price paid = transaction fee`，以ether为单位
 
-While the **gas cost** is a measure of operational steps performed in the EVM, the gas itself also has a **gas price** measured in ether. When performing a transaction, the sender specifies the gas price they are willing to pay (in ether) for each unit of gas, allowing the market to decide the relationship between the price of ether and the cost of computing operations (as measured in gas).
+此金额将在交易执行开始时从发起方的帐户中扣除。发起方不是设置“total gas used”，而是设置**gas limit**，该限制应足以覆盖执行交易所需的gas量。
 
-`total gas used * gas price paid = transaction fee` in ether
+=== gas成本限制和gas耗尽
 
-This amount is deducted from the sender's account at the start of the transaction execution. Instead of "total gas used", the sender is to set a **gas limit** that should be sufficient to cover the amount of gas required to perform the transaction.
+在发送交易之前，发起方必须指定**gas limit**  - 他们愿意购买的最大gas数量。他们还必须指定**gas price** - 他们愿意为每单位gas支付的以太价格。
 
-=== Gas cost limit and running out of gas
+以ether计算的`gas limit * gas price`在交易执行开始时从发起方的账户中扣除作为存款。这是为了防止发送者在执行中期“破产”并且无法支付gas费用。由于这个原因，用户也无法设置超出其帐户余额的gas限制。
 
-Before sending a transaction, senders must specify a **gas limit** - the maximum amount of gas they are willing to buy. They must also specify the **gas price** - the price in ether they are willing to pay for each unit of gas.
+理想情况下，发起方将设置一个高于或等于实际使用的gas的gas限制。如果gas限制设置高于消耗的gas量，发货人将收到超额金额的退款，因为矿工只获得他们实际工作的补偿。
 
-`gas limit * gas price` in ether is deducted from the sender's account at the start of transaction execution as a deposit. This is to prevent the sender from going "bankrupt" mid-execution and being unable to pay for gas costs. Users are also unable to set a gas limit that exceeds their account balance for this reason.
+在这种情况下：
 
-Ideally, the sender will set a gas limit that is higher than or equal to the gas actually used. If the gas limit is set higher than the amount of gas consumed, the sender will receive a refund of the excess amount, as miners are only compensated for the work they actually perform.
+`（gas限制 - 多余gas）*gas价格以太以矿块作为块奖励
 
-In which case:
+`(gas limit - excess gas) * gas price` ether作为矿工的区块奖励
 
-`(gas limit - excess gas) * gas price` ether goes to the miner as a block reward
+`excess gas * gas price` ether退回发起方
 
-`excess gas * gas price` ether is refunded to the sender
+但是，如果使用的gas超过规定的gas限制，即如果在执行期间交易“runs out of gas”，则操作终止。虽然交易不成功，但由于矿工已经完成了计算工作，不会退回发送人的交易费用，矿工因此得到补偿。
 
-However, if the gas used exceeds the specified gas limit, i.e. if the transaction "runs of out gas" during execution, the operation is terminated. Although the transaction was unsuccessful, the sender will not get their transaction fee back as miners have already performed the computational work up to that point, and will be compensated for doing so.
+==== 示例 
 
-==== Example 
-
-////
-Let's look at an example.
-////
-
-If the transaction is being sent from an Externally Owned Account (EOA), the gas fee is withdrawn from the EOA's balance. In other words, the initiator of the transaction is paying for the gas. The initiator funds the total gas consumed by the transaction as well as any sub-executions that follow. This means that if the initiator X attaches 1000 gas to call contract A, which spends 500 gas on computation and then sends another message to contract B, the gas used by A to send the message to B is also deducted from X's gas limit specified at the start.
+如果交易是从外部拥有账户（EOA）发送的，则从EOA的余额中扣除gas费。换句话说，交易的发起人正在支付gas费。发起人为交易消耗的总gas以及随后的任何子执行提供资金。这意味着如果发起者X附加1000个gas来调用合约A，其在计算上花费500个gas然后向合约B发送另一个消息，则A用于将消息发送到B的gas也会再已开始从X的gas限制中扣除。
 
 ```
-An EOA account X initiates a transaction and calls functions on contract account A, attaching 1000 gas
+EOA帐户X启动交易并调用合约帐户A上的功能，附带1000个gas
 
-Contract A spends 500 gas on computation and sends a message costing 100 gas to Contract B
+合约A在计算上花费500gas，并向合约B发送消耗100gas的消息
 
-Contract B spends 300 gas on computation and completes the transaction.
+合约B在计算上花费300个gas并完成交易。
 
-100 gas gets refunded to X
+100个gas退还给X.
 ```
 
-An intermediary contract (e.g. contract A in our example) that executes a portion of the operations in a transaction can therefore theoretically run out of gas if the initiator of that transaction did not attach a high enough gas fee at the start. In cases where contracts run out of gas mid-execution, all state changes are reverted except the gas fee payments.
+因此，如果该交易的发起人在开始时没有附加足够高的gas费，那么在交易中执行一部分操作的中间合约（例如，在我们的示例中为合约A）理论上可以耗尽gas。如果合约在执行中期用完，除了gas费支付外，所有状态变更都会被撤销。
 
-=== Estimating Gas 
+=== 估算 Gas 
 
-////
-Source: https://ethereum.stackexchange.com/a/515/19763 
-License: CC0 
-Added by: @naveensrinivasan 
-////
+通过假装交易已经被包含在区块链中来估算gas，然后返回如果操作是真实的那么可以收取的确切gas量。换句话说，它使用与矿工用来计算实际费用但从未开采过区块链的完全相同的程序。
 
-Estimating gas works by pretending the transaction was actually being included in the blockchain, and then returning the exact gas amount that would have been charged if that pretend operation was real. In other words, it uses the exact same procedure a miner would use to calculate the actual fee but never mined into the blockchain.
-
-Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.
+请注意，由于各种原因（包括EVM机制和节点性能），估计值可能远远超过交易实际使用的gas量。
 
 ``` javascript
 var result = web3.eth.estimateGas({
@@ -91,39 +77,45 @@ var result = web3.eth.estimateGas({
 console.log(result); // "0x0000000000000000000000000000000000000000000000000000000000000015"
 ```
 
-=== Gas price and transaction prioritization
+=== gas价格和交易优先顺序
 
-Gas price is the amount in ether that the transaction sender is willing to pay for each unit of gas used. The miner who mines the next block gets to decide which transactions to include. Since gas price is factored into the transaction fee they will receive as a reward, they are more likely to include transactions with highest gas prices first. If the sender sets the gas price too low, they may have to wait a long time before their transaction makes it into a block.
+gas价格是交易发起方愿意为每个gas单位支付的ether量。开采下一个区块的矿工决定要包括哪些交易。由于gas价格被计入他们将作为奖励的交易费中，他们更可能首先包括具有最高gas价格的交易。如果发起方将gas价格设置得太低，他们可能需要等待很长时间才能将其交易进入一个区块。
 
-Miners can also decide the order in which transactions are included in a block. Since multiple miners are competing to append their block to the blockchain, the order of transactions within a block is arbitrarily decided by the "winning" miner and then the other miners verify with that order. While transactions from different accounts can be ordered arbitrarily, transactions from an individual account are executed in order of an auto-incrementing nonce.
+矿工还可以决定块中包含交易的顺序。由于多个矿工竞争将其区块附加到区块链，因此区块内的交易顺序由“获胜”矿工任意决定，然后其他矿工用该订单核实。虽然可以任意排列来自不同账户的交易，但是来自个人账户的交易是按照自动递增的随机数的顺序执行的。
 
-=== Block gas limit
+=== 区块gas限制
 
-Block gas limits are the maximum amount of gas allowed in a block to determine how many transactions can fit into a block. For example, let’s say we have 5 transactions where each transaction has a gas limit of 10, 20, 30, 40, and 50. If the block gas limit is 100, then the first four transactions can fit in the block, while transaction 5 has to wait for a future block. As previously discussed, miners decide which transactions to include in a block. A different miner could try including the last 2 transactions in the block (50+40), and they only have space to include the first transaction (10). If you try to include a transaction that requires more gas than the current block gas limit, it will be rejected by the network and your Ethereum client will give you the message “Transaction exceeds block gas limit.” The block gas limit is currently around 5 million gas at the time of writing according to https://etherscan.io, meaning around 238 transactions that each consume 21000 gas can fit in 1 block.
+区块gas限制是区块中允许的最大gas量，用于确定区块中可以容纳的交易数量。例如，假设我们有5个交易，其中每个交易的gas限制为10,20,30,40和50.如果区块gas限制为100，那么前四个交易可以适合该区块，而交易5必须等待未来的区块。如前所述，矿工决定在一个区块中包含哪些交易。不同的矿工可以尝试包括块中的最后2个交易（50 + 40），并且它们仅具有包括第一个交易（10）的空间。如果你尝试包含的交易需要的gas量超过当前的gas限制，则网络将拒绝该交易，你的以太坊客户将向你发送消息“交易超过区块gas限制。根据https://etherscan.io的数据，目前区块的gas限制在500万左右。即一个区块可以容纳约238个交易，每个交易消耗21000个gas。
 
-=== Who decides what the block gas limit is?
+=== 谁来决定区块gas限制是多少？
 
-Miners on the network decide what the block gas limit is. Individuals who want to mine on the Ethereum network use a mining program, such as ethminer, which connects to a Geth or Parity Ethereum client. The Ethereum protocol has a built in mechanism where miners can vote on the gas limit so capacity can be increased without having to coordinate on a hard fork. The miner of a block is able to adjust the block gas limit by a factor of 1/1024 (0.0976%) in either direction. The result of this is an adjustable block size based on the needs of the network at the time. This mechanism is coupled with a default mining strategy where miners would vote on a gas limit which is at least 4.7 million, but which would target 150% of the recent (1024-block exponential moving) average gas used if that amount is higher, allowing capacity to organically increase. Miners can choose to change this, but many of them do not and leave the default.
+网络上的矿工决定区块gas限制是什么。想要在以太坊网络上挖矿的个人使用挖矿程序，例如ethminer，它连接到Geth或Parity Ethereum客户端。以太坊协议有一个内置机制，矿工可以对gas限制进行投票，因此无需在硬分叉上进行协调就可以增加容量。块的矿工能够在任一方向上将块气限制调整1/1024（0.0976％）。其结果是根据当时网络的需要调整块大小。这一机制与默认的开采策略结合在一起，矿工默认将投票决定至少470万的gas限制，但如果这一数字更高的话，将把目标对准最近的(1024区块指数移动)平均gas的150%，从而使数量有机地增加。矿工们可以选择改变这一点，但是他们中的许多人不这样做，并保留默认值。
 
-=== Gas refund
-Ethereum encourages deleting storage variables by refunding up to half the amount of the gas cost.
-There are 2 operations in the EVM with negative gas:
+=== gas退款
 
-Clearing a contract is -24,000 (SELFDESTRUCT)
-Clearing storage is -15,000 (SSTORE[x] = 0)
+以太坊通过退还高达一半的gas费用来鼓励删除存储的变量。
+EVM中有2个负的gas操作：
+
+清理合约是-24,000（SELFDESTRUCT）
+清理存储为-15,000（SSTORE [x] = 0）
 
 ==== GasToken
 
-GasToken is an ERC20 compliant token that allows anyone to "bank" gas when the gas price is low and uses it when gas price is high. By making it a tradeable asset, it essentially creates a gas market.
-It works by taking advantage of the gas refund mechanism described earlier.
+GasToken是一种符合ERC20标准的token，允许任何人在gas价格低时“储存”gas，并在gas价格高时使用gas。通过使其成为可交易的资产，它基本上创造了一个gas市场。
+它的工作原理是利用前面描述的gas退款机制。
 
-You can learn about the maths involved in calculating the profitability and how to use the released gas at https://gastoken.io/
+你可以在https://gastoken.io/了解计算盈利能力以及如何使用释放gas所涉及的数学
 
-=== Rent fee
-There is currently a proposal in the Ethereum community about charging smart contracts a "rent fee" to be kept alive.
+=== 租金
+目前，以太坊社区提出了一项关于向智能合约收取“租金”以保持活力的建议。
 
-In the case the rent would not be paid, the smart contract would be put to "sleep" making it and it's data inaccessible even for a simple read. A contract put into sleep would need to be awakened by paying rent and submitting a Merkle proof.
+在没有支付租金的情况下，智能合约将被“睡眠”，即使是简单的读取操作也无法获得数据。需要通过支付租金和提交Merkle证据来唤醒进入睡眠状态的合约。
 
 https://github.com/ethereum/EIPs/issues/35
 https://ethresear.ch/t/a-simple-and-principled-way-to-compute-rent-fees/1455
 https://ethresear.ch/t/improving-the-ux-of-rent-with-a-sleeping-waking-mechanism/1480
+
+<<第十四章#,下一章：以太坊虚拟机>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

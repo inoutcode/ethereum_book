@@ -1,193 +1,193 @@
+<<第十八章#,上一章：以太坊标准>>
+
 [[ethereum_fork_history]]
-== Ethereum Fork History
-Most hard forks are planned as part of a roadmap and consist of updates that the community generally agrees to; this is commonly called consensus. However, some hard forks do not always retain consensus which leads to multiple, distinct blockchains. The events that lead to the Ethereum / Ethereum Classic split is one such case.
+== 以太坊分叉历史
+大多数硬分叉计划作为路线图的一部分，并包含社区普遍认同的更新; 这通常被称为共识。然而，一些硬分叉并不总是保持共识，这导致多个不同的区块链。导致以太坊/以太坊经典分裂的事件就是这种情况。
 
 [[etc_origin]]
-=== Ethereum Classic (ETC)
-Ethereum Classic came to be after members of the Ethereum community went ahead with a time-sensitive hard fork ("DAO Hard Fork"). On  July 20th 2016, at a block height of 1.92 million, Ethereum introduced an irregular state change via a hard-fork in an effort to return approximately 3.6 million Ether that had been taken from a smart contract known as The DAO.
+=== 以太坊经典（ETC）
+在以太坊社区的成员继续使用时间敏感的硬分叉（“DAO Hard Fork”）之后，以太坊经典就出现了。2016年7月20日，在以192万的区块高度上，以太坊通过硬分叉引入了不规则的状态变化，从而退还大约360万的ether，这些以太币来自一个名为The DAO的智能合约。
 
-A number of people in the community disagreed with this change, believing it was as a violation of Ethereum's immutability; they elected to continue the original chain under the moniker of Ethereum Classic. While the split itself was initially ideological both chains have since evolved into their own separate entities.
+社区中的一些人不同意这种变化，认为这违反了以太坊的不变性; 他们选择在以太坊经典的绰号下继续保持原有的链条。虽然分裂本身最初是意识形态的，但两个链条已经发展成为它们各自独立的实体。
 
 [[dao_origin]]
-=== The Decentralized Autonomous Organization (The DAO)
-The DAO was created by Slock.It; a highly skilled team of developers including former founding members of Ethereum among their ranks. Slock.It conceived of The DAO as a way to provide community-based funding for projects. The core idea of it being that proposals would be submitted, curators would manage proposals, funds would be raised from investors within the Ethereum community, and if the project proves successful then investors would receive a share of the profits.
+=== 去中心化的自治组织（The DAO）
 
-The DAO was also one of the first experiments in an Ethereum token. Rather than funding projects directly with Ether, participants would trade their Ether for DAO tokens, use them to vote on project funding, and would later be able to trade them back for Ether.
+DAO是由Slock.It创建的; 一支技术精湛的开发团队，包括以前的以太坊创始成员。Slock.It 将DAO视为基于社区为项目提供的资金的一种方式。其核心思想是提交提案，管理者人将管理提案，资金将从以太坊社区的投资者筹集，如果项目证明成功，那么投资者将获得一部分利润。
 
-DAO tokens were able to be purchased in a crowdsale that ran from April 5th through April 30th, 2016 amassing nearly 14% <<[1]>> of the total Ether in existence which was worth ~$150 million USD at the time.
+DAO也是以太坊 token中的第一个实验之一。参与者不是直接用Ether资助项目，而是将他们的以太币交换为DAO代币，使用它们对项目资金进行投票，然后能够将它们交换为以太币。
+
+DAO token能够在2016年4月5日至4月30日期间的众筹中购买，占据了当时总价值约1.5亿美元的全部以太存款的近14％[1]。
 
 [[dao_reentrancy_bug]]
-=== The Re-Entrancy Bug
-On June 9th, developer Peter Vessenes and Chriseth report that most Ethereum-based contracts which manage funds are potentially vulnerable to an exploit <<[2]>> that can empty contract funds. A few days later (June 12th) Stephen Tual (Founder of Slock.It), reports that The DAO's code is not vulnerable <<[3]>> to the bug described by Peter and Chriseth. Worried DAO contributors temporarily breathe a sigh of relief until 5 days later (June 17th) when an unknown attacker ("the DAO Attacker") starts draining The DAO <<[4]>> using an exploit similar to the one described on June 9th. Ultimately the DAO Attacker siphons ~3.6 million Ether out of The DAO.
+=== 重入（ Re-Entrancy ）Bug
 
-Simultaneously an assemblage of volunteers calling themselves the Robinhood Group (RHG) start using the same exploit to withdraw the remaining funds. On June 21st RHG announces <<[5]>> that they've secured the other 70% of The DAO, ~7.2 million Ether, with plans to return it to the community. Much thanks and commendations are given to the RHG for their quick actions and thinking that helped secure the bulk of the community's Ether.
+6月9日，开发商Peter Vessenes和Chriseth报告称，大多数基于以太坊的合约管理基金都可能容易受到可以清空合约资金的漏洞<<[2]>>的影响。几天后（6月12日）斯蒂芬·塔尔（Slock.It的创始人）报告说，DAO的代码并不容易受到彼得和克里斯描述的错误的影响。<<[3]>> 令人担忧的DAO贡献者暂时松了一口气，直到5天后（6月17日），一名未知的攻击者（“DAO攻击者”）开始使用类似于6月9日描述的漏洞利用DAO <<[4]>> 。最终，DAO攻击者从DAO中吸取了大约360万个ether。
+
+同时，一群自称为Robinhood Group（RHG）的志愿者开始使用相同的漏洞来提取剩余的资金。6月21日，RHG宣布<<[5]>>他们已经获得了另外70％的DAO，约720万以太，并计划将其退还社区。RHG的快速行动和思考被给予了很多感谢和赞扬，这有助于保护社区的大部分ether。
+
 
 [[dao_reentrancy_bug_technicals]]
-==== Re-Entrancy Technicals
-While a more detailed and thorough explanation of the bug is described by Phil Daian <<[6]>> the short explanation is that a Contract function can be called multiple times simultaneously on the Ethereum Virtual Machine (EVM; the part of Ethereum that runs all Contract code). This allowed the DAO Attacker to request to withdraw Ether repeatedly, and before the Contract could record that the DAO Attacker had done so, the attacker withdrew again.
+==== Re-Entrancy技术
+虽然Phil Daian <<[6]>> 描述了对该错误的更详细和详尽的解释，但简短的解释是可以在以太坊虚拟机上同时多次调用合约函数）。这允许DAO攻击者反复请求提取ether，并且在合约记录DAO攻击者已经提取之前，攻击者再次提取。
 
 [[dao_reentrancy_bug_attack_flow]]
-==== Re-Entrancy Attack Flow
-Imagine you had $100 in your bank account and you could bring your bank teller any number of withdrawal slips. The bank teller gives you money for each slip in order, and only at the end of all the slips do they record your withdrawal. What if you brought them three slips to each withdraw $100? What if you brought them three thousand?
+==== Re-Entrancy 攻击流程
+想象一下，你的银行账户中有100美元，你可以向你的银行出纳员提取任意数量的提款单。银行出纳员按顺序为你提供每张单据的金额，并且只有在所有单据结束时才会记录你的提款。如果你给他们带来三张单，每张100美元怎么办？如果你给他们带来三千个怎么办？
 
-*Put another way, the flow was:*
+*换句话说，流程是：*
 
-1. DAO Attacker asks the DAO Contract to withdraw DAO tokens (DAO).
-2. DAO Attacker asks the contract to withdraw DAO *again*. Before the contract updates its records that DAO was withdrawn.
-3. Repeat step two as much as possible.
-4. Contract finally logs a single DAO withdrawal, losing track of the withdrawals that happened in the interim.
+1. DAO攻击者要求DAO合约提取DAO tokens。
+2. 在合约更新其DAO被提取的记录之前，DAO攻击者要求合约再次提取DAO。
+3. 尽可能重复第二步。
+4. 合约最终记录了一次DAO的提取，失去了在此期间发生的取款。
 
 [[dao_hard_fork]]
-=== The DAO Hard Fork
-One safety guard in The DAO was that all withdrawal requests were subject to a 28 day delay. This gave the community a short timeframe to discuss what to do about the exploit. From roughly June 17th to July 20th the DAO Attacker would be unable to convert their DAO tokens into Ether.
+=== DAO硬分叉
 
-Several developers focused on finding a viable solution and multiple avenues were explored in this short space of time. Among them was the DAO Soft Fork, announced on June 24th, to delay DAO withdrawals until consensus was reached <<[7]>>, and a DAO Hard Fork, announced July 15th, to reverse the effects of the DAO Attack with an irregular state change <<[8]>>.
+DAO中的一想安全措施是所有提款请求都要延迟28天。这为社区提供了一个简短的时间来讨论如何处理漏洞利用。从大约6月17日到7月20日，DAO攻击者将无法将他们的DAO token转换为ether。
 
-On June 28th developers discovered a DoS exploit in the DAO Soft Fork <<[9]>> and concluded that the DAO Hard Fork would be the only viable option on the fork route. The DAO Hard Fork would transfer all Ether that had been invested in the DAO into a new refund smart contract, allowing the original owners of the Ether to claim a full refund. This provided a solution for returning the hacked funds but also meant interfering with the balances of specific addresses on the network; however isolated they were. There would also be some leftover Ether in portions of The DAO known as childDAOs <<[12]>>. A group of trustees would manually authorize the leftover Ether; worth ~$6-7 million at the time <<[8]>>.
+一些开发人员专注于寻找可行的解决方案，并在这么短的时间内探索了多种途径。其中包括6月24日宣布的DAO软分叉推迟DAO的退出，直到达成共识<<[7]>>，以及7月15日宣布的DAO硬分叉，以不正常的方式扭转DAO攻击影响的状态改变<<[8]>>。
 
-With time running out, multiple Ethereum development teams created clients that allowed a user to decide whether they wanted to enable this fork. However, the client creators wanted to decide whether to make this choice opt-in (don't fork by default), or opt-out (fork by default). On July 15th a vote was open on Carbonvote.com <<[10]>>. On July 16th, at block 1,894,000 <<[11]>> it was closed. Of the 5.5% of the total Ether supply votes, ~80% of the votes (~4.5% of the total Ether supply) voted for opt-out. One quarter of the opt-out vote came from a single address <<[12]>>.
+6月28日，开发人员在DAO软分叉<<[9]>>中发现了一个DoS漏洞，并得出结论，DAO硬分叉将是fork之路上的唯一可行选择。DAO硬分叉将把所有投资于DAO的ether转移到新的退款智能合约中，允许ether的原始所有者要求全额退款。这为返还被黑的资金提供了解决方案，但也意味着干扰网络上特定地址的余额；但他们是孤立的。在DAO的部分中也会有一些剩余的ether，称为childDAO <<[12]>>。一组受托人将手动授权剩余的ether；当时的价值约为6-7百万美元<<[8]>>。
 
-Ultimately the decision became opt-out, and those who opposed the DAO Hard Fork would need to explicitly state that they did by changing a configuration option in the software they were running. 
+随着时间的推移，多个以太坊开发团队创建了允许用户决定是否要启用此分叉的客户端。但是，客户端创建者想要决定是否选择 opt-in（默认不分叉），或选择opt-out（默认分叉）。7月15日，Carbonvote.com上的投票开始了<<[10]>>。7月16日，在块[1,894,000] <<[11]>>，它被关闭。在以太供应总票数的5.5％中，约80％的选票（约占总供应量的4.5％）投票选择opt-out。选择opt-out的投票的四分之一来自单一地址<<[12]>>。
 
-On July 20th, at block 1,920,000 <<[13]>> Ethereum implemented the DAO Hard Fork <<[14]>> and thus two Ethereums were created, one supporting the irregular state change, and the other opposing it.
+最终决定成为选择opt-out，反对DAO硬分叉的人需要通过更改他们运行的软件中的配置选项来不分叉。 
 
-When the Hard Forked Ethereum (present-day Ethereum) gained a majority of the mining power, many assumed that consensus was achieved and the minority chain would fade away; as in previous forks. Despite this, a sizable portion of the Ethereum community started supporting the original chain which came to be known as Ethereum Classic.
+7月20日，在块1,920,000 <<[13]>> 以太坊实施了DAO硬分叉 <<[14]>>，因此创建了两个以太坊，一个支持不规则的状态变化，另一个与它相对。
 
-Within days several exchanges began to list both Ethereum ("ETH") and Ethereum Classic ("ETC"). Due to the nature of hard forks, all Ethereum users holding Ether at the time of the split now held funds on both of the chains and a market value for ETC was soon established with Poloniex listing ETC on July 24th <<[15]>>.
+当硬分叉的以太坊（现今的以太坊）获得了大部分采矿权时，许多人认为达成共识并且少数群体链将逐渐消失; 和以前的分叉一样。尽管如此，以太坊社区的相当大一部分开始支持原来的区块链，后来被称为以太坊经典。
+
+几天之内，几个交易所开始列出以太坊（“ETH”）和以太坊经典（“ETC”）。由于硬分叉的性质，所有在分拆时持有ether的以太网用户现在都在两个区块链中都持有资金，在Poloniex于7月24日列出ETC后，ETC的市场价值很快就建立了 <<[15]>>。
 
 [[dao_hard_fork_arguments]]
-==== Hard Fork Arguments
+==== 硬分叉的讨论
 
-A lot of discussion occurred on the /r/ethereum subreddit during the weeks leading up to the DAO Hard Fork. Some of the popular/key arguments are summarized below.
+在DAO硬分叉前几周，/r/ethereum subreddit上发生了很多讨论。一些流行/关键的论点总结如下。
 
 [cols=3*, options=header]
 |===
-|Argument
-|For
-|Against
+|论点
+|原因
+|反对
 
-|Responsibility/Justice
-|The responsibility for determining if a theft has occurred, and should be corrected can be done by the community if possible. There is a moral imperative.
-|The responsibility for determining if a theft has occurred, and should be corrected, should only be done by a legal body. It is impossible to eliminate bias if affected parties are part of the decision.
+|责任/正义
+|如果可能的话，社区可以负责确定是否发生了盗窃并且应该纠正。有道德要求。
+|确定盗窃是否已经发生并且应该纠正的责任应该只由法律机构来完成。如果受影响的各方参与决策，则无法消除偏见。
 
-|The DAO Agreement
-|It is not possible for most participants of The DAO to properly evaluate the code, therefore they cannot agree to be bound by the code of The DAO.
-|The opening paragraph of The DAO's Terms & Conditions <<[23]>> states that "...The DAO’s code controls and sets forth all terms of The DAO Creation."
+|DAO协议
+|DAO的大多数参与者无法正确评估代码，因此他们不能同意受DAO代码的约束。
+|DAO的条款和条件<<[23]>>的开头段落声明“...... DAO的代码控制并阐述了DAO创作的所有条款。”
 
-|Blockchain Immutability
-|Blockchain immutability is a social construct and therefore we are allowed to change it if the majority agrees.
-|Blockchain immutability is a social construct and therefore it is important to enforce immutability.
+|区块链不变性
+|区块链不变性是一种社会结构，因此如果多数人同意，我们可以改变它。
+|区块链不变性是一种社会结构，因此强制执行不变性非常重要。
 
-|Opt-in vs. Opt-out
-|It's okay for the community to choose whether a Hard Fork is opt-in or opt-out. We've voted to have it be opt-out.
-|Historically Hard Forks are opt-in (ie. Bitcoin) and a non-vote is a no vote. The opt-out vote had only 4.5% of the total supply voting over a period of ~1 day. <<[12]>>
-|===
+|选择加入与选择退出
+|社区可以选择Hard Fork是选择加入还是选择退出。我们投票决定是选择退出。
+|历史上Hard Forks是选择加入（即比特币）而非投票是不投票。在约1天的时间内，选择退出投票仅占总供应投票的4.5％。<< [12] >>
+| ===
 
 [[dao_hard_fork_timeline]]
-=== Timeline of The DAO Hard Fork
+=== DAO硬分叉的时间线
 
-- April 5: Slock.It creates The DAO following a security audit by Dejavu Security <<[16]>>
-- April 30: The DAO crowdsale launches <<[17]>>
-- May 27: The DAO crowdsale ends
-- June 9: A potential recursive call bug is discovered and believed to affect many Solidity contracts that track user's balances <<[2]>>
-- June 12: Stephen Tual declares that DAO funds are not at risk <<[3]>>
-- June 17: The DAO is exploited and a variant of the discovered bug (termed the "re-entry bug") is used to start draining the funds; eventually nabbing ~30% of the funds. <<[6]>>
-- June 21: The RHG announces it has secured the other ~70% of the Ether stored within The DAO. <<[5]>>
-- June 24: A soft fork vote is announced via opt-in signaling through Geth and Parity clients. This is designed to temporarily withhold funds until the community can better decide on what to do. <<[7]>>
-- June 28: A vulnerability is discovered in the soft fork and it's abandoned. <<[9]>>
-- June 28 to July 15: Users debate on whether or not to hard fork. Most of the debate occurs on the /r/ethereum subreddit.
-- July 15: The DAO Hard Fork is proposed to reverse The DAO Attack. <<[8]>>
-- July 15: A vote is held on carbonvote to decide if the DAO Hard Fork is opt-in (don't fork by default) or opt-out (fork by default). <<[10]>>
-- July 16: 5.5% of the total Ether supply votes, ~80% of the votes (~4.5% of the total supply) are pro the opt-out hard fork. One quarter of the pro-vote comes from a single address. <<[11]>> <<[12]>>
-- July 20: The hard fork occurs at block 1,920,000. <<[13]>> <<[14]>>
-- July 20: Those against the DAO Hard Fork continue running the old non-hard fork client software. This leads to issues with transactions being replayed on both chains. <<[18]>>
-- July 24: Poloniex lists the original Ethereum chain under the ticker symbol ETC; the first exchange to do so. <<[15]>>
-- August 10: The RHG transfers 2.9 million of the recovered ETC to Poloniex in order to convert it to ETH under the advice of Bity SA. 14% of the total RHG holdings are converted from ETC to ETH and other cryptocurrencies. Poloniex freezes the other 86% of deposited ETH. <<[19]>>
-- August 30: The frozen funds are sent by Poloniex back to the RHG. RHG then sets up a refund contract on the ETC chain. <<[20]>> <<[21]>>
-- December 11: IOHK's ETC development team forms. Lead by Ethereum founding member Charles Hoskinson.
-- Jan 13, 2017: The ETC network is updated to resolve transaction replay issues. Both chains are now functionally separate. <<[22]>>
-- February 20: ETCDEVTeam forms. Lead by early ETC developer Igor Artamonov (splix).
+-  4月5日：Slock.It 在Dejavu Security<<[16]>>的安全审计之后创建了DAO
+-  4月30日：DAO众筹推出<<[17]>>
+-  5月27日：DAO众筹结束
+-  6月9日：发现了潜在的递归调用错误，并认为它会影响跟踪用户余额的许多Solidity合约<<[2]>>
+-  6月12日：Stephen Tual宣布DAO资金没有风险<<[3]>>
+-  6月17日：DAO被利用，发现的bug的一个变种（称为“重新进入的bug”）被用来开始耗尽资金; 最终攫取了约30％的资金。<<[6]>>
+-  6月21日：RHG宣布它已经确保了存储在DAO中的其他~70％的以太网。<<[5]>>
+-  6月24日：通过Geth和Parity客户通过选择加入信号宣布软叉投票。这旨在暂时扣留资金，直到社区可以更好地决定做什么。<<[7]>>
+-  6月28日：软叉中发现了一个漏洞，它已被废弃。<<[9]>>
+-  6月28日至7月15日：用户辩论是否硬分叉。大多数争论发生在/r/ethereum subreddit上。
+-  7月15日：DAO Hard Fork被提议撤销DAO攻击。<<[8]>>
+-  7月15日：对carbonvote进行投票以决定DAO Hard Fork是否选择加入（默认情况下不分叉）或选择退出（默认为fork）。<<[10]>>
+-  7月16日：以太供应总票数的5.5％，约80％的选票（约占总供应量的4.5％）是选择退出硬分叉。支持投票的四分之一来自一个地址。<<[11]>> <<[12]>>
+-  7月20日：硬分叉发生在1,920,000块。<<[13]>> <<[14]>>
+-  7月20日：反对DAO Hard Fork的人继续运行旧的非硬分叉客户端软件。这会导致在两个链上重放交易的问题。<<[18]>>
+-  7月24日：Poloniex在股票代码ETC下列出原始的以太坊链; 这是第一次交换。<<[15]>>
+-  8月10日：RHG将290万回收的ETC转移至Poloniex，以便在Bity SA的建议下将其转换为ETH。RHG总持有量的14％从ETC转换为ETH和其他加密货币。Poloniex冻结了另外86％的沉积ETH。<<[19]>>
+-  8月30日：冻结的资金由Poloniex发送回RHG。然后RHG在ETC链上设立退款合约。<<[20]>> <<[21]>>
+-  12月11日：IOHK的ETC开发团队组建。由以太坊创始成员Charles Hoskinson领导。
+-  2017年1月13日：更新ETC网络以解决交易重播问题。这两个链现在在功能上是分开的。<<[22]>>
+-  2月20日：ETCDEVTeam表格。早期ETC开发人员Igor Artamonov（splix）领导。
 
 [[eth_etc_differences]]
-=== Ethereum and Ethereum Classic
+=== 以太坊和以太坊经典
 
-While the initial split was centered around The DAO, Ethereum and Ethereum Classic are now separate projects. The full set of differences is constantly evolving and too extensive to cover in this chapter it is worth noting that the chains do differ significantly in their core development, and community structure.
+虽然最初的分裂以DAO为中心，但以太坊和以太坊经典现在是独立的项目。完整的差异是不断发展的，而且过于广泛而无法在本章涵盖，值得注意的是，这些链条在核心发展和社区结构方面确实存在显着差异。
 
 [[eth_etc_differences_technical]]
-=== Technical Differences
+===技术差异
 
 [[eth_etc_differences_evm]]
-==== The EVM
-For the most part (as of April 2018) the two networks remain highly compatible. Contract code produced for one chain runs as expected on the other. Though there are minimal differences in EVM OPCODES (see EIPs link:https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md[140], link:https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md[145], and link:https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md[214]).
+==== EVM
+对于大多数部分（截至2018年4月），两个网络保持高度兼容。为一条链生成的合约代码在另一条链上按预期运行。尽管EVM操作系统的差异很小（参见EIPs： https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md[140], link:https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md[145], 和link:https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md[214]）
 
 [[eth_etc_differences_core_development]]
-==== Core Network Development
-All blockchains ultimately have many users and contributors. However, the core network development (code that runs the network) is often done by discrete groups due to the expertise and knowledge required to develop this type of software. As such the code that these groups produce is very closely tied to the code that actually runs the network.
+==== 核心网络开发
+所有区块链最终都有很多用户和贡献者。但是，由于开发此类软件所需的专业知识，核心网络开发（运行网络的代码）通常由分散的小组完成。因此，这些小组生成的代码与实际运行网络的代码密切相关。
 
 [cols=2*, options=header]
 |===
 |Ethereum
 |Ethereum Classic
 
-|Ethereum Foundation, and volunteers.
-|ETCDEV, IOHK, and volunteers.
+|以太坊基金会和志愿者。
+|ETCDEV, IOHK, 和志愿者
 |===
 
 [[eth_etc_differences_ideological]]
-=== Ideological Differences
-One of the biggest material differences between Ethereum and Ethereum Classic is ideology which manifests itself in two key ways: immutability and community structure.
+=== 意识形态差异
+以太坊和以太坊经典之间最大的物质差异之一是意识形态，它以两种主要方式表现出来：不变性和社区结构。
 
 [[eth_etc_differences_immutability]]
-==== Immutability
-Within the context of blockchains, immutability refers to the preservation of blockchain history.
+==== 不变性
+在区块链的背景下，不变性指的是区块链历史的保存。
 
 [cols=2*, options=header]
 |===
 |Ethereum
 |Ethereum Classic
 
-|Follows a philosophy that's colloquially termed "governance". This philosophy allows participants to vote, with varying degrees of representation, to change the blockchain in certain cases (such as The DAO attack).
-|Follows a philosophy that once data is on the blockchain it cannot be modified by others. This is a philosophy shared with Bitcoin, Litecoin, and other cryptocurrencies.
+|遵循一种俗称“治理”的哲学。这种理念允许参与者以不同程度的代表性投票，在某些情况下（例如DAO攻击）改变区块链。
+|遵循一种理念，即一旦数据出现在区块链上，就不能被其他人修改。这是与比特币，Litecoin和其他加密货币共享的理念。
 |===
 
 [[eth_etc_differences_community_structure]]
-==== Community structure
-While blockchains aim to be decentralized much of the world around them is centralized. Ethereum and Ethereum Classic approach this reality in different ways.
+==== 社区结构
+虽然区块链旨在分散，但它们周围的世界大部分都是集中的。以太坊和以太坊经典以不同的方式处理这一现实。
 
 [cols=2*, options=header]
 |===
 |Ethereum
 |Ethereum Classic
 
-|_Owned by the Ethereum Foundation:_ 
+|_以太坊基金会所有：_ 
 
-/r/ethereum Subreddit, ethereum.org Website, Forums, GitHub (ethereum), Twitter (@ethereum), Facebook, and Google+ account.
+/r/ethereum Subreddit, ethereum.org 网站, 论坛, GitHub (ethereum), Twitter (@ethereum), Facebook, 和 Google+ account.
 
-|_Owned by separate entities:_
+|_由单独的实体所有_
 
-/r/ethereumclassic Subreddit, the ethereumclassic.org Website, Forums, GitHubs (ethereumproject, ethereumclassic, etcdevteam, iohk, ethereumcommonwealth), Twitter (@eth_classic), Telegrams, and Discord.
+/r/ethereumclassic Subreddit, the ethereumclassic.org 网站, 论坛, GitHubs (ethereumproject, ethereumclassic, etcdevteam, iohk, ethereumcommonwealth), Twitter (@eth_classic), Telegrams, 和 Discord.
 |===
 
 [[other_ethereum_forks]]
-=== A timeline of notable Ethereum forks
-//// TODO: Really needs other forks as well, Ellaism, Ubiq, Musicoin ////
+=== 着名的以太坊分叉的时间表
 
-//// TODO: Hopefully someone more familiar with these other forks can elaborate, as well as clarify the difference between network and software forks if necessary. ////
+在以太坊也发生了其他几个分叉。其中一些是硬分叉，因为它们直接从预先存在的以太坊网络中分离出来。其他是软分叉：它们使用以太坊的客户端/节点软件，但运行完全独立的网络，没有与以太坊共享的任何历史记录。在以太坊的生活中可能会有更多的分叉。
 
-Several other forks have occurred on Ethereum as well. Some of these are hard forks in the sense that they split directly off of the pre-existing Ethereum network. Others are software forks: they use Ethereum's client/node software but run entirely separate networks without any history shared with Ethereum. There will likely be more forks over the life of Ethereum.
+还有一些其他项目声称是以太坊分叉，但实际上是基于ERC20 token并在以太坊网络上运行。其中两个例子是EtherBTC（ETHB）和以太坊修改（EMOD）。这些不是传统意义上的分叉，有时也可称为空投。
 
-There are also several other projects that claim to be Ethereum forks but are actually based on ERC20 tokens and run on the Ethereum network. Two examples of these are EtherBTC (ETHB) and Ethereum Modification (EMOD). These are not forks in the traditional sense, and may sometimes be called airdrops. 
-
-- Expanse was the first fork of the Ethereum blockchain to gain traction. It was announced via the Bitcoin Talk forum on September 7 2015. The actual fork occurred a week later on September 14 2015 at a block height of 800,000. It was originally founded by Christopher Franko and James Clayton. Their stated vision was to create an advanced chain for: "identity, governance, charity, commerce, and equity".
-
-//// TODO: Recommend dropping some of the forks below if they seem to be abandoned ////
-
-- EthereumFog (ETF) was launched on December 14 2017 and forked at a block height of 4730660. Their stated aims are to develop "World Decentralized Fog Computing" by focusing on fog computing and decentralised storage. There is still little information on what this will actually entail.
-- EtherZero (ETZ) was launched on January 19 2018 at block height of 4936270 at a block height of 4936270. Its notable innovations were the introduction of a masternode architecture and the removal of transaction fees for smart contracts to enable a wider diversity of DAPPs. There have been some criticism from some prominent members of the Ethereum community, MyEtherWallet and MetaMask, due to the lack of clarity surrounding development and some accusations of possible phishing.
-- EtherInc (ETI) was launched on February 13 2018 at a block height of 5078585 with a focus on building decentralised organisations. They also announced the reduction of block times, increased miner rewards, the removal of uncle rewards and set a cap on mineable coins. They use the same private keys as Ethereum and have implemented replay protection to protect Ether on the original unforked chain. 
+- Expanse是以太坊区块链的第一个获得牵引力的分支。它是在2015年9月7日通过比特币谈话论坛宣布的。实际的分叉发生在一周后的2015年9月14日，块高度为800,000。它最初由Christopher Franko和James Clayton创立。他们的愿景是创建一个先进的链：“身份，治理，慈善，商业和公平”。
+-  EthereumFog（ETF）于2017年12月14日推出，分块高度为4730660。他们的目标是通过专注于雾计算和分散存储来开发“世界分散雾计算”。关于这实际上会带来什么的信息仍然很少。
+-  EtherZero（ETZ）于2018年1月19日发布，块高4936270，块高4936270。其值得注意的创新是引入了masternode架构并取消了智能合约的交易费用，以实现更广泛的DAPP。以太网社区的一些著名成员MyEtherWallet和MetaMask遭到了一些批评，原因是围绕开发缺乏明确性以及对可能的网络钓鱼的一些指责。
+-  EtherInc（ETI）于2018年2月13日发布，高度为5078585，重点是建立分散的组织。他们还宣布减少封锁时间，增加矿工奖励，取消叔叔奖励并设置可开采硬币的上限。它们使用与以太坊相同的私钥，并实施了重放保护，以保护原始非重制链上的ether。
 
 [bibliography]
-=== References
+=== 参考
 - [[[1]]] https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao
 - [[[2]]] http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/
 - [[[3]]] https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b
@@ -212,3 +212,7 @@ There are also several other projects that claim to be Ethereum forks but are ac
 - [[[22]]] https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/
 - [[[23]]] https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/
 - [[[24]]] https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/
+
+全书完结
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

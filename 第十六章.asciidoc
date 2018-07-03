@@ -1,65 +1,22 @@
+<<第十五章#,上一章：共识>>
+
 [Vyper]
 [[viper_chap]]
-== Vyper: A contract-oriented programming language
-:revnumber: v1.5
-:revdate: 2018-04-28 (yyyy-mm-dd)
-:revremark: Updating this chapter with some how-to guides and code examples. Please note that there are still sections in this chapter labelled with TODO. The TODO tag identifies pending points which are still being researched and need to be completed.
+== Vyper: 面向合约的编程语言
 
-////
-Source: https://github.com/ethereum/vyper/blob/master/README.md
-License: The MIT License (MIT)
-Added by: @tpmccallum
-////
+研究表明，具有跟踪漏洞的智能合约可能导致意外执行。https://arxiv.org/pdf/1802.06038.pdf[最近的一项研究]分析了970,898份合约。它概述了跟踪漏洞的三个基本类别（已经导致以太坊用户的灾难性资金损失）。这些类别包括::
+* 自杀合约。可以被任意地址杀死的合约
+* 贪婪的合约，在某个执行状态后无法释放ether
+* 浪费合约，不经意地将ether释放到任意地址
 
-////
-Source: http://vyper.readthedocs.io/en/latest/
-License: The MIT License (MIT)
-Added by: @tpmccallum
-////
-
-////
-Source: http://solidity.readthedocs.io/en/v0.4.21/common-patterns.html
-License: The MIT License (MIT)
-Added by: @tpmccallum
-////
-
-////
-Source: https://arxiv.org/pdf/1802.06038.pdf
-License: https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html
-Added by: @tpmccallum
-////
-
-////
-Source: https://github.com/ethereum/solidity/blob/release/docs/contracts.rst#inheritance
-License: The MIT License (MIT)
-Added by: @tpmccallum
-////
-
-:revnumber: v1.2
-:revdate: 2018-04-12 (yyyy-mm-dd)
-:revremark: This paragraph is complete and has been merged < https://github.com/ethereumbook/ethereumbook/pull/456 >
-
-Research shows that smart contracts, with trace vulnerabilities, can result in unexpected execution. https://arxiv.org/pdf/1802.06038.pdf[A recent study] analyzed 970,898 contracts. It outlined three basic categories of trace vulnerabilities (which have already resulted in the catastrophic loss of funds for Ethereum users). These categories include::
-* Suicidal contracts. Contracts which can be killed by arbitrary addresses
-* Greedy contracts which have no way to release Ether after a certain execution state, and
-* Prodigal contracts which release Ether to arbitrary addresses carelessly
-
-Vyper is an experimental, contract-oriented programming language which targets the Ethereum Virtual Machine (EVM). Vyper strives to provide superior audit-ability by simplifying code and making it readable for humans. One of the principles of Vyper is to make it near virtually impossible for developers to write misleading code. This is done in a number of ways, which we will describe below.
-
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: This paragraph is complete and has been merged < https://github.com/ethereumbook/ethereumbook/pull/456 >
+Vyper是一种面向合约的实验性编程语言，面向以太坊虚拟机（EVM）。Vyper致力于通过简化代码并使其对人类可读而提供卓越的审计能力。Vyper的一个原则是让开发人员几乎不可能编写误导性代码。这可以通过多种方式完成，我们将在下面介绍。
 
 [[comparison_to_solidity_sec]]
-=== Comparison to Solidity
+=== 与 Solidity 比较
 
-This section is a reference for those who are considering developing smart contracts using the Vyper programming language. The section mainly compares and contrasts Vyper against Solidity; outlining, with sound reasoning, why Vyper does NOT include the following traditional Object Oriented Programming (OOP) concepts:
+本节是那些正在考虑使用Vyper编程语言开发智能合约的人的参考。该部分主要对比了Vyper与Solidity的对比； 概览，合理的推理，为什么Vyper不包括以下传统的面向对象编程（OOP）概念：
 
-:revnumber: v1.5
-:revdate: 2018-04-28 (yyyy-mm-dd)
-:revremark: TODO - The Function overloading and Variable typecasting sections listed below have to be re-worded. They are, by and large, just a cut and paste of the original documentation and also contain TODOs
-
-Modifiers:: In Solidity, you can write a function using modifiers. For example, the following function called `changeOwner` will run the code in a modifier, called `onlyBy`, as part of its execution. 
+Modifiers:: 在Solidity中，你可以使用修饰器编写函数。例如，以下函数`changeOwner`将在一个名为`onlyBy`的修饰器中运行代码，作为其执行的一部分。
 
 [source,javascript]
 ----
@@ -71,7 +28,7 @@ function changeOwner(address _newOwner)
 }
 ----
 
-As we can see below, the modifier called `onlyBy` enforces a rule in relation to ownership. Whilst modifiers are powerful (able to change what happens in the body of a function), they can also result in the misleading execution of code. For example, the only way to be sure of the `changeOwner` function's logic, is to inspect and test the `onlyBy` modifier every time our code is implemented. Obviously, if a modifier is changed in the future, the function which calls it will potentially produce a different result, than originally intended.
+正如我们在下面看到的，名为`onlyBy`的修饰器强制执行与所有权相关的规则。虽然修饰器很强大（能够改变函数体中发生的事情），但它们也可能导致误导性的代码执行。例如，确保`changeOwner`函数逻辑的唯一方法是每次实现代码时检查并测试`onlyBy`修饰器。显然，如果将来更改修改器，则调用它的函数可能会产生与最初预期不同的结果。
 
 [source,javascript]
 ----
@@ -82,123 +39,92 @@ modifier onlyBy(address _account)
 }
 ----
 
-By and large, the usual use case for a modifier is to perform single checks before a function's execution. Given that this is the case, Vyper's recommendation is to do away with modifiers altogether and simply use in-line checks and asserts as part of a function. Doing this will improve audit-ability and readability, due to the fact that the Vyper function will follow a logical in-line sequence in plain sight, rather than having to reference modifier code which has been written elsewhere.
+总的来说，修饰器的通常用例是在函数执行之前执行单个检查。鉴于这种情况，Vyper的建议是完全取消修饰器，并简单地使用内联检查和断言作为函数的一部分。这样做将提高审计能力和可读性，因为Vyper函数将在明显的视线中遵循逻辑内联序列，而不必引用已在别处编写的修饰器代码。
 
-Class inheritance:: Inheritance allows programmers to harness pre-written code by acquiring pre-existing functionality, properties and behaviors from existing software libraries. Inheritance is powerful and promotes the reuse of code. Solidity supports multiple inheritance as well as polymorphism, and while these are considered some of the most important features of object oriented programming, Vyper does not support them. Vyper maintains that the implementation of inheritance requires coders and auditors to jump between multiple files in order to understand what the program is doing. Vyper also understands the rules of precedence and how multiple inheritances can make code too complicated to understand. This is a fair statement, given that the Solidity https://github.com/ethereum/solidity/blob/release/docs/contracts.rst#inheritance[documentation on inheritance] even provide an example of how multiple inheritances can be problematic.
+类继承:: 继承允许程序员通过从现有软件库中获取预先存在的功能，属性和行为来利用预先编写的代码。继承功能强大，可以促进代码的重用。Solidity支持多重继承以及多态，虽然这些被认为是面向对象编程的一些最重要的特性，但Vyper并不支持它们。Vyper坚持认为继承的实现要求编码人员和审计人员在多个文件之间跳转，以便了解程序正在做什么。Vyper还了解优先级规则以及多个继承如何使代码过于复杂而无法理解。鉴于Solidity https://github.com/ethereum/solidity/blob/release/docs/contracts#inheritance[关于继承的文档]给出了多重继承为何有问题的例子，这是一个公平的陈述。
 
-Inline assembly:: Inline assembly provides developers with an opportunity to access the Ethereum Virtual Machine (EVM) at a low level. When using inline assembly code (inside higher level source code) the developer is able to perform operations by directly accessing EVM opcode instructions. For example, the following inline assembly code adds 3 at memory location 0x80 by using the EVM opcode mload.
+内联汇编:: 内联汇编为开发人员提供了以低级别访问以太坊虚拟机（EVM）的机会。使用内联汇编代码（在更高级别的源代码中）时，开发人员可以通过直接访问EVM操作码指令来执行操作。例如，以下内联汇编代码通过使用EVM操作码mload在内存位置0x80处添加3。
 
 [source,assembly]
 ----
 3 0x80 mload add 0x80 mstore
 ----
 
-As mentioned previously, Vyper strives to provide developers and code auditors with the most human readable code. whilst inline assembly can provide powerful fine-grained control, it is not supported by the Vyper programming language.
+如前所述，Vyper致力于为开发人员和代码审计人员提供最易读的代码。虽然内联汇编可以提供强大的细粒度控制，但Vyper编程语言不支持它。
 
-Function overloading:: TODO paraphrase the following ... "having multiple function definitions with the same name and different argument options can cause lots of confusion over which function is called at any given time. With function overloading, it's easier to write misleading code (foo("hello") logs "hello" but foo("hello", "world") steals your funds). Another problem with function overloading is that it makes the code much harder to search through as you have to keep track on which call refers to which function."
+函数重载:: 具有相同名称和不同参数选项的多个函数定义会导致在任何给定时间调用哪个函数时会产生很多混淆。随着函数重载，编写误导代码会更容易（ foo（“hello”）记录“hello”但foo（“hello”，“world”）窃取你的资金。）函数重载的另一个问题是它使代码更难以搜索，因为你必须跟踪哪个调用指的是哪个功能。
 
-Variable typecasting:: Typecasting is a mechanism which allows programmers to convert a variable from one data type to another data type. TODO explain how this has been handled in Vyper.
+变量类型转换:: 类型转换是一种允许程序员将变量从一种数据类型转换为另一种数据类型的机制。
 
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following pre-conditions, post-conditions and sub-points condition, effects and interaction are complete
+前置条件和后置条件::
+Vyper明确处理前置条件，后置条件和状态更改。虽然这会产生冗余代码，但它也允许最大的可读性和安全性。在Vyper中编写智能合约时，开发人员应遵守以下3点。理想情况下，应仔细考虑3个点中的每个点，然后在代码中进行详细记录。这样做将改进代码的设计，最终使代码更具可读性和可审计性。
 
-Pre-conditions and post-conditions::
-Vyper handles pre-conditions, post-conditions and state changes explicitly. Whilst this produces redundant code, it also allows for maximal readability and safety. When writing a smart contract in Vyper, a developer should observe the following 3 points. Ideally, each of the 3 points should be carefully considered and then thoroughly documented in the code. Doing so will improve the design of the code, ultimately making code more readable and auditable.
-
-* Condition - What is the current state/condition of the Ethereum state variables
-* Effects - What effects will this smart contract code have on the condition of the state variables upon execution i.e. what WILL be affected, what WILL NOT be affected? Are these effects congruent with the smart contract's intentions?
-* Interaction - Now that the first two steps have been exhaustively dealt with, it is time to run the code. Before deployment, logically step through the code and consider all of the possible permanent outcomes, consequences and scenarios of executing the code, including interactions with other contracts
-
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following programming paradigm section is complete 
+* 条件 - 以太坊状态变量的当前状态/条件是什么
+* 效果 - 这个智能合约代码对执行状态变量的条件有什么影响，即什么会影响，什么不会受到影响？这些影响是否与智能合约的意图一致？
+* 交互 - 现在已经详尽地处理了前两个步骤，现在是运行代码的时候了。在部署之前，逻辑上逐步执行代码并考虑执行代码的所有可能的永久结果，后果和方案，包括与其他合约的交互。
 
 [[a_new_programming_paradigm_sec]]
-=== A new programming paradigm
+=== 一种新的编程范式
 
-Vyper's creation opens the door to a new programming paradigm. For example, Vyper is removing class inheritance, as well as other functionality, and therefore it can be said that Vyper is leaning away from the traditional Object Oriented Programming (OOP) paradigm, which is fine. 
+Vyper的创作为新的编程范式打开了大门。例如，Vyper正在删除类继承以及其他功能，因此可以说Vyper偏离了传统的面向对象编程（OOP）范例，这很好。
 
-Historically OOP has provided a mechanism for representing real world objects. For example, OOP allows the instantiation of an employee object which can inherit from a person class. However, from a value-transfer and/or smart-contract perspective, those who aspire to the functional programming paradigm would concur that transactional programming in no way lends itself to the aforementioned traditional OOP paradigm. Put simply, transactional computations are worlds apart from real world objects. For example, when was the last time you held a transaction or a forward chaining business rule in your hand?
+历史上，OOP提供了一种表示现实世界对象的机制。例如，OOP允许实例化可以从person类继承的employee对象。然而，从价值转移和/或智能合约的角度来看，那些渴望功能性编程范式的人会同意，交易性编程绝不适合上述传统的OOP范式。简而言之，交易计算是与现实世界对象分开的世界。例如，你最后一次持有交易或正向链接业务规则的时间是什么时候？
 
-It seems that Vyper is not full aligned with either the OOP paradigm or the functional programming paradigm (the full list of reasons is beyond the scope of this chapter). For this reason, could we be so bold, at this early stage of development, to coin a new software development paradigm? One which endevours to future proof blockchain executable code. One which prevents the catastrophic loss of funds in an immutable setting. Past events experienced in the blockchain revolution are organically creating new opportunities for further research and development in this space. Perhaps the outcomes of such research and development could eventually result in a new immutability paradigm classification for software development.
-
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following decorators section is complete
+似乎Vyper没有与OOP范例或函数式编程范例完全一致（完整的原因列表超出了本章的范围）。出于这个原因，在开发的早期阶段，我们能够如此大胆地推出新的软件开发范例吗？一个致力于未来证明区块链可执行代码的人。一个可以防止在不可改变的环境中造成灾难性资金损失的人。区块链革命中经历的过去事件有机地为这一领域的进一步研究和发展创造了新的机会。也许这种研究和开发的结果最终可能导致软件开发的新的不变性范式分类。
 
 [[decorators_sec]]
-=== Decorators
-Decorators like `@private` `@public` `@constant` `@payable` are declared at the start of each function.
+=== 装饰符
+向 `@private` `@public` `@constant` `@payable` 这样的装饰符在每个函数的开头声明。
 
-Private decorator:: The `@private` decorator makes the function inaccessible from outside the contract.
+Private:: `@private` 使合约外部的函数无法访问此函数。
 
-Public decorator:: The `@public` decorator makes the function both visible and executable publicly. For example, even the Ethereum wallet will display the public functions when viewing the contract.
+Public:: `@public` 使该函数公开可见和可执行。例如，即使是以太坊钱包也会在查看合约时显示公共函数。
 
-Constant decorator:: Functions which start with the `@constant` decorator are not allowed to change state variables, as part of their execution. In fact, the compiler will reject the entire program (with an appropriate warning) if the function tries to change a state variable. If the function is meant to change a state variable then the `@constant` decorator is not used at the start of the function.
+Constant:: 以 `@constant` 开始的函数不允许状态变量的改变，实际上，如果函数尝试更改状态变量，编译器将拒绝整个程序（带有适当的警告）。如果该函数用于更改状态变量，则不要在函数的开头使用`@ constant`。
 
-Payable decorator:: Only functions which declare the `@payable` decorator at the start will be allowed to transfer value.
+Payable:: 只有以 `@payable` 开头声明的函数才能接收价值。
 
-Vyper implements the logic of decorators explicitly. For example, the Vyper code compilation process will fail if a function is preceded with both a `@payable` decorator and a `@constant` decorator. Of course, this makes sense because a constant function (one which only reads from the global state) should never need to partake in a transfer of value. Also, each Vyper function must be preceded with either the `@public` or the `@private` decorator to avoid compilation failure. Preceding a Vyper function with both a `@public` decorator and a `@private` decorator will also result in a compilation failure.
-
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following online code editor and compiler section is complete
+Vyper明确地实现了装饰符的逻辑。例如，如果一个函数前面有一个`@appay`装饰符和一个`@ constant`装饰符，那么Vyper代码编译过程就会失败。当然，这是有道理的，因为常量函数（仅从全局状态读取的函数）永远不需要参与值的转移。此外，每个Vyper函数必须以`@ public`或`@private`装饰符开头，以避免编译失败。同时使用`@public`装饰符和`@private`装饰符的Vyper函数也会导致编译失败。
 
 [[online_code_editor_and_compiler_sec]]
-=== Online code editor and compiler
-Vyper has its own online code editor and compiler at the following URL < https://vyper.online >. This Vyper online compiler allows you to write and then compile your smart contracts into Bytecode, ABI and LLL using only your web browser. The Vyper online compiler has a variety of prewritten smart contracts for your convenience. These include a simple open auction, safe remote purchases, ERC20 token and more.
+=== 在线代码编辑器和编译器
 
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following compiling using the command line section is complete
+Vyper在以下URL <<https://vyper.online>> 上有自己的在线代码编辑器和编译器。这个Vyper在线编译器允许你仅使用Web浏览器编写智能合约，然后将其编译为字节码，ABI和LLL。Vyper在线编译器具有各种预先编写的智能合约，以方便你使用。这些包括简单的公开拍卖，安全的远程购买，ERC20 token等。
 
 [[compiling_using_the_command_line_sec]]
-=== Compiling using the command line
-Each Vyper contract is saved in a single file with the .v.py extension.
-Once installed Vyper can compile and provide bytecode by running the following command
+=== 使用命令行编译
+每个Vyper合约都保存在扩展名为.v.py的单个文件中。
+安装完成后，Vyper可以通过运行以下命令来编译和提供字节码
 
 vyper ~/hello_world.v.py
 
-The human readable ABI code (in JSON format) can be obtained by then running the following command
+通过运行以下命令可以获得人类可读的ABI代码（JSON格式）
 
 vyper -f json ~/hello_world.v.py
 
-
-:revnumber: v1.1
-:revdate: 2018-04-11 (yyyy-mm-dd)
-:revremark: The following reading and writing data section is complete
-
 [[reading_and_writing_data_sec]]
-=== Reading and writing data
-Smart contracts can write data to two places, Ethereum's global state trie or Ethereum's chain data. While it is costly to store, read and modify data, these storage operations are a necessary component of most smart contracts.
+=== 读写数据
 
-Global state:: The state variables in a given smart contract are stored in Ethereum's global state trie, a given smart contract can only store, read and modify data specifically in relation to that contract's address (i.e. smart contracts can not read or write to other smart contracts).
+智能合约可以将数据写入两个地方，即以太坊的全球状态查找树或以太坊的链数据。虽然存储，读取和修改数据的成本很高，但这些存储操作是大多数智能合约的必要组成部分。
 
-Log:: As previously mentioned, a smart contract can also write to Ethereum's chain data through log events. While Vyper initially employed the pass:[__]logpass:[__] syntax for declaring these events, an update has been made which brings Vyper's event declaration more in line with Solidity's original syntax. For example, Vyper's declaration of an event called MyLog was originally `MyLog: pass:[__]logpass:[__]({arg1: indexed(bytes[3])})` Vyper's syntax has now become `MyLog: event({arg1: indexed(bytes[3])})`. It is important to note that the execution of the log event in Vyper was and still is as follows `log.MyLog("123")`.
+全局状态:: 给定智能合约中的状态变量存储在以太坊的全局状态查找树中，给定的智能合约只能存储，读取和修改与该合约地址相关的数据（即智能合约无法读取或写入其他智能合约）。
 
-While smart contracts can write to Ethereum's chain data (through log events), smart contracts are unable to read the on-chain log events, which they created. Notwithstanding, one of the advantages of writing to Ethereum's chain data via log events is that logs can be discovered and read, on the public chain, by light clients. For example, the logsBloom value in a mined block can indicate whether or not a log event was present. Once this has been established the log data can be obtained through the path of logs -> data inside a given transaction receipt.
+Log:: 如前所述，智能合约也可以通过日志事件写入以太坊的链数据。虽然Vyper最初使用 pass:[__]logpass:[__] 语法来声明这些事件，但已经进行了更新，使Vyper的事件声明更符合Solidity的原始语法。例如，Vyper声明的一个名为MyLog的事件最初是 `MyLog: pass:[__]logpass:[__]({arg1: indexed(bytes[3])})`，Vyper的语法现在变为 `MyLog: event({arg1: indexed(bytes[3])})`。需要注意的是，在Vyper中执行日志事件仍然是如下 `log.MyLog("123")`。
 
-:revnumber: v1.1
-:revdate: 2018-04-10 (yyyy-mm-dd)
-:revremark: Just want to keep an eye on the development in Vyper GitHub in order to compare and contrast the differences between Vyper and Solidity's ERC20 Token Interface Implementation closer to ethereumbook being published.
-:revstatus: TODO
+虽然智能合约可以写入以太坊的链数据（通过日志事件），但智能合约无法读取他们创建的链上日志事件。尽管如此，通过日志事件写入以太坊的链数据的一个好处是，可以在公共链上由轻客户端发现和读取日志。例如，挖到的块中的logsBloom值可以指示是否存在日志事件。一旦建立，就可以通过日志路径获取 logs -> data inside a given transaction receipt。
 
 [[erc20_token_interface_implementation_sec]]
-=== ERC20 token interface implementation
-Vyper has implemented ERC20 as a precompiled contract and allows to use it by default.
-Contracts in Vyper must be declared as global variables. An example for declaring the ERC20 variable can be
-token: address(ERC20).
+=== ERC20令牌接口实现
+Vyper已将ERC20实施为预编译合约，并允许默认使用它。
+Vyper中的合约必须声明为全局变量。声明ERC20变量的示例可以是
 
-:revnumber: v1.0
-:revdate: 2018-04-10 (yyyy-mm-dd)
-:revremark: There is a pending question in the Vyper GitHub repo < https://github.com/ethereum/vyper/issues/745 >. Whilst sharding opcodes have been implemented on a branch, the Vyper code base is yet to have sharding opcodes merged into a release. It would be nice to include updated information for the book as soon as Vyper has implemented sharding opcodes. @jacqueswww and @NIC619 have provided URLs in relation to opcodes, specifically the sharding roadmap < https://github.com/ethereum/py-evm/issues/190 > and Vitalik's Account Abstraction Proposals information < https://ethresear.ch/t/tradeoffs-in-account-abstraction-proposals/263 >. Details will be added as soon as possible.
-:revstatus: TODO
+token: address(ERC20)
 
-:revnumber: v1.1
-:revdate: 2018-04-10 (yyyy-mm-dd)
-:revremark: Just want to keep an eye on the development in Vyper GitHub in order to compare and contrast the differences between Vyper and Solidity's ERC20 Token Interface Implementation closer to ethereumbook being published.
-:revstatus: TODO
 [[opcodes_sec]]
-=== OPCODES
-The code for smart contracts is mainly written in high level languages like Solidity or Vyper. The compiler is responsible for taking the high level code and creating the lower level interpretation of it, which is then executable on the Ethereum Virtual Machine (EVM). The lowest representation the compiler can distill the code to (prior to execution by the EVM) are opcodes. This being the case, each implementation of a high level language (like Vyper) is required to provide an appropriate compilation mechanism (a compiler) to allow (among other things) the high level code to be compiled into the universally predefined EVM opcodes. A good example of this is Vyper's implementation of Ethereum's sharding opcodes.
+=== 操作码（OPCODES）
+智能合约的代码主要使用Solidity或Vyper等高级语言编写。编译器负责获取高级代码并创建它的低级解释，然后可以在以太坊虚拟机（EVM）上执行。编译器可以提取代码的最低表示（在EVM执行之前）是操作码。在这种情况下，需要高级语言（如Vyper）的每个实现来提供适当的编译机制（编译器）以允许（除其他之外）将高级代码编译到通用预定义的EVM操作码中。一个很好的例子是Vyper实现了以太坊的分片操作码。
+
+
+<<第十七章#,下一章：DevP2P协议>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

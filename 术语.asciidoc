@@ -318,6 +318,6 @@ Whisper::
    	特殊的以太坊地址，所有20个位都为0，A special Ethereum address, with all 20-bytes as zeros, that is specified as a destination address in the "contract creation transaction".
 
 
-<<第一章#,上一章：什么是以太坊>>
+<<第一章#,下一章：什么是以太坊>>
 
 image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

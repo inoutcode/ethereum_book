@@ -1,118 +1,117 @@
-////
-Source:
-https://github.com/ethereum/devp2p/blob/master/rlpx.md#node-discovery
-https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol
-https://github.com/ethereum/wiki/wiki/Ethereum-Wire-Protocol
-https://github.com/ethereum/wiki/wiki/Adaptive-Message-IDs
-License: Not defined yet
-Added By: @fjrojasgarcia
-////
+<<第十六章#,上一章：Vyper：面向合约的编程语言>>
 
 [[communications_between_nodes]]
-== Communications between nodes - A simplified vision
+== 节点间的通信 —— 一个简单的视角
 
-Ethereum nodes communicate among themselves using a simple wire protocol forming a virtual or overlay _well-formed network_.
-To achieve this goal, this protocol called *ÐΞVp2p*, uses technologies and standards such as *RLP*.
+以太坊节点之间通过简单的线路协议进行通信，形成一个虚拟或覆盖良好的网络
+为实现这一目标，该协议称为*ÐΞVp2p*，使用*RLP*等技术和标准。
 
 [[transport_protocol]]
-=== Transport protocol
-In order to provide confidentiality and protect against network disruption, *ÐΞVp2p* nodes use *RLPx* messages, an encrypted and authenticated _transport protocol_.
-*RLPx* utilizes a routing algorithm similar to *Kademlia*, which is a distributed hash table (*DHT*) for decentralized peer-to-peer computer networks.
+=== 传输协议
 
-*RLPx*, as an underlying transport protocol, allows among other, _"Node Discovery and Network Formation"_.
-Another remarkable feature of *RLPx* is the support of _multiple protocols_ over a single connection.
+为了提供机密性并防止网络中断，*ÐΞVp2p*节点使用*RLPx*消息，一种加密且经过身份验证的_transport协议。
+*RLPx*使用类似于*Kademlia*的路由算法，*Kademlia*是用于分散的对等计算机网络的分布式哈希表（* DHT *）。
+*RLPx*，作为底层传输协议，允许_“节点发现和网络形成”_。
+*RLPx*的另一个显著特征是通过单个连接支持_多个协议_。
 
-When *ÐΞVp2p* nodes communicate via Internet (as they usually do), they use TCP, which provides a connection-oriented medium, but actually *ÐΞVp2p* nodes communicate in terms of packets, using the so-called facilities (or messages) provided by the underlying transport protocol *RLPx*, allowing them to communicate sending and receiving packets.
+当*ÐΞVp2p*节点通过Internet进行通信时（通常情况下），它们使用TCP，它提供面向连接的介质，但实际上*ÐΞVp2p*节点通过使用底层传输协议*RLPx*所提供的所谓设施（或消息），以数据包通信，允许它们通信发送和接收数据包。
 
-Packets are _dynamically framed_, prefixed with an _RLP_ encoded header, encrypted and authenticated. Multiplexing is achieved via the frame header which specifies the destination protocol of a packet.
+数据包是 _动态构建_ _dynamicically framed_，前缀为_RLP_编码标头，经过加密和验证。通过帧头实现多路复用，帧头指定分组的目的协议。
 
-==== Encrypted Handshake
-Connections are established via a handshake and, once established, packets are encrypted and encapsulated as frames.
+==== 加密握手
 
-This handshake will be carried out in two phases, the first phase involves the keys exchange and the second phase will perform authentication, and as a part of *DEVp2p*, will also exchange the capabilities of each node.
+通过握手建立连接，并且一旦建立，就将数据包加密并封装为帧。
 
-==== Security - Basic considerations
+此握手将分两个阶段进行，第一阶段涉及密钥交换，第二阶段将执行身份验证，作为*DEVp2p*的一部分，还将交换每个节点的功能。
 
-All cryptographic operations are based on *secp256k1* and each node is expected to maintain a static private key which is saved and restored between sessions.
+==== 安全 - 基本考虑因素
 
-Until encryption is implemented, packets have a timestamp property to reduce the window of time for carrying out replay attacks.
-It is recommended that the receiver only accepts packets created within the last 3 seconds.
+所有加密操作都基于*secp256k1*，并且每个节点都应该维护一个静态私钥，该私钥在会话之间保存和恢复。
 
-Packets are signed. Verification is performed by recovering the public key from the signature and checking that it matches an expected value.
+在实施加密之前，数据包具有时间戳属性，以减少执行重放攻击的时间窗口。
+建议接收方只接受最近3秒内创建的数据包。
+
+数据包被签名。通过从签名中恢复公钥并检查它是否与预期值匹配来执行验证。
 
 [[devp2p_messages_subprotocols]]
-=== ÐΞVp2p messages and Sub-protocols
-With *RLP* we can encode different types of payloads, whose types are determined by the integer value used in the first entry of the RLP.
-In this way, *ÐΞVp2p*, the _basic wire protocol_, support _arbitrary sub-protocols_.
+=== ÐΞVp2p 消息和子协议
+使用*RLP*，我们可以编码不同类型的数据，其类型由RLP的第一个条目中使用的整数值确定。
+这样，*ÐΞVp2p*，_基础线路协议_ _basic wire protocol_，支持_任意的子协议_。
 
-_Message IDs_ between `0x00-0x10` are reserved for *ÐΞVp2p* messages. Therefore, the message IDs of _sub-protocols_  are assumed to be from `0x10` onwards.
+`0x00-0x10`之间的_Message IDs_保留用于*ÐΞVp2p*消息。因此，假定_sub-protocols_的消息ID从“0x10”开始。
 
-Sub-protocols that are not shared between peers are _ignored_.
-If multiple versions of the same (equal name) sub-protocol are shared, _the numerically highest wins_.
+未在对等节点之间共享的子协议是_忽略的_。
+如果共享相同（同名）子协议的多个版本，则数字最高的胜出。
 
-==== Basic establishment of communication - Basic ÐΞVp2p message
+==== 基本建立通信 - 基本ÐΞVp2p消息
 
-As a very basic example, when two peers initiate their communication, each one greets the other with a special *ÐΞVp2p* message called *"Hello"*, which is identified by the `0x00` message ID.
-Through this particular *ÐΞVp2p* *"Hello"* message, each node will disclose to its peer relevant data that will allow the communication to begin at a very basic level.
+作为一个非常基本的例子，当两个对等节点发起他们的通信时，每个对等节点用另一个称为*“Hello”*的特殊*ÐΞVp2p*消息来迎接另一个，该消息由“0x00”消息ID标识。
+通过这个特定的*ÐΞVp2p* *“Hello”*消息，每个节点将向其对等的相关数据公开，从而允许通信以非常基本的级别开始。
 
-In this step, each peer will know the following information about his peer.
+在此步骤中，每个对等方将知道有关其对等方的以下信息。
 
-- The implemented *version* of the P2P protocol. Now must be `1`.
-- The *client software identity*, as a human-readable string (e.g. `Ethereum(++)/1.0.0`).
-- Peer *capability name* as an ASCII string of length 3. Currently supported capability names are `eth` and `shh`.
-- Peer *capability version* as a positive integer. Currently supported versions are `34` for `eth`, and `1` for `shh`.
-- The *port* that the client is listening on. If `0` it indicates the client is not listening.
-- The *Unique Identity of the node* specified as a 512-bit hash.
+- P2P协议的实现*版本*。现在必须是'1`。
+- *客户端软件标识*，作为人类可读的字符串（例如`Ethereum（++）/ 1.0.0`）。
+- 对等节点的*capability name*为长度为3的ASCII字符串。当前支持的能力名称为“eth”和“shh”。
+- 对等节点的*capability version*为正整数。目前支持的版本是`eth`为`34`，`shh`为`1`。
+- 客户端正在侦听的*端口*。如果为“0”则表示客户端没有收听。
+- *节点的唯一标识*指定为512位散列。
 
-==== Disconnection - Basic ÐΞVp2p message
-To carry out an ordered disconnection, the node that wants to disconnect, will send a *ÐΞVp2p* message called *"Disconnect"*, which is identified by the _"0x01"_ message id. Furthermore, the node specifies the reason for the disconnection using the parameter *"reason"*.
+==== 断开连接 - 基本ÐΞVp2p消息
+要执行有序的断开连接，要断开连接的节点将发送名为*“Disconnect”*的*ÐΞVp2p*消息，该消息由_“0x01”_消息ID标识。此外，节点使用参数*“reason”*指定断开的原因。
 
-The *"reason"* parameter can take values from `0x00` to `0x10`, e.g. `0x00` represents the reason *"Disconnect requested"* and `0x04` represents *"Too many peers"*.
+* “reason”*参数可以取值从“0x00”到“0x10”，例如“0x00”表示原因*“请求断开连接”*和“0x04”表示*“太多对等节点”*。
 
-==== Status - Ethereum sub-protocol example
-This sub-protocol is identified by the `+0x00` message-id.
+==== 状态 - 以太坊子协议示例
 
-This message should be sent after the initial handshake and prior to any Ethereum related messages and inform of its current state.
+该子协议由`+0x00`消息-id标识。
 
-To do this, the node disclose to its peer the following data;
+此消息应在初始握手之后和任何与以太坊相关的消息之前发送，并通知其当前状态。
 
-- The *Protocol version*.
-- The *Network Id*.
-- The *Total Difficulty of the best chain*.
-- The *Hash of the best known block*.
-- The *Hash of the Genesis block*.
+为此，节点向其对等方公开以下数据;
+
+- *Protocol version*
+- *Network Id*
+- *Total Difficulty of the best chain*
+- *Hash of the best known block*
+- *Hash of the Genesis block*
 
 [[known_current_networks]]
-===== Known current network Ids
-About networks ids here is a list of those currently known;
+===== 已知的当前网络ID
+这里是目前已知的网络ID列表：
 
-- 0: *Olympic*; Ethereum public pre-release testnet
-- 1: *Frontier*; Homestead, Metropolis, the Ethereum public main network
-- 1: *Classic*; The (un)forked public Ethereum Classic main network, chain ID 61
-- 1: *Expanse*; An alternative Ethereum implementation, chain ID 2
-- 2: *Morden*; The public Ethereum testnet, now Ethereum Classic testnet
-- 3: *Ropsten*; The public cross-client Ethereum testnet
-- 4: *Rinkeby*: The public Geth Ethereum testnet
-- 42: *Kovan*; The public Parity Ethereum testnet
-- 77: *Sokol*; The public POA testnet
-- 99: *POA*; The public Proof of Authority Ethereum network
-- 7762959: *Musicoin*; The music blockchain
+- 0: *Olympic*; 以太坊公共预发布测试网
+- 1: *Frontier*; Homestead，Metropolis，以太坊公共主网
+- 1: *Classic*; (un)forked 公共以太坊Classic主网络，链ID 61
+- 1: *Expanse*; 另一个以太坊实现，链ID 2
+- 2: *Morden*; 公共以太坊测试网，现在是以太坊经典测试网
+- 3: *Ropsten*; 公共跨客户端以太坊测试网
+- 4: *Rinkeby*: 公共Geth以太坊测试网
+- 42: *Kovan*; 公共Parity以太坊测试网
+- 77: *Sokol*; 公共POA测试网
+- 99: *POA*; 公共权威证明（PoA）以太网网络
+- 7762959: *Musicoin*; 音乐区块链
 
-==== GetBlocks - Another sub-protocol example
-This sub-protocol is identified by the `+0x05` message-id.
+==== GetBlocks - 另一个子协议示例
+该子协议由`+ 0x05` message-id标识。
 
-With this message the node requests its peer the specified blocks each by its own hash.
+通过此消息，节点通过其自己的哈希向其对等方请求指定的块。
 
-The way to request the nodes is through a list with all the hashes of them, taking the message the following form;
+请求节点的方式是通过包含它们所有哈希值的列表，将消息采用以下形式;
+
 ....
 [+0x05: P, hash_0: B_32, hash_1: B_32, ...]
 ....
 
-The requesting node must not have a response message containing all the requested blocks, in which case it must request again those that have not been sent by its peer.
+请求节点必须没有包含所有请求的块的响应消息，在这种情况下，它必须再次请求那些尚未由其对等方发送的消息。
 
-=== Node identity and reputation
-The identity of a *ÐΞVp2p* node is a *secp256k1* public key.
+=== 节点标识和声誉
+*ÐΞVp2p*节点的标识是*secp256k1*公钥。
 
-Clients are free to mark down new nodes and use the node ID as a means of _determining a node's reputation_.
+客户端可以自由标记新节点并使用节点ID作为_决定节点的信誉_的方法。
 
-They can store ratings for given IDs and give preference accordingly.
+他们可以存储给定ID的评级并相应地给予优先权。
+
+<<第十八章#,下一章：以太坊标准>>
+
+image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

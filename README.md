@@ -26,13 +26,13 @@
 
 [第九章 开发工具，框架和库](第九章.asciidoc)
 
-[第十章 Tokens](第十章.asciidoc)
+[第十章 代币（Tokens）](第十章.asciidoc)
 
 [第十一章 去中心化应用（DApps）](第十一章.asciidoc)
 
 [第十二章 预言机（Oracles）](第十二章.asciidoc)
 
-[第十三章 燃气](第十三章.asciidoc)
+[第十三章 燃气（Gas）](第十三章.asciidoc)
 
 [第十四章 以太坊虚拟机](第十四章.asciidoc)
 
