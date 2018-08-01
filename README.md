@@ -5,8 +5,6 @@
 
 闲暇时间翻译，欢迎指正，感谢加星~
 
-Wechat: 121402213
-
 ### 封面
 ![Mastering Ethereum](images/cover.png)
 
