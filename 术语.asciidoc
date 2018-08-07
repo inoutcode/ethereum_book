@@ -234,7 +234,7 @@ Require::
 
 还原 Revert::
 	当需要处理与 <<require-sentence, require()>> 相同的情况，但使用更复杂的逻辑时，使用revert()。
-	例如，如果你的代码有一些嵌套的 if/else 逻辑流程，你会发现使用 <<require-sentence, require()>> 而不是require（）是合理的。
+	例如，如果你的代码有一些嵌套的 if/else 逻辑流程，你会发现使用revert()而不是 <<require-sentence, require()>> 是合理的。
 
 奖励 Reward::
 	Ether（ETH）的数量，包含在每个新区块中的金额作为网络对找到工作证明解决方案的矿工的奖励。
@@ -246,7 +246,7 @@ Require::
     Satoshi Nakamoto 是设计比特币及其原始实现Bitcoin Core的个人或团队的名字。作为实现的一部分，他们也设计了第一个区块链。在这个过程中，他们是第一个解决数字货币的双重支付问题的。他们的真实身份至今仍是个谜。
     
 Vitalik Buterin::
-    Vitalik Buterin 是俄国-加拿大的程序员和作假，以太坊和Bitcoin杂志的联合创始人。
+    Vitalik Buterin 是俄国-加拿大的程序员和作家，以太坊和Bitcoin杂志的联合创始人。
 
 Gavin Wood::
     Gavin Wood 是英国的程序员，以太坊的联合创始人和前CTO。在2014年8月他提出了Solidity，用于编写智能合约的面向合约的编程语言。
