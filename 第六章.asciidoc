@@ -419,4 +419,4 @@ https://github.com/satoshilabs/slips/blob/master/slip-0044.md
 
 <<第七章#,下一章：交易>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

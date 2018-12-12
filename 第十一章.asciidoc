@@ -209,4 +209,4 @@ Website：https://decentraland.org/
 
 <<第十二章#,下一章：Oracles>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

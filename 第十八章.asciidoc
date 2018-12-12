@@ -90,4 +90,4 @@ ERCs的增加是通过https://github.com/ethereum/EIPs[EIPs]，以太坊改进�
 
 <<第十九章#,下一章：以太坊分叉历史>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

@@ -570,4 +570,4 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0e9")
 
 <<第六章#,下一章：钱包>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

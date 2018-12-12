@@ -274,4 +274,4 @@ image::images/web3suite.png[]
 
 <<第二章#,下一章：以太坊基础>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

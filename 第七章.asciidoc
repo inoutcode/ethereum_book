@@ -679,4 +679,3 @@ https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6
 <<第八章#,下一章：智能合约>>
 
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

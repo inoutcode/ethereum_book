@@ -980,4 +980,3 @@ Token已经成为以太坊生态系统中的爆炸性发展。它们可能是所
 
 <<第十一章#,下一章：去中心化应用 (DApps)>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]

@@ -114,4 +114,4 @@
 
 <<第十八章#,下一章：以太坊标准>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

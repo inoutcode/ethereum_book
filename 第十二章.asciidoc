@@ -296,4 +296,4 @@ https://medium.com/@roman.brodetski/introducing-oracul-decentralized-oracle-data
 
 <<第十三章#,下一章：Gas>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

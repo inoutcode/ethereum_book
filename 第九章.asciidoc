@@ -651,4 +651,4 @@ Documentation link; https://docs.etcdevteam.com
 
 <<第十章#,下一章：Tokens>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

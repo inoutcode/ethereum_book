@@ -320,4 +320,4 @@ Whisper::
 
 <<第一章#,下一章：什么是以太坊>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

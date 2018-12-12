@@ -127,4 +127,4 @@ token: address(ERC20)
 
 <<第十七章#,下一章：DevP2P协议>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

@@ -233,4 +233,4 @@ DAO中的一想安全措施是所有提款请求都要延迟28天。这为社区
 
 全书完结
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

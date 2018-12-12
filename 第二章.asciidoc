@@ -523,4 +523,4 @@ msg.sender.transfer(withdraw_amount);
 
 <<第三章#,下一章：以太坊客户端>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

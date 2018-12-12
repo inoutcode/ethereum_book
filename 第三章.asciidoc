@@ -567,4 +567,4 @@ https://github.com/ethereum/mist
 
 <<第四章#,下一章：以太坊测试网>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+

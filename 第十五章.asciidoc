@@ -133,4 +133,4 @@ Polkadot的Relay-Chains使用*Proof of Stake（PoS*系统，其中结构化状�
 
 <<第十六章#,下一章：Vyper：面向合约的编程语言>>
 
-image::images/thanks.jpeg["赞赏译者",height=400,align="center"]
+
