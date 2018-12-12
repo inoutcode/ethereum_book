@@ -1,12 +1,9 @@
-### [《精通以太坊——實現數字合約》](https://github.com/ethereumbook/ethereumbook) 中文版
+# Mastering Ethereum - 繁中
 
-### 關於譯者
-互聯網從業者，對經濟學感興趣，很早加入數字貨幣和區塊鏈研究。
 
-閒暇時間翻譯，歡迎指正，感謝加星~
-
-### 封面
-![Mastering Ethereum](images/cover.png)
+<center>
+<img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="50%" height="50%" />
+</center>
 
 ### 目錄
 
@@ -51,7 +48,3 @@
 [第十八章 以太坊標準](第十八章.asciidoc)
 
 [第十九章 以太坊分叉歷史](第十九章.asciidoc)
-
-
-### 打賞
-![](images/thanks.jpeg)
