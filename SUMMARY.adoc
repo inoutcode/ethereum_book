@@ -1,3 +1,0 @@
-= Summary
-
-. link:chapter-1/README.adoc[第一章]
