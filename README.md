@@ -1,11 +1,10 @@
 # Mastering Ethereum - 繁中
 
-
 <center>
 <img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="30%" height="30%" />
 </center>
 
-### 目錄
+## 目錄
 
 [前言](前言.asciidoc)
 
@@ -48,3 +47,15 @@
 [第十八章 以太坊標準](第十八章.asciidoc)
 
 [第十九章 以太坊分叉歷史](第十九章.asciidoc)
+
+## Source and license
+
+The [first edition](https://github.com/ethereumbook/ethereumbook/tree/first_edition_first_print) of this book, as printed and sold by O'Reilly Media, is available in this repository.
+
+Mastering Ethereum is released under the Creative Commons CC-BY-NC-ND license, which allows sharing the source code for personal use only. You may read this book for free. You may not create derivatives (such as PDF copies), or distribute the book commercially. The full terms of the license can be found here:
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Mastering Ethereum</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://antonopoulos.com/" property="cc:attributionName" rel="cc:attributionURL">The Ethereum Book LLC and Gavin Wood</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+It is expected that the book will be released under a more permissive CC-BY-SA license within a year of publication.
