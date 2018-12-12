@@ -1,55 +1,55 @@
 <<第十章#,上一章：Tokens>>
 
 [[decentralized_applications_chap]]
-== 去中心化应用 (DApps)
+== 去中心化應用 (DApps)
 
-点对点（P2P，peer-to-peer）运动使数百万互联网用户能够连接在一起。USENET是被称为第一个点对点架构的一种分布式消息传递系统，它于1979年成立，是第一个“互联网”ARPANET的继承者。ARPANET是一个客户端 - 服务器网络，参与者运行节点请求和提供内容，但由于除了简单的基于地址的路由，缺乏提供任何上下文的能力，USENET很有希望实施一个分散的控制模型，即客户端 - 服务器模型，分别从用户或客户角度为新闻组服务器提供自组织方法。
+點對點（P2P，peer-to-peer）運動使數百萬互聯網用戶能夠連接在一起。USENET是被稱為第一個點對點架構的一種分佈式消息傳遞系統，它於1979年成立，是第一個“互聯網”ARPANET的繼承者。ARPANET是一個客戶端 - 服務器網絡，參與者運行節點請求和提供內容，但由於除了簡單的基於地址的路由，缺乏提供任何上下文的能力，USENET很有希望實施一個分散的控制模型，即客戶端 - 服務器模型，分別從用戶或客戶角度為新聞組服務器提供自組織方法。
 
-1999年，著名的音乐和文件共享应用程序Napster出现了。Napster是点对点网络运动演变为BitTorrent的开始，参与用户建立了一个虚拟网络，完全独立于物理网络，无需遵守任何管理机构或限制。
+1999年，著名的音樂和文件共享應用程序Napster出現了。Napster是點對點網絡運動演變為BitTorrent的開始，參與用戶建立了一個虛擬網絡，完全獨立於物理網絡，無需遵守任何管理機構或限制。
 
-由于点对点机制可用于访问任何类型的分布式资源，因此它们在去中心化应用程序中起着核心作用。
+由於點對點機制可用於訪問任何類型的分佈式資源，因此它們在去中心化應用程序中起著核心作用。
 
 [[what_is_a_dapp_sec]]
-=== 什么是DApp？
+=== 什麼是DApp？
 
-与传统应用程序不同，去中心化应用（DApp）不仅属于单个提供者或服务器，而是整个栈将在P2P网络上以分布式方式部署和操作。
+與傳統應用程序不同，去中心化應用（DApp）不僅屬於單個提供者或服務器，而是整個棧將在P2P網絡上以分佈式方式部署和操作。
 
-典型的DApp栈包括前端，后端和数据存储。创建DApp有许多优点，典型集中式架构无法提供：
+典型的DApp棧包括前端，後端和數據存儲。創建DApp有許多優點，典型集中式架構無法提供：
 
-1）弹性：在智能合约上编写业务逻辑意味着DApp后端将在区块链上完全分发和管理。与在中央服务器上部署应用程序不同，DApp不会有停机时间，只要区块链仍在运行，它就会继续存在。
+1）彈性：在智能合約上編寫業務邏輯意味著DApp後端將在區塊鏈上完全分發和管理。與在中央服務器上部署應用程序不同，DApp不會有停機時間，只要區塊鏈仍在運行，它就會繼續存在。
 
-2）透明性：DApp的开源特性允许任何人分叉代码并在区块链上运行相同的应用程序。同样，任何与区块链的互动都将永久存储，任何拥有区块链副本的人都可以获得对它的访问权限。值得注意的是，可能无法将字节码反编译为源码并完全理解合约的代码。寻求提供合约行为完全透明的开发人员必须发布供用户阅读，编译和验证的源代码。
+2）透明性：DApp的開源特性允許任何人分叉代碼並在區塊鏈上運行相同的應用程序。同樣，任何與區塊鏈的互動都將永久存儲，任何擁有區塊鏈副本的人都可以獲得對它的訪問權限。值得注意的是，可能無法將字節碼反編譯為源碼並完全理解合約的代碼。尋求提供合約行為完全透明的開發人員必須發佈供用戶閱讀，編譯和驗證的源代碼。
 
-3）抗审查：只要用户可以访问以太坊节点，用户将始终能够与DApp交互而不受集中机构控制的干扰。一旦在网络上部署代码，任何服务提供商，甚至智能合约的所有者都不能更改代码。
+3）抗審查：只要用戶可以訪問以太坊節點，用戶將始終能夠與DApp交互而不受集中機構控制的干擾。一旦在網絡上部署代碼，任何服務提供商，甚至智能合約的所有者都不能更改代碼。
 
 [[components_of_a_dapp_sec]]
-=== DApp的组件
+=== DApp的組件
 
 [[blockchain_smart_contracts_sec]]
-==== 区块链（智能合约）
+==== 區塊鏈（智能合約）
 
-智能合约用于存储去中心化应用程序的业务逻辑，状态和计算; 将智能合约视为常规应用程序中的服务器端组件。
+智能合約用於存儲去中心化應用程序的業務邏輯，狀態和計算; 將智能合約視為常規應用程序中的服務器端組件。
 
-在以太坊智能合约上部署服务器端逻辑的一个优点是，你可以构建一个更复杂的架构，智能合约可以在其中相互读取和写入数据。部署智能合约后，未来许多其他开发人员都可以使用你的业务逻辑，而无需你管理和维护代码。
+在以太坊智能合約上部署服務器端邏輯的一個優點是，你可以構建一個更復雜的架構，智能合約可以在其中相互讀取和寫入數據。部署智能合約後，未來許多其他開發人員都可以使用你的業務邏輯，而無需你管理和維護代碼。
 
-将智能合约作为核心业务逻辑功能运行的一个主要问题是在部署代码后无法更改代码。此外，一个非常庞大的智能合约可能需要耗费大量gas来部署和运行。因此，某些应用程序可能会选择离线计算和外部数据源。请记住，DApp的核心业务逻辑依赖于外部数据或服务器意味着你的用户必须信任这些外部事物。
+將智能合約作為核心業務邏輯功能運行的一個主要問題是在部署代碼後無法更改代碼。此外，一個非常龐大的智能合約可能需要耗費大量gas來部署和運行。因此，某些應用程序可能會選擇離線計算和外部數據源。請記住，DApp的核心業務邏輯依賴於外部數據或服務器意味著你的用戶必須信任這些外部事物。
 
 [[front_end_web_ui_cec]]
-==== 前端（Web用户界面(UI)）
+==== 前端（Web用戶界面(UI)）
 
-与DApp的业务逻辑需要开发人员了解EVM和新语言（如Solidity）不同，DApp的客户端界面使用基本的Web前端技术（HTML，CSS，JavaScript）。这允许传统的Web开发人员使用他们熟悉的工具，库和框架。与DApp的交互（例如签名消息，发送交易和密钥管理）通常通过浏览器本身使用Mist浏览器或Metamask浏览器扩展等工具进行。
+與DApp的業務邏輯需要開發人員瞭解EVM和新語言（如Solidity）不同，DApp的客戶端界面使用基本的Web前端技術（HTML，CSS，JavaScript）。這允許傳統的Web開發人員使用他們熟悉的工具，庫和框架。與DApp的交互（例如簽名消息，發送交易和密鑰管理）通常通過瀏覽器本身使用Mist瀏覽器或Metamask瀏覽器擴展等工具進行。
 
-虽然也可以创建移动DApp，但由于缺少可用作具有密钥管理功能的轻客户端的移动客户端，目前没有创建移动DApp前端的最佳实践。
+雖然也可以創建移動DApp，但由於缺少可用作具有密鑰管理功能的輕客戶端的移動客戶端，目前沒有創建移動DApp前端的最佳實踐。
 
 [[data_storage_sec]]
-==== 数据存储
+==== 數據存儲
 
-由于gas成本高，智能合约目前不适合存储大量数据。因此，大多数DApps将利用去中心化存储（如IPFS或Swarm）来存储和分发大型静态资产，如图像，视频和客户端应用程序（HTML，CSS，JavaScript）。
+由於gas成本高，智能合約目前不適合存儲大量數據。因此，大多數DApps將利用去中心化存儲（如IPFS或Swarm）來存儲和分發大型靜態資產，如圖像，視頻和客戶端應用程序（HTML，CSS，JavaScript）。
 
-内容的哈希值通常使用键值映射存储为智能合约中的字节。然后，通过你的前端应用程序调用智能合约检索资产，以获取每个资产的URL。
+內容的哈希值通常使用鍵值映射存儲為智能合約中的字節。然後，通過你的前端應用程序調用智能合約檢索資產，以獲取每個資產的URL。
 
 [[on_chain_vs_off_chain_data_sec]]
-===== 上链 vs. 脱链
+===== 上鍊 vs. 脫鏈
 
 ////
 TODO
@@ -65,71 +65,71 @@ TODO
 [[swarm_sec]]
 ===== Swarm
 
-Swarm主页: http://swarm-gateways.net/bzz:/theswarm.eth/
+Swarm主頁: http://swarm-gateways.net/bzz:/theswarm.eth/
 
-阅读文档: https://swarm-guide.readthedocs.io/en/latest/index.html
+閱讀文檔: https://swarm-guide.readthedocs.io/en/latest/index.html
 
-Swarm开发人员的入门指南: https://github.com/ethersphere/swarm/wiki/swarm
+Swarm開發人員的入門指南: https://github.com/ethersphere/swarm/wiki/swarm
 
-Swarm讨论组: https://gitter.im/ethersphere/orange-lounge
+Swarm討論組: https://gitter.im/ethersphere/orange-lounge
 
-Ethereum's Swarm 和 IPFS 的相似之处与不同之处; https://github.com/ethersphere/go-ethereum/wiki/IPFS-&-SWARM
+Ethereum's Swarm 和 IPFS 的相似之處與不同之處; https://github.com/ethersphere/go-ethereum/wiki/IPFS-&-SWARM
 
 [[centralized_db_sec]]
-===== 中心化数据
+===== 中心化數據
 
-集中式数据库是服务器上的数据存储，其特征与描述相关联。它们使用客户端 - 服务器网络架构，这允许客户端或用户修改存储在集中式服务器上的数据。数据库的控制权仍由指定的管理员进行，管理员在提供对数据库的访问之前对客户端的凭据进行身份验证。如果管理员的安全性受到损害，则可以更改甚至删除数据，因为管理员是唯一负责管理数据库的人。
+集中式數據庫是服務器上的數據存儲，其特徵與描述相關聯。它們使用客戶端 - 服務器網絡架構，這允許客戶端或用戶修改存儲在集中式服務器上的數據。數據庫的控制權仍由指定的管理員進行，管理員在提供對數據庫的訪問之前對客戶端的憑據進行身份驗證。如果管理員的安全性受到損害，則可以更改甚至刪除數據，因為管理員是唯一負責管理數據庫的人。
 
 [[dapp_frameworks_sec]]
 === DApp框架
 
-有许多不同的开发框架和库，以多种语言编写，使得开发人员可以在创建和部署DApp时获得更好的体验。
+有許多不同的開發框架和庫，以多種語言編寫，使得開發人員可以在創建和部署DApp時獲得更好的體驗。
 
 [[truffle_sec]]
 ==== Truffle
 
-Truffle是一种流行的选择，为以太坊提供可管理的开发环境，测试框架和资产管道。
+Truffle是一種流行的選擇，為以太坊提供可管理的開發環境，測試框架和資產管道。
 
-有了Truffle，你会得到：
+有了Truffle，你會得到：
 
-* 内置智能合约编译，链接，部署和二进制管理。
-* 与Mocha和Chai进行自动合约测试。
-* 可配置的构建管道，支持自定义构建过程。
-* 可编写脚本的部署和迁移框架。
-* 用于部署到许多公共和专用网络的网络管理。
-* 直接与合约沟通的交互式控制台。
-* 在开发过程中即时重建资产。
-* 在Truffle环境中执行脚本的外部脚本运行器。
+* 內置智能合約編譯，鏈接，部署和二進制管理。
+* 與Mocha和Chai進行自動合約測試。
+* 可配置的構建管道，支持自定義構建過程。
+* 可編寫腳本的部署和遷移框架。
+* 用於部署到許多公共和專用網絡的網絡管理。
+* 直接與合約溝通的交互式控制檯。
+* 在開發過程中即時重建資產。
+* 在Truffle環境中執行腳本的外部腳本運行器。
 
-入门和文档：http://truffleframework.com/docs
+入門和文檔：http://truffleframework.com/docs
 
 Github：https://github.com/trufflesuite/truffle
 
 Website：https://truffleframework.com
 
 [[embark_sec]]
-==== Embark Embark框架专注于使用以太坊，IPFS和其他平台的无服务器去中心化应用。Embark目前与EVM区块链（Ethereum），去中心化存储（IPFS）和去中心化通信平台（Whisper和Orbit）集成。
+==== Embark Embark框架專注於使用以太坊，IPFS和其他平臺的無服務器去中心化應用。Embark目前與EVM區塊鏈（Ethereum），去中心化存儲（IPFS）和去中心化通信平臺（Whisper和Orbit）集成。
 
-** 区块链（以太坊）
-* 自动部署合约并使其在JS代码中可用。启动监视更改，如果你更新合约，Embark将自动重新部署合约（如果需要）和DApp。
-* JS通过Promises使用合约。
-* 使用Javascript与合约进行测试驱动开发。
-* 跟踪已部署的合约; 只在真正需要时部署。
-* 管理不同的链（例如，测试网，私人网，livenet）
-* 轻松管理相互依赖合约的复杂系统。
+** 區塊鏈（以太坊）
+* 自動部署合約並使其在JS代碼中可用。啟動監視更改，如果你更新合約，Embark將自動重新部署合約（如果需要）和DApp。
+* JS通過Promises使用合約。
+* 使用Javascript與合約進行測試驅動開發。
+* 跟蹤已部署的合約; 只在真正需要時部署。
+* 管理不同的鏈（例如，測試網，私人網，livenet）
+* 輕鬆管理相互依賴合約的複雜系統。
 
-** 去中心化存储（IPFS）
-* 通过EmbarkJS轻松存储和检索DApp上的数据，包括上传和检索文件。
-* 将完整的应用程序部署到IPFS或Swarm。
+** 去中心化存儲（IPFS）
+* 通過EmbarkJS輕鬆存儲和檢索DApp上的數據，包括上傳和檢索文件。
+* 將完整的應用程序部署到IPFS或Swarm。
 
 ** 去中心化通信 (Whisper, Orbit)
-* 通过Whisper或Orbit轻松通过P2P渠道发送/接收消息。
+* 通過Whisper或Orbit輕鬆通過P2P渠道發送/接收消息。
 
-** 网络技术
-* 与任何网络技术集成，包括React，Foundation等。
-* 使用你想要的任何构建管道或工具，包括grunt，gulp和webpack。
+** 網絡技術
+* 與任何網絡技術集成，包括React，Foundation等。
+* 使用你想要的任何構建管道或工具，包括grunt，gulp和webpack。
 
-入门和文档：https://embark.readthedocs.io
+入門和文檔：https://embark.readthedocs.io
 
 Github：https://github.com/embark-framework/embark
 
@@ -137,73 +137,73 @@ Website：https://github.com/embark-framework/embark
 
 ==== Emerald
 
-Emerald Platform 是一个框架和工具集，用于简化Dapps的开发以及现有服务与基于以太坊的区块链的集成。
+Emerald Platform 是一個框架和工具集，用於簡化Dapps的開發以及現有服務與基於以太坊的區塊鏈的集成。
 
 Emerald提供：
 
-* Javascript库和React组件构建Dapp
-* 区块链项目常见的SVG图标
-* 用于管理私钥的Rust库，包括硬件钱包和签名交易
-* 可以集成到现有app命令行或JSON RPC API中的现成的组件和服务
-* SputnikVM，一个独立的EVM实现，可用于开发和测试
+* Javascript庫和React組件構建Dapp
+* 區塊鏈項目常見的SVG圖標
+* 用於管理私鑰的Rust庫，包括硬件錢包和簽名交易
+* 可以集成到現有app命令行或JSON RPC API中的現成的組件和服務
+* SputnikVM，一個獨立的EVM實現，可用於開發和測試
 
-它与平台无关，为各种目标提供工具：
+它與平臺無關，為各種目標提供工具：
 
-* 与Electron捆绑的桌面应用程序
-* 移动应用程序
-* 网络应用程序
-* 命令行应用程序和脚本工具
+* 與Electron捆綁的桌面應用程序
+* 移動應用程序
+* 網絡應用程序
+* 命令行應用程序和腳本工具
 
-入门和文档：https://docs.etcdevteam.com
+入門和文檔：https://docs.etcdevteam.com
 
 Github：https://github.com/etcdevteam/emerald-platform
 
 Website：https://emeraldplatform.io
 
 [[dapp_develotment_tool_sec]
-==== DApp（开发工具）
-DApp是一个用于智能合约开发的简单命令行工具。它支持以下常见用例：
+==== DApp（開發工具）
+DApp是一個用於智能合約開發的簡單命令行工具。它支持以下常見用例：
 
 * 包管理
-* 源代码构建
-* 单元测试
-* 简单的合约部署
+* 源代碼構建
+* 單元測試
+* 簡單的合約部署
 
-入门和文档：https://dapp.readthedocs.io/en/latest/
+入門和文檔：https://dapp.readthedocs.io/en/latest/
 
 [[live_dapps_sec]]
-=== 活跃的DApps
+=== 活躍的DApps
 
-以下列出了以太坊网络上的活跃DApp：
+以下列出了以太坊網絡上的活躍DApp：
 
 [[ethpm_sec]]
 ==== EthPM
-一个旨在将包管理带入以太坊生态系统的项目。
+一個旨在將包管理帶入以太坊生態系統的項目。
 
 Website：https://www.ethpm.com/
 
 [[radar_relay_sec]]
 ==== Radar Relay
-DEX（去中心化交易所）专注于直接从钱包到钱包交易基于以太坊的tokens。
+DEX（去中心化交易所）專注於直接從錢包到錢包交易基於以太坊的tokens。
 
 Website：https://radarrelay.com/
 
 [[cryptokitties_sec]]
 ==== CryptoKitties
-在以太坊上部署的游戏，允许玩家购买，收集，繁殖和销售各种类型的虚拟猫
-它代表了为休闲和悠闲目的部署区块链技术的最早尝试之一。
+在以太坊上部署的遊戲，允許玩家購買，收集，繁殖和銷售各種類型的虛擬貓
+它代表了為休閒和悠閒目的部署區塊鏈技術的最早嘗試之一。
 
 Website：https://www.cryptokitties.co
 
 [[ethlance_sec]]
 ==== Ethlance
-Ethlance是一个连接自由职业者和开发者的平台，用ether支付和收款。
+Ethlance是一個連接自由職業者和開發者的平臺，用ether支付和收款。
 
 Website：https://ethlance.com/
 
 [[decentraland_sec]]
 ==== Decentraland
-Decentraland是以太坊区块链支持的虚拟现实平台。用户可以创建，体验内容和应用程序并从中获利。
+Decentraland是以太坊區塊鏈支持的虛擬現實平臺。用戶可以創建，體驗內容和應用程序並從中獲利。
 
 Website：https://decentraland.org/
 

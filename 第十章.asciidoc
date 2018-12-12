@@ -1,166 +1,166 @@
-<<第十章#,上一章：开发工具，框架和库>>
+<<第十章#,上一章：開發工具，框架和庫>>
 
 [[Tokens_chapter]]
 == Tokens
 
 [[Tokens_definition]]
-=== 什么是Token?
+=== 什麼是Token?
 
-单词_Token_来源于古英语“tacen”，意思是符号或符号。常用来表示私人发行的类似硬币的物品，价值不大，例如交通Token，洗衣Token，游乐场Token。
+單詞_Token_來源於古英語“tacen”，意思是符號或符號。常用來表示私人發行的類似硬幣的物品，價值不大，例如交通Token，洗衣Token，遊樂場Token。
 
-如今，基于区块链的Token将这个词重新定义为基于区块链的抽象概念，可以被拥有，并代表资产，货币或访问权。
+如今，基於區塊鏈的Token將這個詞重新定義為基於區塊鏈的抽象概念，可以被擁有，並代表資產，貨幣或訪問權。
 
-“Token”一词与微不足道的价值之间的联系与物理Token的使用限制有很大关系。通常仅限于特定的企业，组织或地点，物理Token不易交换，不能用于多个功能。通过区块链标记，这些限制被删除。这些Token中的许多Token在全球范围内有多种用途，可以在全球流动市场中相互交易或与其他货币交易。随着这些限制的消失，“微不足道的价值”的期望也成为过去。
+“Token”一詞與微不足道的價值之間的聯繫與物理Token的使用限制有很大關係。通常僅限於特定的企業，組織或地點，物理Token不易交換，不能用於多個功能。通過區塊鏈標記，這些限制被刪除。這些Token中的許多Token在全球範圍內有多種用途，可以在全球流動市場中相互交易或與其他貨幣交易。隨著這些限制的消失，“微不足道的價值”的期望也成為過去。
 
-在本节中，我们将看到Token的各种用法以及它们的创建方式。我们还讨论Token的属性，如可互换性和内在性等。最后，我们通过基于构建自己的Token的实验来检验它们的标准和技术。
+在本節中，我們將看到Token的各種用法以及它們的創建方式。我們還討論Token的屬性，如可互換性和內在性等。最後，我們通過基於構建自己的Token的實驗來檢驗它們的標準和技術。
 
 [[Tokens_use]]
 === 如何使用Token？
 
-Token最明显的用途是作为数字私人货币。但是，这只是一个可能的用途。Token可以被编程为提供许多不同的功能，通常是重叠的。例如，Token可以同时传达投票权，访问权和资源所有权。货币只是第一个“应用程序”。
+Token最明顯的用途是作為數字私人貨幣。但是，這只是一個可能的用途。Token可以被編程為提供許多不同的功能，通常是重疊的。例如，Token可以同時傳達投票權，訪問權和資源所有權。貨幣只是第一個“應用程序”。
 
-货币:: Token可以作为一种货币形式，其价值通过私人交易来确定。例如，ether或bitcoin。
+貨幣:: Token可以作為一種貨幣形式，其價值通過私人交易來確定。例如，ether或bitcoin。
 
-资源:: Token可以表示在共享经济或资源共享环境中获得或生成的资源。例如，表示可通过网络共享的资源的存储或CPU的Token。
+資源:: Token可以表示在共享經濟或資源共享環境中獲得或生成的資源。例如，表示可通過網絡共享的資源的存儲或CPU的Token。
 
-资产:: Token可以代表内在或外在，有形或无形资产的所有权。例如，黄金，房地产，汽车，石油，能源等
+資產:: Token可以代表內在或外在，有形或無形資產的所有權。例如，黃金，房地產，汽車，石油，能源等
 
-访问:: Token可以代表访问权限，可以访问数字或实体资产，例如论坛，专属网站，酒店房间，租车。
+訪問:: Token可以代表訪問權限，可以訪問數字或實體資產，例如論壇，專屬網站，酒店房間，租車。
 
-权益:: Token可以代表数字组织（例如DAO）或法律虚拟主体（例如公司）中的股东权益
+權益:: Token可以代表數字組織（例如DAO）或法律虛擬主體（例如公司）中的股東權益
 
-投票:: Token可以代表数字或法律系统中的投票权。
+投票:: Token可以代表數字或法律系統中的投票權。
 
-收藏品:: Token可以代表数字（例如CryptoPunks）或物理收藏品（例如绘画）
+收藏品:: Token可以代表數字（例如CryptoPunks）或物理收藏品（例如繪畫）
 
-身份:: Token可以代表数字（例如头像）或合法身份（例如国家ID）。
+身份:: Token可以代表數字（例如頭像）或合法身份（例如國家ID）。
 
-证明:: Token可以代表某些机构或去中心化的信用系统（例如婚姻记录，出生证明，大学学位）的认证或事实证明。
+證明:: Token可以代表某些機構或去中心化的信用系統（例如婚姻記錄，出生證明，大學學位）的認證或事實證明。
 
-实际用途:: Token可用于访问或支付服务。
+實際用途:: Token可用於訪問或支付服務。
 
-通常，单个Token包含其中几个功能。有时它们之间很难辨别，因为物理等价物一直是密不可分的。例如，在物理世界中，驾驶执照（认证）也是身份证件（身份证明），两者不能分开。在数字领域，以前的混合功能可以独立分离和开发（例如匿名认证）。
+通常，單個Token包含其中幾個功能。有時它們之間很難辨別，因為物理等價物一直是密不可分的。例如，在物理世界中，駕駛執照（認證）也是身份證件（身份證明），兩者不能分開。在數字領域，以前的混合功能可以獨立分離和開發（例如匿名認證）。
 
 [[Tokens_fungibility]]
-=== Tokens和可互换性
+=== Tokens和可互換性
 
-来自Wikipedia:
+來自Wikipedia:
 
- 在经济学中，可互换性是一种商品或商品的财产，其独立单位本质上是可以互换的。
+ 在經濟學中，可互換性是一種商品或商品的財產，其獨立單位本質上是可以互換的。
 
-当我们可以将Token的任何单个单元替换为另一个Token而其价值或功能没有任何差异时，Token是可替代的。例如，ether是一种可替代的Token，因为任何ether的单位具有相同的值并且与任何其他单位的ether一起使用。
+當我們可以將Token的任何單個單元替換為另一個Token而其價值或功能沒有任何差異時，Token是可替代的。例如，ether是一種可替代的Token，因為任何ether的單位具有相同的值並且與任何其他單位的ether一起使用。
 
-严格地说，如果可以跟踪Token的历史出处，那么它就不是完全可替代的。追踪出处的能力可能导致黑名单和白名单，从而降低或消除互通性。我们将在<<privacy>>中进一步研究。
+嚴格地說，如果可以跟蹤Token的歷史出處，那麼它就不是完全可替代的。追蹤出處的能力可能導致黑名單和白名單，從而降低或消除互通性。我們將在<<privacy>>中進一步研究。
 
-不可互换的Token是代表独特的有形或无形商品的Token，因此不可互换。例如，表示_特定的_ Van Gogh绘画所有权的Token不等同于代表毕加索的另一个Token。同样，表示特定数字收藏的Token，如特定的CryptoKitty（请参阅<<cryptoKitties>>）与任何其他CryptoKitty都不可互换。每个不可互换的Token与唯一标识符相关联，例如序列号。
+不可互換的Token是代表獨特的有形或無形商品的Token，因此不可互換。例如，表示_特定的_ Van Gogh繪畫所有權的Token不等同於代表畢加索的另一個Token。同樣，表示特定數字收藏的Token，如特定的CryptoKitty（請參閱<<cryptoKitties>>）與任何其他CryptoKitty都不可互換。每個不可互換的Token與唯一標識符相關聯，例如序列號。
 
-本节后面我们将看到可替换和不可替换Token的例子。
+本節後面我們將看到可替換和不可替換Token的例子。
 
 [[counterparty_risk]]
-=== 交易对手风险
+=== 交易對手風險
 
-交易对手风险是交易中的其他方不能履行其义务的风险。由于在交易中增加了两个以上的交易方，某些类型的交易会产生额外的交易对手风险。例如，如果你持有贵金属存款证明并将其出售给某人，则该交易中至少有三方：卖方，买方和贵金属的保管人。有人持有有形资产，必要时他们成为一方并为涉及该资产的任何交易添加交易对手风险。当资产通过交换所有权信息而间接交易时，资产托管人有额外的交易对手风险。他们有资产吗？他们是否会根据Token的转让（例如证书，契约，所有权或数字Token）识别（或允许）所有权的转移？在数字Token的世界中，了解谁持有由Token表示的资产以及适用于该基础资产的规则很重要。
+交易對手風險是交易中的其他方不能履行其義務的風險。由於在交易中增加了兩個以上的交易方，某些類型的交易會產生額外的交易對手風險。例如，如果你持有貴金屬存款證明並將其出售給某人，則該交易中至少有三方：賣方，買方和貴金屬的保管人。有人持有有形資產，必要時他們成為一方併為涉及該資產的任何交易添加交易對手風險。當資產通過交換所有權信息而間接交易時，資產託管人有額外的交易對手風險。他們有資產嗎？他們是否會根據Token的轉讓（例如證書，契約，所有權或數字Token）識別（或允許）所有權的轉移？在數字Token的世界中，瞭解誰持有由Token表示的資產以及適用於該基礎資產的規則很重要。
 
 [[Tokens_intrinsicality]]
-=== Tokens和内在性
+=== Tokens和內在性
 
-单词 "intrinsic" 源于拉丁词 "intra", 表示"来自内部".
+單詞 "intrinsic" 源於拉丁詞 "intra", 表示"來自內部".
 
-一些Token代表对区块链来说是 _内在的_ 的数字项目。这些数字资产受共识规则的约束，就像Token本身一样。这具有重要的意义：代表固有资产的Token不会带来额外的交易对手风险。如果你持有1 ether的密钥，就没有其他方为你持有那个以太。区块链共识规则的应用，使得你对私钥的所有权（控制权）等同于资产的所有权，无需任何中介。
+一些Token代表對區塊鏈來說是 _內在的_ 的數字項目。這些數字資產受共識規則的約束，就像Token本身一樣。這具有重要的意義：代表固有資產的Token不會帶來額外的交易對手風險。如果你持有1 ether的密鑰，就沒有其他方為你持有那個以太。區塊鏈共識規則的應用，使得你對私鑰的所有權（控制權）等同於資產的所有權，無需任何中介。
 
-相反，许多Token用于表示 _外在的_ _extrinsic_事物，如房地产，公司投票股票，商标，金条。这些项目的所有权不属于区块链，属于法律，习惯和政策，与管理Token的共识规则分开。换句话说，Token发行人和所有者可能仍然依赖现实世界的非智能合约。因此，这些外部资产会带来额外的交易对手风险，因为它们由托管人持有，记录在外部注册管理机构中，或由区块链环境以外的法律和政策控制。
+相反，許多Token用於表示 _外在的_ _extrinsic_事物，如房地產，公司投票股票，商標，金條。這些項目的所有權不屬於區塊鏈，屬於法律，習慣和政策，與管理Token的共識規則分開。換句話說，Token發行人和所有者可能仍然依賴現實世界的非智能合約。因此，這些外部資產會帶來額外的交易對手風險，因為它們由託管人持有，記錄在外部註冊管理機構中，或由區塊鏈環境以外的法律和政策控制。
 
-基于区块链的Token最重要的后果之一是能够将外部资产转换为内部资产，从而消除交易对手风险。一个很好的例子就是从一家公司的股权（外部）转向一个 _去中心化的自治组织_ 或类似的（内部）组织的股权或投票权。
+基於區塊鏈的Token最重要的後果之一是能夠將外部資產轉換為內部資產，從而消除交易對手風險。一個很好的例子就是從一家公司的股權（外部）轉向一個 _去中心化的自治組織_ 或類似的（內部）組織的股權或投票權。
 
 [[using_Tokens]]
-=== 使用Tokens：效用或权益
+=== 使用Tokens：效用或權益
 
-今天以太坊的几乎所有项目都以某种形式发布。但是，所有这些项目真的需要一个Token吗？使用Token有什么缺点，或者我们会看到口号“将所有东西Token化”的口号是否成熟？
+今天以太坊的幾乎所有項目都以某種形式發佈。但是，所有這些項目真的需要一個Token嗎？使用Token有什麼缺點，或者我們會看到口號“將所有東西Token化”的口號是否成熟？
 
-首先，让我们首先澄清Token在新项目中的作用。大多数项目都以两种方式之一使用Token：要么是“实用Token”，要么是“权益Token”。很多时候，这两个角色是混合在一起的，难以区分。
+首先，讓我們首先澄清Token在新項目中的作用。大多數項目都以兩種方式之一使用Token：要麼是“實用Token”，要麼是“權益Token”。很多時候，這兩個角色是混合在一起的，難以區分。
 
-实用Token是那些需要使用Token来支付服务，应用程序或资源的Token。实用Token的例子包括代表资源的Token，如共享存储，访问社交媒体网络等服务，或将ether作为以太坊平台的gas。相比之下，权益Token是代表创业公司股票的Token。
+實用Token是那些需要使用Token來支付服務，應用程序或資源的Token。實用Token的例子包括代表資源的Token，如共享存儲，訪問社交媒體網絡等服務，或將ether作為以太坊平臺的gas。相比之下，權益Token是代表創業公司股票的Token。
 
-股权Token可以像享有利润和分红的无投票权股份一样有限，或者向去中心化自治组织的有投票权的股票一样广泛，其中平台是通过Token持有者的多数投票管理的。
+股權Token可以像享有利潤和分紅的無投票權股份一樣有限，或者向去中心化自治組織的有投票權的股票一樣廣泛，其中平臺是通過Token持有者的多數投票管理的。
 
 [[its_not_duck]]
-==== 它不是一只鸭子
+==== 它不是一隻鴨子
 
-仅仅因为Token用于为初创公司筹款，并不意味着它必须用作服务的支付，反之亦然。然而，许多初创公司面临着一个难题：Token是一种很好的筹款机制，但向大众提供证券（股权）是大多数司法管辖区的受监管活动。通过将股权Token伪装成实用Token，许多创业公司希望能够绕过这些监管限制，并从公开募股筹集资金，同时将其作为预售的实用Token。这些稀薄的股权产品是否能够摆脱监管机构仍有待观察。
+僅僅因為Token用於為初創公司籌款，並不意味著它必須用作服務的支付，反之亦然。然而，許多初創公司面臨著一個難題：Token是一種很好的籌款機制，但向大眾提供證券（股權）是大多數司法管轄區的受監管活動。通過將股權Token偽裝成實用Token，許多創業公司希望能夠繞過這些監管限制，並從公開募股籌集資金，同時將其作為預售的實用Token。這些稀薄的股權產品是否能夠擺脫監管機構仍有待觀察。
 
-正如俗语所说：“如果它像鸭子一样走路，像鸭子一样嘎嘎叫 - 它就是一只鸭子。” 监管机构不会因这些语义扭曲而分心，恰恰相反，他们更有可能将这种法律诡辩看作是企图欺骗公众。
+正如俗語所說：“如果它像鴨子一樣走路，像鴨子一樣嘎嘎叫 - 它就是一隻鴨子。” 監管機構不會因這些語義扭曲而分心，恰恰相反，他們更有可能將這種法律詭辯看作是企圖欺騙公眾。
 
 [[who_needs_utility_Tokens]]
-==== 实用Token：谁需要它们？
+==== 實用Token：誰需要它們？
 
-真正的问题是实用Token为初创公司带来了重大风险和被采用障碍。也许在遥远的将来，“将所有事物Token化”成为现实。但是，目前，获得，理解和使用Token的人数是已经很小的加密货币市场的一个子集。
+真正的問題是實用Token為初創公司帶來了重大風險和被採用障礙。也許在遙遠的將來，“將所有事物Token化”成為現實。但是，目前，獲得，理解和使用Token的人數是已經很小的加密貨幣市場的一個子集。
 
-对于创业公司而言，每项创新都代表着风险和市场过滤。创新走的是人迹罕至的路，远离传统的道路。它已经是一个孤独的散步。如果一家创业公司试图在一个新的技术领域进行创新，比如P2P网络上的存储共享，那么这是一条足够孤单的道路。为该创新添加实用Token并要求用户采用Token以使用该服务会增加风险并增加被采用的障碍。它走出了已然孤独的P2P存储创新之路，进入荒野。
+對於創業公司而言，每項創新都代表著風險和市場過濾。創新走的是人跡罕至的路，遠離傳統的道路。它已經是一個孤獨的散步。如果一家創業公司試圖在一個新的技術領域進行創新，比如P2P網絡上的存儲共享，那麼這是一條足夠孤單的道路。為該創新添加實用Token並要求用戶採用Token以使用該服務會增加風險並增加被採用的障礙。它走出了已然孤獨的P2P存儲創新之路，進入荒野。
 
-将每项创新视为过滤器。它限制了可以成为这种创新的早期采用者的市场子集。添加第二个过滤器化合物，会进一步限制可找到的市场。你要求你的早期采用者采用的不仅仅是两种全新的技术：你构建的新颖应用程序/平台/服务以及Token经济。
+將每項創新視為過濾器。它限制了可以成為這種創新的早期採用者的市場子集。添加第二個過濾器化合物，會進一步限制可找到的市場。你要求你的早期採用者採用的不僅僅是兩種全新的技術：你構建的新穎應用程序/平臺/服務以及Token經濟。
 
-对于初创公司而言，每项创新都会带来风险，从而增加创业失败的可能性。如果你已经采取冒险的创业想法并添加实用Token，则也同时增加了所有底层平台（以太坊），更广泛的经济（交易所，流动性），监管环境（股票/商品监管机构）和技术（智能合约，Token标准）的风险。这对创业公司来说是一个很大的风险。
+對於初創公司而言，每項創新都會帶來風險，從而增加創業失敗的可能性。如果你已經採取冒險的創業想法並添加實用Token，則也同時增加了所有底層平臺（以太坊），更廣泛的經濟（交易所，流動性），監管環境（股票/商品監管機構）和技術（智能合約，Token標準）的風險。這對創業公司來說是一個很大的風險。
 
-“Tokenize all the things”的倡导者可能会通过采用Token来反对上述说法，他们也继承了整个Token经济的市场热情，早期采用者，技术，创新和流动性。这也是事实。问题是收益和热情是否超过风险和不确定性。
+“Tokenize all the things”的倡導者可能會通過採用Token來反對上述說法，他們也繼承了整個Token經濟的市場熱情，早期採用者，技術，創新和流動性。這也是事實。問題是收益和熱情是否超過風險和不確定性。
 
-尽管如此，一些最具创新性的商业理念确实发生在加密领域。如果监管机构不能快速通过法律并支持新的商业模式，人才和企业家将寻求在更加加密友好的其他司法辖区开展业务。这实际上正在发生。
+儘管如此，一些最具創新性的商業理念確實發生在加密領域。如果監管機構不能快速通過法律並支持新的商業模式，人才和企業家將尋求在更加加密友好的其他司法轄區開展業務。這實際上正在發生。
 
-最后，在本章开始时，介绍Token时，我们将Token的口语意义解释为“微不足道的价值”。大多数Token的价值微不足道的根本原因是因为它们只能用在非常狭窄的环境中：一家巴士公司，一家洗衣店，一家商场，一家酒店，一家公司商店。流动性有限，适用性有限，转换成本高，一路降低Token的价值，直到它只有“Token”那么小的价值。因此，当你将实用Token添加到你的平台上，但该Token只能在你自己的一个平台上使用且市场很小时，则会重新创建使物理Token毫无价值的条件。如果为了使用你的平台，用户必须将某些东西转换为你的实用Token，使用它，然后将其余部分再转换回更普遍有用的东西，你实际是创建了公司凭证。数字Token的转换成本比没有市场的物理Token低了几个数量级，但转换成本并不是零。在整个行业中工作的实用Token将非常有趣并且可能非常有价值。但是，如果你将创业公司设定为必须引导整个行业标准才能成功，那么你可能已经失败了。
+最後，在本章開始時，介紹Token時，我們將Token的口語意義解釋為“微不足道的價值”。大多數Token的價值微不足道的根本原因是因為它們只能用在非常狹窄的環境中：一家巴士公司，一家洗衣店，一家商場，一家酒店，一家公司商店。流動性有限，適用性有限，轉換成本高，一路降低Token的價值，直到它只有“Token”那麼小的價值。因此，當你將實用Token添加到你的平臺上，但該Token只能在你自己的一個平臺上使用且市場很小時，則會重新創建使物理Token毫無價值的條件。如果為了使用你的平臺，用戶必須將某些東西轉換為你的實用Token，使用它，然後將其餘部分再轉換回更普遍有用的東西，你實際是創建了公司憑證。數字Token的轉換成本比沒有市場的物理Token低了幾個數量級，但轉換成本並不是零。在整個行業中工作的實用Token將非常有趣並且可能非常有價值。但是，如果你將創業公司設定為必須引導整個行業標準才能成功，那麼你可能已經失敗了。
 
-在像以太坊这样的通用平台上部署服务的好处之一就是能够连接智能合约，增加流动性和Token效用的潜力。
+在像以太坊這樣的通用平臺上部署服務的好處之一就是能夠連接智能合約，增加流動性和Token效用的潛力。
 
-为了正确的理由做出这个决定。采用Token是因为你的应用程序_不使用Token无法工作_ （例如以太坊）。采用它是因为Token解决了基本的市场障碍或访问问题。不要因为这是你可以快速筹集资金的唯一方式而引入实用Token，你需要假装它不是公开发行的证券。
+為了正確的理由做出這個決定。採用Token是因為你的應用程序_不使用Token無法工作_ （例如以太坊）。採用它是因為Token解決了基本的市場障礙或訪問問題。不要因為這是你可以快速籌集資金的唯一方式而引入實用Token，你需要假裝它不是公開發行的證券。
 
 [[Token_std]]
-=== Token 标准
+=== Token 標準
 
-区块链标记在以太坊之前就已存在。在某些方面，第一块区块链货币比特币本身就是一种Token。在Ethereum之前，还在比特币和其他加密货币上开发了许多Token平台。然而，在以太坊上引入第一个Token标准导致Token爆炸。
+區塊鏈標記在以太坊之前就已存在。在某些方面，第一塊區塊鏈貨幣比特幣本身就是一種Token。在Ethereum之前，還在比特幣和其他加密貨幣上開發了許多Token平臺。然而，在以太坊上引入第一個Token標準導致Token爆炸。
 
-Vitalik Buterin建议将Token作为通用可编程区块链（如以太坊）最明显和最有用的应用之一。事实上，在以太坊的第一年，经常看到Vitalik和其他人穿着印有Ethereum标志的T恤和背面的智能合约样本。这件T恤有几种变化，但最常见的是一种Token的实现。
+Vitalik Buterin建議將Token作為通用可編程區塊鏈（如以太坊）最明顯和最有用的應用之一。事實上，在以太坊的第一年，經常看到Vitalik和其他人穿著印有Ethereum標誌的T恤和背面的智能合約樣本。這件T恤有幾種變化，但最常見的是一種Token的實現。
 
 [[ERC20_std]]
-==== ERC20 Token 标准
+==== ERC20 Token 標準
 
-第一个标准由Fabian Vogelsteller于2015年11月引入，作为以太坊征求意见（ERC）。它被自动分配了GitHub发行号码20，从而获得了名字“ERC20 Token”。绝大多数Token目前都基于ERC20。ERC20征求意见最终成为以太坊改进建议EIP20，但大多仍以原名ERC20提及。你可以在这里阅读标准：
+第一個標準由Fabian Vogelsteller於2015年11月引入，作為以太坊徵求意見（ERC）。它被自動分配了GitHub發行號碼20，從而獲得了名字“ERC20 Token”。絕大多數Token目前都基於ERC20。ERC20徵求意見最終成為以太坊改進建議EIP20，但大多仍以原名ERC20提及。你可以在這裡閱讀標準：
 
 https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
 
-ERC20是_可替换Token_的标准，意味着ERC20标记的不同单元是可互换的，没有唯一属性。
+ERC20是_可替換Token_的標準，意味著ERC20標記的不同單元是可互換的，沒有唯一屬性。
 
-ERC20标准为实现Token的合同定义了一个通用接口，这样任何兼容的Token都可以以相同的方式访问和使用。该接口包含许多必须存在于标准的每个实现中的函数，以及可能由开发人员添加的一些可选函数和属性。
+ERC20標準為實現Token的合同定義了一個通用接口，這樣任何兼容的Token都可以以相同的方式訪問和使用。該接口包含許多必須存在於標準的每個實現中的函數，以及可能由開發人員添加的一些可選函數和屬性。
 
 [[ERC20_reqd_func]]
-===== ERC20 必须的函数和事件
+===== ERC20 必須的函數和事件
 
-totalSupply:: 返回当前存在的Token的总单位。ERC20Token可以有固定或可变的供应量。
+totalSupply:: 返回當前存在的Token的總單位。ERC20Token可以有固定或可變的供應量。
 
-balanceOf:: 给定一个地址，返回该地址的Token余额。
+balanceOf:: 給定一個地址，返回該地址的Token餘額。
 
-transfer:: 给定一个地址和数量，将该数量的Tokens从执行该方法的地址的余额转移到该地址。
+transfer:: 給定一個地址和數量，將該數量的Tokens從執行該方法的地址的餘額轉移到該地址。
 
-transferFrom:: 给定发送者，接收人和数量，将Token从一个帐户转移到另一个帐户。与+approve+结合使用。
+transferFrom:: 給定發送者，接收人和數量，將Token從一個帳戶轉移到另一個帳戶。與+approve+結合使用。
 
-approve:: 在给定接收者地址和数量的情况下，授权该地址从发布批准的帐户执行多次转账，直到到达指定的数量。
+approve:: 在給定接收者地址和數量的情況下，授權該地址從發佈批准的帳戶執行多次轉賬，直到到達指定的數量。
 
-allowance:: 给定一个所有者地址和一个消费者地址，返回该消费者被批准从所有者的取款的剩余金额。
+allowance:: 給定一個所有者地址和一個消費者地址，返回該消費者被批准從所有者的取款的剩餘金額。
 
-Transfer event:: 成功转移时触发的事件（调用+transfer+或+transferFrom+）（即使对于零值转移）。
+Transfer event:: 成功轉移時觸發的事件（調用+transfer+或+transferFrom+）（即使對於零值轉移）。
 
-Approval event:: 成功调用+approve+时记录的事件。
+Approval event:: 成功調用+approve+時記錄的事件。
 
 [[ERC20_optional_func]]
-===== ERC20 可选函数
+===== ERC20 可選函數
 
-name:: 返回Token的可读名称（例如“US Dollars”）。
+name:: 返回Token的可讀名稱（例如“US Dollars”）。
 
-symbol:: 返回Token的人类可读符号（例如“USD”）。
+symbol:: 返回Token的人類可讀符號（例如“USD”）。
 
-decimals:: 返回用于分割Token数量的小数位数。例如，如果小数为2，则将Token数除以100以获取其用户表示。
+decimals:: 返回用於分割Token數量的小數位數。例如，如果小數為2，則將Token數除以100以獲取其用戶表示。
 
 [[ERC20_interface]]
-===== 在Solidity中定义的ERC20接口
+===== 在Solidity中定義的ERC20接口
 
-以下是在Solidity中ERC20接口规范的样子：
+以下是在Solidity中ERC20接口規範的樣子：
 
 [[ERC20_interface_example]]
 ----
@@ -177,11 +177,11 @@ contract ERC20 {
 ----
 
 [[ERC20_data_struct]]
-===== ERC20 数据结构
+===== ERC20 數據結構
 
-如果你检查任何ERC20实现，它将包含两个数据结构，一个用于追踪余额，另一个用于追踪配额（allowances）。在Solidity中，它们使用_data mapping_实现。
+如果你檢查任何ERC20實現，它將包含兩個數據結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用_data mapping_實現。
 
-第一个data mapping按拥有者实现了Token余额的内部表。这允许Token合约跟踪谁拥有Token。每次转账都是从一个余额中扣除的，并且是对另一个余额的增加。
+第一個data mapping按擁有者實現了Token餘額的內部表。這允許Token合約跟蹤誰擁有Token。每次轉賬都是從一個餘額中扣除的，並且是對另一個餘額的增加。
 
 [[balance_mapping]]
 .Balances: a mapping from address (owner) to amount (balance)
@@ -189,7 +189,7 @@ contract ERC20 {
 mapping(address => uint256) balances;
 ----
 
-第二个数据结构是配额的data mapping。正如我们将在<<transfer_workflows>>中看到的那样，使用ERC20Token，Token的所有者可以将权限委托给花钱者，允许他们从所有者的余额中花费特定金额（配额）。ERC20合同通过二维映射追踪配额，主关键字是Token所有者的地址，映射到一个花费者地址和配额金额：
+第二個數據結構是配額的data mapping。正如我們將在<<transfer_workflows>>中看到的那樣，使用ERC20Token，Token的所有者可以將權限委託給花錢者，允許他們從所有者的餘額中花費特定金額（配額）。ERC20合同通過二維映射追蹤配額，主關鍵字是Token所有者的地址，映射到一個花費者地址和配額金額：
 
 [[allowance_mapping]]
 .Allowances: a mapping from address (owner) to address (spender) to amount (allowance)
@@ -201,49 +201,49 @@ mapping (address => mapping (address => uint256)) public allowed;
 [[transfer_workflows]]
 ===== ERC20工作流程：“transfer”和“approve & transferFrom”
 
-ERC20Token标准具有两种传输功能。你可能想知道为什么？
+ERC20Token標準具有兩種傳輸功能。你可能想知道為什麼？
 
-ERC20允许两种不同的工作流程。第一个是使用+transfer+函数的单次交易，简单的工作流程。这个工作流程是钱包用来将Token发送给其他钱包的工作流程。绝大多数Token交易都发生在+transfer+工作流程中。
+ERC20允許兩種不同的工作流程。第一個是使用+transfer+函數的單次交易，簡單的工作流程。這個工作流程是錢包用來將Token發送給其他錢包的工作流程。絕大多數Token交易都發生在+transfer+工作流程中。
 
-执行转让合同非常简单。如果爱丽丝希望向鲍勃发送10个Token，她的钱包会向Token合约的地址发送一个交易，并用Bob的地址和“10”作为参数调用+transfer+函数。Token合约调整Alice的余额（-10）和Bob的余额（+10）并发出+Transfer+事件。
+執行轉讓合同非常簡單。如果愛麗絲希望向鮑勃發送10個Token，她的錢包會向Token合約的地址發送一個交易，並用Bob的地址和“10”作為參數調用+transfer+函數。Token合約調整Alice的餘額（-10）和Bob的餘額（+10）併發出+Transfer+事件。
 
-第二个工作流程是使用+approve+和+transferFrom+的双交易工作流程。该工作流程允许Token所有者将其控制权委托给另一个地址。它通常用于委托控制权给合约来分配Token，但它也可以被交易所使用。例如，如果一家公司为ICO出售Token，他们可以+approve+一个crowdsale合同地址来分发一定数量的Token。然后crowdsale合同可以用+transferFrom+转移给Token的每个买家。
+第二個工作流程是使用+approve+和+transferFrom+的雙交易工作流程。該工作流程允許Token所有者將其控制權委託給另一個地址。它通常用於委託控制權給合約來分配Token，但它也可以被交易所使用。例如，如果一家公司為ICO出售Token，他們可以+approve+一個crowdsale合同地址來分發一定數量的Token。然後crowdsale合同可以用+transferFrom+轉移給Token的每個買家。
 
 [[approve_transferFrom_workflow]]
 .The two-step approve & transferFrom workflow of ERC20 Tokens
 image::images/approve_transferFrom_workflow.png["The two-step approve &amp; transferFrom workflow of ERC20 Tokens"]
 
-对于 +approve & transferFrom+ 工作流程，需要两个交易。假设Alice希望允许AliceICO合同将所有AliceCoin Token的50％卖给像Bob和Charlie这样的买方。首先，Alice发布AliceCoin ERC20合同，将所有AliceCoin发放到她自己的地址。然后，Alice发布可以以ether出售Token的AliceICO合同。接下来，Alice启动+approve & transferFrom+工作流程。她向AliceCoin发送一个交易，调用+approve+，参数是AliceICO的地址和+totalSupply+的50％。这将触发+Approval+事件。现在，AliceICO合同可以出售AliceCoin了。
+對於 +approve & transferFrom+ 工作流程，需要兩個交易。假設Alice希望允許AliceICO合同將所有AliceCoin Token的50％賣給像Bob和Charlie這樣的買方。首先，Alice發佈AliceCoin ERC20合同，將所有AliceCoin發放到她自己的地址。然後，Alice發佈可以以ether出售Token的AliceICO合同。接下來，Alice啟動+approve & transferFrom+工作流程。她向AliceCoin發送一個交易，調用+approve+，參數是AliceICO的地址和+totalSupply+的50％。這將觸發+Approval+事件。現在，AliceICO合同可以出售AliceCoin了。
 
-当AliceICO从Bob那收到ether，它需要发送一些AliceCoin给Bob作为回报。在AliceICO合约内是AliceCoin和ether之间的汇率。Alice在创建AliceICO时设置的汇率决定了Bob将根据他发送给AliceICO的ether数量能得到多少Token。当AliceICO调用AliceCoin +transferFrom+函数时，它将Alice的地址设置为发送者，将Bob的地址设置为接收者，并使用汇率来确定将在“value”字段中将多少AliceCoin Token传送给Bob。AliceCoin合同将余额从Alice的地址转移到Bob的地址并触发 +Transfer+ 事件。只要不超过Alice设定的审批限制，AliceICO合同可以调用 +transferFrom+ 无限次数。AliceICO合同可以通过调用+allowance+函数来跟踪它能卖出多少AliceCoinToken。
+當AliceICO從Bob那收到ether，它需要發送一些AliceCoin給Bob作為回報。在AliceICO合約內是AliceCoin和ether之間的匯率。Alice在創建AliceICO時設置的匯率決定了Bob將根據他發送給AliceICO的ether數量能得到多少Token。當AliceICO調用AliceCoin +transferFrom+函數時，它將Alice的地址設置為發送者，將Bob的地址設置為接收者，並使用匯率來確定將在“value”字段中將多少AliceCoin Token傳送給Bob。AliceCoin合同將餘額從Alice的地址轉移到Bob的地址並觸發 +Transfer+ 事件。只要不超過Alice設定的審批限制，AliceICO合同可以調用 +transferFrom+ 無限次數。AliceICO合同可以通過調用+allowance+函數來跟蹤它能賣出多少AliceCoinToken。
 
 
 [[ERC20_implementation]]
-===== ERC20 实现
+===== ERC20 實現
 
-虽然可以在约三十行Solidity代码中实现兼容ERC20的Token，但大多数实现都更加复杂，以解决潜在的安全漏洞。在EIP20标准中提到了两种实现：
+雖然可以在約三十行Solidity代碼中實現兼容ERC20的Token，但大多數實現都更加複雜，以解決潛在的安全漏洞。在EIP20標準中提到了兩種實現：
 
-Consensys EIP20:: 简单易读的ERC20兼容Token的实现。
+Consensys EIP20:: 簡單易讀的ERC20兼容Token的實現。
 
-你可以在此处阅读Consensys实现的Solidity代码：
+你可以在此處閱讀Consensys實現的Solidity代碼：
 https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol
 
-OpenZeppelin StandardToken:: 此实现与ERC20兼容，并具有额外的安全防范措施。它构成了OpenZeppelin库的基础，实现了更复杂的与ERC20兼容的Token，包括筹款上限，拍卖，归属时间表和其他功能。
+OpenZeppelin StandardToken:: 此實現與ERC20兼容，並具有額外的安全防範措施。它構成了OpenZeppelin庫的基礎，實現了更復雜的與ERC20兼容的Token，包括籌款上限，拍賣，歸屬時間表和其他功能。
 
-你可以在这里看到OpenZeppelin StandardToken的Solidity代码：
+你可以在這裡看到OpenZeppelin StandardToken的Solidity代碼：
 https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol
 
 [[METoken_example]]
-==== 发布我们自己的ERC20Token
+==== 發佈我們自己的ERC20Token
 
-让我们创建并发布我们自己的Token。在这个例子中，我们将使用+truffle+ 框架（参见<<truffle>>）。该示例假设你已经安装了+truffle+，进行了配置，并熟悉其基本操作。
+讓我們創建併發布我們自己的Token。在這個例子中，我們將使用+truffle+ 框架（參見<<truffle>>）。該示例假設你已經安裝了+truffle+，進行了配置，並熟悉其基本操作。
 
-我们将称之为“Mastering Ethereum Token”，标志为“MET”。
+我們將稱之為“Mastering Ethereum Token”，標誌為“MET”。
 
-你可以在本书的GitHub仓库中找到这个例子：
+你可以在本書的GitHub倉庫中找到這個例子：
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken
 
-首先，让我们创建并初始化一个Truffle项目目录，就像我们在<<truffle_project_directory>>中所做的那样。运行这四个命令并接受任何问题的默认答案：
+首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<<truffle_project_directory>>中所做的那樣。運行這四個命令並接受任何問題的默認答案：
 
 [[initialize_truffle]]
 ----
@@ -253,7 +253,7 @@ METoken $ truffle init
 METoken $ npm init
 ----
 
-你现在应该具有以下目录结构：
+你現在應該具有以下目錄結構：
 
 [[truffle_directory]]
 ----
@@ -268,13 +268,13 @@ METoken/
 └── truffle.js
 ----
 
-编辑+truffle.js+或+truffle-config.js+配置文件以设置+Truffle+环境，或复制我们使用的环境：
+編輯+truffle.js+或+truffle-config.js+配置文件以設置+Truffle+環境，或複製我們使用的環境：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js
 
-如果使用示例+truffle-config.js+，请记住在包含你的测试私钥的+METoken+文件夹中创建文件+.env+，以便在公共以太网测试网络（如ganache或Kovan）上进行测试和部署。你可以从MetaMask中导出你的测试网络私钥。
+如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+文件夾中創建文件+.env+，以便在公共以太網測試網絡（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中導出你的測試網絡私鑰。
 
-之后你的目录看起来像：
+之後你的目錄看起來像：
 
 [[truffle_directory]]
 ----
@@ -292,10 +292,10 @@ METoken/
 
 [WARNING]
 ====
-只能使用不用于在以太坊主网络上持有资金的测试密钥或测试助记符。切勿使用持有真正金钱的钥匙进行测试。
+只能使用不用於在以太坊主網絡上持有資金的測試密鑰或測試助記符。切勿使用持有真正金錢的鑰匙進行測試。
 ====
 
-对于我们的示例，我们将导入OpenZeppelin StandardContract，它实现了一些重要的安全检查并且易于扩展。让我们导入该库：
+對於我們的示例，我們將導入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們導入該庫：
 
 [[install_openZeppelin]]
 ----
@@ -305,13 +305,13 @@ $ npm install zeppelin-solidity
 added 8 packages in 2.504s
 ----
 
-+ zeppelin-solidity +包将在+ node_modules +目录下添加约250个文件。OpenZeppelin库包含的不仅仅是ERC20Token，但我们只使用它的一小部分。
++ zeppelin-solidity +包將在+ node_modules +目錄下添加約250個文件。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。
 
-接下来，让我们编写我们的Token合约。创建一个新文件+METoken.sol+并从GitHub复制示例代码：
+接下來，讓我們編寫我們的Token合約。創建一個新文件+METoken.sol+並從GitHub複製示例代碼：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol
 
-我们的合同非常简单，因为它继承了OpenZeppelin StandardToken库的所有功能：
+我們的合同非常簡單，因為它繼承了OpenZeppelin StandardToken庫的所有功能：
 
 [[solidity_Token_example]]
 .METoken.sol : A Solidity contract implementing an ERC20 Token
@@ -320,9 +320,9 @@ https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/c
 include::code/METoken/contracts/METoken.sol[]
 ----
 
-在这里，我们定义可选变量+name+，+symbol+和+decimals+。我们还定义了一个+_initial_supply+变量，设置为2,100万个Token，以及两个小数细分（总共21亿）。在契约的初始化（构造函数）函数中，我们将+totalSupply+设置为等于+_initial_supply+，并将所有+_initial_supply+分配给创建 +METoken+ 契约的帐户余额（+msg.sender+）。
+在這裡，我們定義可選變量+name+，+symbol+和+decimals+。我們還定義了一個+_initial_supply+變量，設置為2,100萬個Token，以及兩個小數細分（總共21億）。在契約的初始化（構造函數）函數中，我們將+totalSupply+設置為等於+_initial_supply+，並將所有+_initial_supply+分配給創建 +METoken+ 契約的帳戶餘額（+msg.sender+）。
 
-我们现在使用+truffle+编译+METoken+代码：
+我們現在使用+truffle+編譯+METoken+代碼：
 
 [[truffle_compile]]
 ----
@@ -337,13 +337,13 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...
 
 ----
 
-如你所见，+truffle+包含了OpenZeppelin库的必要依赖关系，并编译了这些契约。
+如你所見，+truffle+包含了OpenZeppelin庫的必要依賴關係，並編譯了這些契約。
 
-我们建立一个migration脚本，部署 +METoken+合约。在+METoken/migrations+文件夹中创建一个新文件+2_deploy_contracts.js+。从Github存储库中的示例复制内容：
+我們建立一個migration腳本，部署 +METoken+合約。在+METoken/migrations+文件夾中創建一個新文件+2_deploy_contracts.js+。從Github存儲庫中的示例複製內容：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js
 
-以下是它包含的内容：
+以下是它包含的內容：
 
 [[METoken_migration]]
 .2_deploy_contracts: Migration to deploy METoken
@@ -359,9 +359,9 @@ module.exports = function(deployer) {
 };
 ----
 
-在我们部署其中一个以太坊测试网络之前，让我们开始一个本地区块链来测试一切。正如我们在<<using_ganache>>中所做的那样，从 +ganache-cli+ 的命令行或从图形用户界面启动 +ganache+ 区块链。
+在我們部署其中一個以太坊測試網絡之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<<using_ganache>>中所做的那樣，從 +ganache-cli+ 的命令行或從圖形用戶界面啟動 +ganache+ 區塊鏈。
 
-一旦 +ganache+ 启动，我们就可以部署我们的METoken合约，看看是否一切都按预期工作：
+一旦 +ganache+ 啟動，我們就可以部署我們的METoken合約，看看是否一切都按預期工作：
 
 [[deploy_METoken]]
 ----
@@ -385,16 +385,16 @@ Saving artifacts...
 
 ----
 
-在+ganache+控制台上，我们应该看到我们的部署创建了4个新的交易：
+在+ganache+控制檯上，我們應該看到我們的部署創建了4個新的交易：
 
 [[ganache_METoken]]
 .METoken deployment on Ganache
 image::images/ganache_meToken.png["METoken deployment on Ganache"]
 
 [[truffle_console]]
-==== 使用Truffle控制台与METoken交互
+==== 使用Truffle控制檯與METoken交互
 
-我们可以使用+Truffle控制台+与我们的+ganache+区块链合同进行互动。这是一个交互式的JavaScript环境，可以访问Truffle环境，并通过Web3访问区块链。在这种情况下，我们将+Truffle控制台+连接到+ganache+区块链：
+我們可以使用+Truffle控制檯+與我們的+ganache+區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將+Truffle控制檯+連接到+ganache+區塊鏈：
 
 [[interactive_truffle]]
 ----
@@ -402,7 +402,7 @@ $ truffle console --network ganache
 truffle(ganache)>
 ----
 
- +truffle(ganache)>+ 提示符表明我们已连接到 +ganache+区块链并准备输入我们的命令。+Truffle控制台+支持所有的Truffle命令，所以我们可以从控制台+compile+和+migrate+。我们已经运行过这些命令，所以让我们直接看看合同本身。METoken合约作为Truffle环境内的JavaScript对象存在。在提示符下键入+METoken+，它将转储整个合约定义：
+ +truffle(ganache)>+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制檯+支持所有的Truffle命令，所以我們可以從控制檯+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript對象存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：
 
 [[get_METoken_definition]]
 ----
@@ -426,7 +426,7 @@ network_id: '5777' }
 
 ----
 
-+METoken+对象还公开几个属性，例如合同的地址（由+migrate+命令部署）：
++METoken+對象還公開幾個屬性，例如合同的地址（由+migrate+命令部署）：
 
 [[METoken_address]]
 ----
@@ -434,7 +434,7 @@ truffle(ganache)> METoken.address
 '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
 ----
 
-如果我们想要与已部署的合同进行交互，我们必须以JavaScript“promise”的形式使用异步调用。我们使用+deployment+函数来获取合约实例，然后调用+totalSupply+函数：
+如果我們想要與已部署的合同進行交互，我們必須以JavaScript“promise”的形式使用異步調用。我們使用+deployment+函數來獲取合約實例，然後調用+totalSupply+函數：
 
 [[METoken_async_call]]
 ----
@@ -442,7 +442,7 @@ truffle(ganache)> METoken.deployed().then(instance => instance.totalSupply())
 BigNumber { s: 1, e: 9, c: [ 2100000000 ] }
 ----
 
-接下来，让我们使用由+ganache+创建的账户来检查我们的METoken余额并将一些METoken发送到另一个地址。首先，让我们获取帐户地址：
+接下來，讓我們使用由+ganache+創建的賬戶來檢查我們的METoken餘額並將一些METoken發送到另一個地址。首先，讓我們獲取帳戶地址：
 
 [[get_account_addresses]]
 ----
@@ -455,7 +455,7 @@ truffle(ganache)> accounts[0]
 
 ----
 
-+accounts+ 列表现在包含由+ganache+创建的所有帐户，而+account[0]+是部署了该METoken合约的帐户。它应该有METoken的余额，因为我们的METoken构造函数将全部Token提供给了创建它的地址。让我们检查：
++accounts+ 列表現在包含由+ganache+創建的所有帳戶，而+account[0]+是部署了該METoken合約的帳戶。它應該有METoken的餘額，因為我們的METoken構造函數將全部Token提供給了創建它的地址。讓我們檢查：
 
 [[check_balance]]
 ----
@@ -464,7 +464,7 @@ undefined
 BigNumber { s: 1, e: 9, c: [ 2100000000 ] }
 ----
 
-最后，通过调用合约的 +transfer+函数，让我们从+account[0]+ 向 +account[1]+ 转移1000.00 METoken：
+最後，通過調用合約的 +transfer+函數，讓我們從+account[0]+ 向 +account[1]+ 轉移1000.00 METoken：
 
 [[transfer_MET]]
 ----
@@ -483,23 +483,23 @@ truffle(ganache)> BigNumber { s: 1, e: 5, c: [ 100000 ] }
 
 [TIP]
 ====
-METoken具有2位精度的小数，这意味着1个METoken在合同中是100个单位。当我们传输1000个METoken时，我们在传输函数中将该值指定为100,000。
+METoken具有2位精度的小數，這意味著1個METoken在合同中是100個單位。當我們傳輸1000個METoken時，我們在傳輸函數中將該值指定為100,000。
 ====
 
-如你所见，在控制台中，+ account [0] +现在拥有20,999,000 MET，+ account [1] +拥有1000 MET。
+如你所見，在控制檯中，+ account [0] +現在擁有20,999,000 MET，+ account [1] +擁有1000 MET。
 
-如果切换到+ganache+图形用户界面，你将看到名为+transfer+函数的交易：
+如果切換到+ganache+圖形用戶界面，你將看到名為+transfer+函數的交易：
 
 [[ganache_METoken_transfer]]
 .METoken transfer on Ganache
 image::images/ganache_meToken_transfer.png["METoken transfer on Ganache"]
 
 [[sending_erc20_Tokens_contracts]]
-==== 将ERC20Token发送到合同地址
+==== 將ERC20Token發送到合同地址
 
-到目前为止，我们已经设置了ERC20Token并从一个帐户转移到另一个帐户。我们用于这些示范的所有账户都是外部拥有账户（EOAs），这意味着它们由私钥控制，而不是合同。如果我们将MET发送到合同地址会发生什么？让我们看看！
+到目前為止，我們已經設置了ERC20Token並從一個帳戶轉移到另一個帳戶。我們用於這些示範的所有賬戶都是外部擁有賬戶（EOAs），這意味著它們由私鑰控制，而不是合同。如果我們將MET發送到合同地址會發生什麼？讓我們看看！
 
-首先，我们将其他合约部署到我们的测试环境中。对于这个例子，我们将使用我们的第一个合同+Faucet.sol+。我们将它添加到METoken项目中，方法是将它复制到+contracts+目录。我们的目录应该是这样的：
+首先，我們將其他合約部署到我們的測試環境中。對於這個例子，我們將使用我們的第一個合同+Faucet.sol+。我們將它添加到METoken項目中，方法是將它複製到+contracts+目錄。我們的目錄應該是這樣的：
 
 [[METoken_directory]]
 ----
@@ -510,7 +510,7 @@ METoken/
 │   └── Migrations.sol
 ----
 
-我们还会添加一个migration，从+METoken+单独部署+Faucet+：
+我們還會添加一個migration，從+METoken+單獨部署+Faucet+：
 
 [[faucet_migration]]
 ----
@@ -522,7 +522,7 @@ module.exports = function(deployer) {
 };
 ----
 
-让我们从Truffle控制台编译和迁移合同：
+讓我們從Truffle控制檯編譯和遷移合同：
 
 [[faucet_deploy]]
 ----
@@ -551,7 +551,7 @@ Running migration: 3_deploy_faucet.js
 Saving artifacts...
 ----
 
-现在让我们将一些MET发送到 +Faucet+ 合约：
+現在讓我們將一些MET發送到 +Faucet+ 合約：
 
 [[send_MET_faucet]]
 ----
@@ -560,26 +560,26 @@ truffle(ganache)> METoken.deployed().then(instance => { instance.balanceOf(Fauce
 truffle(ganache)> BigNumber { s: 1, e: 5, c: [ 100000 ] }
 ----
 
-好的，我们已将1000 MET转移到 +Faucet+合约。现在，我们如何从 +Faucet+ 提款呢？
+好的，我們已將1000 MET轉移到 +Faucet+合約。現在，我們如何從 +Faucet+ 提款呢？
 
-请记住，+Faucet.sol+是一个非常简单的合同。它只有一个功能，+withdraw+，这是提取_ether_。它没有提取MET或任何其他ERC20Token的功能。如果我们使用+withdraw+它将尝试发送ether，但由于Faucet还没有ether的余额，它将失败。
+請記住，+Faucet.sol+是一個非常簡單的合同。它只有一個功能，+withdraw+，這是提取_ether_。它沒有提取MET或任何其他ERC20Token的功能。如果我們使用+withdraw+它將嘗試發送ether，但由於Faucet還沒有ether的餘額，它將失敗。
 
-+METoken+合约知道+Faucet+有余额，但它可以转移该余额的唯一方法是它从合约地址收到+transfer+调用。无论如何，我们需要让+Faucet+ 合约调用+MET+中的+transfer+函数。
++METoken+合約知道+Faucet+有餘額，但它可以轉移該餘額的唯一方法是它從合約地址收到+transfer+調用。無論如何，我們需要讓+Faucet+ 合約調用+MET+中的+transfer+函數。
 
-如果你在思考下一步该做什么，不必了。这个问题没有解决办法。MET发送到+Faucet+将永远卡住。只有+Faucet+合约可以转让它，+Faucet+合约没有调用ERC20Token合约的+transfer+函数的代码。
+如果你在思考下一步該做什麼，不必了。這個問題沒有解決辦法。MET發送到+Faucet+將永遠卡住。只有+Faucet+合約可以轉讓它，+Faucet+合約沒有調用ERC20Token合約的+transfer+函數的代碼。
 
-也许你预料到了这个问题。最有可能的是，你没有。实际上，数百名以太坊用户也无意将各种Token转让给没有任何ERC20能力的合同。据估计，价值超过250万美元的Token被这样“卡住”，并且永远丢失。
+也許你預料到了這個問題。最有可能的是，你沒有。實際上，數百名以太坊用戶也無意將各種Token轉讓給沒有任何ERC20能力的合同。據估計，價值超過250萬美元的Token被這樣“卡住”，並且永遠丟失。
 
-ERC20Token的用户可能无意中在转移中丢失其Token的方式之一是当他们尝试转移到交易所或其他服务时。他们从交易所的网站上复制以太坊地址，认为他们可以简单地向其发送Token。但是，许多交易所都公布实际上是合同的接收地址！这些合同具有许多不同的功能，通常将发送给他们的所有资金清扫到“冷存储”或另一个集中的钱包。尽管有许多警告说“不要将Token发送到这个地址”，但许多Token会以这种方式丢失。
+ERC20Token的用戶可能無意中在轉移中丟失其Token的方式之一是當他們嘗試轉移到交易所或其他服務時。他們從交易所的網站上覆制以太坊地址，認為他們可以簡單地向其發送Token。但是，許多交易所都公佈實際上是合同的接收地址！這些合同具有許多不同的功能，通常將發送給他們的所有資金清掃到“冷存儲”或另一個集中的錢包。儘管有許多警告說“不要將Token發送到這個地址”，但許多Token會以這種方式丟失。
 
 [[transfer_workflow_demo]]
 ==== 演示 approve & transferFrom 流程
 
-我们的+Faucet+合同无法处理ERC20Token。使用+transfer+函数发送Token给它，会导致这些Token的丢失。我们重写合同，并处理ERC20Token。具体来说，我们将把它变成一个Faucet，将MET发给任何询问的人。
+我們的+Faucet+合同無法處理ERC20Token。使用+transfer+函數發送Token給它，會導致這些Token的丟失。我們重寫合同，並處理ERC20Token。具體來說，我們將把它變成一個Faucet，將MET發給任何詢問的人。
 
-对于这个例子，我们制作了Truffle项目目录的副本，将其称为 +METoken_METFaucet+，初始化Truffle，npm，安装OpenZeppelin依赖项并复制+METoken.sol+合同。有关详细说明，请参阅我们的第一个示例<<METoken_example>>。
+對於這個例子，我們製作了Truffle項目目錄的副本，將其稱為 +METoken_METFaucet+，初始化Truffle，npm，安裝OpenZeppelin依賴項並複製+METoken.sol+合同。有關詳細說明，請參閱我們的第一個示例<<METoken_example>>。
 
-现在，让我们创建一个新的Faucet合同，称之为+METFaucet.sol+。它看起来像这样：
+現在，讓我們創建一個新的Faucet合同，稱之為+METFaucet.sol+。它看起來像這樣：
 
 [[METFaucet]]
 .METFaucet.sol: a faucet for METoken
@@ -596,44 +596,44 @@ import 'zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol';
 // A faucet for ERC20 Token MET
 contract METFaucet {
 
-	StandardToken public METoken;
-	address public METOwner;
+  StandardToken public METoken;
+  address public METOwner;
 
-	// METFaucet constructor, provide the address of METoken contract and
-	// the owner address we will be approved to transferFrom
-	function METFaucet(address _METoken, address _METOwner) public {
+  // METFaucet constructor, provide the address of METoken contract and
+  // the owner address we will be approved to transferFrom
+  function METFaucet(address _METoken, address _METOwner) public {
 
-		// Initialize the METoken from the address provided
-		METoken = StandardToken(_METoken);
-		METOwner = _METOwner;
-	}
+    // Initialize the METoken from the address provided
+    METoken = StandardToken(_METoken);
+    METOwner = _METOwner;
+  }
 
-	function withdraw(uint withdraw_amount) public {
+  function withdraw(uint withdraw_amount) public {
 
-    	// Limit withdrawal amount to 10 MET
-    	require(withdraw_amount <= 1000);
+      // Limit withdrawal amount to 10 MET
+      require(withdraw_amount <= 1000);
 
-		// Use the transferFrom function of METoken
-		METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
+    // Use the transferFrom function of METoken
+    METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
     }
 
-	// REJECT any incoming ether
-	function () public payable { revert(); }
+  // REJECT any incoming ether
+  function () public payable { revert(); }
 
 }
 ----
 
-我们对基本的Faucet示例做了很多改动。由于METFaucet将使用+METoken+中的+transferFrom+函数，它将需要两个额外的变量。其中一个将保存已部署的+METoken+合约地址。另一个将持有MET所有者的地址，他们将提供Faucet提款的批准。+METFaucet+将调用+METoken.transferFrom+并指示它将MET从所有者移至Faucet提取请求所来自的地址。
+我們對基本的Faucet示例做了很多改動。由於METFaucet將使用+METoken+中的+transferFrom+函數，它將需要兩個額外的變量。其中一個將保存已部署的+METoken+合約地址。另一個將持有MET所有者的地址，他們將提供Faucet提款的批准。+METFaucet+將調用+METoken.transferFrom+並指示它將MET從所有者移至Faucet提取請求所來自的地址。
 
 
 [[MET_owner_var]]
-我们在这里声明这两个变量：
+我們在這裡聲明這兩個變量：
 ----
 StandardToken public METoken;
 address public METOwner;
 ----
 
-由于我们的Faucet需要使用+METoken+和+METOwner+的正确地址进行初始化，因此我们需要声明一个自定义构造函数：
+由於我們的Faucet需要使用+METoken+和+METOwner+的正確地址進行初始化，因此我們需要聲明一個自定義構造函數：
 
 [[custom_constructor]]
 ----
@@ -641,13 +641,13 @@ address public METOwner;
 // the owner address we will be approved to transferFrom
 function METFaucet(address _METoken, address _METOwner) public {
 
-	// Initialize the METoken from the address provided
-	METoken = StandardToken(_METoken);
-	METOwner = _METOwner;
+  // Initialize the METoken from the address provided
+  METoken = StandardToken(_METoken);
+  METOwner = _METOwner;
 }
 ----
 
-下一个改变是+withdraw+函数。+METFaucet+使用+METoken+中的+transferFrom+函数，并要求+METoken+将MET传输给Faucet的接收者，而不是调用+transfer+。
+下一個改變是+withdraw+函數。+METFaucet+使用+METoken+中的+transferFrom+函數，並要求+METoken+將MET傳輸給Faucet的接收者，而不是調用+transfer+。
 
 [[transfer_met]]
 ----
@@ -655,7 +655,7 @@ function METFaucet(address _METoken, address _METOwner) public {
 METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
 ----
 
-最后，由于我们的Faucet不再发送ether，我们应该阻止任何人将ether送到+METFaucet+，因为我们不希望它被卡住。我们更改fallback函数以拒绝发进来的ether，使用+revert+功能还原任何收款：
+最後，由於我們的Faucet不再發送ether，我們應該阻止任何人將ether送到+METFaucet+，因為我們不希望它被卡住。我們更改fallback函數以拒絕發進來的ether，使用+revert+功能還原任何收款：
 
 [[reject_incoming_eth]]
 ----
@@ -663,7 +663,7 @@ METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
 function () public payable { revert(); }
 ----
 
-现在我们的+METFaucet.sol+代码已准备就绪，我们需要修改migration脚本来部署它。这个migration脚本会有点复杂，因为+METFaucet+依赖于+METoken+的地址。我们将使用JavaScript promise按顺序部署这两个合约。创建+2_deply_contracts.js+，如下所示：
+現在我們的+METFaucet.sol+代碼已準備就緒，我們需要修改migration腳本來部署它。這個migration腳本會有點複雜，因為+METFaucet+依賴於+METoken+的地址。我們將使用JavaScript promise按順序部署這兩個合約。創建+2_deply_contracts.js+，如下所示：
 
 [[2_deploy_contracts]]
 ----
@@ -673,16 +673,16 @@ var owner = web3.eth.accounts[0];
 
 module.exports = function(deployer) {
 
-	// Deploy the METoken contract first
-	deployer.deploy(METoken, {from: owner}).then(function() {
-		// then deploy METFaucet and pass the address of METoken
-		// and the address of the owner of all the MET who will approve METFaucet
-		return deployer.deploy(METFaucet, METoken.address, owner);
-  	});
+  // Deploy the METoken contract first
+  deployer.deploy(METoken, {from: owner}).then(function() {
+    // then deploy METFaucet and pass the address of METoken
+    // and the address of the owner of all the MET who will approve METFaucet
+    return deployer.deploy(METFaucet, METoken.address, owner);
+    });
 }
 ----
 
-现在，我们可以测试Truffle控制台中的所有内容。首先，我们使用+migrate+来部署合同。当+METoken+部署时，它会将所有MET分配给创建它的帐户，+web3.eth.accounts[0]+。然后，我们在METoken中调用+approve+函数来批准+METFaucet+代表+web3.eth.accounts[0]+发送1000 MET。最后，为了测试我们的Faucet，我们从+web3.eth.accounts[1]+调用+METFaucet.withdraw+并尝试提取10个MET。以下是控制台命令：
+現在，我們可以測試Truffle控制檯中的所有內容。首先，我們使用+migrate+來部署合同。當+METoken+部署時，它會將所有MET分配給創建它的帳戶，+web3.eth.accounts[0]+。然後，我們在METoken中調用+approve+函數來批准+METFaucet+代表+web3.eth.accounts[0]+發送1000 MET。最後，為了測試我們的Faucet，我們從+web3.eth.accounts[1]+調用+METFaucet.withdraw+並嘗試提取10個MET。以下是控制檯命令：
 
 [[ERC20_gananche_test]]
 ----
@@ -711,53 +711,53 @@ truffle(ganache)> METoken.deployed().then(instance => { instance.balanceOf(web3.
 truffle(ganache)> BigNumber { s: 1, e: 3, c: [ 1000 ] }
 ----
 
-从结果中可以看出，我们可以使用 +approve+ and +transferFrom+ 工作流来授权一个合约转移另一个Token中定义的Token。如果使用得当，ERC20Token可以由EOA和其他合同使用。
+從結果中可以看出，我們可以使用 +approve+ and +transferFrom+ 工作流來授權一個合約轉移另一個Token中定義的Token。如果使用得當，ERC20Token可以由EOA和其他合同使用。
 
-但是，正确管理ERC20Token的负担会推送到用户界面。如果用户错误地尝试将ERC20Token转移到合同地址，并且该合同没有配备接收ERC20Token的功能，则Token将丢失。
+但是，正確管理ERC20Token的負擔會推送到用戶界面。如果用戶錯誤地嘗試將ERC20Token轉移到合同地址，並且該合同沒有配備接收ERC20Token的功能，則Token將丟失。
 
 [[ERC20_issues]]
-==== ERC20Token的问题
+==== ERC20Token的問題
 
-ERC20Token标准的采用确实是爆炸性的。成千上万的Token已经启动，既可以尝试新的功能，也可以通过各种“众筹”拍卖和初始投币产品（ICO）筹集资金。然而，正如我们在将Token转移到合同地址的问题所看到的那样，存在一些潜在的陷阱。
+ERC20Token標準的採用確實是爆炸性的。成千上萬的Token已經啟動，既可以嘗試新的功能，也可以通過各種“眾籌”拍賣和初始投幣產品（ICO）籌集資金。然而，正如我們在將Token轉移到合同地址的問題所看到的那樣，存在一些潛在的陷阱。
 
-ERC20Token不太明显的问题之一是它们暴露了Token和ether本身之间的细微差别。如果ether通过以接收者地址为目的地的交易转移，则Token转移发生在 _specific Token contract state_ 中，并且将Token合同作为其目的地，而不是接收者的地址。Token合同跟踪余额并发布事件。在Token传输中，实际上没有交易发送给Token的接收者。相反，接收者的地址将被添加到Token合约本身的映射中。将ether发送到地址的交易会改变地址的状态。将Token转移到地址的交易只会改变Token合约的状态，而不会改变接收者地址的状态。即使是支持ERC20Token的钱包，也不会意识到Token的余额，除非用户明确将特定Token合约添加到“监视”中。一些钱包观察最受欢迎的Token合约，以检测由他们控制的地址持有的余额，但这仅限于ERC20合同的一小部分。
+ERC20Token不太明顯的問題之一是它們暴露了Token和ether本身之間的細微差別。如果ether通過以接收者地址為目的地的交易轉移，則Token轉移發生在 _specific Token contract state_ 中，並且將Token合同作為其目的地，而不是接收者的地址。Token合同跟蹤餘額併發布事件。在Token傳輸中，實際上沒有交易發送給Token的接收者。相反，接收者的地址將被添加到Token合約本身的映射中。將ether發送到地址的交易會改變地址的狀態。將Token轉移到地址的交易只會改變Token合約的狀態，而不會改變接收者地址的狀態。即使是支持ERC20Token的錢包，也不會意識到Token的餘額，除非用戶明確將特定Token合約添加到“監視”中。一些錢包觀察最受歡迎的Token合約，以檢測由他們控制的地址持有的餘額，但這僅限於ERC20合同的一小部分。
 
-事实上，用户不太可能会追踪所有可能的ERC20Token合约中的所有余额。许多ERC20Token更像是垃圾邮件，而不是可用的Token。他们自动为拥有ether活动的帐户创建余额，以吸引用户。如果你有一个活动历史悠久的以太坊地址，特别是如果它是在预售中创建的，你会发现它充满了凭空出现的“垃圾”Tokens。当然，这个地址并不是真的充满了Token，而是那些Token合约有你的地址。如果你用于查看地址的资源管理器或钱包正在监视这些Token合约，才能看到这些余额。
+事實上，用戶不太可能會追蹤所有可能的ERC20Token合約中的所有餘額。許多ERC20Token更像是垃圾郵件，而不是可用的Token。他們自動為擁有ether活動的帳戶創建餘額，以吸引用戶。如果你有一個活動歷史悠久的以太坊地址，特別是如果它是在預售中創建的，你會發現它充滿了憑空出現的“垃圾”Tokens。當然，這個地址並不是真的充滿了Token，而是那些Token合約有你的地址。如果你用於查看地址的資源管理器或錢包正在監視這些Token合約，才能看到這些餘額。
 
-Token不像ether。Ether通过+send+功能发送，并由合同中的任何payable函数或任何EOA接受。Token仅使用在ERC20合同中存在的+transfer+ 或+approve＆transferFrom+函数发送，并且不会（至少在ERC20中）触发收款合同中的任何payable函数。Token的功能就像ether这样的加密货币，但它们带有一些细微的区别，可以打破这种错觉。
+Token不像ether。Ether通過+send+功能發送，並由合同中的任何payable函數或任何EOA接受。Token僅使用在ERC20合同中存在的+transfer+ 或+approve＆transferFrom+函數發送，並且不會（至少在ERC20中）觸發收款合同中的任何payable函數。Token的功能就像ether這樣的加密貨幣，但它們帶有一些細微的區別，可以打破這種錯覺。
 
-考虑另一个问题。要发送ether，或使用任何以太坊合同，你需要ether来支付gas。发送Token，你_也需要ether_。你无法用Token支付交易的gas，而Token合同也无法为你支付gas费用。这可能会导致一些相当奇怪的用户体验。例如，假设你使用交易所或Shapeshift将某些比特币转换为Token。你在钱包中“收到”该Token，该钱包会跟踪该Token的合同并显示你的余额。它看起来与你钱包中的任何其他加密货币相同。现在尝试发送Token，你的钱包会通知你，你需要ether才能这样做。你可能会感到困惑 - 毕竟你不需要ether接收Token。也许你没有ether。也许你甚至不知道该Token是以太坊上的ERC20Token，也许你认为这是一个拥有自己的区块链的加密货币。错觉就这样被打破了。
+考慮另一個問題。要發送ether，或使用任何以太坊合同，你需要ether來支付gas。發送Token，你_也需要ether_。你無法用Token支付交易的gas，而Token合同也無法為你支付gas費用。這可能會導致一些相當奇怪的用戶體驗。例如，假設你使用交易所或Shapeshift將某些比特幣轉換為Token。你在錢包中“收到”該Token，該錢包會跟蹤該Token的合同並顯示你的餘額。它看起來與你錢包中的任何其他加密貨幣相同。現在嘗試發送Token，你的錢包會通知你，你需要ether才能這樣做。你可能會感到困惑 - 畢竟你不需要ether接收Token。也許你沒有ether。也許你甚至不知道該Token是以太坊上的ERC20Token，也許你認為這是一個擁有自己的區塊鏈的加密貨幣。錯覺就這樣被打破了。
 
-其中一些问题是ERC20Token特有的。其他更一般的问题涉及到以太坊内的抽象和界面边界。有些可以通过更改Token接口来解决，其他可能需要更改以太坊内的基础结构（例如EOAs和合同之间以及交易和消息之间的区别）。有些可能不完全“可解决”，并且可能需要用户界面设计来隐藏细微差别并使用户体验一致，而不管其底层区别如何。
+其中一些問題是ERC20Token特有的。其他更一般的問題涉及到以太坊內的抽象和界面邊界。有些可以通過更改Token接口來解決，其他可能需要更改以太坊內的基礎結構（例如EOAs和合同之間以及交易和消息之間的區別）。有些可能不完全“可解決”，並且可能需要用戶界面設計來隱藏細微差別並使用戶體驗一致，而不管其底層區別如何。
 
-在接下来的部分中，我们将看看试图解决其中一些问题的各种提案。
+在接下來的部分中，我們將看看試圖解決其中一些問題的各種提案。
 
 [[ERC223_std]]
-==== ERC223 - 一种建议的Token合同接口标准
+==== ERC223 - 一種建議的Token合同接口標準
 
-ERC223提案试图通过检测目的地地址是否是合同来解决无意中将Token转移到合同（可能支持或不支持Token）的问题。ERC223要求用于接受Token的契约实现名为+TokenFallback+的函数。如果传输的目的地是合同并且合同不支持Token（即不实现+TokenFallback+），则传输失败。
+ERC223提案試圖通過檢測目的地地址是否是合同來解決無意中將Token轉移到合同（可能支持或不支持Token）的問題。ERC223要求用於接受Token的契約實現名為+TokenFallback+的函數。如果傳輸的目的地是合同並且合同不支持Token（即不實現+TokenFallback+），則傳輸失敗。
 
 
 [[is_contract]]
-为了检测目标地址是否为契约，ERC223参考实现使用了一小段内联字节码，并采用了一种颇具创造性的方式：
+為了檢測目標地址是否為契約，ERC223參考實現使用了一小段內聯字節碼，並採用了一種頗具創造性的方式：
 
 ----
 function isContract(address _addr) private view returns (bool is_contract) {
-	uint length;
-	assembly {
-		  //retrieve the size of the code on target address, this needs assembly
-		  length := extcodesize(_addr)
-	}
-	return (length>0);
+  uint length;
+  assembly {
+      //retrieve the size of the code on target address, this needs assembly
+      length := extcodesize(_addr)
+  }
+  return (length>0);
 }
 ----
 
-你可以在这里看到有关ERC223提案的讨论：
+你可以在這裡看到有關ERC223提案的討論：
 
 https://github.com/ethereum/EIPs/issues/223
 
 [[ERC223_interface]]
-ERC223合同接口规范是：
+ERC223合同接口規範是：
 
 [source,solidity]
 ----
@@ -778,26 +778,26 @@ interface ERC223Token {
 }
 ----
 
-ERC223没有得到广泛的实施，ERC讨论中有一些关于向前兼容性和在合同接口级别或用户界面上实现更改之间的折衷的争论。争论仍在继续。
+ERC223沒有得到廣泛的實施，ERC討論中有一些關於向前兼容性和在合同接口級別或用戶界面上實現更改之間的折衷的爭論。爭論仍在繼續。
 
-==== ERC777 - 一种建议的Token合同接口标准
+==== ERC777 - 一種建議的Token合同接口標準
 
-另一项改进Token合同标准的提案是ERC777。该提案有几个目标，包括：
+另一項改進Token合同標準的提案是ERC777。該提案有幾個目標，包括：
 
 * 提供ERC20兼容性界面
-* 使用+send+功能传输Token，类似于ether传输
-* 与ERC820兼容Token合同注册
-* 合同和地址可以通过在发送之前调用+TokensToSend+函数来控制它们发送的Token
-* 通过在接收者中调用+TokensReceived+函数来通知合同和地址
-* Token传输交易包含 +userData+ 和 +operatorData+ 字段中的元数据
-* 无论是发送到合同还是EOA，都以相同的方式运作
+* 使用+send+功能傳輸Token，類似於ether傳輸
+* 與ERC820兼容Token合同註冊
+* 合同和地址可以通過在發送之前調用+TokensToSend+函數來控制它們發送的Token
+* 通過在接收者中調用+TokensReceived+函數來通知合同和地址
+* Token傳輸交易包含 +userData+ 和 +operatorData+ 字段中的元數據
+* 無論是發送到合同還是EOA，都以相同的方式運作
 
-有关ERC777的详细信息和正在进行的讨论可以在这里找到：
+有關ERC777的詳細信息和正在進行的討論可以在這裡找到：
 
 https://github.com/ethereum/EIPs/issues/777
 
 [[ERC777_interface]]
-ERC777合同接口规范是：
+ERC777合同接口規範是：
 
 [source,solidity]
 ----
@@ -824,32 +824,32 @@ interface ERC777Token {
 }
 ----
 
-ERC777的参考实现与提案相关联。ERC777依赖于ERC820中关于注册合同的并行提案。关于ERC777的一些争论是关于同时采用两个大变化的复杂性：一个新的Token标准和一个注册标准。讨论仍在继续。
+ERC777的參考實現與提案相關聯。ERC777依賴於ERC820中關於註冊合同的並行提案。關於ERC777的一些爭論是關於同時採用兩個大變化的複雜性：一個新的Token標準和一個註冊標準。討論仍在繼續。
 
-==== ERC721 - 不可替代的Token（契据）标准
+==== ERC721 - 不可替代的Token（契據）標準
 
-我们目前看到的所有Token标准都是_可互换_Token，这意味着Token的每个单元都是完全可以互换的。ERC20Token标准仅跟踪每个帐户的最终余额，并且（明确地）跟踪任何Token的出处。
+我們目前看到的所有Token標準都是_可互換_Token，這意味著Token的每個單元都是完全可以互換的。ERC20Token標準僅跟蹤每個帳戶的最終餘額，並且（明確地）跟蹤任何Token的出處。
 
-ERC721提案是_不可互换的_ Tokens标准，也称为_契据_ _deeds_。
+ERC721提案是_不可互換的_ Tokens標準，也稱為_契據_ _deeds_。
 
-牛津词典：
+牛津詞典：
 
-    契约：签署和交付的法律文件，尤其是关于财产或合法权利所有权的法律文件。
+    契約：簽署和交付的法律文件，尤其是關於財產或合法權利所有權的法律文件。
 
-契约一词的使用旨在反映“财产所有权”部分，即使这些部分在任何司法管辖区都不被承认为“法律文件”，至少目前不是。
+契約一詞的使用旨在反映“財產所有權”部分，即使這些部分在任何司法管轄區都不被承認為“法律文件”，至少目前不是。
 
-不可互换的Token追踪独特事物的所有权。拥有的东西可以是数字项目，例如游戏物品或数字收藏品。或者，这种东西可以是物理事物，其物主通过Token进行跟踪，例如房屋，汽车，艺术品等。契约也可以代表负值的东西，例如贷款（债务），留置权，地役权等。ERC721标准对所有权由契约追踪的事物的性质没有限制或期望，只是它可以是唯一标识，在这个标准的情况下是由256位标识符实现的。
+不可互換的Token追蹤獨特事物的所有權。擁有的東西可以是數字項目，例如遊戲物品或數字收藏品。或者，這種東西可以是物理事物，其物主通過Token進行跟蹤，例如房屋，汽車，藝術品等。契約也可以代表負值的東西，例如貸款（債務），留置權，地役權等。ERC721標準對所有權由契約追蹤的事物的性質沒有限制或期望，只是它可以是唯一標識，在這個標準的情況下是由256位標識符實現的。
 
-标准和讨论的细节在两个不同的GitHub位置进行跟踪：
+標準和討論的細節在兩個不同的GitHub位置進行跟蹤：
 
-初步建议：
+初步建議：
 https://github.com/ethereum/EIPs/issues/721
 
-继续讨论：
+繼續討論：
 https://github.com/ethereum/EIPs/pull/841
 
 [[map_deed_owner]]
-要掌握ERC20和ERC721之间的基本差异，只需查看ERC721中使用的内部数据结构即可：
+要掌握ERC20和ERC721之間的基本差異，只需查看ERC721中使用的內部數據結構即可：
 
 [source,solidity]
 ----
@@ -857,10 +857,10 @@ https://github.com/ethereum/EIPs/pull/841
 mapping (uint256 => address) private deedOwner;
 ----
 
-ERC20跟踪属于每个所有者的余额，所有者是映射的主键，ERC721跟踪每个契约ID以及谁拥有它，契约ID是映射的主键。从这个基本差异衍生出不可替代的Token的所有属性。
+ERC20跟蹤屬於每個所有者的餘額，所有者是映射的主鍵，ERC721跟蹤每個契約ID以及誰擁有它，契約ID是映射的主鍵。從這個基本差異衍生出不可替代的Token的所有屬性。
 
 [[ERC721_interface]]
-ERC721 合同接口规范是：
+ERC721 合同接口規範是：
 
 
 [source,solidity]
@@ -880,10 +880,10 @@ interface ERC721 /* is ERC165 */ {
 }
 ----
 
-ERC721还支持两个_*可选*_接口，一个用于元数据，一个用于枚举契约和所有者。
+ERC721還支持兩個_*可選*_接口，一個用於元數據，一個用於枚舉契約和所有者。
 
 [[ERC721_metadata]]
-用于元数据的ERC721可选接口是：
+用於元數據的ERC721可選接口是：
 
 [source,solidity]
 ----
@@ -895,7 +895,7 @@ interface ERC721Metadata /* is ERC721 */ {
 ----
 
 [[ERC721_enum]]
-用于枚举的ERC721可选接口是：
+用於枚舉的ERC721可選接口是：
 
 [source,solidity]
 ----
@@ -909,74 +909,74 @@ interface ERC721Enumerable /* is ERC721 */ {
 ----
 
 [[Token_std_review]]
-=== Token标准
+=== Token標準
 
-在本节中，我们回顾几个建议的标准和几个广泛部署的Token合约标准。这些标准究竟做了什么？你应该使用这些标准吗？你应该如何使用它们？你应该添加超出这些标准的功能吗？你应该使用哪些标准？接下来我们将研究所有这些问题。
+在本節中，我們回顧幾個建議的標準和幾個廣泛部署的Token合約標準。這些標準究竟做了什麼？你應該使用這些標準嗎？你應該如何使用它們？你應該添加超出這些標準的功能嗎？你應該使用哪些標準？接下來我們將研究所有這些問題。
 
 [[Token_std_purpose]]
-==== 什么是Token标准？他们的目的是什么？
+==== 什麼是Token標準？他們的目的是什麼？
 
-Token标准是实现的_最小_规范。这意味着为了符合ERC20的要求，你至少需要实施ERC20规定的功能和行为。你还可以通过实现不属于标准的功能来自由添加功能。
+Token標準是實現的_最小_規範。這意味著為了符合ERC20的要求，你至少需要實施ERC20規定的功能和行為。你還可以通過實現不屬於標準的功能來自由添加功能。
 
-这些标准的主要目的是鼓励合同之间的互用性。因此，所有钱包，交易所，用户界面和其他基础设施组件都可以以可预见的方式与任何遵循规范的合同进行交流。
+這些標準的主要目的是鼓勵合同之間的互用性。因此，所有錢包，交易所，用戶界面和其他基礎設施組件都可以以可預見的方式與任何遵循規範的合同進行交流。
 
-标准的目的是 _描述性的_ _descriptive_，而不是_规定性的_ _prescriptive_。你如何选择实现这些功能取决于你 - 合同的内部功能与标准无关。它们有一些功能要求，它们管理特定情况下的行为，但它们没有规定实现。例如，如果值设置为零，则传递函数的行为。
+標準的目的是 _描述性的_ _descriptive_，而不是_規定性的_ _prescriptive_。你如何選擇實現這些功能取決於你 - 合同的內部功能與標準無關。它們有一些功能要求，它們管理特定情況下的行為，但它們沒有規定實現。例如，如果值設置為零，則傳遞函數的行為。
 
 [[should_use_std]]
-==== 你应该使用这些标准吗？
+==== 你應該使用這些標準嗎？
 
-鉴于所有这些标准，每个开发人员都面临两难选择：使用现有标准还是创新超出他们施加的限制？
+鑑於所有這些標準，每個開發人員都面臨兩難選擇：使用現有標準還是創新超出他們施加的限制？
 
-这种困境并不容易解决。标准必然会限制你的创新能力，创造一个你必须遵循的狭窄“车辙”。另一方面，基本标准来自数百个应用程序的经验，并且通常与99％的用例非常吻合。
+這種困境並不容易解決。標準必然會限制你的創新能力，創造一個你必須遵循的狹窄“車轍”。另一方面，基本標準來自數百個應用程序的經驗，並且通常與99％的用例非常吻合。
 
-作为这一考虑的一部分，还有一个更大的问题：互操作性和广泛采用的价值。如果你选择使用现有标准，你将获得设计用于该标准的所有系统的价值。如果你选择偏离标准，则必须考虑自己构建所有基础架构的成本，或者说服其他人支持你新标准的实施。建立自己的道路并忽视现有标准的倾向被称为“Not Invented Here”，并且与开源文化相对立。另一方面，进步和创新有时依靠背离传统。这是一个棘手的选择，所以仔细考虑吧！
+作為這一考慮的一部分，還有一個更大的問題：互操作性和廣泛採用的價值。如果你選擇使用現有標準，你將獲得設計用於該標準的所有系統的價值。如果你選擇偏離標準，則必須考慮自己構建所有基礎架構的成本，或者說服其他人支持你新標準的實施。建立自己的道路並忽視現有標準的傾向被稱為“Not Invented Here”，並且與開源文化相對立。另一方面，進步和創新有時依靠背離傳統。這是一個棘手的選擇，所以仔細考慮吧！
 
-.维基百科“Not Invented Here”（https://en.wikipedia.org/wiki/Not_invented_here）
+.維基百科“Not Invented Here”（https://en.wikipedia.org/wiki/Not_invented_here）
  
- 	Not Invented Here是由社会，企业或机构文化采取的立场，由于其外部起源和成本（如版税），避免使用或购买已有产品，研究，标准或知识。
+  Not Invented Here是由社會，企業或機構文化採取的立場，由於其外部起源和成本（如版稅），避免使用或購買已有產品，研究，標準或知識。
 
 [[security_maturity]]
 === 安全成熟度
 
-除了标准的选择之外，还有_implementation_的并行选择。当你决定使用标准（如ERC20）时，你必须决定如何实施兼容Token。以太坊生态系统中广泛使用了一些现有的“参考”实现。或者你可以从头开始写你自己的。再次，这个选择代表了一个可能产生严重安全隐患的困境。
+除了標準的選擇之外，還有_implementation_的並行選擇。當你決定使用標準（如ERC20）時，你必須決定如何實施兼容Token。以太坊生態系統中廣泛使用了一些現有的“參考”實現。或者你可以從頭開始寫你自己的。再次，這個選擇代表了一個可能產生嚴重安全隱患的困境。
 
-现有的实施是“战斗测试”。虽然不可能证明它们是安全的，但其中许多都支持数百万美元的Token。他们一再受到攻击，并且受到了强烈的攻击。到目前为止，没有发现重大的漏洞。写你自己的并不容易 - 有许多微妙的方式可以让合约受到损害。使用经过充分测试的广泛使用的实现更加安全。在我们上面的例子中，我们使用了ERC20标准的OpenZeppelin实现，因为这个实现从头到尾都是安全的。
+現有的實施是“戰鬥測試”。雖然不可能證明它們是安全的，但其中許多都支持數百萬美元的Token。他們一再受到攻擊，並且受到了強烈的攻擊。到目前為止，沒有發現重大的漏洞。寫你自己的並不容易 - 有許多微妙的方式可以讓合約受到損害。使用經過充分測試的廣泛使用的實現更加安全。在我們上面的例子中，我們使用了ERC20標準的OpenZeppelin實現，因為這個實現從頭到尾都是安全的。
 
-如果你使用现有的实现，你也可以扩展它。再次小心这种冲动。复杂性是安全的敌人。你添加的每一行代码都会扩展合约的_受攻击面_，并可能代表处于等待状态的漏洞。你可能没有注意到一个问题，直到你在合同上投入了很多价值并且有人打破了它。
+如果你使用現有的實現，你也可以擴展它。再次小心這種衝動。複雜性是安全的敵人。你添加的每一行代碼都會擴展合約的_受攻擊面_，並可能代表處於等待狀態的漏洞。你可能沒有注意到一個問題，直到你在合同上投入了很多價值並且有人打破了它。
 
 [[extend_Token_interface]]
-=== Token接口标准的扩展
+=== Token接口標準的擴展
 
-本节中讨论的Token标准以非常小的接口开始，功能有限。许多项目已经创建了扩展实现，以支持他们的应用程序所需的功能。其中一些包括：
+本節中討論的Token標準以非常小的接口開始，功能有限。許多項目已經創建了擴展實現，以支持他們的應用程序所需的功能。其中一些包括：
 
-所有者控制:: 特定地址或一组地址（多重签名）具有特殊功能，例如黑名单，白名单，铸造，恢复等。
+所有者控制:: 特定地址或一組地址（多重簽名）具有特殊功能，例如黑名單，白名單，鑄造，恢復等。
 
-燃烧:: Token燃烧是指Token被转移到不可靠的地址或删除余额并减少供应时故意销毁。
+燃燒:: Token燃燒是指Token被轉移到不可靠的地址或刪除餘額並減少供應時故意銷燬。
 
-Minting:: 以可预测的速率添加Token的总供应量的能力，或通过Token创建者的“命令”添加的能力。
+Minting:: 以可預測的速率添加Token的總供應量的能力，或通過Token創建者的“命令”添加的能力。
 
-Crowdfunding:: 提供Token销售的能力，例如通过拍卖，市场销售，反向拍卖等。
+Crowdfunding:: 提供Token銷售的能力，例如通過拍賣，市場銷售，反向拍賣等。
 
-上限:: 总供给的预定义和不可改变的限制，与“minting”功能相反。
+上限:: 總供給的預定義和不可改變的限制，與“minting”功能相反。
 
-恢复“后门”:: 恢复资金，反向传输或拆除由指定地址或一组地址激活的Token（多重签名）的功能。
+恢復“後門”:: 恢復資金，反向傳輸或拆除由指定地址或一組地址激活的Token（多重簽名）的功能。
 
-白名单:: 限制Token传输仅限于列出的地址的功能。在经过不同司法管辖区的规则审核后，最常用于向“经认可的投资者”提供Token。通常有一种更新白名单的机制。
+白名單:: 限制Token傳輸僅限於列出的地址的功能。在經過不同司法管轄區的規則審核後，最常用於向“經認可的投資者”提供Token。通常有一種更新白名單的機制。
 
-黑名单:: 通过禁止特定地址来限制Token传输的能力。通常有更新黑名单的功能。
+黑名單:: 通過禁止特定地址來限制Token傳輸的能力。通常有更新黑名單的功能。
 
-在OpenZeppelin库中有许多这些功能的参考实现。其中一些是面向特定用例的，仅在少数Token中实现。到目前为止，这些功能的接口还没有被广泛接受的标准。
+在OpenZeppelin庫中有許多這些功能的參考實現。其中一些是面向特定用例的，僅在少數Token中實現。到目前為止，這些功能的接口還沒有被廣泛接受的標準。
 
-如前所述，扩展具有附加功能的Token标准的决定代表了创新/风险与互操作性/安全性之间的权衡。
+如前所述，擴展具有附加功能的Token標準的決定代表了創新/風險與互操作性/安全性之間的權衡。
 
 [[Tokens_ico]]
 === Tokens 和 ICOs
 
-Token已经成为以太坊生态系统中的爆炸性发展。它们可能是所有智能合约平台（如以太坊）中非常重要的基础组件。
+Token已經成為以太坊生態系統中的爆炸性發展。它們可能是所有智能合約平臺（如以太坊）中非常重要的基礎組件。
 
-尽管如此，这些标准的重要性和未来影响不应该与当前Token产品的认可相混淆。就像在任何早期阶段的技术一样，第一波产品和公司几乎都会失败。今天在Ethereum上提供的许多Token几乎都是伪装的骗局，传销和金钱争夺。
+儘管如此，這些標準的重要性和未來影響不應該與當前Token產品的認可相混淆。就像在任何早期階段的技術一樣，第一波產品和公司幾乎都會失敗。今天在Ethereum上提供的許多Token幾乎都是偽裝的騙局，傳銷和金錢爭奪。
 
-诀窍是将这种技术的长期愿景和影响与可能非常大的Token ICO的短期泡沫区分开来，这种泡沫充斥着欺诈行为。两者在同一时间都可以是真实的。Token标准和平台将在目前的Token狂热中幸存下来，然后他们可能会改变世界。
+訣竅是將這種技術的長期願景和影響與可能非常大的Token ICO的短期泡沫區分開來，這種泡沫充斥著欺詐行為。兩者在同一時間都可以是真實的。Token標準和平臺將在目前的Token狂熱中倖存下來，然後他們可能會改變世界。
 
-<<第十一章#,下一章：去中心化应用 (DApps)>>
+<<第十一章#,下一章：去中心化應用 (DApps)>>
 

@@ -1,27 +1,27 @@
-<<第十七章#,上一章：DevP2P协议>>
+<<第十七章#,上一章：DevP2P協議>>
 
 [appendix]
 [[ethereum_standards]]
-== 以太坊标准
+== 以太坊標準
 
 [[eips]]
-=== 以太坊改进提案（EIPs）
+=== 以太坊改進提案（EIPs）
 
 https://eips.ethereum.org/
 
-来自EIP-1：
+來自EIP-1：
 
- EIP代表以太坊改进提案。EIP是一个设计文档，为以太坊社区提供信息，或描述以太坊或其过程或环境的新功能。EIP应提供该功能的简明技术规范和该功能的基本原理。EIP作者负责在社区内建立共识并记录不同意见。
+ EIP代表以太坊改進提案。EIP是一個設計文檔，為以太坊社區提供信息，或描述以太坊或其過程或環境的新功能。EIP應提供該功能的簡明技術規範和該功能的基本原理。EIP作者負責在社區內建立共識並記錄不同意見。
  
 [[eip_workflow]]
-.Ethereum改进提案工作流程
+.Ethereum改進提案工作流程
 image::images/eip_workflow.png["Ethereum Improvement Proposal Workflow"]
 
 [[ercs]]
-=== 以太坊征求意见（ERCs）
-Request for Comments（RFC）是一种用于为互联网引入技术和组织指南的方法，因为它们是由https://www.ietf.org[Internet Engineering Task Force]提出的。ERCS包括为以太坊网络设置标准的类似指南。以下部分提供了由以太坊开发人员社区开发和接受的最新列表。
+=== 以太坊徵求意見（ERCs）
+Request for Comments（RFC）是一種用於為互聯網引入技術和組織指南的方法，因為它們是由https://www.ietf.org[Internet Engineering Task Force]提出的。ERCS包括為以太坊網絡設置標準的類似指南。以下部分提供了由以太坊開發人員社區開發和接受的最新列表。
 
-ERCs的增加是通过https://github.com/ethereum/EIPs[EIPs]，以太坊改进协议来完成的，这是对比特币自己的BIP的致敬。EIP由开发人员编写并提交给同行评审，评估其有用性，并且能够增加现有ERC的实用性。如果他们被接受，他们最终将成为ERC标准的一部分。
+ERCs的增加是通過https://github.com/ethereum/EIPs[EIPs]，以太坊改進協議來完成的，這是對比特幣自己的BIP的致敬。EIP由開發人員編寫並提交給同行評審，評估其有用性，並且能夠增加現有ERC的實用性。如果他們被接受，他們最終將成為ERC標準的一部分。
 
 [[eip_table]]
 === 最重要的EIP和ERC表
@@ -88,6 +88,6 @@ ERCs的增加是通过https://github.com/ethereum/EIPs[EIPs]，以太坊改进�
 | https://github.com/ethereum/EIPs/issues/930[EIP-930]                             | ERC-930 The ES (Eternal Storage) contract is owned by an address that have write permissions. The storage is public, which means everyone has read permissions. It store the data on mappings, using one mapping per type of variable. The use of this contract allows the developer to migrate the storage easily to another contract if needed.                                     | Augusto Lemble                            | ERC | Draft    |
 |===
 
-<<第十九章#,下一章：以太坊分叉历史>>
+<<第十九章#,下一章：以太坊分叉歷史>>
 
 

@@ -1,61 +1,61 @@
 [[testnets]]
-== 以太坊测试网（Testnets）
+== 以太坊測試網（Testnets）
 
-<<第三章#,上一章：以太坊客户端>>
+<<第三章#,上一章：以太坊客戶端>>
 
-=== 什么是测试网？
+=== 什麼是測試網？
 
-测试网络（简称testnet）用于模拟以太网主网的行为。有一些公开的测试网络可以替代以太坊区块链。这些网络上的货币毫无价值，但它们仍然很有用，因为合约和协议变更的功能可以在不中断以太网主网或使用真实货币的情况下进行测试。当主网（简称mainnet）即将包含对以太坊协议的任何重大改变时，其测试主要在这些测试网络上完成。这些测试网络也被大量开发人员用于在部署到主网之前测试应用程序。
+測試網絡（簡稱testnet）用於模擬以太網主網的行為。有一些公開的測試網絡可以替代以太坊區塊鏈。這些網絡上的貨幣毫無價值，但它們仍然很有用，因為合約和協議變更的功能可以在不中斷以太網主網或使用真實貨幣的情況下進行測試。當主網（簡稱mainnet）即將包含對以太坊協議的任何重大改變時，其測試主要在這些測試網絡上完成。這些測試網絡也被大量開發人員用於在部署到主網之前測試應用程序。
 
 === 使用 Testnets
 
-你可以连接到公共可用的测试网络或创建你自己的私人测试网络。首先，让我们使用公共测试网来更简单地起步。要使用公共测试网络，需要一些测试网络以及到该网络的连接。对于testnet ether，使用“faucet”，faucet缓慢地分配测试ether，向任何询问的人“滴送”少量ether。要连接到一个测试网络，你需要一个以太坊客户端，完整的客户端，比如geth，或者完整的客户端的网关，比如MetaMask。
+你可以連接到公共可用的測試網絡或創建你自己的私人測試網絡。首先，讓我們使用公共測試網來更簡單地起步。要使用公共測試網絡，需要一些測試網絡以及到該網絡的連接。對於testnet ether，使用“faucet”，faucet緩慢地分配測試ether，向任何詢問的人“滴送”少量ether。要連接到一個測試網絡，你需要一個以太坊客戶端，完整的客戶端，比如geth，或者完整的客戶端的網關，比如MetaMask。
 
-=== 获取测试以太网
+=== 獲取測試以太網
 
-由于测试网不以真正的金钱运作，矿工保护测试网的动机很弱。因此，测试网必须保护自己免受滥用和攻击。因此，为这些测试网创建了水龙头，以受控的方式向开发人员分发免费的测试ether（大多数faucet每隔几秒左右"滴注"ether）。这种以太网的受控分配可防止用户滥用链，因为提供有限的ether供应可防止他们向链中写入过多内容或执行太多交易。另外，一些testnets已经实施了认证证明（Proof of Authentication）方案，使用faucet需要具有适当社交媒体网站的认证的凭证。
+由於測試網不以真正的金錢運作，礦工保護測試網的動機很弱。因此，測試網必須保護自己免受濫用和攻擊。因此，為這些測試網創建了水龍頭，以受控的方式向開發人員分發免費的測試ether（大多數faucet每隔幾秒左右"滴注"ether）。這種以太網的受控分配可防止用戶濫用鏈，因為提供有限的ether供應可防止他們向鏈中寫入過多內容或執行太多交易。另外，一些testnets已經實施了認證證明（Proof of Authentication）方案，使用faucet需要具有適當社交媒體網站的認證的憑證。
 
-=== 连接到Testnets
+=== 連接到Testnets
 
 ==== Metamask
 
-Metamask完全支持Ropsten，Kovan和Rinkeby测试网，但也可以连接到其他测试网和本地网。在Metamask中，只需单击“main network”下拉菜单，即可切换网络。MetaMask还提供了一个“buy”测试ether的选项，该选项将你引导至你可以请求免费测试以太网的faucet。如果使用Ropsten测试网，则可以从Ropsten测试faucet服务中获取ether。你可以从此页面访问此faucet。它需要Metamask扩展才能工作。https://faucet.metamask.io/
+Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到其他測試網和本地網。在Metamask中，只需單擊“main network”下拉菜單，即可切換網絡。MetaMask還提供了一個“buy”測試ether的選項，該選項將你引導至你可以請求免費測試以太網的faucet。如果使用Ropsten測試網，則可以從Ropsten測試faucet服務中獲取ether。你可以從此頁面訪問此faucet。它需要Metamask擴展才能工作。https://faucet.metamask.io/
 
 ===== Infura
 
-当MetaMask连接到测试网络时，它使用Infura服务提供商来访问JSON-RPC接口。Infura诞生的目的是为ConsenSys内部项目提供稳定可靠的RPC访问。除了JSON-RPC API之外，Infura还提供REST（表述性状态转移）API，IPFS（星际文件系统，即去中心化存储）API和Websockets（即流式传输）API。
+當MetaMask連接到測試網絡時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化存儲）API和Websockets（即流式傳輸）API。
 
-Infura为Ethereum主网，Ropsten，Kovan，Rinkeby和INFURAnet（用于Infura的定制测试网络）提供网关API。
+Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura的定製測試網絡）提供網關API。
 
-要通过MetaMask使用Infura进行较低级别的活动，你不需要账户。要直接使用API，你需要注册一个账户并使用Infura提供的API密钥。
+要通過MetaMask使用Infura進行較低級別的活動，你不需要賬戶。要直接使用API，你需要註冊一個賬戶並使用Infura提供的API密鑰。
 
-有关Infura的更多信息，请访问：
+有關Infura的更多信息，請訪問：
 
 https://infura.io/
 
-==== Remix集成开发环境（IDE）
+==== Remix集成開發環境（IDE）
 
-Remix IDE可用于在主网和测试网上部署和交互智能合约，包括Ropsten，Rinkeby和Kovan（Web3提供者使用Infura地址和API密钥或通过Injected Web3使用MetaMask中选择的网络）和Ganache（ Web3提供端点http://localhost:8545） 
+Remix IDE可用於在主網和測試網上部署和交互智能合約，包括Ropsten，Rinkeby和Kovan（Web3提供者使用Infura地址和API密鑰或通過Injected Web3使用MetaMask中選擇的網絡）和Ganache（ Web3提供端點http://localhost:8545） 
 
 https://github.com/ethereum/remix/blob/master/docs/run_tab.rst 
 https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b
 
 ==== Geth
-Geth本身支持Ropsten和Rinkeby网络。要连接到Ropsten网络，请使用命令行参数：
+Geth本身支持Ropsten和Rinkeby網絡。要連接到Ropsten網絡，請使用命令行參數：
 
 ----
 geth --testnet
 ----
 
-这将开始同步Ropsten区块链。名为 +testnet+ 的新目录将在你的主Ethereum数据目录中创建。一个 +keystore+ 目录将在 +testnet+ 内部创建，并将存储你的testnet帐户的私钥。在撰写本文时，Ropsten区块链比以太坊主区块链小得多：大约14GB的数据。由于测试网需要的资源较少，因此首先在测试网上设置并测试你的代码会更简单。
+這將開始同步Ropsten區塊鏈。名為 +testnet+ 的新目錄將在你的主Ethereum數據目錄中創建。一個 +keystore+ 目錄將在 +testnet+ 內部創建，並將存儲你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的代碼會更簡單。
 
-与testnet的交互与mainnet类似。你可以使用控制台启动Geth testnet，方法是运行：
+與testnet的交互與mainnet類似。你可以使用控制檯啟動Geth testnet，方法是運行：
 ----
 geth --testnet console
 ----
 
-这使得执行操作成为可能，例如开设新账户，检查余额，检查其他以太坊地址的余额等。
-在Geth控制台之外运行时，只需将`--testnet`参数添加到命令行指令中，就可以执行类似于在主网上执行的操作。作为列举所有可用的testnet帐户及其地址的示例，请运行：
+這使得執行操作成為可能，例如開設新賬戶，檢查餘額，檢查其他以太坊地址的餘額等。
+在Geth控制檯之外運行時，只需將`--testnet`參數添加到命令行指令中，就可以執行類似於在主網上執行的操作。作為列舉所有可用的testnet帳戶及其地址的示例，請運行：
 
 ----
 geth --testnet account list
@@ -63,18 +63,18 @@ geth --testnet account list
 
 [TIP]
 ====
-虽然小得多，但测试网仍需要一些时间才能完全同步。
+雖然小得多，但測試網仍需要一些時間才能完全同步。
 ====
 
-你可以通过在geth交互式控制台中运行以下命令来检查geth是否已完成同步测试网络：
+你可以通過在geth交互式控制檯中運行以下命令來檢查geth是否已完成同步測試網絡：
 
 ----
 eth.getBlock("latest").number
 ----
 
-一旦你的testnet节点完全同步，这应该返回一个非0的数字。你可以将该编号与已知的testnet区块浏览器中的最新块进行比较，例如https://ropsten.etherscan.io/
+一旦你的testnet節點完全同步，這應該返回一個非0的數字。你可以將該編號與已知的testnet區塊瀏覽器中的最新塊進行比較，例如https://ropsten.etherscan.io/
 
-同样，要连接到Rinkeby测试网络，请使用命令行参数：
+同樣，要連接到Rinkeby測試網絡，請使用命令行參數：
 
 ----
 geth --rinkeby
@@ -82,13 +82,13 @@ geth --rinkeby
 
 ==== Parity
 
-Parity客户端支持Ropsten和Kovan测试网络。你可以用+chain+参数选择你要连接的网络。例如，要同步Ropsten测试网络：
+Parity客戶端支持Ropsten和Kovan測試網絡。你可以用+chain+參數選擇你要連接的網絡。例如，要同步Ropsten測試網絡：
 
 ----
 parity --chain ropsten
 ----
 
-同样，要同步Kovan测试网络，请使用：
+同樣，要同步Kovan測試網絡，請使用：
 
 ----
 parity --chain kovan
@@ -96,23 +96,23 @@ parity --chain kovan
 
 == 深入以太坊Testnets
 
-在这个阶段你可能会想：“我明白我为什么要使用测试网络，但为什么会有这么多呢？”
+在這個階段你可能會想：“我明白我為什麼要使用測試網絡，但為什麼會有這麼多呢？”
 
 https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles
 
-=== 工作量证明（挖矿）Proof-of-Work (Mining) 与 权威证明（联合签名）Proof-of-Authority (Federated Signing)
+=== 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)
 https://github.com/ethereum/guide/blob/master/poa.md
 
-=== Morden（原始测试网）
+=== Morden（原始測試網）
 
 https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/
 
 === Ropsten
 
-如果你想开始在Ropsten网络上测试合约，有几个faucet可以供给你Ropsten的ether。如果faucet不起作用，请尝试不同的faucet。
+如果你想開始在Ropsten網絡上測試合約，有幾個faucet可以供給你Ropsten的ether。如果faucet不起作用，請嘗試不同的faucet。
 
 * http://faucet.ropsten.be:3001/ 
-这个faucet提供了应该排队接收测试以太的地址的可能性。
+這個faucet提供了應該排隊接收測試以太的地址的可能性。
 
 * bitfwd Ropsten Faucet 
 https://faucet.bitfwd.xyz/。
@@ -131,13 +131,13 @@ https://ropsten.etherscan.io/
 
 === Rinkeby
 
-Rinkeby水龙头位于https://faucet.rinkeby.io/。
-要请求测试ether，有必要在Twitter，Google Plus或Facebook上发布公开信息。https://www.rinkeby.io/
+Rinkeby水龍頭位於https://faucet.rinkeby.io/。
+要請求測試ether，有必要在Twitter，Google Plus或Facebook上發佈公開信息。https://www.rinkeby.io/
 https://rinkeby.etherscan.io/
 
 === Kovan
 
-Kovan testnet支持各种方法来请求测试ether。
+Kovan testnet支持各種方法來請求測試ether。
 更多信息可以在 https://github.com/kovan-testnet/faucet/blob/master/README.md 找到。
 
 https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f
@@ -147,11 +147,11 @@ https://kovan-testnet.github.io/website/
 https://kovan.etherscan.io/
 
 
-== 以太坊经典Testnets
+== 以太坊經典Testnets
 
 ==== Morden
 
-以太坊经典目前运行着Morden测试网的一个变体，与以太坊经典活跃网络保持功能相同。你可以通过gastracker RPC或者为`geth`或`parity`提供一个标志来连接它.
+以太坊經典目前運行著Morden測試網的一個變體，與以太坊經典活躍網絡保持功能相同。你可以通過gastracker RPC或者為`geth`或`parity`提供一個標誌來連接它.
 
 *Faucet:* http://testnet.epool.io/
 
@@ -163,44 +163,44 @@ https://kovan.etherscan.io/
 
 *Parity flag:* `parity --chain=classic-testnet`
 
-=== 以太坊测试网的历史
+=== 以太坊測試網的歷史
 
 Olympic, Morden to Ropsten, Kovan, Rinkeby
 
-Olympic testnet (Network ID: 0) 是Frontier首个公共测试网（简称Ethereum 0.9）。它于2015年初推出，2015年中期被Morden取代时弃用。
+Olympic testnet (Network ID: 0) 是Frontier首個公共測試網（簡稱Ethereum 0.9）。它於2015年初推出，2015年中期被Morden取代時棄用。
 
-Ethereum’s Morden testnet (Network ID: 2) 与Frontier一起发布，从2015年7月开始运行，直到2016年11月不再使用。虽然任何使用以太坊的人都可以创建测试网，但Morden是第一个“官方”公共测试网，取代了Olympic测试网。由于臃肿区块链的长同步时间以及Geth和Parity客户端之间的共识问题，测试网络重新启动并重新生成为Ropsten。
+Ethereum’s Morden testnet (Network ID: 2) 與Frontier一起發佈，從2015年7月開始運行，直到2016年11月不再使用。雖然任何使用以太坊的人都可以創建測試網，但Morden是第一個“官方”公共測試網，取代了Olympic測試網。由於臃腫區塊鏈的長同步時間以及Geth和Parity客戶端之間的共識問題，測試網絡重新啟動並重新生成為Ropsten。
 
-Ropsten (Network ID: 3) 是一个针对Homestead的公共跨客户端测试网，于2016年晚些时候推出，并作为公共测试网顺利运行至2017年2月底。根据Ethereum的核心开发人员PéterSzilágyi的说法，二月的时候，“恶意行为者决定滥用低PoW，并逐步将gas限制提高到90亿（从普通的470万），发送巨大交易损害了整个网络”。Ropsten在2017年3月被恢复。https://github.com/ethereum/ropsten
+Ropsten (Network ID: 3) 是一個針對Homestead的公共跨客戶端測試網，於2016年晚些時候推出，並作為公共測試網順利運行至2017年2月底。根據Ethereum的核心開發人員PéterSzilágyi的說法，二月的時候，“惡意行為者決定濫用低PoW，並逐步將gas限制提高到90億（從普通的470萬），發送巨大交易損害了整個網絡”。Ropsten在2017年3月被恢復。https://github.com/ethereum/ropsten
 
-Kovan (Network ID: 42) 是由Parity的权威证明（PoA）共识算法驱动的Homestead的公共Parity测试网络。该测试网不受垃圾邮件攻击的影响，因为ether供应由可信方控制。这些值得信赖的各方是在Ethereum上积极开发的公司。
-尽管看起来这应该是以太坊测试网问题的解决方案，但在以太坊社区内似乎存在关于Kovan测试网的共识问题。https://github.com/kovan-testnet/proposal
+Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識算法驅動的Homestead的公共Parity測試網絡。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
+儘管看起來這應該是以太坊測試網問題的解決方案，但在以太坊社區內似乎存在關於Kovan測試網的共識問題。https://github.com/kovan-testnet/proposal
 
-Rinkeby (Network ID: 4) 是由Ethereum团队于2017年4月开始的Homestead发布的Geth测试网络，并使用PoA共识协议。以斯德哥尔摩的地铁站命名，它几乎不受垃圾邮件攻击的影响（因为以太网供应由受信任方控制）。请参阅EIP 225：https://github.com/ethereum/EIPs/issues/225
+Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發佈的Geth測試網絡，並使用PoA共識協議。以斯德哥爾摩的地鐵站命名，它幾乎不受垃圾郵件攻擊的影響（因為以太網供應由受信任方控制）。請參閱EIP 225：https://github.com/ethereum/EIPs/issues/225
 
-=== 工作量证明（挖矿）Proof-of-Work (Mining) 与 权威证明（联合签名）Proof-of-Authority (Federated Signing)
+=== 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)
 https://github.com/ethereum/guide/blob/master/poa.md
 
-Proof-of-Work 是一种协议，必须执行挖矿（昂贵的计算机计算）以在区块链（分布式账本）上创建新的区块（去信任的交易）。
-缺点：能源消耗。集中的哈希算力与集中的采矿农场，不是真正的分布式。挖掘新块体所需的大量计算能力对环境有影响。
+Proof-of-Work 是一種協議，必須執行挖礦（昂貴的計算機計算）以在區塊鏈（分佈式賬本）上創建新的區塊（去信任的交易）。
+缺點：能源消耗。集中的哈希算力與集中的採礦農場，不是真正的分佈式。挖掘新塊體所需的大量計算能力對環境有影響。
 
-Proof-of-Authority 是一种协议，它只将造币的负载分配给授权和可信的签名者，他们可以根据自己的判断并随时以发币频率分发新的区块。https://github.com/ethereum/EIPs/issues/225
-优点：具有最显赫的身份的区块链参与者通过算法选择来验证块来交付交易。
+Proof-of-Authority 是一種協議，它只將造幣的負載分配給授權和可信的簽名者，他們可以根據自己的判斷並隨時以發幣頻率分發新的區塊。https://github.com/ethereum/EIPs/issues/225
+優點：具有最顯赫的身份的區塊鏈參與者通過算法選擇來驗證塊來交付交易。
 
 https://www.deepdotweb.com/2017/05/21/generalized-proof-activity-poa-forking-free-hybrid-consensus/
 
 
-=== 运行本地测试网
+=== 運行本地測試網
 
-==== Ganache: 以太坊开发的个人区块链
+==== Ganache: 以太坊開發的個人區塊鏈
 
-你可以使用Ganache部署合约，开发应用程序并运行测试。它可用作Windows，Mac和Linux的桌面应用程序。
+你可以使用Ganache部署合約，開發應用程序並運行測試。它可用作Windows，Mac和Linux的桌面應用程序。
 
-网站: http://truffleframework.com/ganache
+網站: http://truffleframework.com/ganache
 
-==== Ganache CLI: Ganache 作为命令行工具。
+==== Ganache CLI: Ganache 作為命令行工具。
 
-这个工具以前称为“ethereumJS TestRPC”。
+這個工具以前稱為“ethereumJS TestRPC”。
 
 https://github.com/trufflesuite/ganache-cli/
 
@@ -208,10 +208,10 @@ https://github.com/trufflesuite/ganache-cli/
 $ npm install -g ganache-cli
 ----
 
-让我们开始以太坊区块链协议的节点模拟。
-* []检查`--networkId`和`--port`标志值是否与truffle.js中的配置相匹配
-* []检查`--gasLimit`标志值是否与https://ethstats.net上显示的最新主网gas极限（即8000000 gas）相匹配，以避免不必要地遇到`gas'异常。请注意，4000000000的“--gasPrice”代表4 gwei的gas价格。
-* []可以输入一个`--mnemonic'标志值来恢复以前的高清钱包和相关地址
+讓我們開始以太坊區塊鏈協議的節點模擬。
+* []檢查`--networkId`和`--port`標誌值是否與truffle.js中的配置相匹配
+* []檢查`--gasLimit`標誌值是否與https://ethstats.net上顯示的最新主網gas極限（即8000000 gas）相匹配，以避免不必要地遇到`gas'異常。請注意，4000000000的“--gasPrice”代表4 gwei的gas價格。
+* []可以輸入一個`--mnemonic'標誌值來恢復以前的高清錢包和相關地址
 
 ----
 $ ganache-cli \
@@ -222,6 +222,6 @@ $ ganache-cli \
   --gasPrice=4000000000;
 ----
 
-<<第五章#,下一章：密钥与地址>>
+<<第五章#,下一章：密鑰與地址>>
 
 
