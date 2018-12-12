@@ -1,3 +1,9 @@
+---
+title: Mastering Ethereum - 繁中
+image: https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png
+tags: Mastering Ethereum
+---
+
 # Mastering Ethereum - 繁中
 ![](https://img.shields.io/badge/Language-Traditional%20Chinese-orange.svg)
 ![https://github.com/aantonop](https://img.shields.io/badge/Author-aantonop-yellowgreen.svg)
