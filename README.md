@@ -2,7 +2,7 @@
 
 
 <center>
-<img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="50%" height="50%" />
+<img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="30%" height="30%" />
 </center>
 
 ### 目錄
