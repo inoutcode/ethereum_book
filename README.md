@@ -1,4 +1,7 @@
 # Mastering Ethereum - 繁中
+![https://github.com/aantonop](https://img.shields.io/badge/Author-aantonop-yellowgreen.svg)
+![https://github.com/inoutcode](https://img.shields.io/badge/Translator-inoutcode-lightgrey.svg)
+![https://github.com/ChenPoWei](https://img.shields.io/badge/Translator-Chen%20Po%20Wei-blue.svg)    
 
 <center>
 <img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="30%" height="30%" />
