@@ -5,7 +5,7 @@
 ![https://github.com/ChenPoWei](https://img.shields.io/badge/Translator-Chen%20Po%20Wei-blue.svg)    
 
 <center>
-<img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="30%" height="30%" />
+<img src="https://github.com/ChenPoWei/ethereumbook_zh/blob/master/images/cover.png" width="40%" height="40%" />
 </center>
 
 ## 目錄
