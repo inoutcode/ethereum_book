@@ -234,7 +234,7 @@ Require::
 
 還原 Revert::
 	當需要處理與 <<require-sentence, require()>> 相同的情況，但使用更復雜的邏輯時，使用revert()。
-	例如，如果你的代碼有一些嵌套的 if/else 邏輯流程，你會發現使用 <<require-sentence, require()>> 而不是 require（）是合理的。
+	例如，如果你的代碼有一些嵌套的 if/else 邏輯流程，你會發現使用revert()而不是 <<require-sentence, require()>> 是合理的。
 
 獎勵 Reward::
 	Ether（ETH）的數量，包含在每個新區塊中的金額作為網絡對找到工作證明解決方案的礦工的獎勵。
@@ -246,7 +246,7 @@ Require::
     Satoshi Nakamoto 是設計比特幣及其原始實現Bitcoin Core的個人或團隊的名字。作為實現的一部分，他們也設計了第一個區塊鏈。在這個過程中，他們是第一個解決數字貨幣的雙重支付問題的。他們的真實身份至今仍是個謎。
     
 Vitalik Buterin::
-    Vitalik Buterin 是俄國-加拿大的程序員和作假，以太坊和 Bitcoin 雜誌的聯合創始人。
+    Vitalik Buterin 是俄國-加拿大的程序員和作家，以太坊和 Bitcoin 雜誌的聯合創始人。
 
 Gavin Wood::
     Gavin Wood 是英國的程序員，以太坊的聯合創始人和前 CTO。在2014年8月他提出了 Solidity，用於編寫智能合約的面向合約的編程語言。
