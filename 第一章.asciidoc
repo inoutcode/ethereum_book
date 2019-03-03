@@ -135,7 +135,7 @@ Transactions:: Ethereum交易（参见<<transactions>>）是网络消息，包�
 
 State Machine:: 以太坊的状态转移由 _Ethereum虚拟机（EVM）_ 处理，这是一个执行 _bytecode_（机器语言指令）的基于栈的虚拟机。称为“智能合约”的EVM程序以高级语言（如Solidity）编写，并编译为字节码以便在EVM上执行。
 
-Blockchain:: 以太坊的区块链作为 _database_（通常是Google的LevelDB）存储在每个节点上，该区块链在称作 _梅克尔帕特里夏树_ _Merkle Patricia Tree_ 的序列化哈希数据结构中包含交易和系统状态，。
+Data structures:: 以太坊的区块链作为 _database_（通常是Google的LevelDB）存储在每个节点上，该区块链在称作 _梅克尔帕特里夏树_ _Merkle Patricia Tree_ 的序列化哈希数据结构中包含交易和系统状态，。
 
 Consensus Algorithm:: 以太坊目前使用名为_Ethash_的工作量证明算法，但有计划在不久的将来将过渡到称为_Casper_的权益证明（Proof-of-Stake）系统。
 
