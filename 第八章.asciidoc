@@ -341,7 +341,7 @@ address.call():: 低級調用函數，可以用+value+，+data+構造任意消�
 
 address.delegatecall():: 低級調用函數，保持發起調用的合約的+msg+上下文，錯誤時返回+false+。
 
-===== 內置函數
+===== 內建函數
 
 addmod, mulmod:: 模加法和乘法。例如，+addmod(x,y,k)+ 計算 +pass:[ (x + y) % k]+。
 
@@ -430,7 +430,7 @@ contract MEContract {
 
 總而言之，合約的生命週期始於EOA或其他合約的創建交易。如果有一個構造函數，它將在相同的創建交易中調用，並可以在創建合約時初始化合約狀態。
 
-合約生命週期的另一端是 _合約銷燬_ _contract destruction_。合約被稱為+SELFDESTRUCT+的特殊EVM操作碼銷燬。它曾經是+SUICIDE+，但由於該詞的負面性，該名稱已被棄用。在Solidity中，此操作碼作為高級內置函數+selfdestruct+公開，該函數採用一個參數：地址以接收合約帳戶中剩餘的餘額。看起來像這樣：
+合約生命週期的另一端是 _合約銷燬_ _contract destruction_。合約被稱為+SELFDESTRUCT+的特殊EVM操作碼銷燬。它曾經是+SUICIDE+，但由於該詞的負面性，該名稱已被棄用。在Solidity中，此操作碼作為高級內建函數+selfdestruct+公開，該函數採用一個參數：地址以接收合約帳戶中剩餘的餘額。看起來像這樣：
 
 ----
 selfdestruct(address recipient);

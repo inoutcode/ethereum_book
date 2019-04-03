@@ -306,7 +306,7 @@ function withdraw(uint withdraw_amount) public {
 require(withdraw_amount <= 100000000000000000);
 ----
 
-+withdraw+方法的第一部分設置了取款限制。它使用內置的Solidity函數 +require+ 來測試前提條件，即 +withdraw_amount+ 小於或等於100000000000000000 +wei+，它是ether的基本單位（參見 <<ether_denominations>>），等於0.1 ether。如果使用 +withdraw_amount+ 大於該數量調用 +withdraw+ 函數，則此處的 +require+ 函數將導致合約執行停止並失敗，並顯示_異常_。
++withdraw+方法的第一部分設置了取款限制。它使用內建的Solidity函數 +require+ 來測試前提條件，即 +withdraw_amount+ 小於或等於100000000000000000 +wei+，它是ether的基本單位（參見 <<ether_denominations>>），等於0.1 ether。如果使用 +withdraw_amount+ 大於該數量調用 +withdraw+ 函數，則此處的 +require+ 函數將導致合約執行停止並失敗，並顯示_異常_。
 
 合約的這部分是我們faucet的主要邏輯。它通過設定提款限額來控制合約的資金流出。這是一個非常簡單的控制，但可以讓你看到可編程區塊鏈的強大功能：去中心化控制貨幣的軟體。
 
@@ -316,7 +316,7 @@ Next comes the actual withdrawal:
 msg.sender.transfer(withdraw_amount);
 ----
 
-這裡發生了一些有趣的事情。+msg+ 物件是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內置函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前聲明為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
+這裡發生了一些有趣的事情。+msg+ 物件是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內建函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前聲明為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
 
 緊接著的一行是結束大括號，表示 +withdraw+ 函數定義的結束。
 
