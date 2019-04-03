@@ -177,9 +177,9 @@ contract ERC20 {
 ----
 
 [[ERC20_data_struct]]
-===== ERC20 數據結構
+===== ERC20 資料結構
 
-如果你檢查任何ERC20實現，它將包含兩個數據結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用_data mapping_實現。
+如果你檢查任何ERC20實現，它將包含兩個資料結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用_data mapping_實現。
 
 第一個data mapping按擁有者實現了Token餘額的內部表。這允許Token合約跟蹤誰擁有Token。每次轉賬都是從一個餘額中扣除的，並且是對另一個餘額的增加。
 
@@ -189,7 +189,7 @@ contract ERC20 {
 mapping(address => uint256) balances;
 ----
 
-第二個數據結構是配額的data mapping。正如我們將在<<transfer_workflows>>中看到的那樣，使用ERC20Token，Token的所有者可以將權限委託給花錢者，允許他們從所有者的餘額中花費特定金額（配額）。ERC20合同通過二維映射追蹤配額，主關鍵字是Token所有者的地址，映射到一個花費者地址和配額金額：
+第二個資料結構是配額的data mapping。正如我們將在<<transfer_workflows>>中看到的那樣，使用ERC20Token，Token的所有者可以將權限委託給花錢者，允許他們從所有者的餘額中花費特定金額（配額）。ERC20合同通過二維映射追蹤配額，主關鍵字是Token所有者的地址，映射到一個花費者地址和配額金額：
 
 [[allowance_mapping]]
 .Allowances: a mapping from address (owner) to address (spender) to amount (allowance)
@@ -849,7 +849,7 @@ https://github.com/ethereum/EIPs/issues/721
 https://github.com/ethereum/EIPs/pull/841
 
 [[map_deed_owner]]
-要掌握ERC20和ERC721之間的基本差異，只需查看ERC721中使用的內部數據結構即可：
+要掌握ERC20和ERC721之間的基本差異，只需查看ERC721中使用的內部資料結構即可：
 
 [source,solidity]
 ----

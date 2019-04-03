@@ -618,7 +618,7 @@ Documentation link; https://docs.web3j.io
 === Etherjar
 
 
-Etherjar 是與Ethereum集成並與智能合約一起工作的另一個Java庫。它專為基於Java 8+的伺服器端項目而設計，提供RPC的低層和高層封裝，以太坊數據結構和智能合約訪問。
+Etherjar 是與Ethereum集成並與智能合約一起工作的另一個Java庫。它專為基於Java 8+的伺服器端項目而設計，提供RPC的低層和高層封裝，以太坊資料結構和智能合約訪問。
 
 Github link; https://github.com/infinitape/etherjar
 
