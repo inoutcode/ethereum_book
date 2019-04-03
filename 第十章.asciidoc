@@ -268,11 +268,11 @@ METoken/
 └── truffle.js
 ----
 
-編輯+truffle.js+或+truffle-config.js+配置文件以設置+Truffle+環境，或複製我們使用的環境：
+編輯+truffle.js+或+truffle-config.js+配置檔案以設置+Truffle+環境，或複製我們使用的環境：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js
 
-如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+文件夾中創建文件+.env+，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。
+如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+檔案夾中創建檔案+.env+，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。
 
 之後你的目錄看起來像：
 
@@ -305,9 +305,9 @@ $ npm install zeppelin-solidity
 added 8 packages in 2.504s
 ----
 
-+ zeppelin-solidity +包將在+ node_modules +目錄下添加約250個文件。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。
++ zeppelin-solidity +包將在+ node_modules +目錄下添加約250個檔案。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。
 
-接下來，讓我們編寫我們的Token合約。創建一個新文件+METoken.sol+並從GitHub複製示例代碼：
+接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製示例代碼：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol
 
@@ -339,7 +339,7 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...
 
 如你所見，+truffle+包含了OpenZeppelin庫的必要依賴關係，並編譯了這些契約。
 
-我們建立一個migration腳本，部署 +METoken+合約。在+METoken/migrations+文件夾中創建一個新文件+2_deploy_contracts.js+。從Github儲存庫中的示例複製內容：
+我們建立一個migration腳本，部署 +METoken+合約。在+METoken/migrations+檔案夾中創建一個新檔案+2_deploy_contracts.js+。從Github儲存庫中的示例複製內容：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js
 
@@ -834,9 +834,9 @@ ERC721提案是_不可互換的_ Tokens標準，也稱為_契據_ _deeds_。
 
 牛津詞典：
 
-    契約：簽署和交付的法律文件，尤其是關於財產或合法權利所有權的法律文件。
+    契約：簽署和交付的法律檔案，尤其是關於財產或合法權利所有權的法律檔案。
 
-契約一詞的使用旨在反映“財產所有權”部分，即使這些部分在任何司法管轄區都不被承認為“法律文件”，至少目前不是。
+契約一詞的使用旨在反映“財產所有權”部分，即使這些部分在任何司法管轄區都不被承認為“法律檔案”，至少目前不是。
 
 不可互換的Token追蹤獨特事物的所有權。擁有的東西可以是數字項目，例如遊戲物品或數字收藏品。或者，這種東西可以是物理事物，其物主通過Token進行跟蹤，例如房屋，汽車，藝術品等。契約也可以代表負值的東西，例如貸款（債務），留置權，地役權等。ERC721標準對所有權由契約追蹤的事物的性質沒有限制或期望，只是它可以是唯一標識，在這個標準的情況下是由256位標識符實現的。
 

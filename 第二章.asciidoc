@@ -10,7 +10,7 @@
 
 這種控制帶來了很大的責任。如果你丟失了你的鑰匙，你將無法獲得資金和合約。沒有人可以幫助你重新獲得訪問權 - 你的資金將永遠鎖定。以下是一些幫助你管理這一責任的提示：
 
-* 提示你選擇密碼時：強化它，備份並不共享。如果你沒有密碼管理器，請將其寫下並存放在鎖定的抽屜或保險櫃中。只要你擁有帳戶的“keystore”文件，就可以使用此密碼。
+* 提示你選擇密碼時：強化它，備份並不共享。如果你沒有密碼管理器，請將其寫下並存放在鎖定的抽屜或保險櫃中。只要你擁有帳戶的“keystore”檔案，就可以使用此密碼。
 
 * 當系統提示你備份密鑰或助記詞時，請使用筆和紙進行物理備份。不要把這個任務放在“以後”，你會忘記。這些在你丟失了系統中保存的所有數據時使用。
 
@@ -336,7 +336,7 @@ function () public payable {}
 
 現在我們已經有了我們的第一個示例合約，我們需要使用Solidity編譯器將Solidity代碼轉換為EVM字節代碼，以便它可以由EVM執行。
 
-Solidity編譯器是獨立的可執行文件，作為不同框架的一部分，也捆綁在一個_Integrated Development Environment（IDE）_中。為了簡單起見，我們將使用一種更流行的IDE，稱為Remix。
+Solidity編譯器是獨立的可執行檔案，作為不同框架的一部分，也捆綁在一個_Integrated Development Environment（IDE）_中。為了簡單起見，我們將使用一種更流行的IDE，稱為Remix。
 
 使用你的Chrome瀏覽器（使用我們之前安裝的MetaMask錢包）導航到以下位置的Remix IDE：
 
@@ -348,7 +348,7 @@ https://remix.ethereum.org/
 .Close the default example tab
 image::images/remix_close_tab.png["Close the default example tab"]
 
-現在，點擊左側工具欄中的圓形加號，添加一個新選項卡，命名新文件 +Faucet.sol+：
+現在，點擊左側工具欄中的圓形加號，添加一個新選項卡，命名新檔案 +Faucet.sol+：
 
 [[remix_toolbar]]
 .Click the plus sign to open a new tab

@@ -204,7 +204,7 @@ https://github.com/paritytech/parity/wiki/Setup
 $ git clone https://github.com/paritytech/parity
 ----
 
-現在，我們轉到+parity+目錄並使用+cargo+構建可執行文件：
+現在，我們轉到+parity+目錄並使用+cargo+構建可執行檔案：
 
 [[parity_build]]
 ----
@@ -272,7 +272,7 @@ Geth是Go語言實現的，它被積極開發並被視為以太坊客戶端的�
 
 [NOTE]
 =====
-你也可以跳過這些說明併為你選擇的平臺安裝預編譯的二進制文件。預編譯的版本安裝起來更容易，可以在上面版本庫的“版本”部分找到。但是，你可以通過自己下載和編譯軟體來了解更多信息。
+你也可以跳過這些說明併為你選擇的平臺安裝預編譯的二進制檔案。預編譯的版本安裝起來更容易，可以在上面版本庫的“版本”部分找到。但是，你可以通過自己下載和編譯軟體來了解更多信息。
 =====
 
 [[cloning_repo]]
@@ -300,7 +300,7 @@ Resolving deltas: 100% (41554/41554), done.
 Checking connectivity... done.
 ----
 
-現在我們有了Geth的本地副本，我們可以為我們的平臺編譯一個可執行文件。
+現在我們有了Geth的本地副本，我們可以為我們的平臺編譯一個可執行檔案。
 
 [[build_geth_src]]
 ===== 從源代碼構建Geth
@@ -313,7 +313,7 @@ $ cd go-ethereum
 $ make geth
 ----
 
-如果一切順利，你將看到Go編譯器構建每個組件，直到它生成+ geth +可執行文件：
+如果一切順利，你將看到Go編譯器構建每個組件，直到它生成+ geth +可執行檔案：
 
 [[making_geth_status]]
 ----

@@ -161,7 +161,7 @@ contract EthUsdPriceTicker is usingOraclize {
 }
 ----
 
-要與Oraclize集成，合約EthUsdPriceTicker必須是usingOraclize的子項；usingOraclize合約在oraclizeAPI文件中定義。數據請求是使用oraclize_query()函數生成的，該函數繼承自usingOraclize合約。這是一個重載函數，至少需要兩個參數：
+要與Oraclize集成，合約EthUsdPriceTicker必須是usingOraclize的子項；usingOraclize合約在oraclizeAPI檔案中定義。數據請求是使用oraclize_query()函數生成的，該函數繼承自usingOraclize合約。這是一個重載函數，至少需要兩個參數：
 
 * 支持的數據源，例如URL，WolframAlpha，IPFS或計算
 * 給定數據源的參數，可能包括使用JSON或XML解析助手

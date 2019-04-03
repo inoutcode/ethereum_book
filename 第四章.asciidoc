@@ -23,7 +23,7 @@ Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到�
 
 ===== Infura
 
-當MetaMask連接到測試網路時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化儲存）API和Websockets（即流式傳輸）API。
+當MetaMask連接到測試網路時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際檔案系統，即去中心化儲存）API和Websockets（即流式傳輸）API。
 
 Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura的定製測試網路）提供網關API。
 

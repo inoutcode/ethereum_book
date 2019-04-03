@@ -16,7 +16,7 @@
 
 虛擬機技術（如Virtualbox和QEMU / KVM）與EVM的不同之處在於它們的目的是提供管理程序功能，或者處理客戶操作系統與底層主機操作系統和硬體之間的系統調用，任務調度和資源管理的軟體抽象。
 
-然而，Java VM（JVM）規範的某些方面確實包含與EVM的相似之處。從高級概述來看，JVM旨在提供與底層主機操作系統或硬體無關的運行時環境，從而實現各種系統的兼容性。在JVM上運行的高級程序語言（如Java或Scala）被編譯到相應的指令集字節碼中。這與編譯要在EVM上運行的Solidity源文件相當。
+然而，Java VM（JVM）規範的某些方面確實包含與EVM的相似之處。從高級概述來看，JVM旨在提供與底層主機操作系統或硬體無關的運行時環境，從而實現各種系統的兼容性。在JVM上運行的高級程序語言（如Java或Scala）被編譯到相應的指令集字節碼中。這與編譯要在EVM上運行的Solidity源檔案相當。
 
 [[evm_bytecode_overview]]
 ==== EVM機器語言（字節碼操作）
@@ -139,14 +139,14 @@ Runtime Environment Information:: 用於使用交易的信息。
 ==== 將Solidity編譯為EVM字節碼
 
 [[solc_help]]
-可以通過命令行完成將Solidity源文件編譯為EVM字節碼。有關其他編譯選項的列表，只需運行以下命令：
+可以通過命令行完成將Solidity源檔案編譯為EVM字節碼。有關其他編譯選項的列表，只需運行以下命令：
 
 ----
 $ solc --help
 ----
 
 [[solc_opcodes_option]]
-使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源文件的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯示例Solidity文件_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
+使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯示例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
 
 ----
 $ solc -o BytecodeOutputDir --opcodes Example.sol
@@ -160,13 +160,13 @@ $ solc -o BytecodeOutputDir --asm Example.sol
 ----
 
 [[solc_bin_option]]
-以下命令將為我們的示例程序生成字節碼二進制文件：
+以下命令將為我們的示例程序生成字節碼二進制檔案：
 
 ----
 $ solc -o BytecodeOutputDir --bin Example.sol
 ----
 
-生成的輸出操作碼文件將取決於Solidity源文件中包含的特定合約。我們的簡單Solidity文件_Example.sol_ <<simple_solidity_example>>只有一個名為“example”的合約。
+生成的輸出操作碼檔案將取決於Solidity源檔案中包含的特定合約。我們的簡單Solidity檔案_Example.sol_ <<simple_solidity_example>>只有一個名為“example”的合約。
 
 [[simple_solidity_example]]
 ----
@@ -182,14 +182,14 @@ contract example {
 }
 ----
 
-如果查看_BytecodeDir_目錄，你將看到操作碼文件_example.opcode_（請參閱<<simple_solidity_example>>），其中包含“example”合約的EVM機器語言操作碼指令。在文本編輯器中打開_example.opcode_文件將顯示以下內容：
+如果查看_BytecodeDir_目錄，你將看到操作碼檔案_example.opcode_（請參閱<<simple_solidity_example>>），其中包含“example”合約的EVM機器語言操作碼指令。在文本編輯器中打開_example.opcode_檔案將顯示以下內容：
 
 [[opcode_output]]
 ----
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF MUL NOT AND SWAP1 DUP4 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e 0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9 PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
-使用_--asm_選項編譯示例會在_BytecodeDir_目錄中生成一個文件 _example.evm_。這包含詳細的EVM機器語言說明：
+使用_--asm_選項編譯示例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
 
 
 [[asm_output]]

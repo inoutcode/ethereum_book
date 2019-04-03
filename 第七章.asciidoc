@@ -447,7 +447,7 @@ image::images/published_contract_transactions.png["Etherscan showing the transac
 [[digital_signature_definition]]
 .Wikipedia對“數字簽名”的定義
 ****
-數字簽名是用於證明數字信息或文件真實性的數學方案。有效的數字簽名使收件人有理由相信該信息是由已知的發件人（認證）創建的，發件人不能否認已發送的信息（不可否認），並且信息在傳輸過程中未被更改（完整性） 。
+數字簽名是用於證明數字信息或檔案真實性的數學方案。有效的數字簽名使收件人有理由相信該信息是由已知的發件人（認證）創建的，發件人不能否認已發送的信息（不可否認），並且信息在傳輸過程中未被更改（完整性） 。
 來源: https://en.wikipedia.org/wiki/Digital_signature_
 ****
 

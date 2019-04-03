@@ -72,7 +72,7 @@ https://github.com/ethereum/solidity
 
 Solidity項目的主要“產品”是_Solidity Compiler（solc）_，它將用Solidity語言編寫的程序轉換為EVM字節碼，並生成其他製品，如應用程序二進制接口（ABI）。Solidity編譯器的每個版本都對應於並編譯Solidity語言的特定版本。
 
-要開始，我們將下載Solidity編譯器的二進制可執行文件。然後我們會編寫一個簡單的合約。
+要開始，我們將下載Solidity編譯器的二進制可執行檔案。然後我們會編寫一個簡單的合約。
 
 ==== 選擇一個Solidity版本
 
@@ -119,7 +119,7 @@ https://github.com/ethereum/solidity
 
 還有基於Web的開發環境，如Remix IDE（https://remix.ethereum.org/）和EthFiddle（https://ethfiddle.com/）。
 
-使用可以提高生產力的工具。最後，Solidity程序只是純文本文件。雖然花哨的編輯器和開發環境可以讓事情變得更容易，但除了簡單的文本編輯器（如vim（Linux / Unix），TextEdit（MacOS）甚至NotePad（Windows）），你無需任何其他東西。只需將程序源代碼保存為+.sol+擴展名即可，Solidity編譯器將其識別為Solidity程序。
+使用可以提高生產力的工具。最後，Solidity程序只是純文本檔案。雖然花哨的編輯器和開發環境可以讓事情變得更容易，但除了簡單的文本編輯器（如vim（Linux / Unix），TextEdit（MacOS）甚至NotePad（Windows）），你無需任何其他東西。只需將程序源代碼保存為+.sol+擴展名即可，Solidity編譯器將其識別為Solidity程序。
 
 ==== Writing a simple Solidity program
 
@@ -155,7 +155,7 @@ contract Faucet {
 
 現在，我們將使用命令行上的Solidity編譯器直接編譯我們的合約。Solidity編譯器+solc+提供了多種選項，你可以通過+--help+參數來查看。
 
-我們使用+solc+的 +--bin+ 和 +--optimize+ 參數來生成我們示例合約的優化二進制文件：
+我們使用+solc+的 +--bin+ 和 +--optimize+ 參數來生成我們示例合約的優化二進制檔案：
 
 [[compile_Faucet_with_solc]]
 .Compiling Faucet.sol with solc
@@ -166,7 +166,7 @@ Binary:
 6060604052341561000f57600080fd5b60cf8061001d6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632e1a7d4d81146040575b005b3415604a57600080fd5b603e60043567016345785d8a0000811115606357600080fd5b73ffffffffffffffffffffffffffffffffffffffff331681156108fc0282604051600060405180830381858888f19350505050151560a057600080fd5b505600a165627a7a723058203556d79355f2da19e773a9551e95f1ca7457f2b5fbbf4eacf7748ab59d2532130029
 ----
 
-+solc+產生的結果是一個可以提交給以太坊區塊鏈的十六進制序列化二進制文件。
++solc+產生的結果是一個可以提交給以太坊區塊鏈的十六進制序列化二進制檔案。
 
 [[eth_contract_abi_sec]]
 === 以太坊合約應用程序二進制接口（ABI）
@@ -204,7 +204,7 @@ pragma solidity ^0.4.19;
 
 Solidity編譯器讀取版本編譯指示，如果編譯器版本與版本編譯指示不兼容，將會產生錯誤。在這種情況下，我們的版本編譯指出，這個程序可以由Solidity編譯器編譯，最低版本為+0.4.19+。但是，符號^表示我們允許編譯任何_minor修訂版_在+0.4.19+之上的，例如+0.4.20+，但不是+0.5.0+（這是一個主要版本，不是小修訂版） 。Pragma指令不會編譯為EVM字節碼。它們僅由編譯器用來檢查兼容性。
 
-讓我們在我們的 +Faucet+ 合約中添加一條編譯指示。我們將命名新文件 +Faucet2.sol+，以便在我們繼續處理這些示例時跟蹤我們的更改：
+讓我們在我們的 +Faucet+ 合約中添加一條編譯指示。我們將命名新檔案 +Faucet2.sol+，以便在我們繼續處理這些示例時跟蹤我們的更改：
 
 .Faucet2.sol : Adding the version pragma to Faucet
 [source,solidity,linenums]
@@ -784,7 +784,7 @@ contract Token is mortal {
 }
 ----
 
-這種合約建造機制確保你知道合約的確切類型及其接口。合約+Faucet+必須在+Token+範圍內定義，如果定義位於另一個文件中，你可以使用+import+語句來執行此操作：
+這種合約建造機制確保你知道合約的確切類型及其接口。合約+Faucet+必須在+Token+範圍內定義，如果定義位於另一個檔案中，你可以使用+import+語句來執行此操作：
 
 ----
 import "Faucet.sol"
@@ -1039,7 +1039,7 @@ var gasCostInEther = web3.fromWei((gasEstimate * gasPrice), 'ether');
 code/truffle/FaucetEvents
 ----
 
-我們以開發模式啟動truffle，並執行一個JavaScript文件+gas_estimates.js+，其中包含：
+我們以開發模式啟動truffle，並執行一個JavaScript檔案+gas_estimates.js+，其中包含：
 
 [source, JavaScript]
 .gas_estimates.js: Using the estimateGas function
@@ -1511,7 +1511,7 @@ Truffle Test:: Truffle框架的一部分，Truffle允許使用JavaScript（基�
 TODO: add anchor for <<truffle>>
 ////
 
-Embark Framework Testing:: Embark與Mocha集成，運行用JavaScript編寫的單元測試。這些測試使用在TestRPC/Ganache上部署的合約執行。Embark框架自動部署智能合約，並在合約被更改時自動重新部署它們。它還跟蹤已部署的合約，並在真正需要時部署合約。Embark包括一個測試庫，它可以在EVM中快速運行和測試你的合約，並使用assert.equal()等函數。Embark測試將在目錄測試下運行任何測試文件。
+Embark Framework Testing:: Embark與Mocha集成，運行用JavaScript編寫的單元測試。這些測試使用在TestRPC/Ganache上部署的合約執行。Embark框架自動部署智能合約，並在合約被更改時自動重新部署它們。它還跟蹤已部署的合約，並在真正需要時部署合約。Embark包括一個測試庫，它可以在EVM中快速運行和測試你的合約，並使用assert.equal()等函數。Embark測試將在目錄測試下運行任何測試檔案。
 
 DApp:: DApp使用本地Solidity代碼（一個名為ds-test的庫）和一個Parity構建的Rust庫（稱為Ethrun）執行以太坊字節碼，然後斷言正確性。ds-test庫提供用於驗證控制檯中數據記錄的正確性和事件的斷言功能。
 
@@ -1538,7 +1538,7 @@ log_named_decimal_int(bytes32 key, int val, uint decimals)
 log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 ....
 
-Populus:: Populus使用python和自己的鏈仿真器來運行用Solidity編寫的合約。單元測試是用pytest庫編寫的。Populus支持專門用於測試的書面合約。這些合約文件名應該與glob模式 ```Test*.sol``` 匹配，並且位於項目測試目錄```./tests/```下的任何位置。
+Populus:: Populus使用python和自己的鏈仿真器來運行用Solidity編寫的合約。單元測試是用pytest庫編寫的。Populus支持專門用於測試的書面合約。這些合約檔案名應該與glob模式 ```Test*.sol``` 匹配，並且位於項目測試目錄```./tests/```下的任何位置。
 
 |=======
 |Framework | Test Language(s)    | Testing Framework | Chain Emulator       | Website
