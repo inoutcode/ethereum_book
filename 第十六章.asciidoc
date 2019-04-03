@@ -116,7 +116,7 @@ Log:: 如前所述，智能合約也可以通過日誌事件寫入以太坊的�
 [[erc20_token_interface_implementation_sec]]
 === ERC20令牌接口實現
 Vyper已將ERC20實施為預編譯合約，並允許預設使用它。
-Vyper中的合約必須聲明為全局變量。聲明ERC20變量的示例可以是
+Vyper中的合約必須聲明為全局變量。聲明ERC20變量的範例可以是
 
 token: address(ERC20)
 

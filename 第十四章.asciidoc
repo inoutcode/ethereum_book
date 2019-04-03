@@ -146,7 +146,7 @@ $ solc --help
 ----
 
 [[solc_opcodes_option]]
-使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯示例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
+使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯範例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
 
 ----
 $ solc -o BytecodeOutputDir --opcodes Example.sol
@@ -160,7 +160,7 @@ $ solc -o BytecodeOutputDir --asm Example.sol
 ----
 
 [[solc_bin_option]]
-以下命令將為我們的示例程式生成字節碼二進制檔案：
+以下命令將為我們的範例程式生成字節碼二進制檔案：
 
 ----
 $ solc -o BytecodeOutputDir --bin Example.sol
@@ -189,7 +189,7 @@ contract example {
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF MUL NOT AND SWAP1 DUP4 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e 0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9 PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
-使用_--asm_選項編譯示例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
+使用_--asm_選項編譯範例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
 
 
 [[asm_output]]

@@ -149,13 +149,13 @@ contract Faucet {
 }
 ----
 
-從 <<make_it_better>> 開始，我們將在第一個示例的基礎上構建。
+從 <<make_it_better>> 開始，我們將在第一個範例的基礎上構建。
 
 ==== 用Solidity編譯器（solc）編譯
 
 現在，我們將使用命令行上的Solidity編譯器直接編譯我們的合約。Solidity編譯器+solc+提供了多種選項，你可以通過+--help+參數來查看。
 
-我們使用+solc+的 +--bin+ 和 +--optimize+ 參數來生成我們示例合約的優化二進制檔案：
+我們使用+solc+的 +--bin+ 和 +--optimize+ 參數來生成我們範例合約的優化二進制檔案：
 
 [[compile_Faucet_with_solc]]
 .Compiling Faucet.sol with solc
@@ -177,7 +177,7 @@ Binary:
 
 合約ABI的JSON格式由一系列函數描述（參見<<solidity_functions>>）和事件（參見<<solidity_events>>）的數組給出。函數描述是一個JSON物件，它包含`type`，`name`，`inputs`，`outputs`，`constant`和`payable`欄位。事件描述物件具有`type`，`name`，`inputs`和`anonymous`的欄位。
 
-我們使用+solc+命令行Solidity編譯器為我們的+Faucet.sol+示例合約生成ABI：
+我們使用+solc+命令行Solidity編譯器為我們的+Faucet.sol+範例合約生成ABI：
 
 ----
 solc --abi Faucet.sol
@@ -204,7 +204,7 @@ pragma solidity ^0.4.19;
 
 Solidity編譯器讀取版本編譯指示，如果編譯器版本與版本編譯指示不兼容，將會產生錯誤。在這種情況下，我們的版本編譯指出，這個程式可以由Solidity編譯器編譯，最低版本為+0.4.19+。但是，符號^表示我們允許編譯任何_minor修訂版_在+0.4.19+之上的，例如+0.4.20+，但不是+0.5.0+（這是一個主要版本，不是小修訂版） 。Pragma指令不會編譯為EVM字節碼。它們僅由編譯器用來檢查兼容性。
 
-讓我們在我們的 +Faucet+ 合約中添加一條編譯指示。我們將命名新檔案 +Faucet2.sol+，以便在我們繼續處理這些示例時跟蹤我們的更改：
+讓我們在我們的 +Faucet+ 合約中添加一條編譯指示。我們將命名新檔案 +Faucet2.sol+，以便在我們繼續處理這些範例時跟蹤我們的更改：
 
 .Faucet2.sol : Adding the version pragma to Faucet
 [source,solidity,linenums]
@@ -235,7 +235,7 @@ contract Faucet {
 
 === 使用Solidity編程
 
-在本節中，我們將看看Solidity語言的一些功能。正如我們在 <<intro>> 中提到的，我們的第一份合約示例非常簡單，並且在許多方面也存在缺陷。我們將逐漸改進這個例子，同時學習如何使用Solidity。然而，這不會是一個全面的Solidity教程，因為Solidity相當複雜且快速發展。我們將介紹基礎知識，併為你提供足夠的基礎，以便能夠自行探索其餘部分。Solidity的完整文件可以在以下網址找到：
+在本節中，我們將看看Solidity語言的一些功能。正如我們在 <<intro>> 中提到的，我們的第一份合約範例非常簡單，並且在許多方面也存在缺陷。我們將逐漸改進這個例子，同時學習如何使用Solidity。然而，這不會是一個全面的Solidity教程，因為Solidity相當複雜且快速發展。我們將介紹基礎知識，併為你提供足夠的基礎，以便能夠自行探索其餘部分。Solidity的完整文件可以在以下網址找到：
 
 https://solidity.readthedocs.io/en/latest/
 
@@ -267,9 +267,9 @@ mapping:: +key => value+對的雜湊查找表。
 
 以太的單位:: +wei+, +finney+, +szabo+, 和 +ether+ 可用作後綴, 轉換為基本單位 +wei+ 的倍數。
 
-到目前為止，在我們的+Faucet+合約示例中，我們使用+uint+（這是+uint256+的別名），用於+withdraw_amount+變量。我們還間接使用了+address+變量，它是+ msg.sender+。在本章中，我們將在示例中使用更多數據類型。
+到目前為止，在我們的+Faucet+合約範例中，我們使用+uint+（這是+uint256+的別名），用於+withdraw_amount+變量。我們還間接使用了+address+變量，它是+ msg.sender+。在本章中，我們將在範例中使用更多數據類型。
 
-讓我們使用單位的倍數之一來提高示例合約+Faucet+的可讀性。在+withdraw+函數中，我們限制最大提現額，將數量限制表示為+wei+，以太的基本單位：
+讓我們使用單位的倍數之一來提高範例合約+Faucet+的可讀性。在+withdraw+函數中，我們限制最大提現額，將數量限制表示為+wei+，以太的基本單位：
 
 ----
 require(withdraw_amount <= 100000000000000000);
@@ -333,7 +333,7 @@ block.timestamp:: 礦工在當前塊中放置的時間戳，自Unix紀元（秒�
 
 address.balance:: 地址的餘額，以wei為單位。例如，當前合約餘額是 +address(this).balance+。
 
-address.transfer(amount):: 將金額（wei）轉移到該地址，並在發生任何錯誤時拋出異常。我們在+Faucet+示例中的+msg.sender+地址上使用了此函數，+msg.sender.transfer()+。
+address.transfer(amount):: 將金額（wei）轉移到該地址，並在發生任何錯誤時拋出異常。我們在+Faucet+範例中的+msg.sender+地址上使用了此函數，+msg.sender.transfer()+。
 
 address.send(amount):: 類似於前面的+transfer+, 但是失敗時不拋出異常，而是返回+false+。
 
@@ -351,7 +351,7 @@ ecrecover:: 從簽名中恢復用於簽署消息的地址。
 
 ==== 合約的定義
 
-Solidity的主要數據類型是_contract_物件，它在我們的+Faucet+示例的頂部定義。與面嚮物件語言中的任何物件類似，合約是一個包含數據和方法的容器。
+Solidity的主要數據類型是_contract_物件，它在我們的+Faucet+範例的頂部定義。與面嚮物件語言中的任何物件類似，合約是一個包含數據和方法的容器。
 
 Solidity提供了另外兩個與合約類似的物件：
 
@@ -361,7 +361,7 @@ library:: 一個庫合約是一個只能部署一次並被其他合約使用的�
 
 ==== 函數
 
-在合約中，我們定義了可以由EOA交易或其他合約調用的函數。在我們的+Faucet+示例中，我們有兩個函數：+withdraw+和（未命名的）_fallback_函數。
+在合約中，我們定義了可以由EOA交易或其他合約調用的函數。在我們的+Faucet+範例中，我們有兩個函數：+withdraw+和（未命名的）_fallback_函數。
 
 函數使用以下語法定義：
 
@@ -375,11 +375,11 @@ pass:[[]_modifiers_]
 
 FunctionName:: 定義函數的名稱，用於通過交易（EOA），其他合約或同一合約調用函數。每個合約中的一個功能可以定義為不帶名稱的，在這種情況下，它是_fallback_函數，在沒有指定其他函數時調用該函數。fallback函數不能有任何參數或返回任何內容。
 
-parameters:: 在名稱後面，我們指定必須傳遞給函數的參數，包括名稱和類型。在我們的+Faucet+示例中，我們將+uint withdraw_amount+定義為+withdraw+函數的唯一參數。
+parameters:: 在名稱後面，我們指定必須傳遞給函數的參數，包括名稱和類型。在我們的+Faucet+範例中，我們將+uint withdraw_amount+定義為+withdraw+函數的唯一參數。
 
 下一組關鍵字 (public, private, internal, external) 指定了函數的_可見性_：
 
-public:: Public是預設的，這些函數可以被其他合約，EOA交易或合約內部調用。在我們的+Faucet+示例中，這兩個函數都被定義為public。
+public:: Public是預設的，這些函數可以被其他合約，EOA交易或合約內部調用。在我們的+Faucet+範例中，這兩個函數都被定義為public。
 
 external:: 外部函數就像public一樣，但除非使用關鍵字this作為前綴，否則它們不能從合約中調用。
 
@@ -397,11 +397,11 @@ pure:: 純(pure)函數不讀寫任何變量。它只能對參數進行操作並�
 
 payable:: payable函數是可以接受付款的功能。沒有payable的函數將拒絕收款，除非它們來源於coinbase（挖礦收入）或 作為 +SELFDESTRUCT+（合約終止）的目的地。在這些情況下，由於EVM中的設計決策，合約無法阻止收款。
 
-正如你在+Faucet+示例中看到的那樣，我們有一個payable函數（fallback函數），它是唯一可以接收付款的函數。
+正如你在+Faucet+範例中看到的那樣，我們有一個payable函數（fallback函數），它是唯一可以接收付款的函數。
 
 ==== 合約構造和自毀
 
-有一個特殊函數只能使用一次。創建合約時，它還運行 _構造函數_ _constructor function_（如果存在），以初始化合約狀態。構造函數與創建合約時在同一個交易中運行。構造函數是可選的。事實上，我們的+Faucet+示例沒有構造函數。
+有一個特殊函數只能使用一次。創建合約時，它還運行 _構造函數_ _constructor function_（如果存在），以初始化合約狀態。構造函數與創建合約時在同一個交易中運行。構造函數是可選的。事實上，我們的+Faucet+範例沒有構造函數。
 
 構造函數可以通過兩種方式指定。到Solidity v.0.4.21，構造函數是一個名稱與合約名稱相匹配的函數：
 
@@ -436,9 +436,9 @@ contract MEContract {
 selfdestruct(address recipient);
 ----
 
-==== 添加一個構造函數和selfdestruct到我們的+Faucet+示例
+==== 添加一個構造函數和selfdestruct到我們的+Faucet+範例
 
-我們在<<intro>>中引入的+Faucet+示例合約沒有任何構造函數或自毀函數。這是永恆的合約，不能從區塊鏈中刪除。讓我們通過添加一個構造函數和selfdestruct函數來改變它。我們可能希望自毀僅由最初創建合約的EOA來調用。按照慣例，這通常儲存在稱為+owner+的地址變量中。我們的構造函數設置所有者變量，並且selfdestruct函數將首先檢查是否是所有者調用它。
+我們在<<intro>>中引入的+Faucet+範例合約沒有任何構造函數或自毀函數。這是永恆的合約，不能從區塊鏈中刪除。讓我們通過添加一個構造函數和selfdestruct函數來改變它。我們可能希望自毀僅由最初創建合約的EOA來調用。按照慣例，這通常儲存在稱為+owner+的地址變量中。我們的構造函數設置所有者變量，並且selfdestruct函數將首先檢查是否是所有者調用它。
 
 首先是我們的構造函數：
 
@@ -459,7 +459,7 @@ contract Faucet {
 [...]
 ----
 
-我們已經更改了pragma指令，將v0.4.22指定為此示例的最低版本，因為我們使用的是僅存在於Solidity v.0.4.22中的constructor關鍵字。我們的合約現在有一個名為+owner+的+address+類型變量。名稱“owner”不是特殊的。我們可以將這個地址變量稱為“potato”，仍然以相同的方式使用它。名稱+owner+只是簡單明瞭的目的和目的。
+我們已經更改了pragma指令，將v0.4.22指定為此範例的最低版本，因為我們使用的是僅存在於Solidity v.0.4.22中的constructor關鍵字。我們的合約現在有一個名為+owner+的+address+類型變量。名稱“owner”不是特殊的。我們可以將這個地址變量稱為“potato”，仍然以相同的方式使用它。名稱+owner+只是簡單明瞭的目的和目的。
 
 然後，作為合約創建交易的一部分運行的constructor函數將+msg.sender+的地址分配給+owner+變量。我們使用 +withdraw+ 函數中的 +msg.sender+ 來 標識提款請求的來源。然而，在構造函數中，+msg.sender+是簽署合約創建交易的EOA或合約地址。這是事實，因為這是一個構造函數：它只運行一次，並且僅作為合約創建交易的結果。
 
@@ -504,7 +504,7 @@ function destroy() public onlyOwner {
 
 函數修飾器的名稱（+onlyOwner+）位於關鍵字+public+之後，並告訴我們+destroy+函數由+onlyOwner+修飾器修飾。基本上你可以把它寫成：“只有所有者才能銷燬這份合約”。實際上，生成的程式碼相當於由+onlyOwner+ “包裝” 的+destroy+程式碼。
 
-函數修飾器是一個非常有用的工具，因為它們允許我們為函數編寫前提條件並一致地應用它們，使程式碼更易於閱讀，因此更易於審計安全問題。它們最常用於訪問控制，如示例中的“function_modifier_onlyowner”，但功能很多，可用於各種其他目的。
+函數修飾器是一個非常有用的工具，因為它們允許我們為函數編寫前提條件並一致地應用它們，使程式碼更易於閱讀，因此更易於審計安全問題。它們最常用於訪問控制，如範例中的“function_modifier_onlyowner”，但功能很多，可用於各種其他目的。
 
 在修飾函數內部，可以訪問被修飾的函數的的所有可見符號（變量和參數）。在這種情況下，我們可以訪問在合約中聲明的+owner+變量。但是，反過來並不正確：你無法訪問修飾函數中的任何變量。
 
@@ -627,7 +627,7 @@ msg.sender.transfer(withdraw_amount);
 
 事件物件接收序列化的參數並記錄在區塊鏈的交易日誌中。你可以在參數之前應用關鍵字+indexed+，以使其值作為索引表（雜湊表）的一部分，可以由應用程式搜索或過濾。
 
-到目前為止，我們還沒有在我們的+Faucet+示例中添加任何事件，所以讓我們來做。我們將添加兩個事件，一個記錄任何提款，一個記錄任何存款。我們將分別稱這些事件+Withdrawal+和+Deposit+。首先，我們在+Faucet+合約中定義事件：
+到目前為止，我們還沒有在我們的+Faucet+範例中添加任何事件，所以讓我們來做。我們將添加兩個事件，一個記錄任何提款，一個記錄任何存款。我們將分別稱這些事件+Withdrawal+和+Deposit+。首先，我們在+Faucet+合約中定義事件：
 
 ----
 contract Faucet is mortal {
@@ -854,7 +854,7 @@ contract Token is mortal {
 
 Solidity為調用其他合約提供了一些更“低級”的功能。它們直接對應於具有相同名稱的EVM操作碼，並允許我們手動構建合約到合約的調用。因此，它們代表了調用其他合約最靈活和最危險的機制。
 
-以下是使用 +call+ 方法的相同示例：
+以下是使用 +call+ 方法的相同範例：
 
 ----
 contract Token is mortal {
@@ -882,7 +882,7 @@ contract Token is mortal {
 
 應該謹慎使用+delegatecall+。它可能會有一些意想不到的效果，特別是如果你調用的合約不是作為庫設計的。
 
-讓我們使用示例合約來演示+call+和+delegatecall+用於調用庫和合約的各種調用語義。我們使用一個事件來記錄每個調用的來源，並根據調用類型瞭解調用上下文如何變化：
+讓我們使用範例合約來演示+call+和+delegatecall+用於調用庫和合約的各種調用語義。我們使用一個事件來記錄每個調用的來源，並根據調用類型瞭解調用上下文如何變化：
 
 [[call_examples_code]]
 .CallExamples.sol: An example of different call semantics.
@@ -1033,7 +1033,7 @@ var gasPrice = web3.eth.getGasPrice();
 [source, JavaScript]
 var gasCostInEther = web3.fromWei((gasEstimate * gasPrice), 'ether');
 
-讓我們應用我們的天然氣估算函數來估計我們的+Faucet+示例的天然氣成本，使用此書程式碼庫中的程式碼：
+讓我們應用我們的天然氣估算函數來估計我們的+Faucet+範例的天然氣成本，使用此書程式碼庫中的程式碼：
 
 ----
 code/truffle/FaucetEvents
@@ -1156,7 +1156,7 @@ _防禦性編程_ _Defensive programming_是一種編程風格，特別適用於
 
 Solidity函數修飾器提供了一個簡潔的方式來實現這些限制。
 
-_Note: 以下示例在修改器主體內使用下劃線分號。這是Solidity的功能，用於告知編譯器何時運行被修飾的函數的主體。開發人員可以認為被修飾的函數的主體將被複制到下劃線的位置。
+_Note: 以下範例在修改器主體內使用下劃線分號。這是Solidity的功能，用於告知編譯器何時運行被修飾的函數的主體。開發人員可以認為被修飾的函數的主體將被複制到下劃線的位置。
 
 [source,solidity]
 ----
@@ -1365,7 +1365,7 @@ contract TruthVote {
 [[withdraw_sec]]
 ===== 提現 Withdraw
 
-許多合約將為用戶從中提取資金提供一些方法。在我們的示例中，屬於大多數的用戶在合約開始分配資金時直接接收資金。雖然這看起來有效，但它是一種欠考慮的解決方案。在*disperse*中*addr.send()*調用的接收地址可以是一個合約，具有一個會失敗的fallback函數，會打斷*disperse*。這有效地阻止了更多的參與者接收他們的收入。
+許多合約將為用戶從中提取資金提供一些方法。在我們的範例中，屬於大多數的用戶在合約開始分配資金時直接接收資金。雖然這看起來有效，但它是一種欠考慮的解決方案。在*disperse*中*addr.send()*調用的接收地址可以是一個合約，具有一個會失敗的fallback函數，會打斷*disperse*。這有效地阻止了更多的參與者接收他們的收入。
 一個更好的解決方案是提供一個用戶可以調用來收取收入的提款功能。
 
 [source,solidity]
@@ -1483,7 +1483,7 @@ https://medium.com/zeppelin-blog/the-hitchhikers-guide-to-smart-contracts-in-eth
 
 關於Ethereum ABI的更嚴格和更深入的解釋可以在這找到：
 `https://solidity.readthedocs.io/en/develop/abi-spec.html`.
-該鏈接包括有關編碼的正式說明和各種有用示例的詳細信息。
+該鏈接包括有關編碼的正式說明和各種有用範例的詳細信息。
 
 [[deploying_smart_contracts_sec]]
 === 部署智能合約

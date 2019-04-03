@@ -61,7 +61,7 @@
 
 別擔心！如果你選擇一個錢包而不喜歡它的工作方式，那麼你可以很容易地更換錢包。你只需進行一項交易，即將資金從舊錢包發送到新錢包，或者通過匯出和匯入私鑰來移動密鑰。
 
-首先，我們將選擇三種不同類型的錢包作為整本書的示例：移動錢包，桌面錢包和基於網路的錢包。我們選擇了這三款錢包，因為它們代表了廣泛的複雜性和功能。然而，選擇這些錢包並不是對其質量或安全性的認可。他們只是示範和測試。
+首先，我們將選擇三種不同類型的錢包作為整本書的範例：移動錢包，桌面錢包和基於網路的錢包。我們選擇了這三款錢包，因為它們代表了廣泛的複雜性和功能。然而，選擇這些錢包並不是對其質量或安全性的認可。他們只是示範和測試。
 
 起始錢包：
 
@@ -69,7 +69,7 @@ MetaMask:: MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chro
 
 Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運行，包括Android，iOS，Windows，Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。
 
-MyEtherWallet (MEW):: MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多示例中探討這些功能。
+MyEtherWallet (MEW):: MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多範例中探討這些功能。
 
 Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程式，適用於Windows，Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
 
@@ -128,7 +128,7 @@ image::images/metamask_mnemonic.png["MetaMask Mnemonic Page"]
 .Your Ethereum account in MetaMask
 image::images/metamask_account.png["MetaMask Account Page"]
 
-你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（示例中為0x9E713 ...）以及彩色圖標，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（示例中的“主網路”）。
+你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（範例中為0x9E713 ...）以及彩色圖標，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（範例中的“主網路”）。
 
 恭喜！你已經建立了你的第一個以太坊錢包！
 
@@ -334,7 +334,7 @@ function () public payable {}
 [[compile_faucet_contract]]
 === 編譯faucet合約
 
-現在我們已經有了我們的第一個示例合約，我們需要使用Solidity編譯器將Solidity程式碼轉換為EVM字節程式碼，以便它可以由EVM執行。
+現在我們已經有了我們的第一個範例合約，我們需要使用Solidity編譯器將Solidity程式碼轉換為EVM字節程式碼，以便它可以由EVM執行。
 
 Solidity編譯器是獨立的可執行檔案，作為不同框架的一部分，也捆綁在一個_Integrated Development Environment（IDE）_中。為了簡單起見，我們將使用一種更流行的IDE，稱為Remix。
 
@@ -342,7 +342,7 @@ Solidity編譯器是獨立的可執行檔案，作為不同框架的一部分，
 
 https://remix.ethereum.org/
 
-當你第一次加載Remix時，它將以一個名為 +ballot.sol+ 的示例合約開始。我們不需要這個，所以讓我們關閉它，點擊標籤邊的 +x+ ：
+當你第一次加載Remix時，它將以一個名為 +ballot.sol+ 的範例合約開始。我們不需要這個，所以讓我們關閉它，點擊標籤邊的 +x+ ：
 
 [[remix_close_tab]]
 .Close the default example tab
@@ -354,7 +354,7 @@ image::images/remix_close_tab.png["Close the default example tab"]
 .Click the plus sign to open a new tab
 image::images/remix_toolbar.png["Click the plus sign to open a new tab"]
 
-打開新選項卡後，複製並粘貼示例 +Faucet.sol+：
+打開新選項卡後，複製並粘貼範例 +Faucet.sol+：
 
 [[remix_faucet_load]]
 .Copy the Faucet example code into the new tab

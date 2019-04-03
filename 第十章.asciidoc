@@ -236,7 +236,7 @@ https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ER
 [[METoken_example]]
 ==== 發佈我們自己的ERC20Token
 
-讓我們創建併發布我們自己的Token。在這個例子中，我們將使用+truffle+ 框架（參見<<truffle>>）。該示例假設你已經安裝了+truffle+，進行了配置，並熟悉其基本操作。
+讓我們創建併發布我們自己的Token。在這個例子中，我們將使用+truffle+ 框架（參見<<truffle>>）。該範例假設你已經安裝了+truffle+，進行了配置，並熟悉其基本操作。
 
 我們將稱之為“Mastering Ethereum Token”，標誌為“MET”。
 
@@ -272,7 +272,7 @@ METoken/
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js
 
-如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+檔案夾中創建檔案+.env+，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。
+如果使用範例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+檔案夾中創建檔案+.env+，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。
 
 之後你的目錄看起來像：
 
@@ -295,7 +295,7 @@ METoken/
 只能使用不用於在以太坊主網路上持有資金的測試密鑰或測試助記符。切勿使用持有真正金錢的鑰匙進行測試。
 ====
 
-對於我們的示例，我們將匯入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們匯入該庫：
+對於我們的範例，我們將匯入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們匯入該庫：
 
 [[install_openZeppelin]]
 ----
@@ -307,7 +307,7 @@ added 8 packages in 2.504s
 
 + zeppelin-solidity +包將在+ node_modules +目錄下添加約250個檔案。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。
 
-接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製示例程式碼：
+接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製範例程式碼：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol
 
@@ -339,7 +339,7 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...
 
 如你所見，+truffle+包含了OpenZeppelin庫的必要依賴關係，並編譯了這些契約。
 
-我們建立一個migration腳本，部署 +METoken+合約。在+METoken/migrations+檔案夾中創建一個新檔案+2_deploy_contracts.js+。從Github儲存庫中的示例複製內容：
+我們建立一個migration腳本，部署 +METoken+合約。在+METoken/migrations+檔案夾中創建一個新檔案+2_deploy_contracts.js+。從Github儲存庫中的範例複製內容：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js
 
@@ -577,7 +577,7 @@ ERC20Token的用戶可能無意中在轉移中丟失其Token的方式之一是�
 
 我們的+Faucet+合同無法處理ERC20Token。使用+transfer+函數發送Token給它，會導致這些Token的丟失。我們重寫合同，並處理ERC20Token。具體來說，我們將把它變成一個Faucet，將MET發給任何詢問的人。
 
-對於這個例子，我們製作了Truffle項目目錄的副本，將其稱為 +METoken_METFaucet+，初始化Truffle，npm，安裝OpenZeppelin依賴項並複製+METoken.sol+合同。有關詳細說明，請參閱我們的第一個示例<<METoken_example>>。
+對於這個例子，我們製作了Truffle項目目錄的副本，將其稱為 +METoken_METFaucet+，初始化Truffle，npm，安裝OpenZeppelin依賴項並複製+METoken.sol+合同。有關詳細說明，請參閱我們的第一個範例<<METoken_example>>。
 
 現在，讓我們創建一個新的Faucet合同，稱之為+METFaucet.sol+。它看起來像這樣：
 
@@ -623,7 +623,7 @@ contract METFaucet {
 }
 ----
 
-我們對基本的Faucet示例做了很多改動。由於METFaucet將使用+METoken+中的+transferFrom+函數，它將需要兩個額外的變量。其中一個將保存已部署的+METoken+合約地址。另一個將持有MET所有者的地址，他們將提供Faucet提款的批准。+METFaucet+將調用+METoken.transferFrom+並指示它將MET從所有者移至Faucet提取請求所來自的地址。
+我們對基本的Faucet範例做了很多改動。由於METFaucet將使用+METoken+中的+transferFrom+函數，它將需要兩個額外的變量。其中一個將保存已部署的+METoken+合約地址。另一個將持有MET所有者的地址，他們將提供Faucet提款的批准。+METFaucet+將調用+METoken.transferFrom+並指示它將MET從所有者移至Faucet提取請求所來自的地址。
 
 
 [[MET_owner_var]]

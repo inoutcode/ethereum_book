@@ -438,13 +438,13 @@ IBAN是識別銀行賬號的國際標準，主要用於電匯。它在歐洲單�
 
 ICAP使用相同的結構，通過引入代表“Ethereum”的非標準國家程式碼“XE”，後面跟著兩個字符的校驗和以及3個可能的賬戶標識符變體：
 
-Direct:: 最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就欄位長度和校驗和而言，它的優點是它與IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33個字符長）
+Direct:: 最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就欄位長度和校驗和而言，它的優點是它與IBAN兼容。範例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33個字符長）
 
-Baasic:: 與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35個字符長）
+Baasic:: 與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。範例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35個字符長）
 
-Indrect:: 編碼通過名稱註冊表提供程式解析為以太坊地址的標識符。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。示例：+XEpass:[##] ETHXREGKITTYCATS+（20個字符長），其中“##”應由兩個計算校驗和字符替換。
+Indrect:: 編碼通過名稱註冊表提供程式解析為以太坊地址的標識符。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。範例：+XEpass:[##] ETHXREGKITTYCATS+（20個字符長），其中“##”應由兩個計算校驗和字符替換。
 
-我們可以使用 +helpeth+ 命令行工具來創建ICAP地址。讓我們嘗試使用我們的示例私鑰（前綴為0x並作為參數傳遞給helpeth）：
+我們可以使用 +helpeth+ 命令行工具來創建ICAP地址。讓我們嘗試使用我們的範例私鑰（前綴為0x並作為參數傳遞給helpeth）：
 
 [[create_ICAP]]
 ----
@@ -455,7 +455,7 @@ ICAP: XE60 HAMI CDXS V5QX VJA7 TJW4 7Q9C HWKJ D
 Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ----
 
-+helpeth+ 命令為我們構建了一個十六進制以太坊地址以及一個ICAP地址。我們示例密鑰的ICAP地址是：
++helpeth+ 命令為我們構建了一個十六進制以太坊地址以及一個ICAP地址。我們範例密鑰的ICAP地址是：
 
 
 [[ICAP_example]]
@@ -463,7 +463,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD
 ----
 
-由於我們的示例以太坊地址恰好以零字節開始，因此可以使用IBAN格式中有效的“Direct”ICAP編碼方法進行編碼。因為它是33個字符長。
+由於我們的範例以太坊地址恰好以零字節開始，因此可以使用IBAN格式中有效的“Direct”ICAP編碼方法進行編碼。因為它是33個字符長。
 
 如果我們的地址不是從零開始，那麼它將被編碼為“Basic”編碼，這將是35個字符長並且作為IBAN格式無效。
 
@@ -485,7 +485,7 @@ https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md
 
 通過修改地址中字母字符的大小寫，我們可以傳達一個校驗和，可以用來保護地址完整性，防止輸入或讀取錯誤。不支持EIP-55校驗和的錢包簡單地忽略地址包含混合大寫的事實。但那些支持它的人可以驗證它並以99.986％的準確度檢測錯誤。
 
-混合大小寫編碼很微妙，最初你可能不會注意到它。我們的示例地址是：
+混合大小寫編碼很微妙，最初你可能不會注意到它。我們的範例地址是：
 
 ----
 0x001d3f1ef827552ae1114027bd3ecf1f086ba0f9

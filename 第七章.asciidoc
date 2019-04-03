@@ -555,7 +555,7 @@ ECDSA必然是一門相當複雜的數學; 完整的解釋超出了本書的範�
 [[raw_tx]]
 ==== 原始交易創建和簽名
 
-讓我們創建一個原始交易並使用 +ethereumjs-tx+ 庫對其進行簽名。此示例的源程式碼位於GitHub儲存庫中的 +raw_tx_demo.js+ 中：
+讓我們創建一個原始交易並使用 +ethereumjs-tx+ 庫對其進行簽名。此範例的源程式碼位於GitHub儲存庫中的 +raw_tx_demo.js+ 中：
 
 [[raw_tx_demo_source]]
 .raw_tx_demo.js: Creating and signing a raw transaction in JavaScript
@@ -567,7 +567,7 @@ include::code/web3js/raw_tx/raw_tx_demo.js[]
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js
 
 [[raw_tx_demo_run]]
-運行示例程式碼：
+運行範例程式碼：
 ----
 $ node raw_tx_demo.js
 RLP-Encoded Tx: 0xe6808609184e72a0008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb348080
