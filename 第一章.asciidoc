@@ -133,7 +133,7 @@ Consensus rules:: 以太坊的共識規則，在參考規範，即 <<yellowpaper
 
 Transactions:: Ethereum交易（參見<<transactions>>）是網路消息，包括髮送者，接收者，值和數據負載等。
 
-State Machine:: 以太坊的狀態轉移由 _Ethereum虛擬機（EVM）_ 處理，這是一個執行 _bytecode_（機器語言指令）的基於棧的虛擬機。稱為“智能合約”的EVM程序以高級語言（如Solidity）編寫，並編譯為字節碼以便在EVM上執行。
+State Machine:: 以太坊的狀態轉移由 _Ethereum虛擬機（EVM）_ 處理，這是一個執行 _bytecode_（機器語言指令）的基於棧的虛擬機。稱為“智能合約”的EVM程序以高階語言（如Solidity）編寫，並編譯為字節碼以便在EVM上執行。
 
 Data structures:: 以太坊的區塊鏈作為 _database_（通常是Google的LevelDB）儲存在每個節點上，該區塊鏈在稱作 _梅克爾帕特里夏樹_ _Merkle Patricia Tree_ 的序列化雜湊資料結構中包含交易和系統狀態，。
 
