@@ -290,7 +290,7 @@ include::code/Solidity/Faucet.sol[]
 contract Faucet {
 ----
 
-該行聲明瞭一個合約對象，類似於JavaScript，Java或Cpass:[++]等其他面嚮對象語言中的 +class+ 聲明。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
+該行聲明瞭一個合約物件，類似於JavaScript，Java或Cpass:[++]等其他面嚮物件語言中的 +class+ 聲明。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
 
 接下來，我們聲明faucet合約的第一個函數：
 
@@ -316,7 +316,7 @@ Next comes the actual withdrawal:
 msg.sender.transfer(withdraw_amount);
 ----
 
-這裡發生了一些有趣的事情。+msg+ 對象是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內置函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前聲明為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
+這裡發生了一些有趣的事情。+msg+ 物件是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內置函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前聲明為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
 
 緊接著的一行是結束大括號，表示 +withdraw+ 函數定義的結束。
 

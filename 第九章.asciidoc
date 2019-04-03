@@ -298,7 +298,7 @@ ArrayBuffer Buffer DataView Faucet Float32Array Float64Array GLOBAL Int16Array I
 __defineGetter__ __defineSetter__ __lookupGetter__ __lookupSetter__ __proto__ constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf
 ----
 
-絕大多數錢包和節點相關功能由+web3+對象提供，該對象是 +web3.js+庫的一個實例。+web3+對象將RPC接口抽象為我們的parity節點。你還會注意到兩個熟悉名稱的對象：+Migrations+ 和 +Faucet+。這些代表我們剛剛部署的合約。我們將使用Truffle控制檯與合約進行交互。首先，讓我們通過 +web3+ 對象檢查我們的錢包：
+絕大多數錢包和節點相關功能由+web3+物件提供，該物件是 +web3.js+庫的一個實例。+web3+物件將RPC接口抽象為我們的parity節點。你還會注意到兩個熟悉名稱的物件：+Migrations+ 和 +Faucet+。這些代表我們剛剛部署的合約。我們將使用Truffle控制檯與合約進行交互。首先，讓我們通過 +web3+ 物件檢查我們的錢包：
 
 ----
 Truffle(localnode)> web3.eth.accounts

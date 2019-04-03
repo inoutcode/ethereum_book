@@ -402,7 +402,7 @@ $ truffle console --network ganache
 truffle(ganache)>
 ----
 
- +truffle(ganache)>+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制檯+支持所有的Truffle命令，所以我們可以從控制檯+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript對象存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：
+ +truffle(ganache)>+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制檯+支持所有的Truffle命令，所以我們可以從控制檯+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript物件存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：
 
 [[get_METoken_definition]]
 ----
@@ -426,7 +426,7 @@ network_id: '5777' }
 
 ----
 
-+METoken+對象還公開幾個屬性，例如合同的地址（由+migrate+命令部署）：
++METoken+物件還公開幾個屬性，例如合同的地址（由+migrate+命令部署）：
 
 [[METoken_address]]
 ----

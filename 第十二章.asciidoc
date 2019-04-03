@@ -234,7 +234,7 @@ Reality Keys [14]允許使用POST請求對事實進行離線請求。響應以�
 wget -qO- https://www.realitykeys.com/api/v1/blockchain/new --post-data="chain=XBT&address=1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX&which_total=total_received&comparison=ge&value=1000&settlement_date=2015-09-23&objection_period_secs=604800&accept_terms_of_service=current&use_existing=1"
 ----
 
-對於此示例，參數允許指定區塊鏈，要查詢的金額（總收到金額或最終餘額）以及要與提供的值進行比較的結果，從而允許真或假的響應。除了“signature_v2”字段之外，生成的JSON對象還包括返回值，該字段允許使用ecrecover()函數在智能合約中驗證結果：
+對於此示例，參數允許指定區塊鏈，要查詢的金額（總收到金額或最終餘額）以及要與提供的值進行比較的結果，從而允許真或假的響應。除了“signature_v2”字段之外，生成的JSON物件還包括返回值，該字段允許使用ecrecover()函數在智能合約中驗證結果：
 
 ----
 "machine_resolution_value" : "29665.80352",
