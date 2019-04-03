@@ -239,10 +239,10 @@ Parity::
     Satoshi Nakamoto 是設計比特幣及其原始實現Bitcoin Core的個人或團隊的名字。作為實現的一部分，他們也設計了第一個區塊鏈。在這個過程中，他們是第一個解決數位貨幣的雙重支付問題的。他們的真實身份至今仍是個謎。
     
 Vitalik Buterin::
-    Vitalik Buterin 是俄國-加拿大的程序員和作家，以太坊和 Bitcoin 雜誌的聯合創始人。
+    Vitalik Buterin 是俄國-加拿大的開發者和作家，以太坊和 Bitcoin 雜誌的聯合創始人。
 
 Gavin Wood::
-    Gavin Wood 是英國的程序員，以太坊的聯合創始人和前 CTO。在2014年8月他提出了 Solidity，用於編寫智能合約的面向合約的程式語言。
+    Gavin Wood 是英國的開發者，以太坊的聯合創始人和前 CTO。在2014年8月他提出了 Solidity，用於編寫智能合約的面向合約的程式語言。
 
 密鑰（私鑰） Secret key (aka private key)::
     允許以太坊用戶通過創建數字簽名（參見公鑰，地址，ECDSA）證明賬戶或合約的所有權的加密數字。
