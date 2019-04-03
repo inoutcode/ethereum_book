@@ -61,7 +61,7 @@
 
 別擔心！如果你選擇一個錢包而不喜歡它的工作方式，那麼你可以很容易地更換錢包。你只需進行一項交易，即將資金從舊錢包發送到新錢包，或者通過匯出和匯入私鑰來移動密鑰。
 
-首先，我們將選擇三種不同類型的錢包作為整本書的示例：移動錢包，桌面錢包和基於網絡的錢包。我們選擇了這三款錢包，因為它們代表了廣泛的複雜性和功能。然而，選擇這些錢包並不是對其質量或安全性的認可。他們只是示範和測試。
+首先，我們將選擇三種不同類型的錢包作為整本書的示例：移動錢包，桌面錢包和基於網路的錢包。我們選擇了這三款錢包，因為它們代表了廣泛的複雜性和功能。然而，選擇這些錢包並不是對其質量或安全性的認可。他們只是示範和測試。
 
 起始錢包：
 
@@ -69,7 +69,7 @@ MetaMask:: MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chro
 
 Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運行，包括Android，iOS，Windows，Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。
 
-MyEtherWallet (MEW):: MyEtherWallet是一款基於網絡的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多示例中探討這些功能。
+MyEtherWallet (MEW):: MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多示例中探討這些功能。
 
 Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程序，適用於Windows，Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
 
@@ -128,24 +128,24 @@ image::images/metamask_mnemonic.png["MetaMask Mnemonic Page"]
 .Your Ethereum account in MetaMask
 image::images/metamask_account.png["MetaMask Account Page"]
 
-你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（示例中為0x9E713 ...）以及彩色圖標，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網絡（示例中的“主網絡”）。
+你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（示例中為0x9E713 ...）以及彩色圖標，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（示例中的“主網路”）。
 
 恭喜！你已經建立了你的第一個以太坊錢包！
 
 [[switching_networks]]
-=== 切換網絡
+=== 切換網路
 
-正如你在MetaMask帳戶頁面上所看到的，你可以在多個以太坊網絡中進行選擇。預設情況下，MetaMask將嘗試連接到“主網絡”。其他選擇是公共測試網，你選擇的任何以太坊節點或在你自己的計算機上運行私有區塊鏈的節點（本地主機）：
+正如你在MetaMask帳戶頁面上所看到的，你可以在多個以太坊網路中進行選擇。預設情況下，MetaMask將嘗試連接到“主網路”。其他選擇是公共測試網，你選擇的任何以太坊節點或在你自己的計算機上運行私有區塊鏈的節點（本地主機）：
 
 Main Ethereum Network:: 主要的，公開的以太坊區塊鏈。真正的ETH，真正的價值，真正的後果。
 
-Ropsten Test Network:: 以太坊公開測試區塊鏈和網絡，使用工作證明共識（挖礦）。在這個網絡上的ETH沒有價值。Ropsten的問題在於攻擊者鑄造了數以萬計的區塊，產生巨大的重組並將燃氣極限推到9B。當時需要一個新的公共測試網，但之後（2017年3月25日）Ropsten也復活了！
+Ropsten Test Network:: 以太坊公開測試區塊鏈和網路，使用工作證明共識（挖礦）。在這個網路上的ETH沒有價值。Ropsten的問題在於攻擊者鑄造了數以萬計的區塊，產生巨大的重組並將燃氣極限推到9B。當時需要一個新的公共測試網，但之後（2017年3月25日）Ropsten也復活了！
 
-Kovan Test Network:: 以太坊公開測試區塊鏈和網絡，使用“Aura”協議進行權威證明（Proof-of-Authority）共識（聯合簽名）。在這個網絡上的ETH沒有價值。該測試網絡僅由“Parity”支持。其他以太坊客戶使用稍後提出的"Clique"協議作為權威證明。
+Kovan Test Network:: 以太坊公開測試區塊鏈和網路，使用“Aura”協議進行權威證明（Proof-of-Authority）共識（聯合簽名）。在這個網路上的ETH沒有價值。該測試網路僅由“Parity”支持。其他以太坊客戶使用稍後提出的"Clique"協議作為權威證明。
 
-Rinkeby Test Network:: 以太坊公開測試區塊鏈和網絡，使用“Clique”協議進行權威證明共識（聯合簽名）。在這個網絡上的ETH沒有價值。
+Rinkeby Test Network:: 以太坊公開測試區塊鏈和網路，使用“Clique”協議進行權威證明共識（聯合簽名）。在這個網路上的ETH沒有價值。
 
-Localhost 8545:: 連接到與瀏覽器在同一臺計算機上運行的節點。該節點可以是任何公共區塊鏈（主要或測試網絡）或私人測試網絡的一部分（參見<<ganache>>）。
+Localhost 8545:: 連接到與瀏覽器在同一臺計算機上運行的節點。該節點可以是任何公共區塊鏈（主要或測試網路）或私人測試網路的一部分（參見<<ganache>>）。
 
 Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程調用（RPC）接口的節點。該節點可以是任何公共或私有區塊鏈的一部分。
 
@@ -153,7 +153,7 @@ Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程�
 
 [TIP]
 ====
-你的MetaMask錢包在連接的所有網絡上使用相同的私鑰和以太坊地址。但是，每個以太坊網絡上的以太坊地址餘額將有所不同。例如，你的密鑰可以控制Ropsten上的以太和合約，但不能控制主網上的。
+你的MetaMask錢包在連接的所有網路上使用相同的私鑰和以太坊地址。但是，每個以太坊網路上的以太坊地址餘額將有所不同。例如，你的密鑰可以控制Ropsten上的以太和合約，但不能控制主網上的。
 ====
 
 [[getting_test_eth]]
@@ -161,7 +161,7 @@ Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程�
 
 我們的首要任務是給我們的錢包充值。我們不會在主網上這樣做，因為真正的以太網需要花費金錢，處理它需要更多的經驗。現在，我們將使用一些testnet ether加載我們的錢包。
 
-將MetaMask切換到_Ropsten測試網絡_。然後點擊“Buy”，然後點擊“Ropsten Test Faucet”。MetaMask將打開一個新的網頁：
+將MetaMask切換到_Ropsten測試網路_。然後點擊“Buy”，然後點擊“Ropsten Test Faucet”。MetaMask將打開一個新的網頁：
 
 [[metamask_ropsten_faucet]]
 .MetaMask Ropsten Test Faucet
@@ -191,7 +191,7 @@ https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f95
 [[sending_eth_MetaMask]]
 === 使用MetaMask發送ether
 
-一旦我們從Ropsten Test Faucet接收到我們的第一個測試ether，我們將試著發送一些ether回到faucet。正如你在Ropsten Test Faucet頁面上看到的那樣，你可以選擇“donate”1個ETH。這個選項是可用的，所以一旦你完成了測試，你可以返回剩餘的測試ether，以便其他人可以使用它。儘管測試ether沒有價值，但有些人囤積測試ether，使其他人難以使用測試網絡。囤積測試ether令人不悅！
+一旦我們從Ropsten Test Faucet接收到我們的第一個測試ether，我們將試著發送一些ether回到faucet。正如你在Ropsten Test Faucet頁面上看到的那樣，你可以選擇“donate”1個ETH。這個選項是可用的，所以一旦你完成了測試，你可以返回剩餘的測試ether，以便其他人可以使用它。儘管測試ether沒有價值，但有些人囤積測試ether，使其他人難以使用測試網路。囤積測試ether令人不悅！
 
 幸運的是，我們不是測試ether的囤積者，我們希望練習發送ether。
 
@@ -208,7 +208,7 @@ image::images/send_to_faucet.png["Sending 1 ether to the faucet"]
 
 [TIP]
 ====
-測試網絡也需要費用。如果沒有費用，測試網絡的行為將與主網絡不同，從而使其成為不適當的測試平臺。費用還可以保護測試網絡免受拒絕服務攻擊和構造不良的合約（如無限循環），就像保護主網絡一樣。
+測試網路也需要費用。如果沒有費用，測試網路的行為將與主網路不同，從而使其成為不適當的測試平臺。費用還可以保護測試網路免受拒絕服務攻擊和構造不良的合約（如無限循環），就像保護主網路一樣。
 ====
 
 當你發送交易時，Metamask以3 GWEI（即3 gigawei）計算最近成功交易的平均gas價格。Wei是以太貨幣的最小的細分，正如我們在 <<ether_units>> 中所討論的那樣。發送基本交易的gas成本為21000個gas單位。因此，你花費的ETH的最大數量為3 * 21000 GWEI = 63000 GWEI = 0.000063 ETH。請注意，平均gas價格可能波動，因為它們主要由礦工決定。我們將在後面的章節中看到如何增加/減少gas限制，以確保你的交易在需要時優先處理。
@@ -243,7 +243,7 @@ image::images/block_explorer_account_history.png["Address Transaction History on
 
 我們已經創建了一個錢包，並且我們已經發送並接收了ether。到目前為止，我們已經將以太坊視為一種加密貨幣。但是以太坊代表了更多。事實上，加密貨幣功能是服務於以太坊作為世界計算機的功能; 一個去中心化的智能合約平臺。以太旨在用於支付運行的 _smart contracts_，這是在稱為_Ethereum虛擬機（EVM）_的模擬計算機上運行的計算機程序。
 
-EVM是一個全球性的單例，這意味著它的運作方式就好像它是一個全球性的單實例計算機，無處不在。以太坊網絡上的每個節點運行EVM的本地副本以驗證合約執行，而以太坊區塊鏈記錄此世界計算機在處理交易和智能合約時變化的 _狀態_。
+EVM是一個全球性的單例，這意味著它的運作方式就好像它是一個全球性的單實例計算機，無處不在。以太坊網路上的每個節點運行EVM的本地副本以驗證合約執行，而以太坊區塊鏈記錄此世界計算機在處理交易和智能合約時變化的 _狀態_。
 
 [[EOA_contracts]]
 === 外部所有賬戶（EOAs）和合約
@@ -263,7 +263,7 @@ EVM是一個全球性的單例，這意味著它的運作方式就好像它是�
 
 以太坊有許多不同的高級語言，所有這些語言都可用於編寫合約並生成EVM字節碼。你可以閱讀 <<high_level_languages>>  中許多最成功和有趣的內容。一種智能合約編程的主要高級語言：Solidity。本書的合著者Gavin Wood創建了Solidity，已經成為以太坊及以太坊外最廣泛使用的語言。我們將使用Solidity編寫我們的第一份合約。
 
-作為我們的第一個例子，我們將編寫一個控制_faucet_的合約。我們已經使用了faucent在Ropsten測試網絡上獲得測試ether。faucet是一件相對簡單的事情：它給任何地址發放ether，可以定期補充。你可以將faucet實現為由人類（或網絡服務器）控制的錢包，但我們將編寫一個實現faucet的Solidity合約：
+作為我們的第一個例子，我們將編寫一個控制_faucet_的合約。我們已經使用了faucent在Ropsten測試網路上獲得測試ether。faucet是一件相對簡單的事情：它給任何地址發放ether，可以定期補充。你可以將faucet實現為由人類（或網路服務器）控制的錢包，但我們將編寫一個實現faucet的Solidity合約：
 
 [[solidity_faucet_example]]
 .Faucet.sol : A Solidity contract implementing a faucet
@@ -384,7 +384,7 @@ PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH2 0xF JUMPI PUSH1 0x0 DUP1 REV
 
 在區塊鏈上註冊合約涉及創建一個特殊交易，其目標是地址0x0000000000000000000000000000000000000000，也稱為_zero address_。零地址是一個特殊的地址，告訴以太坊區塊鏈你想註冊一個合約。幸運的是，Remix IDE將為你處理所有這些交易並將交易發送給MetaMask。
 
-首先，切換到“Run”選項卡，並在“Environment”下拉列表框中選擇“Injected Web3”。這將Remix IDE連接到MetaMask錢包，並通過MetaMask連接到Ropsten測試網絡。一旦你這樣做，你可以在Evironment下看到“Ropsten”。另外，在Account選擇框中，它顯示你的錢包的地址：
+首先，切換到“Run”選項卡，並在“Environment”下拉列表框中選擇“Injected Web3”。這將Remix IDE連接到MetaMask錢包，並通過MetaMask連接到Ropsten測試網路。一旦你這樣做，你可以在Evironment下看到“Ropsten”。另外，在Account選擇框中，它顯示你的錢包的地址：
 
 [[remix_run.png]]
 .Remix IDE "Run" tab, with "Injected Web3" environment selected
@@ -513,7 +513,7 @@ msg.sender.transfer(withdraw_amount);
 [[intro_conclusion]]
 === 總結
 
-本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網絡上的一個faucet為它充值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。
+本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網路上的一個faucet為它充值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。
 
 接下來，我們在Solidity中寫了一個faucet合約。使用Remix IDE將合約編譯為EVM字節碼。使用Remix進行交易，並在Ropsten區塊鏈上登記faucet合約。一旦登記，faucet合約有一個以太坊地址，我們發送一些ether。最後，我們構建了一個交易來調用 +withdraw+ 函數，併成功請求了0.1 ether。該合約檢查了我們的請求，發送給我們0.1 ether並進行內部交易。
 

@@ -617,7 +617,7 @@ require(this.balance >= withdraw_amount,
 msg.sender.transfer(withdraw_amount);
 ----
 
-像這樣的其他錯誤檢查代碼會略微增加gas消耗，但它比不檢查提供了更好的錯誤報告。在gas量和詳細錯誤檢查之間取得適當的平衡是你需要根據合約的預期用途來決定的。在為測試網絡設計的+Faucet+的情況下，即使額外報告成本更高，我們也不冒險犯錯。也許對於一個主網合約，我們會選擇節約gas用量。
+像這樣的其他錯誤檢查代碼會略微增加gas消耗，但它比不檢查提供了更好的錯誤報告。在gas量和詳細錯誤檢查之間取得適當的平衡是你需要根據合約的預期用途來決定的。在為測試網路設計的+Faucet+的情況下，即使額外報告成本更高，我們也不冒險犯錯。也許對於一個主網合約，我們會選擇節約gas用量。
 
 ==== 事件（Events）
 
@@ -1023,7 +1023,7 @@ var gasEstimate = contract.myAweSomeMethod.estimateGas(arg1, arg2, {from: accoun
 
 *gasEstimate* 會告訴我們執行需要的gas單位。
 
-為了獲得網絡的 *gas價格* 可以使用：
+為了獲得網路的 *gas價格* 可以使用：
 
 [source, JavaScript]
 var gasPrice = web3.eth.getGasPrice();

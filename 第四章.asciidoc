@@ -5,11 +5,11 @@
 
 === 什麼是測試網？
 
-測試網絡（簡稱testnet）用於模擬以太網主網的行為。有一些公開的測試網絡可以替代以太坊區塊鏈。這些網絡上的貨幣毫無價值，但它們仍然很有用，因為合約和協議變更的功能可以在不中斷以太網主網或使用真實貨幣的情況下進行測試。當主網（簡稱mainnet）即將包含對以太坊協議的任何重大改變時，其測試主要在這些測試網絡上完成。這些測試網絡也被大量開發人員用於在部署到主網之前測試應用程序。
+測試網路（簡稱testnet）用於模擬以太網主網的行為。有一些公開的測試網路可以替代以太坊區塊鏈。這些網路上的貨幣毫無價值，但它們仍然很有用，因為合約和協議變更的功能可以在不中斷以太網主網或使用真實貨幣的情況下進行測試。當主網（簡稱mainnet）即將包含對以太坊協議的任何重大改變時，其測試主要在這些測試網路上完成。這些測試網路也被大量開發人員用於在部署到主網之前測試應用程序。
 
 === 使用 Testnets
 
-你可以連接到公共可用的測試網絡或創建你自己的私人測試網絡。首先，讓我們使用公共測試網來更簡單地起步。要使用公共測試網絡，需要一些測試網絡以及到該網絡的連接。對於testnet ether，使用“faucet”，faucet緩慢地分配測試ether，向任何詢問的人“滴送”少量ether。要連接到一個測試網絡，你需要一個以太坊客戶端，完整的客戶端，比如geth，或者完整的客戶端的網關，比如MetaMask。
+你可以連接到公共可用的測試網路或創建你自己的私人測試網路。首先，讓我們使用公共測試網來更簡單地起步。要使用公共測試網路，需要一些測試網路以及到該網路的連接。對於testnet ether，使用“faucet”，faucet緩慢地分配測試ether，向任何詢問的人“滴送”少量ether。要連接到一個測試網路，你需要一個以太坊客戶端，完整的客戶端，比如geth，或者完整的客戶端的網關，比如MetaMask。
 
 === 獲取測試以太網
 
@@ -19,13 +19,13 @@
 
 ==== Metamask
 
-Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到其他測試網和本地網。在Metamask中，只需單擊“main network”下拉菜單，即可切換網絡。MetaMask還提供了一個“buy”測試ether的選項，該選項將你引導至你可以請求免費測試以太網的faucet。如果使用Ropsten測試網，則可以從Ropsten測試faucet服務中獲取ether。你可以從此頁面訪問此faucet。它需要Metamask擴展才能工作。https://faucet.metamask.io/
+Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到其他測試網和本地網。在Metamask中，只需單擊“main network”下拉菜單，即可切換網路。MetaMask還提供了一個“buy”測試ether的選項，該選項將你引導至你可以請求免費測試以太網的faucet。如果使用Ropsten測試網，則可以從Ropsten測試faucet服務中獲取ether。你可以從此頁面訪問此faucet。它需要Metamask擴展才能工作。https://faucet.metamask.io/
 
 ===== Infura
 
-當MetaMask連接到測試網絡時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化儲存）API和Websockets（即流式傳輸）API。
+當MetaMask連接到測試網路時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化儲存）API和Websockets（即流式傳輸）API。
 
-Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura的定製測試網絡）提供網關API。
+Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura的定製測試網路）提供網關API。
 
 要通過MetaMask使用Infura進行較低級別的活動，你不需要賬戶。要直接使用API，你需要註冊一個賬戶並使用Infura提供的API密鑰。
 
@@ -35,13 +35,13 @@ https://infura.io/
 
 ==== Remix集成開發環境（IDE）
 
-Remix IDE可用於在主網和測試網上部署和交互智能合約，包括Ropsten，Rinkeby和Kovan（Web3提供者使用Infura地址和API密鑰或通過Injected Web3使用MetaMask中選擇的網絡）和Ganache（ Web3提供端點http://localhost:8545） 
+Remix IDE可用於在主網和測試網上部署和交互智能合約，包括Ropsten，Rinkeby和Kovan（Web3提供者使用Infura地址和API密鑰或通過Injected Web3使用MetaMask中選擇的網路）和Ganache（ Web3提供端點http://localhost:8545） 
 
 https://github.com/ethereum/remix/blob/master/docs/run_tab.rst 
 https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b
 
 ==== Geth
-Geth本身支持Ropsten和Rinkeby網絡。要連接到Ropsten網絡，請使用命令行參數：
+Geth本身支持Ropsten和Rinkeby網路。要連接到Ropsten網路，請使用命令行參數：
 
 ----
 geth --testnet
@@ -66,7 +66,7 @@ geth --testnet account list
 雖然小得多，但測試網仍需要一些時間才能完全同步。
 ====
 
-你可以通過在geth交互式控制檯中運行以下命令來檢查geth是否已完成同步測試網絡：
+你可以通過在geth交互式控制檯中運行以下命令來檢查geth是否已完成同步測試網路：
 
 ----
 eth.getBlock("latest").number
@@ -74,7 +74,7 @@ eth.getBlock("latest").number
 
 一旦你的testnet節點完全同步，這應該返回一個非0的數字。你可以將該編號與已知的testnet區塊瀏覽器中的最新塊進行比較，例如https://ropsten.etherscan.io/
 
-同樣，要連接到Rinkeby測試網絡，請使用命令行參數：
+同樣，要連接到Rinkeby測試網路，請使用命令行參數：
 
 ----
 geth --rinkeby
@@ -82,13 +82,13 @@ geth --rinkeby
 
 ==== Parity
 
-Parity客戶端支持Ropsten和Kovan測試網絡。你可以用+chain+參數選擇你要連接的網絡。例如，要同步Ropsten測試網絡：
+Parity客戶端支持Ropsten和Kovan測試網路。你可以用+chain+參數選擇你要連接的網路。例如，要同步Ropsten測試網路：
 
 ----
 parity --chain ropsten
 ----
 
-同樣，要同步Kovan測試網絡，請使用：
+同樣，要同步Kovan測試網路，請使用：
 
 ----
 parity --chain kovan
@@ -96,7 +96,7 @@ parity --chain kovan
 
 == 深入以太坊Testnets
 
-在這個階段你可能會想：“我明白我為什麼要使用測試網絡，但為什麼會有這麼多呢？”
+在這個階段你可能會想：“我明白我為什麼要使用測試網路，但為什麼會有這麼多呢？”
 
 https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles
 
@@ -109,7 +109,7 @@ https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/
 
 === Ropsten
 
-如果你想開始在Ropsten網絡上測試合約，有幾個faucet可以供給你Ropsten的ether。如果faucet不起作用，請嘗試不同的faucet。
+如果你想開始在Ropsten網路上測試合約，有幾個faucet可以供給你Ropsten的ether。如果faucet不起作用，請嘗試不同的faucet。
 
 * http://faucet.ropsten.be:3001/ 
 這個faucet提供了應該排隊接收測試以太的地址的可能性。
@@ -151,7 +151,7 @@ https://kovan.etherscan.io/
 
 ==== Morden
 
-以太坊經典目前運行著Morden測試網的一個變體，與以太坊經典活躍網絡保持功能相同。你可以通過gastracker RPC或者為`geth`或`parity`提供一個標誌來連接它.
+以太坊經典目前運行著Morden測試網的一個變體，與以太坊經典活躍網路保持功能相同。你可以通過gastracker RPC或者為`geth`或`parity`提供一個標誌來連接它.
 
 *Faucet:* http://testnet.epool.io/
 
@@ -169,14 +169,14 @@ Olympic, Morden to Ropsten, Kovan, Rinkeby
 
 Olympic testnet (Network ID: 0) 是Frontier首個公共測試網（簡稱Ethereum 0.9）。它於2015年初推出，2015年中期被Morden取代時棄用。
 
-Ethereum’s Morden testnet (Network ID: 2) 與Frontier一起發佈，從2015年7月開始運行，直到2016年11月不再使用。雖然任何使用以太坊的人都可以創建測試網，但Morden是第一個“官方”公共測試網，取代了Olympic測試網。由於臃腫區塊鏈的長同步時間以及Geth和Parity客戶端之間的共識問題，測試網絡重新啟動並重新生成為Ropsten。
+Ethereum’s Morden testnet (Network ID: 2) 與Frontier一起發佈，從2015年7月開始運行，直到2016年11月不再使用。雖然任何使用以太坊的人都可以創建測試網，但Morden是第一個“官方”公共測試網，取代了Olympic測試網。由於臃腫區塊鏈的長同步時間以及Geth和Parity客戶端之間的共識問題，測試網路重新啟動並重新生成為Ropsten。
 
-Ropsten (Network ID: 3) 是一個針對Homestead的公共跨客戶端測試網，於2016年晚些時候推出，並作為公共測試網順利運行至2017年2月底。根據Ethereum的核心開發人員PéterSzilágyi的說法，二月的時候，“惡意行為者決定濫用低PoW，並逐步將gas限制提高到90億（從普通的470萬），發送巨大交易損害了整個網絡”。Ropsten在2017年3月被恢復。https://github.com/ethereum/ropsten
+Ropsten (Network ID: 3) 是一個針對Homestead的公共跨客戶端測試網，於2016年晚些時候推出，並作為公共測試網順利運行至2017年2月底。根據Ethereum的核心開發人員PéterSzilágyi的說法，二月的時候，“惡意行為者決定濫用低PoW，並逐步將gas限制提高到90億（從普通的470萬），發送巨大交易損害了整個網路”。Ropsten在2017年3月被恢復。https://github.com/ethereum/ropsten
 
-Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識算法驅動的Homestead的公共Parity測試網絡。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
+Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識算法驅動的Homestead的公共Parity測試網路。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
 儘管看起來這應該是以太坊測試網問題的解決方案，但在以太坊社區內似乎存在關於Kovan測試網的共識問題。https://github.com/kovan-testnet/proposal
 
-Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發佈的Geth測試網絡，並使用PoA共識協議。以斯德哥爾摩的地鐵站命名，它幾乎不受垃圾郵件攻擊的影響（因為以太網供應由受信任方控制）。請參閱EIP 225：https://github.com/ethereum/EIPs/issues/225
+Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發佈的Geth測試網路，並使用PoA共識協議。以斯德哥爾摩的地鐵站命名，它幾乎不受垃圾郵件攻擊的影響（因為以太網供應由受信任方控制）。請參閱EIP 225：https://github.com/ethereum/EIPs/issues/225
 
 === 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)
 https://github.com/ethereum/guide/blob/master/poa.md

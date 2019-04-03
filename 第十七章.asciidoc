@@ -3,15 +3,15 @@
 [[communications_between_nodes]]
 == 節點間的通信 —— 一個簡單的視角
 
-以太坊節點之間通過簡單的線路協議進行通信，形成一個虛擬或覆蓋良好的網絡
+以太坊節點之間通過簡單的線路協議進行通信，形成一個虛擬或覆蓋良好的網路
 為實現這一目標，該協議稱為*ÐΞVp2p*，使用*RLP*等技術和標準。
 
 [[transport_protocol]]
 === 傳輸協議
 
-為了提供機密性並防止網絡中斷，*ÐΞVp2p*節點使用*RLPx*消息，一種加密且經過身份驗證的_transport協議。
-*RLPx*使用類似於*Kademlia*的路由算法，*Kademlia*是用於分散的對等計算機網絡的分佈式哈希表（* DHT *）。
-*RLPx*，作為底層傳輸協議，允許_“節點發現和網絡形成”_。
+為了提供機密性並防止網路中斷，*ÐΞVp2p*節點使用*RLPx*消息，一種加密且經過身份驗證的_transport協議。
+*RLPx*使用類似於*Kademlia*的路由算法，*Kademlia*是用於分散的對等計算機網路的分佈式哈希表（* DHT *）。
+*RLPx*，作為底層傳輸協議，允許_“節點發現和網路形成”_。
 *RLPx*的另一個顯著特徵是通過單個連接支持_多個協議_。
 
 當*ÐΞVp2p*節點通過Internet進行通信時（通常情況下），它們使用TCP，它提供面向連接的介質，但實際上*ÐΞVp2p*節點通過使用底層傳輸協議*RLPx*所提供的所謂設施（或消息），以數據包通信，允許它們通信發送和接收數據包。
@@ -77,19 +77,19 @@
 - *Hash of the Genesis block*
 
 [[known_current_networks]]
-===== 已知的當前網絡ID
-這裡是目前已知的網絡ID列表：
+===== 已知的當前網路ID
+這裡是目前已知的網路ID列表：
 
 - 0: *Olympic*; 以太坊公共預發佈測試網
 - 1: *Frontier*; Homestead，Metropolis，以太坊公共主網
-- 1: *Classic*; (un)forked 公共以太坊Classic主網絡，鏈ID 61
+- 1: *Classic*; (un)forked 公共以太坊Classic主網路，鏈ID 61
 - 1: *Expanse*; 另一個以太坊實現，鏈ID 2
 - 2: *Morden*; 公共以太坊測試網，現在是以太坊經典測試網
 - 3: *Ropsten*; 公共跨客戶端以太坊測試網
 - 4: *Rinkeby*: 公共Geth以太坊測試網
 - 42: *Kovan*; 公共Parity以太坊測試網
 - 77: *Sokol*; 公共POA測試網
-- 99: *POA*; 公共權威證明（PoA）以太網網絡
+- 99: *POA*; 公共權威證明（PoA）以太網網路
 - 7762959: *Musicoin*; 音樂區塊鏈
 
 ==== GetBlocks - 另一個子協議示例
