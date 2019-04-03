@@ -67,7 +67,7 @@ TODO
 
 Swarm主頁: http://swarm-gateways.net/bzz:/theswarm.eth/
 
-閱讀文檔: https://swarm-guide.readthedocs.io/en/latest/index.html
+閱讀文件: https://swarm-guide.readthedocs.io/en/latest/index.html
 
 Swarm開發人員的入門指南: https://github.com/ethersphere/swarm/wiki/swarm
 
@@ -101,7 +101,7 @@ Truffle是一種流行的選擇，為以太坊提供可管理的開發環境，�
 * 在開發過程中即時重建資產。
 * 在Truffle環境中執行腳本的外部腳本運行器。
 
-入門和文檔：http://truffleframework.com/docs
+入門和文件：http://truffleframework.com/docs
 
 Github：https://github.com/trufflesuite/truffle
 
@@ -129,7 +129,7 @@ Website：https://truffleframework.com
 * 與任何網路技術集成，包括React，Foundation等。
 * 使用你想要的任何構建管道或工具，包括grunt，gulp和webpack。
 
-入門和文檔：https://embark.readthedocs.io
+入門和文件：https://embark.readthedocs.io
 
 Github：https://github.com/embark-framework/embark
 
@@ -154,7 +154,7 @@ Emerald提供：
 * 網路應用程序
 * 命令行應用程序和腳本工具
 
-入門和文檔：https://docs.etcdevteam.com
+入門和文件：https://docs.etcdevteam.com
 
 Github：https://github.com/etcdevteam/emerald-platform
 
@@ -169,7 +169,7 @@ DApp是一個用於智能合約開發的簡單命令行工具。它支持以下�
 * 單元測試
 * 簡單的合約部署
 
-入門和文檔：https://dapp.readthedocs.io/en/latest/
+入門和文件：https://dapp.readthedocs.io/en/latest/
 
 [[live_dapps_sec]]
 === 活躍的DApps

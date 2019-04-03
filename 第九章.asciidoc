@@ -12,7 +12,7 @@ Github; https://github.com/Trufflesuite/Truffle
 
 網站; https://Truffleframework.com
 
-文檔; https://Truffleframework.com/docs
+文件; https://Truffleframework.com/docs
 
 Truffle Boxes; http://Truffleframework.com/boxes/
 
@@ -363,7 +363,7 @@ StatusError: Transaction: 0xe147ae9e3610334ada8d863c9028c12bd0501be2d0cfd05865c1
 
 Github; https://github.com/embark-framework/embark/
 
-文檔; https://embark.status.im/docs/
+文件; https://embark.status.im/docs/
 
 +npm+ package repository; https://www.npmjs.com/package/embark
 
