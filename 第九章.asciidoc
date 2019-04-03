@@ -499,16 +499,16 @@ zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy�
 
 //// TODO: the example provided above is still a WIP - link to a tutorial once it's finished
 
-雖然目前正在開發中，但zeppelin_os旨在提供一系列附加功能，例如開發人員工具，自動執行合約中後臺操作的調度程序，開發獎勵，促進應用程式之間進行通信和交換價值的市場等等。所有這些都在zeppelin_os的https://zeppelinos.org/zeppelin_os_[whitepaper].pdf中描述。
+雖然目前正在開發中，但zeppelin_os旨在提供一系列附加功能，例如開發人員工具，自動執行合約中後臺操作的調度程式，開發獎勵，促進應用程式之間進行通信和交換價值的市場等等。所有這些都在zeppelin_os的https://zeppelinos.org/zeppelin_os_[whitepaper].pdf中描述。
 
 Github link; https://github.com/zeppelinos
 Website link; https://zeppelinos.org
 Blog: https://blog.zeppelinos.org
 Github: https://github.com/zeppelinos
 
-== 實用程序
+== 實用程式
 
-=== ethereumJS helpeth: 命令行實用程序
+=== ethereumJS helpeth: 命令行實用程式
 
 helpeth是一個命令行工具，使開發人員更容易的操作密鑰和交易。
 
@@ -599,7 +599,7 @@ Documentation link; https://web3py.readthedocs.io/
 
 === EthereumJS
 
-以太坊的庫和實用程序集合。
+以太坊的庫和實用程式集合。
 
 Github link; https://github.com/ethereumjs
 

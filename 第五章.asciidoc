@@ -442,7 +442,7 @@ Direct:: 最多30個字母數字字符big-endian base-36整數，表示以太坊
 
 Baasic:: 與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35個字符長）
 
-Indrect:: 編碼通過名稱註冊表提供程序解析為以太坊地址的標識符。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。示例：+XEpass:[##] ETHXREGKITTYCATS+（20個字符長），其中“##”應由兩個計算校驗和字符替換。
+Indrect:: 編碼通過名稱註冊表提供程式解析為以太坊地址的標識符。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。示例：+XEpass:[##] ETHXREGKITTYCATS+（20個字符長），其中“##”應由兩個計算校驗和字符替換。
 
 我們可以使用 +helpeth+ 命令行工具來創建ICAP地址。讓我們嘗試使用我們的示例私鑰（前綴為0x並作為參數傳遞給helpeth）：
 
