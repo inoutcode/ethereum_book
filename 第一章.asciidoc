@@ -131,7 +131,7 @@ P2P Network:: 以太坊在 _以太坊主網_ 上運行，可以通過TCP端口30
 
 Consensus rules:: 以太坊的共識規則，在參考規範，即 <<yellowpaper>> 中定義。
 
-Transactions:: Ethereum交易（參見<<transactions>>）是網路消息，包括髮送者，接收者，值和數據負載等。
+Transactions:: Ethereum交易（參見<<transactions>>）是網路消息，包括發送者，接收者，值和數據負載等。
 
 State Machine:: 以太坊的狀態轉移由 _Ethereum虛擬機（EVM）_ 處理，這是一個執行 _bytecode_（機器語言指令）的基於棧的虛擬機。稱為“智能合約”的EVM程序以高階語言（如Solidity）編寫，並編譯為字節碼以便在EVM上執行。
 
