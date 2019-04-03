@@ -259,7 +259,7 @@ enum:: 枚舉離散值的用戶定義類型。
 
 struct:: 包含一組變量的用戶定義的數據容器。
 
-mapping:: +key => value+對的哈希查找表。
+mapping:: +key => value+對的雜湊查找表。
 
 除上述數據類型外，Solidity還提供了多種可用於計算不同單位的字面值：
 
@@ -314,7 +314,7 @@ tx.origin:: 源自（EOA）的交易的完整調用堆棧。
 
 block:: 包含有關當前塊的信息的塊物件。
 
-block.blockhash(blockNumber):: 指定塊編號的塊的哈希，直到之前的256個塊。已棄用，並使用Solidity v.0.4.22中的+blockhash()+函數替換。
+block.blockhash(blockNumber):: 指定塊編號的塊的雜湊，直到之前的256個塊。已棄用，並使用Solidity v.0.4.22中的+blockhash()+函數替換。
 
 block.coinbase:: 當前塊的礦工地址。
 
@@ -345,7 +345,7 @@ address.delegatecall():: 低級調用函數，保持發起調用的合約的+msg
 
 addmod, mulmod:: 模加法和乘法。例如，+addmod(x,y,k)+ 計算 +pass:[ (x + y) % k]+。
 
-keccak256, sha256, sha3, ripemd160:: 用各種標準哈希演算法計算哈希值的函數。
+keccak256, sha256, sha3, ripemd160:: 用各種標準雜湊演算法計算雜湊值的函數。
 
 ecrecover:: 從簽名中恢復用於簽署消息的地址。
 
@@ -625,7 +625,7 @@ msg.sender.transfer(withdraw_amount);
 
 事件在輕量級客戶端和DApps中特別有用，它可以“監視”特定事件並將其報告給用戶界面，或對應用程序的狀態進行更改以反映底層合約中的事件。
 
-事件物件接收序列化的參數並記錄在區塊鏈的交易日誌中。你可以在參數之前應用關鍵字+indexed+，以使其值作為索引表（哈希表）的一部分，可以由應用程序搜索或過濾。
+事件物件接收序列化的參數並記錄在區塊鏈的交易日誌中。你可以在參數之前應用關鍵字+indexed+，以使其值作為索引表（雜湊表）的一部分，可以由應用程序搜索或過濾。
 
 到目前為止，我們還沒有在我們的+Faucet+示例中添加任何事件，所以讓我們來做。我們將添加兩個事件，一個記錄任何提款，一個記錄任何存款。我們將分別稱這些事件+Withdrawal+和+Deposit+。首先，我們在+Faucet+合約中定義事件：
 

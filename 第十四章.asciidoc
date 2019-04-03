@@ -95,15 +95,15 @@ Account State:: 包含以下四個組件：
 
 * _balance_：賬戶地址擁有的_wei_的數量。
 
-* _storageRoot_：Merkle Patricia Tree根節點的256位哈希值。
+* _storageRoot_：Merkle Patricia Tree根節點的256位雜湊值。
 
-* _codeHash_：各個賬戶的EVM代碼的不可變哈希值。
+* _codeHash_：各個賬戶的EVM代碼的不可變雜湊值。
 
 Storage State:: 在EVM上運行時維護的賬戶特定狀態信息。
 
 Block State:: 交易所需的狀態值包括以下內容：
 
-* _blockhash_：最近完成的塊的哈希值。
+* _blockhash_：最近完成的塊的雜湊值。
 
 * _coinbase_：收件人的地址。
 
@@ -389,14 +389,14 @@ JUMPI
 
 下一條指令是“LT”，是“小於（less than）”的縮寫。LT指令檢查堆棧上的頂部項是否小於堆棧上的下一項。在我們的例子中，它檢查CALLDATASIZE的結果是否小於4個字節。
 
-為什麼EVM會檢查交易的calldata是否至少為4個字節？因為函數標識符的工作原理。每個函數由其keccak256哈希的前四個字節標識。通過將函數的名稱和它所採用的參數放入keccak256哈希函數，我們可以推匯出它的函數標識符。在我們的合約中，我們有：
+為什麼EVM會檢查交易的calldata是否至少為4個字節？因為函數標識符的工作原理。每個函數由其keccak256雜湊的前四個字節標識。通過將函數的名稱和它所採用的參數放入keccak256雜湊函數，我們可以推匯出它的函數標識符。在我們的合約中，我們有：
 
 [[faucet_function_identifier]]
 ```
 keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 ```
 
-因此，“withdraw（uint256）”函數的函數標識符是0x2e1a7d4d，因為它們是結果哈希的前四個字節。函數標識符總是4個字節長，所以如果發送給合約的交易的整個數據欄位小於4個字節，那麼除非定義了_fallback函數_，否則沒有交易可能與之通信的函數。因為我們在Faucet.sol中實現了這樣的fallback函數，所以當calldata的長度小於4個字節時，EVM會跳轉到此函數。
+因此，“withdraw（uint256）”函數的函數標識符是0x2e1a7d4d，因為它們是結果雜湊的前四個字節。函數標識符總是4個字節長，所以如果發送給合約的交易的整個數據欄位小於4個字節，那麼除非定義了_fallback函數_，否則沒有交易可能與之通信的函數。因為我們在Faucet.sol中實現了這樣的fallback函數，所以當calldata的長度小於4個字節時，EVM會跳轉到此函數。
 
 如果msg.data欄位少於4個字節，LT將彈出堆棧的前兩個值並將1推到其上。否則，它會推入0。在我們的例子中，讓我們假設發送給我們的合約的transaciton的msg.data欄位_was_少於4個字節。
 

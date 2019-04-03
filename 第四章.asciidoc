@@ -182,7 +182,7 @@ Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發�
 https://github.com/ethereum/guide/blob/master/poa.md
 
 Proof-of-Work 是一種協議，必須執行挖礦（昂貴的計算機計算）以在區塊鏈（分佈式賬本）上創建新的區塊（去信任的交易）。
-缺點：能源消耗。集中的哈希算力與集中的採礦農場，不是真正的分佈式。挖掘新塊體所需的大量計算能力對環境有影響。
+缺點：能源消耗。集中的雜湊算力與集中的採礦農場，不是真正的分佈式。挖掘新塊體所需的大量計算能力對環境有影響。
 
 Proof-of-Authority 是一種協議，它只將造幣的負載分配給授權和可信的簽名者，他們可以根據自己的判斷並隨時以發幣頻率分發新的區塊。https://github.com/ethereum/EIPs/issues/225
 優點：具有最顯赫的身份的區塊鏈參與者通過演算法選擇來驗證塊來交付交易。

@@ -186,7 +186,7 @@ image::images/ropsten_block_explorer.png["Etherscan Ropsten Block Explorer"]
 
 https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57
 
-嘗試訪問該鏈接，或將交易哈希值輸入到 +ropsten.etherscan.io+ 網站中，親自查看。
+嘗試訪問該鏈接，或將交易雜湊值輸入到 +ropsten.etherscan.io+ 網站中，親自查看。
 
 [[sending_eth_MetaMask]]
 === 使用MetaMask發送ether
