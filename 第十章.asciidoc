@@ -243,7 +243,7 @@ https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ER
 你可以在本書的GitHub倉庫中找到這個例子：
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken
 
-首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<<truffle_project_directory>>中所做的那樣。運行這四個命令並接受任何問題的默認答案：
+首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<<truffle_project_directory>>中所做的那樣。運行這四個命令並接受任何問題的預設答案：
 
 [[initialize_truffle]]
 ----

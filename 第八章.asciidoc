@@ -379,7 +379,7 @@ parameters:: 在名稱後面，我們指定必須傳遞給函數的參數，包�
 
 下一組關鍵字 (public, private, internal, external) 指定了函數的_可見性_：
 
-public:: Public是默認的，這些函數可以被其他合約，EOA交易或合約內部調用。在我們的+Faucet+示例中，這兩個函數都被定義為public。
+public:: Public是預設的，這些函數可以被其他合約，EOA交易或合約內部調用。在我們的+Faucet+示例中，這兩個函數都被定義為public。
 
 external:: 外部函數就像public一樣，但除非使用關鍵字this作為前綴，否則它們不能從合約中調用。
 
@@ -1120,7 +1120,7 @@ _防禦性編程_ _Defensive programming_是一種編程風格，特別適用於
 2. B將X傳送到A的地址（運行A的payable fallback函數）
 3. B更新A的餘額以反映此次提現
 
-無論何時向合約發送付款（如本例中），接收方合約（A）都有機會執行_payable_函數，例如默認的fallback函數。但是，惡意攻擊者可以利用這種執行。想象一下，在A的payable fallback中，合約A_再次_調用B銀行的提款功能。B的提現功能現在將經歷重入，因為現在相同的初始交易正在引發循環調用。
+無論何時向合約發送付款（如本例中），接收方合約（A）都有機會執行_payable_函數，例如預設的fallback函數。但是，惡意攻擊者可以利用這種執行。想象一下，在A的payable fallback中，合約A_再次_調用B銀行的提款功能。B的提現功能現在將經歷重入，因為現在相同的初始交易正在引發循環調用。
 
 
 "(1) A 調用 B  (2) B 調用 A 的 payable 函數 (1) A 再次調用 B "

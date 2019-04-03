@@ -383,7 +383,7 @@ Binary:
 "0x7bcc327ae5d369f75b98c0d59037eec41d44dfae75447fd753d9f2db9439124b"
 ----
 
-不需要指定+to+參數，將使用默認的零地址。你可以指定 +gasPrice+ 和 +gas+ 限制。
+不需要指定+to+參數，將使用預設的零地址。你可以指定 +gasPrice+ 和 +gas+ 限制。
 一旦合約被開採，我們可以在etherscan區塊瀏覽器上看到它。
 
 [[publish_contract_from_web3]]

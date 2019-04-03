@@ -86,7 +86,7 @@ Faucet $
 Faucet $ Truffle init
 ----
 
-Truffle創建了一個目錄結構和一些默認文件：
+Truffle創建了一個目錄結構和一些預設文件：
 
 ----
 Faucet
@@ -99,7 +99,7 @@ Faucet
 └── Truffle.js
 ----
 
-除了Truffle本身之外，我們還將使用一些JavaScript（nodeJS）支持包。我們可以用npm安裝這些。我們初始化npm目錄結構並接受npm建議的默認值：
+除了Truffle本身之外，我們還將使用一些JavaScript（nodeJS）支持包。我們可以用npm安裝這些。我們初始化npm目錄結構並接受npm建議的預設值：
 
 ----
 $ npm init
@@ -171,7 +171,7 @@ module.exports = {
 };
 ----
 
-以上配置是一個很好的起點。它設置了一個默認的以太坊網絡（名為+localnode+），該網絡假定你正在運行以太坊客戶端（如Parity），既可以作為完整節點，也可以作為輕客戶端。該配置將指示Truffle與端口8545上的本地節點通過RPC進行通信。Truffle將使用本地節點連接的任何以太網（如Ethereum主網絡）或測試網絡（如Ropsten）。本地節點也將提供錢包功能。
+以上配置是一個很好的起點。它設置了一個預設的以太坊網絡（名為+localnode+），該網絡假定你正在運行以太坊客戶端（如Parity），既可以作為完整節點，也可以作為輕客戶端。該配置將指示Truffle與端口8545上的本地節點通過RPC進行通信。Truffle將使用本地節點連接的任何以太網（如Ethereum主網絡）或測試網絡（如Ropsten）。本地節點也將提供錢包功能。
 
 在下面的章節中，我們將配置其他網絡供Truffle使用，比如+ganache+ test-RPC區塊鏈和託管網絡提供商Infura。隨著我們添加更多網絡，配置文件將變得更加複雜，但它也將為我們的測試和開發工作流程提供更多選擇。
 
