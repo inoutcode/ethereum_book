@@ -71,7 +71,7 @@ Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運
 
 MyEtherWallet (MEW):: MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多示例中探討這些功能。
 
-Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程序，適用於Windows，Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
+Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程式，適用於Windows，Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
 
 我們將首先在桌面上安裝MetaMask
 
@@ -167,9 +167,9 @@ Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程�
 .MetaMask Ropsten Test Faucet
 image::images/metamask_ropsten_faucet.png["MetaMask Ropsten Test Faucet"]
 
-你可能會注意到該網頁已經包含你的MetaMask錢包的以太坊地址。MetaMask集成了支持以太坊的網頁（ 參見 <<dapps>>）與你的MetaMask錢包整合在一起。MetaMask可以在網頁上“查看”以太坊地址，例如，你可以向顯示以太坊地址的網上商店發送付款。如果網頁請求，MetaMask也可以使用自己的錢包地址填入網頁，作為收件人地址。在此頁面中，faucet應用程序要求MetaMask提供一個錢包地址以發送測試以太網。
+你可能會注意到該網頁已經包含你的MetaMask錢包的以太坊地址。MetaMask集成了支持以太坊的網頁（ 參見 <<dapps>>）與你的MetaMask錢包整合在一起。MetaMask可以在網頁上“查看”以太坊地址，例如，你可以向顯示以太坊地址的網上商店發送付款。如果網頁請求，MetaMask也可以使用自己的錢包地址填入網頁，作為收件人地址。在此頁面中，faucet應用程式要求MetaMask提供一個錢包地址以發送測試以太網。
 
-按綠色"request 1 ether from faucet"按鈕。你會看到一個交易ID出現在頁面的下方。faucet應用程序創建了一個交易 - 付款給你。交易ID如下所示：
+按綠色"request 1 ether from faucet"按鈕。你會看到一個交易ID出現在頁面的下方。faucet應用程式創建了一個交易 - 付款給你。交易ID如下所示：
 
 [[faucet_tx_id]]
 ----

@@ -483,23 +483,23 @@ Website link; https://openzeppelin.org/
 Docs link; https://openzeppelin.org/api/docs/open-zeppelin.html
 
 === zeppelin_os
-https://github.com/zeppelinos[zeppelin_os] 是一款開源的分佈式工具和服務平臺，位於EVM之上，安全地開發和管理智能合約應用程序。
+https://github.com/zeppelinos[zeppelin_os] 是一款開源的分佈式工具和服務平臺，位於EVM之上，安全地開發和管理智能合約應用程式。
 
-與OpenZeppelin的代碼每次都需要重新部署每個應用程序不同，zeppelin_os的代碼處於鏈上。需要特定功能的應用程序（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程序可直接與 鏈上的token實現進行交互，這與桌面應用程序與其底層操作系統的組件進行交互的方式大致相同。
+與OpenZeppelin的代碼每次都需要重新部署每個應用程式不同，zeppelin_os的代碼處於鏈上。需要特定功能的應用程式（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程式可直接與 鏈上的token實現進行交互，這與桌面應用程式與其底層操作系統的組件進行交互的方式大致相同。
 
-利用OpenZeppelin的應用程序通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程序使用ERC20 token實現時，同一個ERC20字節碼會一次又一次地部署到區塊鏈中。這種字節碼在網路中無數次重複存在。現在，使用zeppelin_os的應用程序可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。
+利用OpenZeppelin的應用程式通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程式使用ERC20 token實現時，同一個ERC20字節碼會一次又一次地部署到區塊鏈中。這種字節碼在網路中無數次重複存在。現在，使用zeppelin_os的應用程式可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。
 
-與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程序。操作系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的代碼庫提供升級能力！開發人員決定應用程序何時以及如何實施升級，甚至決定要遵守哪種實施方案。
+與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程式。操作系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的代碼庫提供升級能力！開發人員決定應用程式何時以及如何實施升級，甚至決定要遵守哪種實施方案。
 
 zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy）”。代理是一種能夠包裝任何其他合約，暴露其接口而無需手動實現setter和getter的合約，並且可以在不丟失狀態的情況下進行升級。在Solidity術語中，它可以被看作是一個正常的合約，其業務邏輯包含在一個庫中，隨時可以由一個新庫來交換，而不會丟失其狀態。代理鏈接到其實現的方式是完全自動的，並且封裝給開發人員。實際上，任何合約都可以升級，代碼幾乎不變。關於zeppelin_os的代理機制的更多信息可以在Zeppelin的博客中找到：https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage]，
 
 操作系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟體包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。
 
-使用Zeppelin_os開發應用程序與使用NPM開發Javascript應用程序類似。AppManager處理應用程序的每個版本的應用程序包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程序的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整示例，請訪問：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
+使用Zeppelin_os開發應用程式與使用NPM開發Javascript應用程式類似。AppManager處理應用程式的每個版本的應用程式包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程式的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整示例，請訪問：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
 
 //// TODO: the example provided above is still a WIP - link to a tutorial once it's finished
 
-雖然目前正在開發中，但zeppelin_os旨在提供一系列附加功能，例如開發人員工具，自動執行合約中後臺操作的調度程序，開發獎勵，促進應用程序之間進行通信和交換價值的市場等等。所有這些都在zeppelin_os的https://zeppelinos.org/zeppelin_os_[whitepaper].pdf中描述。
+雖然目前正在開發中，但zeppelin_os旨在提供一系列附加功能，例如開發人員工具，自動執行合約中後臺操作的調度程序，開發獎勵，促進應用程式之間進行通信和交換價值的市場等等。所有這些都在zeppelin_os的https://zeppelinos.org/zeppelin_os_[whitepaper].pdf中描述。
 
 Github link; https://github.com/zeppelinos
 Website link; https://zeppelinos.org
@@ -643,7 +643,7 @@ Documentation: https://docs.ethers.io
 
 === Emerald Platform
 
-Emerald Platform提供了庫和UI組件，可以在以太坊上構建Dapps。Emerald JS和Emerald JS UI提供了一組模塊和React組件來構建Javascript應用程序和網站，Emerald SVG Icons是一組區塊鏈相關的圖標。除了Javascript庫之外，它還有Rust庫來操作私鑰和交易簽名。所有Emerald庫和組件都使用 Apache 2許可。
+Emerald Platform提供了庫和UI組件，可以在以太坊上構建Dapps。Emerald JS和Emerald JS UI提供了一組模塊和React組件來構建Javascript應用程式和網站，Emerald SVG Icons是一組區塊鏈相關的圖標。除了Javascript庫之外，它還有Rust庫來操作私鑰和交易簽名。所有Emerald庫和組件都使用 Apache 2許可。
 
 Github link; https://github.com/etcdevteam/emerald-platform
 
