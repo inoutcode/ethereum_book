@@ -23,7 +23,7 @@ Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到�
 
 ===== Infura
 
-當MetaMask連接到測試網絡時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化存儲）API和Websockets（即流式傳輸）API。
+當MetaMask連接到測試網絡時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API，IPFS（星際文件系統，即去中心化儲存）API和Websockets（即流式傳輸）API。
 
 Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura的定製測試網絡）提供網關API。
 
@@ -47,7 +47,7 @@ Geth本身支持Ropsten和Rinkeby網絡。要連接到Ropsten網絡，請使用�
 geth --testnet
 ----
 
-這將開始同步Ropsten區塊鏈。名為 +testnet+ 的新目錄將在你的主Ethereum數據目錄中創建。一個 +keystore+ 目錄將在 +testnet+ 內部創建，並將存儲你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的代碼會更簡單。
+這將開始同步Ropsten區塊鏈。名為 +testnet+ 的新目錄將在你的主Ethereum數據目錄中創建。一個 +keystore+ 目錄將在 +testnet+ 內部創建，並將儲存你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的代碼會更簡單。
 
 與testnet的交互與mainnet類似。你可以使用控制檯啟動Geth testnet，方法是運行：
 ----

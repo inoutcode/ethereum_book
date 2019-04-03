@@ -1,0 +1,22 @@
+channel 備援
+檢視器的 node 差異懸殊
+	https://rompert.com/recksplorer/
+	https://1ml.com/statistics
+	https://lightblock.me/lightning-network-stats
+node 賺前嗎
+開通道有 自動化查找節點嗎
+有directory node嗎
+有跟 tor telay 一樣的活要度檢測，如一週後上線
+node 依賴 比特幣全節點嗎
+public ip 很重要嗎？torrent 看似可以private ip 當server?
+
+  $ docker run -p 8333:8333 -d -v /root/.btcd/:/root/.btcd/ -v /root/.btcctl/:/root/.btcctl/ --name btcd roasbeef/btcd --externalip 120.125.70.160 
+
+
+新增什麼事挖礦
+因增什麼事私鑰 公鑰 地址
+
+敲定下一次舉辦的時間 4/8 4/9
+	邀請cortex
+
+	儲存
