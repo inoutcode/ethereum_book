@@ -243,7 +243,7 @@ https://solidity.readthedocs.io/en/latest/
 
 首先，我們來看看Solidity中提供的一些基本數據類型：
 
-boolean (bool):: 布爾值, +true+ 或 +false+, 以及邏輯操作符 pass:[! (not)], pass:[&& (and)], pass:[|| (or)], pass:[== (equal)], pass:[!= (not equal)].
+boolean (bool):: 布林值, +true+ 或 +false+, 以及邏輯操作符 pass:[! (not)], pass:[&& (and)], pass:[|| (or)], pass:[== (equal)], pass:[!= (not equal)].
 
 整數 (int/uint):: 有符號 (int) 和 無符號 (uint) 整數，從 u/int8 到 u/int256以 8 bits 遞增，沒有大小後綴的話，表示256 bits。
 
