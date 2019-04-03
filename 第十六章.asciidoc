@@ -89,12 +89,12 @@ Vyper明確地實現了裝飾符的邏輯。例如，如果一個函數前面有
 [[online_code_editor_and_compiler_sec]]
 === 在線程式碼編輯器和編譯器
 
-Vyper在以下URL <<https://vyper.online>> 上有自己的在線程式碼編輯器和編譯器。這個Vyper在線編譯器允許你僅使用Web瀏覽器編寫智能合約，然後將其編譯為字節碼，ABI和LLL。Vyper在線編譯器具有各種預先編寫的智能合約，以方便你使用。這些包括簡單的公開拍賣，安全的遠程購買，ERC20 token等。
+Vyper在以下URL <<https://vyper.online>> 上有自己的在線程式碼編輯器和編譯器。這個Vyper在線編譯器允許你僅使用Web瀏覽器編寫智能合約，然後將其編譯為 Bytecode ，ABI和LLL。Vyper在線編譯器具有各種預先編寫的智能合約，以方便你使用。這些包括簡單的公開拍賣，安全的遠程購買，ERC20 token等。
 
 [[compiling_using_the_command_line_sec]]
 === 使用命令行編譯
 每個Vyper合約都保存在擴展名為.v.py的單個檔案中。
-安裝完成後，Vyper可以通過運行以下命令來編譯和提供字節碼
+安裝完成後，Vyper可以通過運行以下命令來編譯和提供 Bytecode 
 
 vyper ~/hello_world.v.py
 

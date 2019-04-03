@@ -261,7 +261,7 @@ EVM是一個全球性的單例，這意味著它的運作方式就好像它是�
 [[simple_contract_example]]
 === 一個簡單的合約：一個test ether faucet
 
-以太坊有許多不同的高階語言，所有這些語言都可用於編寫合約並生成EVM字節碼。你可以閱讀 <<high_level_languages>>  中許多最成功和有趣的內容。一種智能合約編程的主要高階語言：Solidity。本書的合著者Gavin Wood創建了Solidity，已經成為以太坊及以太坊外最廣泛使用的語言。我們將使用Solidity編寫我們的第一份合約。
+以太坊有許多不同的高階語言，所有這些語言都可用於編寫合約並生成EVM Bytecode 。你可以閱讀 <<high_level_languages>>  中許多最成功和有趣的內容。一種智能合約編程的主要高階語言：Solidity。本書的合著者Gavin Wood創建了Solidity，已經成為以太坊及以太坊外最廣泛使用的語言。我們將使用Solidity編寫我們的第一份合約。
 
 作為我們的第一個例子，我們將編寫一個控制_faucet_的合約。我們已經使用了faucent在Ropsten測試網路上獲得測試ether。faucet是一件相對簡單的事情：它給任何地址發放ether，可以定期補充。你可以將faucet實現為由人類（或網路伺服器）控制的錢包，但我們將編寫一個實現faucet的Solidity合約：
 
@@ -281,7 +281,7 @@ include::code/Solidity/Faucet.sol[]
 // Version of Solidity compiler this program was written for
 ----
 
-註釋用於人類閱讀，不包含在可執行的EVM字節碼中。我們通常將註釋放在我們試圖解釋的程式碼之前，有時在同一行上。評論從兩個正斜槓 +//+ 開始。從斜線和直到該行結束的所有內容都被視為空白行並被忽略。
+註釋用於人類閱讀，不包含在可執行的EVM Bytecode 中。我們通常將註釋放在我們試圖解釋的程式碼之前，有時在同一行上。評論從兩個正斜槓 +//+ 開始。從斜線和直到該行結束的所有內容都被視為空白行並被忽略。
 
 下一行是我們的_真正的_合約開始的地方：
 
@@ -368,19 +368,19 @@ image::images/remix_compile.png[""]
 
 如果出現問題，最可能的問題是Remix IDE正在使用與+0.4.19+版本不同的Solidity編譯器。在這種情況下，我們的編譯指示將阻止+Faucet.sol+編譯。要更改編譯器版本，請轉到“Settings”選項卡，並重試。
 
-Solidity編譯器現在已將我們的+ Faucet.sol +編譯為EVM字節碼。如果你好奇，字節碼如下所示：
+Solidity編譯器現在已將我們的+ Faucet.sol +編譯為EVM Bytecode 。如果你好奇， Bytecode 如下所示：
 
 [[faucet_bytecode]]
 ----
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH2 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0xE5 DUP1 PUSH2 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH1 0x3F JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x2E1A7D4D EQ PUSH1 0x41 JUMPI JUMPDEST STOP JUMPDEST CALLVALUE ISZERO PUSH1 0x4B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x5F PUSH1 0x4 DUP1 DUP1 CALLDATALOAD SWAP1 PUSH1 0x20 ADD SWAP1 SWAP2 SWAP1 POP POP PUSH1 0x61 JUMP JUMPDEST STOP JUMPDEST PUSH8 0x16345785D8A0000 DUP2 GT ISZERO ISZERO ISZERO PUSH1 0x77 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH2 0x8FC DUP3 SWAP1 DUP2 ISZERO MUL SWAP1 PUSH1 0x40 MLOAD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP6 DUP9 DUP9 CALL SWAP4 POP POP POP POP ISZERO ISZERO PUSH1 0xB6 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 PUSH9 0x13D1EA839A4438EF75 GASLIMIT CALLVALUE LOG4 0x5f PUSH24 0x7541F409787592C988A079407FB28B4AD000290000000000
 ----
 
-你是不是很高興使用像Solidity這樣的高階語言，而不是直接在EVM字節碼中編程？我也是！
+你是不是很高興使用像Solidity這樣的高階語言，而不是直接在EVM Bytecode 中編程？我也是！
 
 [[create_contract]]
 === 在區塊鏈上創建合約
 
-我們有一個合約，已經將它編譯成字節碼。現在，我們需要在以太坊區塊鏈上“登記”合約。我們將使用Ropsten測試網來測試我們的合約，所以這就是我們想要記錄的區塊鏈。
+我們有一個合約，已經將它編譯成 Bytecode 。現在，我們需要在以太坊區塊鏈上“登記”合約。我們將使用Ropsten測試網來測試我們的合約，所以這就是我們想要記錄的區塊鏈。
 
 在區塊鏈上註冊合約涉及創建一個特殊交易，其目標是地址0x0000000000000000000000000000000000000000，也稱為_zero address_。零地址是一個特殊的地址，告訴以太坊區塊鏈你想註冊一個合約。幸運的是，Remix IDE將為你處理所有這些交易並將交易發送給MetaMask。
 
@@ -415,7 +415,7 @@ image::images/remix_contract_interact.png["The Faucet contract is ALIVE!"]
 [[interact_contract]]
 === 與合約交互
 
-讓我們回顧一下我們迄今為止學到的東西：以太坊合約是控制貨幣的程式，運行在名為EVM的虛擬機內。它們是由一個特殊的交易創建的，該交易提交它們的字節碼以記錄在區塊鏈中。一旦他們在區塊鏈上創建，他們就擁有一個以太坊地址，就像錢包一樣。只要有人將交易發送到合約地址，它就會導致合約在EVM中運行，並將交易作為其輸入。發送到合約地址的交易可能包含以太網或數據或兩者都有。如果它們含有ether，則將其“存入”合約餘額。如果它們包含數據，則數據可以在合約中指定一個命名函數並調用它，並將參數傳遞給該函數。
+讓我們回顧一下我們迄今為止學到的東西：以太坊合約是控制貨幣的程式，運行在名為EVM的虛擬機內。它們是由一個特殊的交易創建的，該交易提交它們的 Bytecode 以記錄在區塊鏈中。一旦他們在區塊鏈上創建，他們就擁有一個以太坊地址，就像錢包一樣。只要有人將交易發送到合約地址，它就會導致合約在EVM中運行，並將交易作為其輸入。發送到合約地址的交易可能包含以太網或數據或兩者都有。如果它們含有ether，則將其“存入”合約餘額。如果它們包含數據，則數據可以在合約中指定一個命名函數並調用它，並將參數傳遞給該函數。
 
 [[view_contract_address]]
 ==== 在區塊瀏覽器中查看合約地址
@@ -515,7 +515,7 @@ msg.sender.transfer(withdraw_amount);
 
 本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網路上的一個faucet為它充值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。
 
-接下來，我們在Solidity中寫了一個faucet合約。使用Remix IDE將合約編譯為EVM字節碼。使用Remix進行交易，並在Ropsten區塊鏈上登記faucet合約。一旦登記，faucet合約有一個以太坊地址，我們發送一些ether。最後，我們構建了一個交易來調用 +withdraw+ 函數，併成功請求了0.1 ether。該合約檢查了我們的請求，發送給我們0.1 ether並進行內部交易。
+接下來，我們在Solidity中寫了一個faucet合約。使用Remix IDE將合約編譯為EVM Bytecode 。使用Remix進行交易，並在Ropsten區塊鏈上登記faucet合約。一旦登記，faucet合約有一個以太坊地址，我們發送一些ether。最後，我們構建了一個交易來調用 +withdraw+ 函數，併成功請求了0.1 ether。該合約檢查了我們的請求，發送給我們0.1 ether並進行內部交易。
 
 可能看起來不多，但我們剛剛成功地與控制去中心化世界計算機上資金的軟體進行了交互。
 

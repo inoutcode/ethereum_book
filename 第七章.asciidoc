@@ -359,7 +359,7 @@ withdraw_amount_hex = web3.toHex(withdraw_amount);
 發送至合約註冊地址 +0x0+ 或指定燃燒地址 +0x0 ... dEaD+ 的任何ether將變得不可消費並永遠丟失。
 ====
 
-合約註冊交易不應包含ether value，只能包含合約編譯字節碼的data。此次交易的唯一影響是註冊合約。
+合約註冊交易不應包含ether value，只能包含合約編譯 Bytecode 的data。此次交易的唯一影響是註冊合約。
 
 作為例子，我們可以發佈 <<intro>> 中使用的 +Faucet.sol+。合約需要編譯成二進制十六進制表示。這可以用Solidiy編譯器完成。
 

@@ -32,7 +32,7 @@
 	拜占庭是大都會（Metropolis）發展階段的兩大分叉之一。它包括 EIP-649：大都會難度炸彈延遲和區塊獎勵減少，其中冰河時代（見下文）延遲1年，而區塊獎勵從5個以太坊減至3個以太坊。
 
 編譯 Compiling::
-	將高階程式語言（例如 Solidity）編寫的程式碼轉換為低階語言（例如 EVM 字節碼）。
+	將高階程式語言（例如 Solidity）編寫的程式碼轉換為低階語言（例如 EVM  Bytecode ）。
 
 共識 Consensus::
     當大量節點（通常是網路上的大多數節點）在各自本地通過驗證的最佳區塊鏈中都有完全相同的區塊狀態。
@@ -93,11 +93,11 @@ Ethash::
 	事件允許EVM日誌工具的使用。Dapp 可以監聽事件，並在事件發生時觸發 Javascript 的回呼函式 。更多資訊，參見 http://solidity.readthedocs.io/en/develop/contracts.html#events。
 
 以太坊虛擬機 EVM::
-    以太坊虛擬機（Ethereum Virtual Machine）。 一種以棧（Stack）為基底，執行字節碼的虛擬機。在以太坊中，執行模型明確說明了系統狀態在給定一系列字節碼指令和少量環境數據的情況下該如何發生改變。
+    以太坊虛擬機（Ethereum Virtual Machine）。 一種以棧（Stack）為基底，執行 Bytecode 的虛擬機。在以太坊中，執行模型明確說明了系統狀態在給定一系列 Bytecode 指令和少量環境數據的情況下該如何發生改變。
     這是通過虛擬狀態機的正式模型指定的。
 
 EVM彙編語言 EVM Assembly Language::
-    人類可讀形式的字節碼。
+    人類可讀形式的 Bytecode 。
 
 後備函式 Fallback function::
     預設的函式，當缺少數據或無法取得指定的函式時執行。

@@ -739,7 +739,7 @@ ERC223提案試圖通過檢測目的地地址是否是合同來解決無意中�
 
 
 [[is_contract]]
-為了檢測目標地址是否為契約，ERC223參考實現使用了一小段內聯字節碼，並採用了一種頗具創造性的方式：
+為了檢測目標地址是否為契約，ERC223參考實現使用了一小段內聯 Bytecode ，並採用了一種頗具創造性的方式：
 
 ----
 function isContract(address _addr) private view returns (bool is_contract) {
