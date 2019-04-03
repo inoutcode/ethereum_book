@@ -438,9 +438,9 @@ IBAN是識別銀行賬號的國際標準，主要用於電匯。它在歐洲單�
 
 ICAP使用相同的結構，通過引入代表“Ethereum”的非標準國家代碼“XE”，後面跟著兩個字符的校驗和以及3個可能的賬戶標識符變體：
 
-Direct:: 最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就字段長度和校驗和而言，它的優點是它與IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33個字符長）
+Direct:: 最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就欄位長度和校驗和而言，它的優點是它與IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33個字符長）
 
-Baasic:: 與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN字段驗證不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35個字符長）
+Baasic:: 與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（35個字符長）
 
 Indrect:: 編碼通過名稱註冊表提供程序解析為以太坊地址的標識符。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。示例：+XEpass:[##] ETHXREGKITTYCATS+（20個字符長），其中“##”應由兩個計算校驗和字符替換。
 

@@ -215,7 +215,7 @@ image::images/approve_transferFrom_workflow.png["The two-step approve &amp; tran
 
 對於 +approve & transferFrom+ 工作流程，需要兩個交易。假設Alice希望允許AliceICO合同將所有AliceCoin Token的50％賣給像Bob和Charlie這樣的買方。首先，Alice發佈AliceCoin ERC20合同，將所有AliceCoin發放到她自己的地址。然後，Alice發佈可以以ether出售Token的AliceICO合同。接下來，Alice啟動+approve & transferFrom+工作流程。她向AliceCoin發送一個交易，調用+approve+，參數是AliceICO的地址和+totalSupply+的50％。這將觸發+Approval+事件。現在，AliceICO合同可以出售AliceCoin了。
 
-當AliceICO從Bob那收到ether，它需要發送一些AliceCoin給Bob作為回報。在AliceICO合約內是AliceCoin和ether之間的匯率。Alice在創建AliceICO時設置的匯率決定了Bob將根據他發送給AliceICO的ether數量能得到多少Token。當AliceICO調用AliceCoin +transferFrom+函數時，它將Alice的地址設置為發送者，將Bob的地址設置為接收者，並使用匯率來確定將在“value”字段中將多少AliceCoin Token傳送給Bob。AliceCoin合同將餘額從Alice的地址轉移到Bob的地址並觸發 +Transfer+ 事件。只要不超過Alice設定的審批限制，AliceICO合同可以調用 +transferFrom+ 無限次數。AliceICO合同可以通過調用+allowance+函數來跟蹤它能賣出多少AliceCoinToken。
+當AliceICO從Bob那收到ether，它需要發送一些AliceCoin給Bob作為回報。在AliceICO合約內是AliceCoin和ether之間的匯率。Alice在創建AliceICO時設置的匯率決定了Bob將根據他發送給AliceICO的ether數量能得到多少Token。當AliceICO調用AliceCoin +transferFrom+函數時，它將Alice的地址設置為發送者，將Bob的地址設置為接收者，並使用匯率來確定將在“value”欄位中將多少AliceCoin Token傳送給Bob。AliceCoin合同將餘額從Alice的地址轉移到Bob的地址並觸發 +Transfer+ 事件。只要不超過Alice設定的審批限制，AliceICO合同可以調用 +transferFrom+ 無限次數。AliceICO合同可以通過調用+allowance+函數來跟蹤它能賣出多少AliceCoinToken。
 
 
 [[ERC20_implementation]]
@@ -789,7 +789,7 @@ ERC223沒有得到廣泛的實施，ERC討論中有一些關於向前兼容性�
 * 與ERC820兼容Token合同註冊
 * 合同和地址可以通過在發送之前調用+TokensToSend+函數來控制它們發送的Token
 * 通過在接收者中調用+TokensReceived+函數來通知合同和地址
-* Token傳輸交易包含 +userData+ 和 +operatorData+ 字段中的元數據
+* Token傳輸交易包含 +userData+ 和 +operatorData+ 欄位中的元數據
 * 無論是發送到合同還是EOA，都以相同的方式運作
 
 有關ERC777的詳細信息和正在進行的討論可以在這裡找到：

@@ -175,7 +175,7 @@ Binary:
 
 在以太坊中，ABI用於編碼EVM的合約調用，並從交易中讀取數據。ABI的目的是定義合約中的哪些函數可以被調用，並描述函數如何接受參數並返回數據。
 
-合約ABI的JSON格式由一系列函數描述（參見<<solidity_functions>>）和事件（參見<<solidity_events>>）的數組給出。函數描述是一個JSON物件，它包含`type`，`name`，`inputs`，`outputs`，`constant`和`payable`字段。事件描述物件具有`type`，`name`，`inputs`和`anonymous`的字段。
+合約ABI的JSON格式由一系列函數描述（參見<<solidity_functions>>）和事件（參見<<solidity_events>>）的數組給出。函數描述是一個JSON物件，它包含`type`，`name`，`inputs`，`outputs`，`constant`和`payable`欄位。事件描述物件具有`type`，`name`，`inputs`和`anonymous`的欄位。
 
 我們使用+solc+命令行Solidity編譯器為我們的+Faucet.sol+示例合約生成ABI：
 
@@ -584,7 +584,7 @@ contract Faucet is mortal {
 
 當合約終止並出現錯誤時，如果有多個合約被調用，則所有狀態變化（變量，餘額等的變化）都會恢復，直至合約調用鏈的源頭。這確保交易是原子的，這意味著它們要麼成功完成，要麼對狀態沒有影響，並完全恢復。
 
-+assert+和+require+函數以相同的方式運行，如果條件為假，則評估條件並停止執行並返回錯誤。按照慣例，當結果預期為真時使用+assert+，這意味著我們使用+assert+來測試內部條件。相比之下，在測試輸入（例如函數參數或交易字段）時使用+require+，設置我們對這些條件的期望。
++assert+和+require+函數以相同的方式運行，如果條件為假，則評估條件並停止執行並返回錯誤。按照慣例，當結果預期為真時使用+assert+，這意味著我們使用+assert+來測試內部條件。相比之下，在測試輸入（例如函數參數或交易欄位）時使用+require+，設置我們對這些條件的期望。
 
 我們在函數修飾器+onlyOwner+中使用了+require+來測試消息發送者是合約的所有者：
 

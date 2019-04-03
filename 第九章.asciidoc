@@ -142,9 +142,9 @@ $ npm install dotenv Truffle-wallet-provider ethereumjs-wallet
 
 你現在有一個帶有數千個檔案的+node_modules+目錄。
 
-在將DApp部署到雲生產或持續集成環境之前，指定 engines 字段非常重要，以便你的Dapp使用正確的Node.js版本進行構建，並且會安裝相關的依賴關係。
+在將DApp部署到雲生產或持續集成環境之前，指定 engines 欄位非常重要，以便你的Dapp使用正確的Node.js版本進行構建，並且會安裝相關的依賴關係。
 
-Package.json“engines”字段配置鏈接; https://docs.npmjs.com/files/package.json#engines 
+Package.json“engines”欄位配置鏈接; https://docs.npmjs.com/files/package.json#engines 
 
 ==== 配置 Truffle
 

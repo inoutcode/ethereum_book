@@ -227,14 +227,14 @@ contract OracleB1IQClient {
 ----
 
 使用initRequest()函數啓動數據請求，該函數除了兩個回調函數之外，還允許指定查詢類型（在此示例中，是對日內價格的請求）。
-這將返回一個uint256標識符，然後可以使用該標識符提供其他參數。addArgumentToRequestString()函數用於指定RIC（Reuters Instrument Code），此處用於IBM股票，addArgumentToRequestUint()允許指定時間戳。現在，傳入block.timestamp的別名將檢索IBM的當前價格。然後由executeRequest()函數執行該請求。處理完請求後，oracle合約將使用查詢標識符調用onSuccess回調函數，允許檢索結果數據，否則在檢索失敗時使用錯誤代碼進行onFailure回調。成功檢索的可用字段包括開盤價，最高價，最低價，收盤價（OHLC）和買/賣價。
+這將返回一個uint256標識符，然後可以使用該標識符提供其他參數。addArgumentToRequestString()函數用於指定RIC（Reuters Instrument Code），此處用於IBM股票，addArgumentToRequestUint()允許指定時間戳。現在，傳入block.timestamp的別名將檢索IBM的當前價格。然後由executeRequest()函數執行該請求。處理完請求後，oracle合約將使用查詢標識符調用onSuccess回調函數，允許檢索結果數據，否則在檢索失敗時使用錯誤代碼進行onFailure回調。成功檢索的可用欄位包括開盤價，最高價，最低價，收盤價（OHLC）和買/賣價。
 
 Reality Keys [14]允許使用POST請求對事實進行離線請求。響應以加密方式簽名，允許在鏈上進行驗證。在這裏，請求使用blockr.io API在特定時間檢查比特幣區塊鏈上的賬戶餘額：
 ----
 wget -qO- https://www.realitykeys.com/api/v1/blockchain/new --post-data="chain=XBT&address=1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX&which_total=total_received&comparison=ge&value=1000&settlement_date=2015-09-23&objection_period_secs=604800&accept_terms_of_service=current&use_existing=1"
 ----
 
-對於此示例，參數允許指定區塊鏈，要查詢的金額（總收到金額或最終餘額）以及要與提供的值進行比較的結果，從而允許真或假的響應。除了“signature_v2”字段之外，生成的JSON物件還包括返回值，該字段允許使用ecrecover()函數在智能合約中驗證結果：
+對於此示例，參數允許指定區塊鏈，要查詢的金額（總收到金額或最終餘額）以及要與提供的值進行比較的結果，從而允許真或假的響應。除了“signature_v2”欄位之外，生成的JSON物件還包括返回值，該欄位允許使用ecrecover()函數在智能合約中驗證結果：
 
 ----
 "machine_resolution_value" : "29665.80352",
