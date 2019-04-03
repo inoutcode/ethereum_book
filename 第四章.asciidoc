@@ -47,7 +47,7 @@ Geth本身支持Ropsten和Rinkeby網路。要連接到Ropsten網路，請使用�
 geth --testnet
 ----
 
-這將開始同步Ropsten區塊鏈。名為 +testnet+ 的新目錄將在你的主Ethereum數據目錄中創建。一個 +keystore+ 目錄將在 +testnet+ 內部創建，並將儲存你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的代碼會更簡單。
+這將開始同步Ropsten區塊鏈。名為 +testnet+ 的新目錄將在你的主Ethereum數據目錄中創建。一個 +keystore+ 目錄將在 +testnet+ 內部創建，並將儲存你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的程式碼會更簡單。
 
 與testnet的交互與mainnet類似。你可以使用控制檯啟動Geth testnet，方法是運行：
 ----

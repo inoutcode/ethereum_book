@@ -236,7 +236,7 @@ module.exports = function(deployer) {
 };
 ----
 
-腳本初始化變量+Faucet+，將+Faucet.sol+ Solidity源代碼標識為定義+Faucet+的工件。然後，它調用部署功能來部署此合約。
+腳本初始化變量+Faucet+，將+Faucet.sol+ Solidity源程式碼標識為定義+Faucet+的工件。然後，它調用部署功能來部署此合約。
 
 我們都準備好了。我們使用 +truffle migrate+ 來部署合約。我們必須使用+--network+參數指定在哪個網路上部署合約。我們只在配置檔案中指定了一個網路，我們將其命名為+localnode+。確保你的本地以太坊客戶端正在運行，然後輸入：
 
@@ -409,11 +409,11 @@ contract SampleToken is MintableToken {
 }
 ----
 
-OpenZeppelin已經提供了一個MintableToken合約，我們可以用它作為token的基礎，所以我們只定義特定於我們案例的細節。你可以相信社區已經付出很大的努力來確保合約的正確性，但最好自己核實一下。看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/MintableToken.sol[MintableToken]，https://github.com/OpenZeppelin的源代碼/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/StandardToken.sol[StandardToken]和https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/ownership/Ownable.sol[Ownable]瞭解新token的實現細節及其支持的功能。另外，看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/MintableToken.test.js[automated tests]以確保所有可能的場景都已經被覆蓋，並且代碼是安全的。
+OpenZeppelin已經提供了一個MintableToken合約，我們可以用它作為token的基礎，所以我們只定義特定於我們案例的細節。你可以相信社區已經付出很大的努力來確保合約的正確性，但最好自己核實一下。看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/MintableToken.sol[MintableToken]，https://github.com/OpenZeppelin的源程式碼/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/StandardToken.sol[StandardToken]和https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/ownership/Ownable.sol[Ownable]瞭解新token的實現細節及其支持的功能。另外，看看https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/MintableToken.test.js[automated tests]以確保所有可能的場景都已經被覆蓋，並且程式碼是安全的。
 
 接下來，我們來製作Crowdsale（ICO）合約。就像 token一樣，OpenZeppelin已經提供了各種各樣的Crowdsale。目前，你將找到涉及分配、發行，價格和驗證的方案的合約。因此，假設你想為Crowdsale設定一個目標，並且如果在銷售完成時沒有達到目標，你想要退還所有投資者。為此，你可以使用https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/RefundableCrowdsale.sol[RefundableCrowdsale]合約。也許你想定義一個價格上漲的眾籌來激勵早期買家：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/price/IncreasingPriceCrowdsale.sol[IncreasingPriceCrowdsale]，或者設定一個截止時間：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/TimedCrowdsale.sol[TimedCrowdsale]，或者設定購買者白名單：https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/WhitelistedCrowdsale.sol[WhitelistedCrowdsale]。
 
-正如我們之前所說的，OpenZeppelin合約是基本的構建塊。這些crowdsale合約被設計為可組合的，只需閱讀 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/Crowdsale.sol[Crowdsale]合約的源代碼即可瞭解關於如何擴展它的指導。對於我們token的crowdsale，我們需要在crowdsale合約收到ether時才發行token，所以讓我們使用https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/emission/MintedCrowdsale.sol[MintedCrowdsale] 作為基礎。為了讓它更有趣，讓我們把它做成 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol[PostDeliveryCrowdsale]， token只能在眾籌結束後贖回。將以下內容寫入`contracts/SampleCrowdsale.sol`：
+正如我們之前所說的，OpenZeppelin合約是基本的構建塊。這些crowdsale合約被設計為可組合的，只需閱讀 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/Crowdsale.sol[Crowdsale]合約的源程式碼即可瞭解關於如何擴展它的指導。對於我們token的crowdsale，我們需要在crowdsale合約收到ether時才發行token，所以讓我們使用https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/emission/MintedCrowdsale.sol[MintedCrowdsale] 作為基礎。為了讓它更有趣，讓我們把它做成 https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol[PostDeliveryCrowdsale]， token只能在眾籌結束後贖回。將以下內容寫入`contracts/SampleCrowdsale.sol`：
 
 ----
 include::code/OpenZeppelin/contracts/SampleCrowdsale.sol
@@ -441,7 +441,7 @@ contract SampleCrowdsale is PostDeliveryCrowdsale, MintedCrowdsale {
 }
 ----
 
-同樣，我們幾乎不需要編寫任何代碼，只是為了重用OpenZeppelin社區為我們提供的已經經過測試的代碼。但是，需要注意的是，這種情況與我們的`SampleToken`合約不同。如果你訪問https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.9.0/test/crowdsale[Crowdsale自動化測試]，你會看到它們被隔離測試。當你將不同的代碼單元集成到一個更大的組件中時，單獨測試所有的單元是不夠的，因為它們之間的交互可能會導致你沒有預料到的行為。特別是，你會看到在這裡我們介紹了多重繼承，如果他們不瞭解Solidity編譯器的實現細節，這可能會讓開發人員感到意外。我們的`SampleCrowdsale`非常簡單，並且能夠像我們所期望的那樣工作，因為框架旨在使這些案例變得簡單明瞭；但不要因為這個框架引入的簡單性，放鬆你的安全性。每當你集成部分OpenZeppelin框架以構建更復雜的解決方案時，你必須全面測試解決方案的每個方面，以確保單元的所有交互按照你的意圖運行。
+同樣，我們幾乎不需要編寫任何程式碼，只是為了重用OpenZeppelin社區為我們提供的已經經過測試的程式碼。但是，需要注意的是，這種情況與我們的`SampleToken`合約不同。如果你訪問https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.9.0/test/crowdsale[Crowdsale自動化測試]，你會看到它們被隔離測試。當你將不同的程式碼單元集成到一個更大的組件中時，單獨測試所有的單元是不夠的，因為它們之間的交互可能會導致你沒有預料到的行為。特別是，你會看到在這裡我們介紹了多重繼承，如果他們不瞭解Solidity編譯器的實現細節，這可能會讓開發人員感到意外。我們的`SampleCrowdsale`非常簡單，並且能夠像我們所期望的那樣工作，因為框架旨在使這些案例變得簡單明瞭；但不要因為這個框架引入的簡單性，放鬆你的安全性。每當你集成部分OpenZeppelin框架以構建更復雜的解決方案時，你必須全面測試解決方案的每個方面，以確保單元的所有交互按照你的意圖運行。
 
 最後，在我們對我們的解決方案感到滿意並且我們已經徹底測試之後，我們需要部署它。OpenZeppelin與Truffle很好地集成在一起，所以我們可以按照上面的Truffle部分所述編寫一個migration檔案。在 migrations/2_deploy_contracts.js 中寫入以下內容：
 
@@ -485,13 +485,13 @@ Docs link; https://openzeppelin.org/api/docs/open-zeppelin.html
 === zeppelin_os
 https://github.com/zeppelinos[zeppelin_os] 是一款開源的分佈式工具和服務平臺，位於EVM之上，安全地開發和管理智能合約應用程式。
 
-與OpenZeppelin的代碼每次都需要重新部署每個應用程式不同，zeppelin_os的代碼處於鏈上。需要特定功能的應用程式（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程式可直接與 鏈上的token實現進行交互，這與桌面應用程式與其底層操作系統的組件進行交互的方式大致相同。
+與OpenZeppelin的程式碼每次都需要重新部署每個應用程式不同，zeppelin_os的程式碼處於鏈上。需要特定功能的應用程式（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程式可直接與 鏈上的token實現進行交互，這與桌面應用程式與其底層操作系統的組件進行交互的方式大致相同。
 
 利用OpenZeppelin的應用程式通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程式使用ERC20 token實現時，同一個ERC20字節碼會一次又一次地部署到區塊鏈中。這種字節碼在網路中無數次重複存在。現在，使用zeppelin_os的應用程式可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。
 
-與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程式。操作系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的代碼庫提供升級能力！開發人員決定應用程式何時以及如何實施升級，甚至決定要遵守哪種實施方案。
+與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程式。操作系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的程式碼庫提供升級能力！開發人員決定應用程式何時以及如何實施升級，甚至決定要遵守哪種實施方案。
 
-zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy）”。代理是一種能夠包裝任何其他合約，暴露其接口而無需手動實現setter和getter的合約，並且可以在不丟失狀態的情況下進行升級。在Solidity術語中，它可以被看作是一個正常的合約，其業務邏輯包含在一個庫中，隨時可以由一個新庫來交換，而不會丟失其狀態。代理鏈接到其實現的方式是完全自動的，並且封裝給開發人員。實際上，任何合約都可以升級，代碼幾乎不變。關於zeppelin_os的代理機制的更多信息可以在Zeppelin的博客中找到：https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage]，
+zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy）”。代理是一種能夠包裝任何其他合約，暴露其接口而無需手動實現setter和getter的合約，並且可以在不丟失狀態的情況下進行升級。在Solidity術語中，它可以被看作是一個正常的合約，其業務邏輯包含在一個庫中，隨時可以由一個新庫來交換，而不會丟失其狀態。代理鏈接到其實現的方式是完全自動的，並且封裝給開發人員。實際上，任何合約都可以升級，程式碼幾乎不變。關於zeppelin_os的代理機制的更多信息可以在Zeppelin的博客中找到：https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage]，
 
 操作系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟體包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。
 

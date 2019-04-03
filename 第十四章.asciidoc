@@ -51,7 +51,7 @@ SELFDESTRUCT // 執行停機，並標記賬戶為刪除的
 ----
 
 [[common_arithmetic_opcodes]]
-算術運算:: 通用算術運算代碼指令：
+算術運算:: 通用算術運算程式碼指令：
 
 ----
 添加//添加
@@ -76,9 +76,9 @@ BALANCE //賬戶餘額
 CALLVALUE //執行環境的交易值
 ORIGIN //執行環境的原始地址
 CALLER //執行調用者的地址
-CODESIZE //執行環境代碼大小
+CODESIZE //執行環境程式碼大小
 GASPRICE //gas價格狀態
-EXTCODESIZE //賬戶的代碼大小
+EXTCODESIZE //賬戶的程式碼大小
 RETURNDATACOPY //從先前的內存調用輸出的數據的副本
 ----
 
@@ -97,7 +97,7 @@ Account State:: 包含以下四個組件：
 
 * _storageRoot_：Merkle Patricia Tree根節點的256位雜湊值。
 
-* _codeHash_：各個賬戶的EVM代碼的不可變雜湊值。
+* _codeHash_：各個賬戶的EVM程式碼的不可變雜湊值。
 
 Storage State:: 在EVM上運行時維護的賬戶特定狀態信息。
 
@@ -119,7 +119,7 @@ Runtime Environment Information:: 用於使用交易的信息。
 
 * _gasprice_：當前汽油價格，由交易發起人指定。
 
-* _codesize_：交易代碼庫的大小。
+* _codesize_：交易程式碼庫的大小。
 
 * _caller_：執行當前交易的賬戶的地址。
 
@@ -423,7 +423,7 @@ jumpi(label, cond) // Jump to "label" if "cond" is true
 .JUMPI instruction leading to fallback function
 image::images/Faucet_jumpi_instruction.png["JUMPI instruction leading to fallback function"]
 
-我們來看一下調度員的核心代碼塊。假設我們收到的長度大於4個字節的calldata，“JUMPI”指令不會跳轉到回退函數。相反，代碼執行將遵循下一條指令：
+我們來看一下調度員的核心程式碼塊。假設我們收到的長度大於4個字節的calldata，“JUMPI”指令不會跳轉到回退函數。相反，程式碼執行將遵循下一條指令：
 
 [[faucet_instructions]]
 ----
@@ -528,7 +528,7 @@ DIV（函數標識符）的結果被推送到堆棧上，我們的新堆棧如�
 
 [[evm_tools_references]]
 === EVM工具參考
-* [ByteCode To Opcode Disassembler](https://etherscan.io/opcode-tool) (用於檢查/調試編譯是否完整運行，如果源代碼未發佈則可用於逆向工程)
+* [ByteCode To Opcode Disassembler](https://etherscan.io/opcode-tool) (用於檢查/調試編譯是否完整運行，如果源程式碼未發佈則可用於逆向工程)
 
 
 <<第十五章#,下一章：共識>>

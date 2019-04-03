@@ -221,16 +221,16 @@ image::images/approve_transferFrom_workflow.png["The two-step approve &amp; tran
 [[ERC20_implementation]]
 ===== ERC20 實現
 
-雖然可以在約三十行Solidity代碼中實現兼容ERC20的Token，但大多數實現都更加複雜，以解決潛在的安全漏洞。在EIP20標準中提到了兩種實現：
+雖然可以在約三十行Solidity程式碼中實現兼容ERC20的Token，但大多數實現都更加複雜，以解決潛在的安全漏洞。在EIP20標準中提到了兩種實現：
 
 Consensys EIP20:: 簡單易讀的ERC20兼容Token的實現。
 
-你可以在此處閱讀Consensys實現的Solidity代碼：
+你可以在此處閱讀Consensys實現的Solidity程式碼：
 https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol
 
 OpenZeppelin StandardToken:: 此實現與ERC20兼容，並具有額外的安全防範措施。它構成了OpenZeppelin庫的基礎，實現了更復雜的與ERC20兼容的Token，包括籌款上限，拍賣，歸屬時間表和其他功能。
 
-你可以在這裡看到OpenZeppelin StandardToken的Solidity代碼：
+你可以在這裡看到OpenZeppelin StandardToken的Solidity程式碼：
 https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol
 
 [[METoken_example]]
@@ -307,7 +307,7 @@ added 8 packages in 2.504s
 
 + zeppelin-solidity +包將在+ node_modules +目錄下添加約250個檔案。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。
 
-接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製示例代碼：
+接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製示例程式碼：
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol
 
@@ -322,7 +322,7 @@ include::code/METoken/contracts/METoken.sol[]
 
 在這裡，我們定義可選變量+name+，+symbol+和+decimals+。我們還定義了一個+_initial_supply+變量，設置為2,100萬個Token，以及兩個小數細分（總共21億）。在契約的初始化（構造函數）函數中，我們將+totalSupply+設置為等於+_initial_supply+，並將所有+_initial_supply+分配給創建 +METoken+ 契約的帳戶餘額（+msg.sender+）。
 
-我們現在使用+truffle+編譯+METoken+代碼：
+我們現在使用+truffle+編譯+METoken+程式碼：
 
 [[truffle_compile]]
 ----
@@ -566,7 +566,7 @@ truffle(ganache)> BigNumber { s: 1, e: 5, c: [ 100000 ] }
 
 +METoken+合約知道+Faucet+有餘額，但它可以轉移該餘額的唯一方法是它從合約地址收到+transfer+調用。無論如何，我們需要讓+Faucet+ 合約調用+MET+中的+transfer+函數。
 
-如果你在思考下一步該做什麼，不必了。這個問題沒有解決辦法。MET發送到+Faucet+將永遠卡住。只有+Faucet+合約可以轉讓它，+Faucet+合約沒有調用ERC20Token合約的+transfer+函數的代碼。
+如果你在思考下一步該做什麼，不必了。這個問題沒有解決辦法。MET發送到+Faucet+將永遠卡住。只有+Faucet+合約可以轉讓它，+Faucet+合約沒有調用ERC20Token合約的+transfer+函數的程式碼。
 
 也許你預料到了這個問題。最有可能的是，你沒有。實際上，數百名以太坊用戶也無意將各種Token轉讓給沒有任何ERC20能力的合同。據估計，價值超過250萬美元的Token被這樣“卡住”，並且永遠丟失。
 
@@ -663,7 +663,7 @@ METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
 function () public payable { revert(); }
 ----
 
-現在我們的+METFaucet.sol+代碼已準備就緒，我們需要修改migration腳本來部署它。這個migration腳本會有點複雜，因為+METFaucet+依賴於+METoken+的地址。我們將使用JavaScript promise按順序部署這兩個合約。創建+2_deply_contracts.js+，如下所示：
+現在我們的+METFaucet.sol+程式碼已準備就緒，我們需要修改migration腳本來部署它。這個migration腳本會有點複雜，因為+METFaucet+依賴於+METoken+的地址。我們將使用JavaScript promise按順序部署這兩個合約。創建+2_deply_contracts.js+，如下所示：
 
 [[2_deploy_contracts]]
 ----
@@ -942,7 +942,7 @@ Token標準是實現的_最小_規範。這意味著為了符合ERC20的要求�
 
 現有的實施是“戰鬥測試”。雖然不可能證明它們是安全的，但其中許多都支持數百萬美元的Token。他們一再受到攻擊，並且受到了強烈的攻擊。到目前為止，沒有發現重大的漏洞。寫你自己的並不容易 - 有許多微妙的方式可以讓合約受到損害。使用經過充分測試的廣泛使用的實現更加安全。在我們上面的例子中，我們使用了ERC20標準的OpenZeppelin實現，因為這個實現從頭到尾都是安全的。
 
-如果你使用現有的實現，你也可以擴展它。再次小心這種衝動。複雜性是安全的敵人。你添加的每一行代碼都會擴展合約的_受攻擊面_，並可能代表處於等待狀態的漏洞。你可能沒有注意到一個問題，直到你在合同上投入了很多價值並且有人打破了它。
+如果你使用現有的實現，你也可以擴展它。再次小心這種衝動。複雜性是安全的敵人。你添加的每一行程式碼都會擴展合約的_受攻擊面_，並可能代表處於等待狀態的漏洞。你可能沒有注意到一個問題，直到你在合同上投入了很多價值並且有人打破了它。
 
 [[extend_Token_interface]]
 === Token接口標準的擴展

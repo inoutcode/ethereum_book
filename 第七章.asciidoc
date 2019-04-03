@@ -41,7 +41,7 @@ v,r,s:: 始發EOA的ECDSA簽名的三個組成部分。
 
 nonce是交易中最重要和最少被理解的組成部分之一。黃皮書中的定義（見 <<yellow_paper>> ）寫道：
 
-nonce：與此地址發送的交易數量相等的標量值，或者，對於具有關聯代碼的帳戶，表示此帳戶創建的合約數量。
+nonce：與此地址發送的交易數量相等的標量值，或者，對於具有關聯程式碼的帳戶，表示此帳戶創建的合約數量。
 
 嚴格地說，nonce是始發地址的一個屬性（它只在發送地址的上下文中有意義）。但是，該nonce並未作為賬戶狀態的一部分顯式儲存在區塊鏈中。相反，它是根據來源於此地址的已確認交易的數量動態計算的。
 
@@ -555,7 +555,7 @@ ECDSA必然是一門相當複雜的數學; 完整的解釋超出了本書的範�
 [[raw_tx]]
 ==== 原始交易創建和簽名
 
-讓我們創建一個原始交易並使用 +ethereumjs-tx+ 庫對其進行簽名。此示例的源代碼位於GitHub儲存庫中的 +raw_tx_demo.js+ 中：
+讓我們創建一個原始交易並使用 +ethereumjs-tx+ 庫對其進行簽名。此示例的源程式碼位於GitHub儲存庫中的 +raw_tx_demo.js+ 中：
 
 [[raw_tx_demo_source]]
 .raw_tx_demo.js: Creating and signing a raw transaction in JavaScript
@@ -567,7 +567,7 @@ include::code/web3js/raw_tx/raw_tx_demo.js[]
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js
 
 [[raw_tx_demo_run]]
-運行示例代碼：
+運行示例程式碼：
 ----
 $ node raw_tx_demo.js
 RLP-Encoded Tx: 0xe6808609184e72a0008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb348080
@@ -671,7 +671,7 @@ K~2~ = r^-1^ (sR^'^ - zG)
 
 為了在多重簽名情況下保護你的ether，將它們轉移到多重簽名合約中。無論何時你想將資金轉入其他賬戶，所有必需的用戶都需要使用常規錢包軟體將交易發送至合約，從而有效授權合約執行最終交易。
 
-這些合約也可以設計為在執行本地代碼或觸發其他合約之前需要多個簽名。該方案的安全性最終由多重簽名合約代碼確定。
+這些合約也可以設計為在執行本地程式碼或觸發其他合約之前需要多個簽名。該方案的安全性最終由多重簽名合約程式碼確定。
 
 討論和 Grid+ 參考實現：
 https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6

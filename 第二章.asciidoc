@@ -281,7 +281,7 @@ include::code/Solidity/Faucet.sol[]
 // Version of Solidity compiler this program was written for
 ----
 
-註釋用於人類閱讀，不包含在可執行的EVM字節碼中。我們通常將註釋放在我們試圖解釋的代碼之前，有時在同一行上。評論從兩個正斜槓 +//+ 開始。從斜線和直到該行結束的所有內容都被視為空白行並被忽略。
+註釋用於人類閱讀，不包含在可執行的EVM字節碼中。我們通常將註釋放在我們試圖解釋的程式碼之前，有時在同一行上。評論從兩個正斜槓 +//+ 開始。從斜線和直到該行結束的所有內容都被視為空白行並被忽略。
 
 下一行是我們的_真正的_合約開始的地方：
 
@@ -334,7 +334,7 @@ function () public payable {}
 [[compile_faucet_contract]]
 === 編譯faucet合約
 
-現在我們已經有了我們的第一個示例合約，我們需要使用Solidity編譯器將Solidity代碼轉換為EVM字節代碼，以便它可以由EVM執行。
+現在我們已經有了我們的第一個示例合約，我們需要使用Solidity編譯器將Solidity程式碼轉換為EVM字節程式碼，以便它可以由EVM執行。
 
 Solidity編譯器是獨立的可執行檔案，作為不同框架的一部分，也捆綁在一個_Integrated Development Environment（IDE）_中。為了簡單起見，我們將使用一種更流行的IDE，稱為Remix。
 
@@ -360,7 +360,7 @@ image::images/remix_toolbar.png["Click the plus sign to open a new tab"]
 .Copy the Faucet example code into the new tab
 image::images/remix_faucet_load.png["Copy the Faucet example code into the new tab"]
 
-現在我們已將 +Faucet.sol+ 合約加載到Remix IDE中，IDE將自動編譯代碼。如果一切順利，你會看到一個綠色的放開，右邊出現一個帶有“faucet”的綠色方塊，在Compile選項卡下，確認編譯成功：
+現在我們已將 +Faucet.sol+ 合約加載到Remix IDE中，IDE將自動編譯程式碼。如果一切順利，你會看到一個綠色的放開，右邊出現一個帶有“faucet”的綠色方塊，在Compile選項卡下，確認編譯成功：
 
 [[remix_compile]]
 .Remix successfully compiles the Faucet.sol contract
@@ -445,7 +445,7 @@ image::images/metamask_send_to_contract.png[""]
 
 一分鐘後，如果你刷新etherscan區塊瀏覽器，它會向合約地址顯示另一個交易，並更新1 ether的餘額。
 
-還記得我們的 +Faucet.sol+ 代碼中的未命名預設公共付費功能？它看起來像這樣：
+還記得我們的 +Faucet.sol+ 程式碼中的未命名預設公共付費功能？它看起來像這樣：
 
 [[fallback_function_review]]
 ----
@@ -495,13 +495,13 @@ image::images/etherscan_withdrawal_tx.png["Etherscan shows the transaction calli
 
 我們現在看到一個新的交易，其中合約地址是目標地址，0 ether。合約餘額已經改變，現在是0.9 ether，因為它按要求給了我們0.1 ether。但是我們在合約地址歷史記錄中看不到“OUT”交易。
 
-提款的交易在哪裡？合約的地址歷史記錄頁面中出現了一個名為“內部交易”的新選項卡。由於0.1 ether傳輸源於合約代碼，因此它是一個內部交易（也稱為_message_）。點擊“內部交易”標籤查看：
+提款的交易在哪裡？合約的地址歷史記錄頁面中出現了一個名為“內部交易”的新選項卡。由於0.1 ether傳輸源於合約程式碼，因此它是一個內部交易（也稱為_message_）。點擊“內部交易”標籤查看：
 
 [[etherscan_withdrawal_internal]]
 .Etherscan shows the internal transaction transferring ether out from the contract
 image::images/etherscan_withdrawal_internal.png["Etherscan shows the internal transaction transferring ether out from the contract"]
 
-這個“內部交易”是由合約在這行代碼中發送的（+Faucet.sol+ 的 +withdraw+ 方法）
+這個“內部交易”是由合約在這行程式碼中發送的（+Faucet.sol+ 的 +withdraw+ 方法）
 
 [[withdraw_command_review]]
 ----
