@@ -94,7 +94,7 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 Parity的JSON RPC接口提供 +parity_nextNonce+ 函數，該函數返回應在交易中使用的下一個nonce。+parity_nextNonce+ 函數可以正確地計算nonce，即使你連續快速構建多個交易，但沒有確認它們。
 
 [[parity_curl]]
-Parity 有一個用於訪問JSON RPC接口的Web控制檯，但在這裡我們使用命令行HTTP客戶端來訪問它：
+Parity 有一個用於訪問JSON RPC接口的Web控制台，但在這裡我們使用命令行HTTP客戶端來訪問它：
 
 ----
 curl --data '{"method":"parity_nextNonce","params":["0x9e713963a92c02317a681b9bb3065a8249de124f"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
@@ -313,7 +313,7 @@ withdraw函數的_prototype_被定義為包含函數名稱的字符串，隨後�
 withdraw(uint256)
 ----
 
-我們來計算這個字符串的Keccak256雜湊值（我們可以使用truffle控制檯或任何JavaScript web3控制檯來做到這一點）：
+我們來計算這個字符串的Keccak256雜湊值（我們可以使用truffle控制台或任何JavaScript web3控制台來做到這一點）：
 
 [source,javascript]
 ----

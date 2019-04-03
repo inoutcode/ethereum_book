@@ -385,16 +385,16 @@ Saving artifacts...
 
 ----
 
-在+ganache+控制檯上，我們應該看到我們的部署創建了4個新的交易：
+在+ganache+控制台上，我們應該看到我們的部署創建了4個新的交易：
 
 [[ganache_METoken]]
 .METoken deployment on Ganache
 image::images/ganache_meToken.png["METoken deployment on Ganache"]
 
 [[truffle_console]]
-==== 使用Truffle控制檯與METoken交互
+==== 使用Truffle控制台與METoken交互
 
-我們可以使用+Truffle控制檯+與我們的+ganache+區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將+Truffle控制檯+連接到+ganache+區塊鏈：
+我們可以使用+Truffle控制台+與我們的+ganache+區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將+Truffle控制台+連接到+ganache+區塊鏈：
 
 [[interactive_truffle]]
 ----
@@ -402,7 +402,7 @@ $ truffle console --network ganache
 truffle(ganache)>
 ----
 
- +truffle(ganache)>+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制檯+支持所有的Truffle命令，所以我們可以從控制檯+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript物件存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：
+ +truffle(ganache)>+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制台+支持所有的Truffle命令，所以我們可以從控制台+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript物件存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：
 
 [[get_METoken_definition]]
 ----
@@ -486,7 +486,7 @@ truffle(ganache)> BigNumber { s: 1, e: 5, c: [ 100000 ] }
 METoken具有2位精度的小數，這意味著1個METoken在合同中是100個單位。當我們傳輸1000個METoken時，我們在傳輸函數中將該值指定為100,000。
 ====
 
-如你所見，在控制檯中，+ account [0] +現在擁有20,999,000 MET，+ account [1] +擁有1000 MET。
+如你所見，在控制台中，+ account [0] +現在擁有20,999,000 MET，+ account [1] +擁有1000 MET。
 
 如果切換到+ganache+圖形用戶界面，你將看到名為+transfer+函數的交易：
 
@@ -522,7 +522,7 @@ module.exports = function(deployer) {
 };
 ----
 
-讓我們從Truffle控制檯編譯和遷移合同：
+讓我們從Truffle控制台編譯和遷移合同：
 
 [[faucet_deploy]]
 ----
@@ -682,7 +682,7 @@ module.exports = function(deployer) {
 }
 ----
 
-現在，我們可以測試Truffle控制檯中的所有內容。首先，我們使用+migrate+來部署合同。當+METoken+部署時，它會將所有MET分配給創建它的帳戶，+web3.eth.accounts[0]+。然後，我們在METoken中調用+approve+函數來批准+METFaucet+代表+web3.eth.accounts[0]+發送1000 MET。最後，為了測試我們的Faucet，我們從+web3.eth.accounts[1]+調用+METFaucet.withdraw+並嘗試提取10個MET。以下是控制檯命令：
+現在，我們可以測試Truffle控制台中的所有內容。首先，我們使用+migrate+來部署合同。當+METoken+部署時，它會將所有MET分配給創建它的帳戶，+web3.eth.accounts[0]+。然後，我們在METoken中調用+approve+函數來批准+METFaucet+代表+web3.eth.accounts[0]+發送1000 MET。最後，為了測試我們的Faucet，我們從+web3.eth.accounts[1]+調用+METFaucet.withdraw+並嘗試提取10個MET。以下是控制台命令：
 
 [[ERC20_gananche_test]]
 ----

@@ -762,7 +762,7 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
   amount: BigNumber { s: 1, e: 17, c: [ 1000 ] } }
 ----
 
-為了獲得這些事件，我們查看了作為結果（+res+）返回的+logs+數組。第一個日誌條目（+logs[0]+）包含+logs[0].event+的事件名稱和+logs[0].args+的事件參數。通過在控制檯上顯示這些信息，我們可以看到發出的事件名稱和事件參數。
+為了獲得這些事件，我們查看了作為結果（+res+）返回的+logs+數組。第一個日誌條目（+logs[0]+）包含+logs[0].event+的事件名稱和+logs[0].args+的事件參數。通過在控制台上顯示這些信息，我們可以看到發出的事件名稱和事件參數。
 
 事件是一種非常有用的機制，不僅適用於合約內通信，還適用於開發過程中的調試。
 
@@ -1067,7 +1067,7 @@ FaucetContract.web3.eth.getGasPrice(function(error, result) {
 });
 ----
 
-truffle開發控制檯顯示：
+truffle開發控制台顯示：
 
 ----
 $ truffle develop
@@ -1513,7 +1513,7 @@ TODO: add anchor for <<truffle>>
 
 Embark Framework Testing:: Embark與Mocha集成，運行用JavaScript編寫的單元測試。這些測試使用在TestRPC/Ganache上部署的合約執行。Embark框架自動部署智能合約，並在合約被更改時自動重新部署它們。它還跟蹤已部署的合約，並在真正需要時部署合約。Embark包括一個測試庫，它可以在EVM中快速運行和測試你的合約，並使用assert.equal()等函數。Embark測試將在目錄測試下運行任何測試檔案。
 
-DApp:: DApp使用本地Solidity程式碼（一個名為ds-test的庫）和一個Parity構建的Rust庫（稱為Ethrun）執行以太坊字節碼，然後斷言正確性。ds-test庫提供用於驗證控制檯中數據記錄的正確性和事件的斷言功能。
+DApp:: DApp使用本地Solidity程式碼（一個名為ds-test的庫）和一個Parity構建的Rust庫（稱為Ethrun）執行以太坊字節碼，然後斷言正確性。ds-test庫提供用於驗證控制台中數據記錄的正確性和事件的斷言功能。
 
 斷言函數包括
 ....
@@ -1526,7 +1526,7 @@ assertEq0(bytes a, bytes b)
 expectEventsExact(address target)
 ....
 
-日誌事件將信息記錄到控制檯，使其易於調試。
+日誌事件將信息記錄到控制台，使其易於調試。
 ....
 logs(bytes)
 log_bytes32(bytes32)
