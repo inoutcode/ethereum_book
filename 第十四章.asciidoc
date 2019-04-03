@@ -182,7 +182,7 @@ contract example {
 }
 ----
 
-如果查看_BytecodeDir_目錄，你將看到操作碼檔案_example.opcode_（請參閱<<simple_solidity_example>>），其中包含“example”合約的EVM機器語言操作碼指令。在文本編輯器中打開_example.opcode_檔案將顯示以下內容：
+如果查看_BytecodeDir_目錄，你將看到操作碼檔案_example.opcode_（請參閱<<simple_solidity_example>>），其中包含“example”合約的EVM機器語言操作碼指令。在文字編輯器中打開_example.opcode_檔案將顯示以下內容：
 
 [[opcode_output]]
 ----

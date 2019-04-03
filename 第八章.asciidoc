@@ -115,11 +115,11 @@ https://github.com/ethereum/solidity
 
 ==== 開發環境
 
-要在Solidity中開發，你可以在命令行上使用任何文本編輯器和+solc+。但是，你可能會發現為開發而設計的一些文本編輯器（例如Atom）提供了附加功能，如語法突出顯示和宏，這些功能使Solidity開發變得更加簡單。
+要在Solidity中開發，你可以在命令行上使用任何文字編輯器和+solc+。但是，你可能會發現為開發而設計的一些文字編輯器（例如Atom）提供了附加功能，如語法突出顯示和宏，這些功能使Solidity開發變得更加簡單。
 
 還有基於Web的開發環境，如Remix IDE（https://remix.ethereum.org/）和EthFiddle（https://ethfiddle.com/）。
 
-使用可以提高生產力的工具。最後，Solidity程式只是純文本檔案。雖然花哨的編輯器和開發環境可以讓事情變得更容易，但除了簡單的文本編輯器（如vim（Linux / Unix），TextEdit（MacOS）甚至NotePad（Windows）），你無需任何其他東西。只需將程式源程式碼保存為+.sol+擴展名即可，Solidity編譯器將其識別為Solidity程式。
+使用可以提高生產力的工具。最後，Solidity程式只是純文字檔案。雖然花哨的編輯器和開發環境可以讓事情變得更容易，但除了簡單的文字編輯器（如vim（Linux / Unix），TextEdit（MacOS）甚至NotePad（Windows）），你無需任何其他東西。只需將程式源程式碼保存為+.sol+擴展名即可，Solidity編譯器將其識別為Solidity程式。
 
 ==== Writing a simple Solidity program
 
@@ -594,7 +594,7 @@ require(msg.sender == owner);
 
 +require+ 函數充當_守護條件_，阻止執行函數的其餘部分，並在不滿足時產生錯誤。
 
-從Solidity v.0.4.22開始，+require+還可以包含有用的文本消息，可用於顯示錯誤的原因。錯誤消息記錄在交易日誌中。所以我們可以通過在我們的+require+函數中添加一條錯誤消息來改進我們的程式碼：
+從Solidity v.0.4.22開始，+require+還可以包含有用的文字消息，可用於顯示錯誤的原因。錯誤消息記錄在交易日誌中。所以我們可以通過在我們的+require+函數中添加一條錯誤消息來改進我們的程式碼：
 
 ----
 require(msg.sender == owner, "Only the contract owner can call this function");
