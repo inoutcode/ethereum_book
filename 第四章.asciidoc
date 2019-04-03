@@ -173,7 +173,7 @@ Ethereum’s Morden testnet (Network ID: 2) 與Frontier一起發佈，從2015年
 
 Ropsten (Network ID: 3) 是一個針對Homestead的公共跨客戶端測試網，於2016年晚些時候推出，並作為公共測試網順利運行至2017年2月底。根據Ethereum的核心開發人員PéterSzilágyi的說法，二月的時候，“惡意行為者決定濫用低PoW，並逐步將gas限制提高到90億（從普通的470萬），發送巨大交易損害了整個網路”。Ropsten在2017年3月被恢復。https://github.com/ethereum/ropsten
 
-Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識算法驅動的Homestead的公共Parity測試網路。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
+Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識演算法驅動的Homestead的公共Parity測試網路。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
 儘管看起來這應該是以太坊測試網問題的解決方案，但在以太坊社區內似乎存在關於Kovan測試網的共識問題。https://github.com/kovan-testnet/proposal
 
 Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發佈的Geth測試網路，並使用PoA共識協議。以斯德哥爾摩的地鐵站命名，它幾乎不受垃圾郵件攻擊的影響（因為以太網供應由受信任方控制）。請參閱EIP 225：https://github.com/ethereum/EIPs/issues/225
@@ -185,7 +185,7 @@ Proof-of-Work 是一種協議，必須執行挖礦（昂貴的計算機計算）
 缺點：能源消耗。集中的哈希算力與集中的採礦農場，不是真正的分佈式。挖掘新塊體所需的大量計算能力對環境有影響。
 
 Proof-of-Authority 是一種協議，它只將造幣的負載分配給授權和可信的簽名者，他們可以根據自己的判斷並隨時以發幣頻率分發新的區塊。https://github.com/ethereum/EIPs/issues/225
-優點：具有最顯赫的身份的區塊鏈參與者通過算法選擇來驗證塊來交付交易。
+優點：具有最顯赫的身份的區塊鏈參與者通過演算法選擇來驗證塊來交付交易。
 
 https://www.deepdotweb.com/2017/05/21/generalized-proof-activity-poa-forking-free-hybrid-consensus/
 
