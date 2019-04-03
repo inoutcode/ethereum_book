@@ -131,6 +131,6 @@ Polkadot的Relay-Chains使用*Proof of Stake（PoS*系統，其中結構化狀�
 - Polkadot link: https://polkadot.network
 - Polkadot presentation at Berlin Parity Ethereum link: https://www.youtube.com/watch?v=gbXEcNTgNco
 
-<<第十六章#,下一章：Vyper：面向合約的編程語言>>
+<<第十六章#,下一章：Vyper：面向合約的程式語言>>
 
 

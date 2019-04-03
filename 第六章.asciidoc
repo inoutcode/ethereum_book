@@ -276,7 +276,7 @@ BIP-39中沒有“錯誤”的密碼短語。每個密碼都會生成一些空�
 [[working_mnemonic_codes]]
 ===== 使用助記詞
 
-BIP-39 以許多不同的編程語言實現為庫：
+BIP-39 以許多不同的程式語言實現為庫：
 
 https://github.com/trezor/python-mnemonic[python-mnemonic]:: SatoshiLabs團隊提出的BIP-39標準的參考實現，使用Python 
 

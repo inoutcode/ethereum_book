@@ -290,7 +290,7 @@ include::code/Solidity/Faucet.sol[]
 contract Faucet {
 ----
 
-該行聲明瞭一個合約對象，類似於JavaScript，Java或Cpass:[++]等其他面嚮對象語言中的 +class+ 聲明。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多編程語言中使用花括號一樣。
+該行聲明瞭一個合約對象，類似於JavaScript，Java或Cpass:[++]等其他面嚮對象語言中的 +class+ 聲明。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
 
 接下來，我們聲明faucet合約的第一個函數：
 

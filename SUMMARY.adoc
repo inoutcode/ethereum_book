@@ -34,7 +34,7 @@
 
 . link:第十五章.asciidoc[第十五章共識]
 
-. link:第十六章.asciidoc[第十六章Vyper: 面向合約的編程語言]
+. link:第十六章.asciidoc[第十六章Vyper: 面向合約的程式語言]
 
 . link:第十七章.asciidoc[第十七章節點間的通信 —— 一個簡單的視角]
 

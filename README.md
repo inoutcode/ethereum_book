@@ -44,7 +44,7 @@
 
 [第十五章 共識](第十五章.asciidoc)
 
-[第十六章 Vyper：面向合約的編程語言](第十六章.asciidoc)
+[第十六章 Vyper：面向合約的程式語言](第十六章.asciidoc)
 
 [第十七章 DevP2P協議](第十七章.asciidoc)
 

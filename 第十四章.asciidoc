@@ -294,7 +294,7 @@ MSTORE是一個堆棧/內存操作（參見<<common_stack_opcodes>>），它將�
 [[turing_completeness_and_gas]]
 ==== 圖靈完備性和gas
 
-簡單來說，如果系統或編程語言可以解決你輸入的任何問題，它是_圖靈完備的_。這在以太坊黃皮書中討論過：
+簡單來說，如果系統或程式語言可以解決你輸入的任何問題，它是_圖靈完備的_。這在以太坊黃皮書中討論過：
 
 [quote, Gavin Wood, ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER]
 ____________________________________________________________________
