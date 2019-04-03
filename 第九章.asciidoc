@@ -202,7 +202,7 @@ Writing artifacts to ./build/contracts
 
 Truffle提供了一個名為_migration_的部署系統。如果你曾在其他框架中工作過，你可能會看到類似的東西：Ruby on Rails，Python Django和許多其他語言和框架都有+migrate+命令。
 
-在所有這些框架中，migration的目的是處理不同版本軟件之間數據模式的變化。以太坊migration的目的略有不同。因為以太坊合約是不可變的，而且要消耗gas部署，所以Truffle提供了一個migration機制來跟蹤哪些合約（以及哪些版本）已經部署。在一個擁有數十個合約和複雜依賴關係的複雜項目中，你不希望為了重新部署尚未更改的合約而支付gas。你也不想手動跟蹤哪些合約的哪些版本已經部署了。Trufflemigration機制通過部署智能合約+Migrations.sol+完成所有這些工作，然後跟蹤所有其他合約部署。
+在所有這些框架中，migration的目的是處理不同版本軟體之間數據模式的變化。以太坊migration的目的略有不同。因為以太坊合約是不可變的，而且要消耗gas部署，所以Truffle提供了一個migration機制來跟蹤哪些合約（以及哪些版本）已經部署。在一個擁有數十個合約和複雜依賴關係的複雜項目中，你不希望為了重新部署尚未更改的合約而支付gas。你也不想手動跟蹤哪些合約的哪些版本已經部署了。Trufflemigration機制通過部署智能合約+Migrations.sol+完成所有這些工作，然後跟蹤所有其他合約部署。
 
 我們只有一份合約，+Faucet.sol+，這至少意味著migration系統是大材小用的。不幸的是，我們必須使用它。但是，通過學習如何將它用於一個合約，我們可以開始練習一些良好的開發工作習慣。隨著事情變得更加複雜，這項努力將會得到回報。
 
@@ -493,7 +493,7 @@ https://github.com/zeppelinos[zeppelin_os] 是一款開源的分佈式工具和�
 
 zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy）”。代理是一種能夠包裝任何其他合約，暴露其接口而無需手動實現setter和getter的合約，並且可以在不丟失狀態的情況下進行升級。在Solidity術語中，它可以被看作是一個正常的合約，其業務邏輯包含在一個庫中，隨時可以由一個新庫來交換，而不會丟失其狀態。代理鏈接到其實現的方式是完全自動的，並且封裝給開發人員。實際上，任何合約都可以升級，代碼幾乎不變。關於zeppelin_os的代理機制的更多信息可以在Zeppelin的博客中找到：https://blog.zeppelinos.org/[upgradeability-using-unstructured-storage]，
 
-操作系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟件包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。
+操作系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟體包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。
 
 使用Zeppelin_os開發應用程序與使用NPM開發Javascript應用程序類似。AppManager處理應用程序的每個版本的應用程序包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程序的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整示例，請訪問：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
 

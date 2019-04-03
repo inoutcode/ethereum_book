@@ -66,7 +66,7 @@
 
 keystore格式使用_Key派生函數（KDF）_，也稱為密碼擴展算法，該算法可防止對密碼加密的暴力破解，字典或彩虹表攻擊。簡而言之，私鑰沒有直接由密碼短語加密。相反，通過反覆對它進行哈希，密碼被_拉長_。哈希函數重複執行262144輪，可以在keystore JSON中的參數 +crypto.kdfparams.n+ 看到。試圖暴力破解密碼短語的攻擊者必須對每個嘗試的密碼應用262144輪哈希，這足以減緩攻擊行為，從而使破解足夠複雜性和夠長的密碼短語是不可行的。
 
-有許多軟件庫可以讀寫keystore格式，例如JavaScript庫 +keythereum+：
+有許多軟體庫可以讀寫keystore格式，例如JavaScript庫 +keythereum+：
 
 https://github.com/ethereumjs/keythereum
 
@@ -125,9 +125,9 @@ wall cliff insect more detail hub
 
 這些標準可能會改變，或者可能會因未來的發展而過時，但現在它們形成了一套互聯技術，已成為大多數加密貨幣的事實上的錢包標準。
 
-這些標準已廣泛的被軟件和硬件錢包採用，使所有這些錢包可以互操作。用戶可以匯出其中一個錢包上生成的助記詞並將其匯入另一個錢包，恢復所有交易，密鑰和地址。
+這些標準已廣泛的被軟體和硬件錢包採用，使所有這些錢包可以互操作。用戶可以匯出其中一個錢包上生成的助記詞並將其匯入另一個錢包，恢復所有交易，密鑰和地址。
 
-支持這些標準的軟件錢包有 Jaxx，MetaMask，MyEtherWallet（MEW），硬件錢包有：Keepkey，Ledger和Trezor。
+支持這些標準的軟體錢包有 Jaxx，MetaMask，MyEtherWallet（MEW），硬件錢包有：Keepkey，Ledger和Trezor。
 
 以下各節詳細介紹了這些技術。
 
@@ -306,7 +306,7 @@ HD錢包中的每個密鑰都是從這個根種子確定性地派生出來的，
 
 https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
-我們不會在這裡討論BIP-32的細節，只是瞭解如何在錢包中使用BIP-32。在許多軟件庫中提供了許多可互操作的BIP-32實現：
+我們不會在這裡討論BIP-32的細節，只是瞭解如何在錢包中使用BIP-32。在許多軟體庫中提供了許多可互操作的BIP-32實現：
 
 https://github.com/ConsenSys/eth-lightwallet[Consensys/eth-lightwallet]:: 輕量級JS Ethereum節點和瀏覽器錢包（使用BIP-32）
 
