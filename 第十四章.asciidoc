@@ -358,7 +358,7 @@ contract Faucet {
 
 在本節中，我們將使用 Binary Ninja 的 *Ethersplay* 插件。
 
-在獲取Faucet.sol的運行時字節碼後，我們可以將其提供給Binary Ninja（在導入Ethersplay插件之後）以查看EVM指令。
+在獲取Faucet.sol的運行時字節碼後，我們可以將其提供給Binary Ninja（在匯入Ethersplay插件之後）以查看EVM指令。
 
 [[Faucet_disassembled]]
 .Disassembling the Faucet runtime bytecode
@@ -389,7 +389,7 @@ JUMPI
 
 下一條指令是“LT”，是“小於（less than）”的縮寫。LT指令檢查堆棧上的頂部項是否小於堆棧上的下一項。在我們的例子中，它檢查CALLDATASIZE的結果是否小於4個字節。
 
-為什麼EVM會檢查交易的calldata是否至少為4個字節？因為函數標識符的工作原理。每個函數由其keccak256哈希的前四個字節標識。通過將函數的名稱和它所採用的參數放入keccak256哈希函數，我們可以推導出它的函數標識符。在我們的合約中，我們有：
+為什麼EVM會檢查交易的calldata是否至少為4個字節？因為函數標識符的工作原理。每個函數由其keccak256哈希的前四個字節標識。通過將函數的名稱和它所採用的參數放入keccak256哈希函數，我們可以推匯出它的函數標識符。在我們的合約中，我們有：
 
 [[faucet_function_identifier]]
 ```

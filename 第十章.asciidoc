@@ -272,7 +272,7 @@ METoken/
 
 https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js
 
-如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+文件夾中創建文件+.env+，以便在公共以太網測試網絡（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中導出你的測試網絡私鑰。
+如果使用示例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+文件夾中創建文件+.env+，以便在公共以太網測試網絡（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網絡私鑰。
 
 之後你的目錄看起來像：
 
@@ -295,7 +295,7 @@ METoken/
 只能使用不用於在以太坊主網絡上持有資金的測試密鑰或測試助記符。切勿使用持有真正金錢的鑰匙進行測試。
 ====
 
-對於我們的示例，我們將導入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們導入該庫：
+對於我們的示例，我們將匯入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們匯入該庫：
 
 [[install_openZeppelin]]
 ----
