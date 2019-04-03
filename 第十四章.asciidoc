@@ -117,7 +117,7 @@ Block State:: 交易所需的狀態值包括以下內容：
 
 Runtime Environment Information:: 用於使用交易的信息。
 
-* _gasprice_：當前汽油價格，由交易發起人指定。
+* _gasprice_：當前gas價格，由交易發起人指定。
 
 * _codesize_：交易程式碼庫的大小。
 
