@@ -219,7 +219,7 @@ dst = web3.eth.accounts[1];
 web3.eth.sendTransaction({from: src, to: dst, value: web3.toWei(0.01, "ether"), data: ""});
 ----
 
-我們的錢包顯示確認屏幕，指示要發送的value，並且沒有data：
+我們的錢包顯示確認螢幕，指示要發送的value，並且沒有data：
 
 [[parity_txdemo_value_nodata]]
 .Parity wallet showing a transaction with value, but no data
@@ -236,7 +236,7 @@ image::images/parity_txdemo_value_nodata.png["Parity wallet showing a transactio
 web3.eth.sendTransaction({from: src, to: dst, value: web3.toWei(0.01, "ether"), data: "0x1234"});
 ----
 
-我們的錢包顯示一個確認屏幕，指示要發送的value和data：
+我們的錢包顯示一個確認螢幕，指示要發送的value和data：
 
 [[parity_txdemo_value_data]]
 .Parity wallet showing a transaction with value and data
@@ -253,7 +253,7 @@ image::images/parity_txdemo_value_data.png["Parity wallet showing a transaction 
 web3.eth.sendTransaction({from: src, to: dst, value: 0, data: "0x1234"});
 ----
 
-我們的錢包顯示一個確認屏幕，指示value為0並顯示data：
+我們的錢包顯示一個確認螢幕，指示value為0並顯示data：
 
 [[parity_txdemo_novalue_data]]
 .Parity wallet showing a transaction with no value, only data
@@ -270,7 +270,7 @@ image::images/parity_txdemo_novalue_data.png["Parity wallet showing a transactio
 web3.eth.sendTransaction({from: src, to: dst, value: 0, data: ""}));
 ----
 
-我們的錢包顯示確認屏幕，指示0 value並且沒有data：
+我們的錢包顯示確認螢幕，指示0 value並且沒有data：
 
 [[parity_txdemo_novalue_nodata]]
 .Parity wallet showing a transaction with no value, and no data
