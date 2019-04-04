@@ -360,7 +360,7 @@ image::images/remix_toolbar.png["Click the plus sign to open a new tab"]
 .Copy the Faucet example code into the new tab
 image::images/remix_faucet_load.png["Copy the Faucet example code into the new tab"]
 
-現在我們已將 +Faucet.sol+ 合約加載到Remix IDE中，IDE將自動編譯程式碼。如果一切順利，你會看到一個綠色的放開，右邊出現一個帶有“faucet”的綠色方塊，在Compile選項卡下，確認編譯成功：
+現在我們已將 +Faucet.sol+ 合約加載到Remix IDE中，IDE將自動編譯程式碼。如果一切順利，你會看到一個綠色的方塊，右邊出現一個帶有“faucet”的綠色方塊，在Compile選項卡下，確認編譯成功：
 
 [[remix_compile]]
 .Remix successfully compiles the Faucet.sol contract
