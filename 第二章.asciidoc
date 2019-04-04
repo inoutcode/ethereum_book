@@ -290,7 +290,7 @@ include::code/Solidity/Faucet.sol[]
 contract Faucet {
 ----
 
-該行宣告瞭一個合約物件，類似於JavaScript，Java或Cpass:[++]等其他面嚮物件語言中的 +class+ 宣告。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
+該行宣告瞭一個合約物件，類似於JavaScript，Java或Cpass:[++]等其他面嚮物件語言中的 +class+ 宣告。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用大括號一樣。
 
 接下來，我們宣告faucet合約的第一個函數：
 
@@ -299,7 +299,7 @@ contract Faucet {
 function withdraw(uint withdraw_amount) public {
 ----
 
-函數名為 +withdraw+，它接收一個無符號整數（+uint+）名為 +withdraw_amount+ 的參數。它被宣告為 +public+ 函數，意味著它可以被其他合約調用。函數定義在花括號之間：
+函數名為 +withdraw+，它接收一個無符號整數（+uint+）名為 +withdraw_amount+ 的參數。它被宣告為 +public+ 函數，意味著它可以被其他合約調用。函數定義在大括號之間：
 
 [[withdraw_limit]]
 ----
@@ -329,7 +329,7 @@ function () public payable {}
 
 此函數是所謂的_“fallback”_或_default_函數，如果合約的交易沒有命名合約中任何已宣告的功能或任何功能，或者不包含數據，則觸發此函數。合約可以有一個這樣的預設功能（沒有名字），它通常是接收ether的那個。這就是為什麼它被定義為 +public+ 和 +payable+ 函數，這意味著它可以接受合約中的ether。除了大括號中的空白定義 pass:[{}] 所指示的以外，它不會執行任何操作。如果我們進行一次向這個合約地址發送ether的交易，就好像它是一個錢包一樣，該函數將處理它。
 
-在我們的預設函數下面是最後一個關閉花括號，它關閉了合約 +faucet+ 的定義。就是這樣！
+在我們的預設函數下面是最後一個關閉大括號，它關閉了合約 +faucet+ 的定義。就是這樣！
 
 [[compile_faucet_contract]]
 === 編譯faucet合約
