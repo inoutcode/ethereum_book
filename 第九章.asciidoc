@@ -643,7 +643,7 @@ Documentation: https://docs.ethers.io
 
 === Emerald Platform
 
-Emerald Platform提供了庫和UI組件，可以在以太坊上構建Dapps。Emerald JS和Emerald JS UI提供了一組模塊和React組件來構建Javascript應用程式和網站，Emerald SVG Icons是一組區塊鏈相關的圖標。除了Javascript庫之外，它還有Rust庫來操作私鑰和交易簽名。所有Emerald庫和組件都使用 Apache 2許可。
+Emerald Platform提供了庫和UI組件，可以在以太坊上構建Dapps。Emerald JS和Emerald JS UI提供了一組模塊和React組件來構建Javascript應用程式和網站，Emerald SVG Icons是一組區塊鏈相關的圖示。除了Javascript庫之外，它還有Rust庫來操作私鑰和交易簽名。所有Emerald庫和組件都使用 Apache 2許可。
 
 Github link; https://github.com/etcdevteam/emerald-platform
 

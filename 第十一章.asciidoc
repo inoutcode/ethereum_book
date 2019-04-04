@@ -142,7 +142,7 @@ Emerald Platform 是一個框架和工具集，用於簡化Dapps的開發以及�
 Emerald提供：
 
 * Javascript庫和React組件構建Dapp
-* 區塊鏈項目常見的SVG圖標
+* 區塊鏈項目常見的SVG圖示
 * 用於管理私鑰的Rust庫，包括硬體錢包和簽名交易
 * 可以集成到現有app命令行或JSON RPC API中的現成的組件和服務
 * SputnikVM，一個獨立的EVM實現，可用於開發和測試

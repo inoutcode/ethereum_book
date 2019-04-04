@@ -100,7 +100,7 @@ image::images/metamask_download.png["MetaMask Detail Page"]
 [[using_MetaMask]]
 === 第一次使用MetaMask
 
-一旦安裝了MetaMask，你應該在瀏覽器的工具欄中看到一個新圖標（狐狸頭）。點擊它開始。它將要求你接受條款和條件，然後通過輸入密碼來創建新的以太坊錢包：
+一旦安裝了MetaMask，你應該在瀏覽器的工具欄中看到一個新圖示（狐狸頭）。點擊它開始。它將要求你接受條款和條件，然後通過輸入密碼來創建新的以太坊錢包：
 
 [[metamask_password]]
 .The password page of the MetaMask Chrome Extension
@@ -128,7 +128,7 @@ image::images/metamask_mnemonic.png["MetaMask Mnemonic Page"]
 .Your Ethereum account in MetaMask
 image::images/metamask_account.png["MetaMask Account Page"]
 
-你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（範例中為0x9E713 ...）以及彩色圖標，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（範例中的“主網路”）。
+你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（範例中為0x9E713 ...）以及彩色圖示，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（範例中的“主網路”）。
 
 恭喜！你已經建立了你的第一個以太坊錢包！
 
@@ -222,7 +222,7 @@ image::images/send_to_faucet.png["Sending 1 ether to the faucet"]
 [[explore_tx_history]]
 === 探索地址的交易歷史
 
-到目前為止，你已經成為使用MetaMask發送和接收測試ether的專家。你的錢包已收到至少兩次付款並至少發送了一次。讓我們看看所有這些交易，使用 +ropsten.etherscan.io+ 區塊瀏覽器。你可以複製你的錢包地址並將其粘貼到瀏覽器的搜索框中，或者你可以讓MetaMask為你打開該頁面。在MetaMask中你的帳戶圖標旁邊，你會看到一個顯示三個點的按鈕。點擊它顯示與帳戶相關的選項菜單：
+到目前為止，你已經成為使用MetaMask發送和接收測試ether的專家。你的錢包已收到至少兩次付款並至少發送了一次。讓我們看看所有這些交易，使用 +ropsten.etherscan.io+ 區塊瀏覽器。你可以複製你的錢包地址並將其粘貼到瀏覽器的搜索框中，或者你可以讓MetaMask為你打開該頁面。在MetaMask中你的帳戶圖示旁邊，你會看到一個顯示三個點的按鈕。點擊它顯示與帳戶相關的選項菜單：
 
 [[metamask_account_context_menu]]
 .MetaMask Account Context Menu
@@ -420,7 +420,7 @@ image::images/remix_contract_interact.png["The Faucet contract is ALIVE!"]
 [[view_contract_address]]
 ==== 在區塊瀏覽器中查看合約地址
 
-現在，我們在區塊鏈中登記了一份合約，我們可以看到它有一個以太坊地址。讓我們在 +ropsten.etherscan.io+ 區塊瀏覽器中查看它，看看合約是什麼樣子。通過點擊名稱旁邊的剪貼板圖標來複制合約的地址。
+現在，我們在區塊鏈中登記了一份合約，我們可以看到它有一個以太坊地址。讓我們在 +ropsten.etherscan.io+ 區塊瀏覽器中查看它，看看合約是什麼樣子。通過點擊名稱旁邊的剪貼板圖示來複制合約的地址。
 
 [[remix_contract_address]]
 .Copy the contract address from Remix
