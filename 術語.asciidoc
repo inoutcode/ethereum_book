@@ -96,7 +96,7 @@ Ethash::
     以太坊虛擬機（Ethereum Virtual Machine）。 一種以棧（Stack）為基底，執行 Bytecode 的虛擬機。在以太坊中，執行模型明確說明了系統狀態在給定一系列 Bytecode 指令和少量環境數據的情況下該如何發生改變。
     這是通過虛擬狀態機的正式模型指定的。
 
-EVM彙編語言 EVM Assembly Language::
+EVM組合語言 EVM Assembly Language::
     人類可讀形式的 Bytecode 。
 
 後備函式 Fallback function::
