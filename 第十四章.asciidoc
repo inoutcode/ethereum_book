@@ -16,12 +16,12 @@
 
 虛擬機技術（如Virtualbox和QEMU / KVM）與EVM的不同之處在於它們的目的是提供管理程式功能，或者處理客戶操作系統與底層主機操作系統和硬體之間的系統調用，任務調度和資源管理的軟體抽象。
 
-然而，Java VM（JVM）規範的某些方面確實包含與EVM的相似之處。從高級概述來看，JVM旨在提供與底層主機操作系統或硬體無關的運行時環境，從而實現各種系統的兼容性。在JVM上運行的高級程式語言（如Java或Scala）被編譯到相應的指令集字節碼中。這與編譯要在EVM上運行的Solidity源檔案相當。
+然而，Java VM（JVM）規範的某些方面確實包含與EVM的相似之處。從高級概述來看，JVM旨在提供與底層主機操作系統或硬體無關的運行時環境，從而實現各種系統的兼容性。在JVM上運行的高級程式語言（如Java或Scala）被編譯到相應的指令集 Bytecode 中。這與編譯要在EVM上運行的Solidity源檔案相當。
 
 [[evm_bytecode_overview]]
-==== EVM機器語言（字節碼操作）
+==== EVM機器語言（ Bytecode 操作）
 
-EVM機器語言分為特定的指令集組，例如算術運算，邏輯和比較運算，控制流，系統調用，堆棧操作和儲存器操作。除典型的字節碼操作外，EVM還必須管理賬戶信息（即地址和餘額），當前gas價格和區塊信息。
+EVM機器語言分為特定的指令集組，例如算術運算，邏輯和比較運算，控制流，系統調用，堆棧操作和儲存器操作。除典型的 Bytecode 操作外，EVM還必須管理賬戶信息（即地址和餘額），當前gas價格和區塊信息。
 
 [[common_stack_opcodes]]
 通用堆棧操作:: 堆棧和內存管理的操作碼指令：
@@ -117,7 +117,7 @@ Block State:: 交易所需的狀態值包括以下內容：
 
 Runtime Environment Information:: 用於使用交易的信息。
 
-* _gasprice_：當前汽油價格，由交易發起人指定。
+* _gasprice_：當前gas價格，由交易發起人指定。
 
 * _codesize_：交易程式碼庫的大小。
 
@@ -136,17 +136,17 @@ Runtime Environment Information:: 用於使用交易的信息。
 
 
 [[compiling_solidity_to_evm]]
-==== 將Solidity編譯為EVM字節碼
+==== 將Solidity編譯為EVM Bytecode 
 
 [[solc_help]]
-可以通過命令行完成將Solidity源檔案編譯為EVM字節碼。有關其他編譯選項的列表，只需運行以下命令：
+可以通過命令行完成將Solidity源檔案編譯為EVM Bytecode 。有關其他編譯選項的列表，只需運行以下命令：
 
 ----
 $ solc --help
 ----
 
 [[solc_opcodes_option]]
-使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯示例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
+使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯範例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
 
 ----
 $ solc -o BytecodeOutputDir --opcodes Example.sol
@@ -160,7 +160,7 @@ $ solc -o BytecodeOutputDir --asm Example.sol
 ----
 
 [[solc_bin_option]]
-以下命令將為我們的示例程式生成字節碼二進制檔案：
+以下命令將為我們的範例程式生成 Bytecode 二進制檔案：
 
 ----
 $ solc -o BytecodeOutputDir --bin Example.sol
@@ -189,7 +189,7 @@ contract example {
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF MUL NOT AND SWAP1 DUP4 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e 0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9 PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
-使用_--asm_選項編譯示例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
+使用_--asm_選項編譯範例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
 
 
 [[asm_output]]
@@ -265,7 +265,7 @@ ffffffffffffffffffffffffffffffffffffffff
 PUSH1 0x60 PUSH1 0x40
 ----
 
-這裡我們有_mnemonic_“PUSH1”，後跟一個值為“0x60”的原始字節。這對應於EVM指令，該操作將操作碼之後的單字節解釋為文字值並將其推入堆棧。可以將大小最多為32個字節的值壓入堆棧。例如，以下字節碼將4字節值壓入堆棧：
+這裡我們有_mnemonic_“PUSH1”，後跟一個值為“0x60”的原始字節。這對應於EVM指令，該操作將操作碼之後的單字節解釋為文字值並將其推入堆棧。可以將大小最多為32個字節的值壓入堆棧。例如，以下 Bytecode 將4字節值壓入堆棧：
 
 [[opcode_analysis_2]]
 ----
@@ -284,7 +284,7 @@ MSTORE CALLVALUE
 MSTORE是一個堆棧/內存操作（參見<<common_stack_opcodes>>），它將值保存到內存中，而CALLVALUE是一個環境操作碼（參見<<common_environment_opcodes>>），它返回正在執行的消息調用的存放值。
 
 [[evm_bytecode_execution]]
-==== 執行EVM字節碼
+==== 執行EVM Bytecode 
 
 [[gas_accounting_execution]]
 ==== Gas，會計
@@ -309,13 +309,13 @@ ____________________________________________________________________
 但是，對於大多數用例，EVM可以解決提供給它的任何問題。
 
 [[bytecode_vs_runtime_bytecode]]
-==== 字節碼與運行時字節碼
+====  Bytecode 與運行時 Bytecode 
 
-編譯合約時，你可以獲得_合約字節碼_或_運行時字節碼_。
+編譯合約時，你可以獲得_合約 Bytecode _或_運行時 Bytecode _。
 
-合約字節碼包含實際上最終位於區塊鏈上的字節碼_以及_將字節碼放在區塊鏈上並運行合約構造函數所需的字節碼。
+合約 Bytecode 包含實際上最終位於區塊鏈上的 Bytecode _以及_將 Bytecode 放在區塊鏈上並運行合約構造函數所需的 Bytecode 。
 
-另一方面，運行時字節碼只是最終位於區塊鏈上的字節碼。這不包括初始化合約並將其放在區塊鏈上所需的字節碼。
+另一方面，運行時 Bytecode 只是最終位於區塊鏈上的 Bytecode 。這不包括初始化合約並將其放在區塊鏈上所需的 Bytecode 。
 
 讓我們以前面創建的簡單`Faucet.sol`合約為例。
 
@@ -343,14 +343,14 @@ contract Faucet {
 }
 ----
 
-要獲得合約字節碼，我們將運行`solc --bin Faucet.sol`。如果我們只想要運行時字節碼，我們將運行`solc --bin-runtime Faucet.sol`。
+要獲得合約 Bytecode ，我們將運行`solc --bin Faucet.sol`。如果我們只想要運行時 Bytecode ，我們將運行`solc --bin-runtime Faucet.sol`。
 
-如果比較這些命令的輸出，你將看到運行時字節碼是合約字節碼的子集。換句話說，運行時字節碼完全包含在合約字節碼中。
+如果比較這些命令的輸出，你將看到運行時 Bytecode 是合約 Bytecode 的子集。換句話說，運行時 Bytecode 完全包含在合約 Bytecode 中。
 
 [[disassembling_the_bytecode]]
-==== 反彙編字節碼
+==== 反彙編 Bytecode 
 
-反彙編EVM字節碼是瞭解高級別Solidity在EVM中的作用的好方法。你可以使用一些反彙編程式來執行此操作：
+反彙編EVM Bytecode 是瞭解高級別Solidity在EVM中的作用的好方法。你可以使用一些反彙編程式來執行此操作：
 
 - *Porosity* 是一個流行的開源反編譯器：https://github.com/comaeio/porosity
 - *Ethersplay* 是Binary Ninja的EVM插件，一個反彙編程式：https://github.com/trailofbits/ethersplay
@@ -358,7 +358,7 @@ contract Faucet {
 
 在本節中，我們將使用 Binary Ninja 的 *Ethersplay* 插件。
 
-在獲取Faucet.sol的運行時字節碼後，我們可以將其提供給Binary Ninja（在匯入Ethersplay插件之後）以查看EVM指令。
+在獲取Faucet.sol的運行時 Bytecode 後，我們可以將其提供給Binary Ninja（在匯入Ethersplay插件之後）以查看EVM指令。
 
 [[Faucet_disassembled]]
 .Disassembling the Faucet runtime bytecode

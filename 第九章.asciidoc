@@ -244,7 +244,7 @@ module.exports = function(deployer) {
 Faucet $ Truffle migrate --network localnode
 ----
 
-因為我們使用本地節點連接到以太坊網路並管理我們的錢包，所以我們必須授權Truffle創建的交易。我正在運行+parity+連接到Ropsten測試區塊鏈，所以在Trufflemigration期間，我會在parity的Web控制檯上看到一個彈出窗口：
+因為我們使用本地節點連接到以太坊網路並管理我們的錢包，所以我們必須授權Truffle創建的交易。我正在運行+parity+連接到Ropsten測試區塊鏈，所以在Trufflemigration期間，我會在parity的Web控制台上看到一個彈出窗口：
 
 [[parity_deployment_confirmation]]
 .Parity asking for confirmation to deploy Faucet
@@ -274,11 +274,11 @@ Saving successful migration to network...
 Saving artifacts...
 ----
 
-==== 使用Truffle控制檯
+==== 使用Truffle控制台
 
-Truffle提供了一個JavaScript控制檯，我們可以使用這個控制檯與Ethereum網路（通過本地節點）進行交互，與已部署的合約進行交互，並與錢包提供商進行交互。在我們當前的配置（+localnode+）中，節點和錢包提供商是我們的本地parity客戶端。
+Truffle提供了一個JavaScript控制台，我們可以使用這個控制台與Ethereum網路（通過本地節點）進行交互，與已部署的合約進行交互，並與錢包提供商進行交互。在我們當前的配置（+localnode+）中，節點和錢包提供商是我們的本地parity客戶端。
 
-讓我們開始Truffle控制檯並嘗試一些命令：
+讓我們開始Truffle控制台並嘗試一些命令：
 
 ----
 $ Truffle console --network localnode
@@ -287,7 +287,7 @@ Truffle(localnode)>
 
 Truffle提示一個提示符，顯示所選的網路配置（+localnode+）。記住並瞭解我們正在使用哪個網路很重要。你不希望在Ethereum主網路上意外部署測試合約或進行交易。這可能是一個昂貴的錯誤！
 
-Truffle控制檯提供了自動補全功能，使我們可以輕鬆探索環境。如果我們在部分完成的命令後按+Tab+，Truffle將為我們完成命令。如果有多個命令與我們的輸入相匹配，按+Tab+兩次將顯示所有可能的完成。事實上，如果我們在空提示符下按兩次+Tab+，Truffle將列出所有命令：
+Truffle控制台提供了自動補全功能，使我們可以輕鬆探索環境。如果我們在部分完成的命令後按+Tab+，Truffle將為我們完成命令。如果有多個命令與我們的輸入相匹配，按+Tab+兩次將顯示所有可能的完成。事實上，如果我們在空提示符下按兩次+Tab+，Truffle將列出所有命令：
 
 ----
 Truffle(localnode)>
@@ -298,7 +298,7 @@ ArrayBuffer Buffer DataView Faucet Float32Array Float64Array GLOBAL Int16Array I
 __defineGetter__ __defineSetter__ __lookupGetter__ __lookupSetter__ __proto__ constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf
 ----
 
-絕大多數錢包和節點相關功能由+web3+物件提供，該物件是 +web3.js+庫的一個實例。+web3+物件將RPC接口抽象為我們的parity節點。你還會注意到兩個熟悉名稱的物件：+Migrations+ 和 +Faucet+。這些代表我們剛剛部署的合約。我們將使用Truffle控制檯與合約進行交互。首先，讓我們通過 +web3+ 物件檢查我們的錢包：
+絕大多數錢包和節點相關功能由+web3+物件提供，該物件是 +web3.js+庫的一個實例。+web3+物件將RPC接口抽象為我們的parity節點。你還會注意到兩個熟悉名稱的物件：+Migrations+ 和 +Faucet+。這些代表我們剛剛部署的合約。我們將使用Truffle控制台與合約進行交互。首先，讓我們通過 +web3+ 物件檢查我們的錢包：
 
 ----
 Truffle(localnode)> web3.eth.accounts
@@ -331,7 +331,7 @@ Truffle(localnode)> web3.eth.sendTransaction({from:web3.eth.accounts[0], to:Fauc
 '0xf134c75b985dc0e0c27c2f0412251e0860eb530a5055e660f21e7483ab336808'
 ----
 
-切換到+parity+的Web控制檯，你將看到一個彈出窗口，要求你確認該交易。等一下，一旦交易開始，你將能夠看到我們的+Faucet+合約的餘額：
+切換到+parity+的Web控制台，你將看到一個彈出窗口，要求你確認該交易。等一下，一旦交易開始，你將能夠看到我們的+Faucet+合約的餘額：
 
 ----
 Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
@@ -344,7 +344,7 @@ Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
 Truffle(localnode)> Faucet.deployed().then(instance => {instance.withdraw(web3.toWei(0.1, 'ether'))}).then(console.log)
 ----
 
-同樣，你需要批准parity Web控制檯中的交易。+Faucet+的餘額已經下降，我們的測試錢包已經收到+0.1+ ether：
+同樣，你需要批准parity Web控制台中的交易。+Faucet+的餘額已經下降，我們的測試錢包已經收到+0.1+ ether：
 
 ----
 Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
@@ -487,7 +487,7 @@ https://github.com/zeppelinos[zeppelin_os] 是一款開源的分佈式工具和�
 
 與OpenZeppelin的程式碼每次都需要重新部署每個應用程式不同，zeppelin_os的程式碼處於鏈上。需要特定功能的應用程式（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程式可直接與 鏈上的token實現進行交互，這與桌面應用程式與其底層操作系統的組件進行交互的方式大致相同。
 
-利用OpenZeppelin的應用程式通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程式使用ERC20 token實現時，同一個ERC20字節碼會一次又一次地部署到區塊鏈中。這種字節碼在網路中無數次重複存在。現在，使用zeppelin_os的應用程式可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。
+利用OpenZeppelin的應用程式通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程式使用ERC20 token實現時，同一個ERC20 Bytecode 會一次又一次地部署到區塊鏈中。這種 Bytecode 在網路中無數次重複存在。現在，使用zeppelin_os的應用程式可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。
 
 與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程式。操作系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的程式碼庫提供升級能力！開發人員決定應用程式何時以及如何實施升級，甚至決定要遵守哪種實施方案。
 
@@ -495,7 +495,7 @@ zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy�
 
 操作系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟體包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。
 
-使用Zeppelin_os開發應用程式與使用NPM開發Javascript應用程式類似。AppManager處理應用程式的每個版本的應用程式包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程式的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整示例，請訪問：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
+使用Zeppelin_os開發應用程式與使用NPM開發Javascript應用程式類似。AppManager處理應用程式的每個版本的應用程式包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程式的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整範例，請訪問：https://github.com/zeppelinos/zos-lib/tree/master/[examples/complex]。
 
 //// TODO: the example provided above is still a WIP - link to a tutorial once it's finished
 

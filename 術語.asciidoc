@@ -32,7 +32,7 @@
 	拜占庭是大都會（Metropolis）發展階段的兩大分叉之一。它包括 EIP-649：大都會難度炸彈延遲和區塊獎勵減少，其中冰河時代（見下文）延遲1年，而區塊獎勵從5個以太坊減至3個以太坊。
 
 編譯 Compiling::
-	將高階程式語言（例如 Solidity）編寫的程式碼轉換為低階語言（例如 EVM 字節碼）。
+	將高階程式語言（例如 Solidity）編寫的程式碼轉換為低階語言（例如 EVM  Bytecode ）。
 
 共識 Consensus::
     當大量節點（通常是網路上的大多數節點）在各自本地通過驗證的最佳區塊鏈中都有完全相同的區塊狀態。
@@ -62,11 +62,11 @@
 難度 Difficulty::
   	網路範圍的設置，控制產生工作量證明需要多少計算。
 
-數字簽名 Digital signature::
-	數字簽名演算法是一個過程，用戶可以使用私鑰為文件生成稱為“簽名”的短字符串數據，以便具有簽名、文件，和相應公鑰的任何人，都可以驗證（1 ）該檔案由該特定私鑰的所有者“簽名”，以及（2）該檔案在簽署後未被更改。
+數位簽章 Digital signature::
+	數位簽章演算法是一個過程，用戶可以使用私鑰為文件生成稱為“簽名”的短字符串數據，以便具有簽名、文件，和相應公鑰的任何人，都可以驗證（1 ）該檔案由該特定私鑰的所有者“簽名”，以及（2）該檔案在簽署後未被更改。
 	
-橢圓曲線數字簽名演算法 ECDSA::
-	橢圓曲線數字簽名演算法（ Elliptic Curve Digital Signature Algorithm，ECDSA ）是以太坊用來確保資金只能由合法所有者使用的加密演算法。
+橢圓曲線數位簽章演算法 ECDSA::
+	橢圓曲線數位簽章演算法（ Elliptic Curve Digital Signature Algorithm，ECDSA ）是以太坊用來確保資金只能由合法所有者使用的加密演算法。
 
 以太坊改進建議 EIP::
     以太坊改進建議（Ethereum Improvement Proposals）。描述以太坊平臺的建議標準。 EIP 是向以太坊社區提供資訊的設計文件，描述新的功能，或處理過程、環境。有關更多資訊，請參見 https://github.com/ethereum/EIPs （另請參見下面的 ERC 定義）。
@@ -93,11 +93,11 @@ Ethash::
 	事件允許EVM日誌工具的使用。Dapp 可以監聽事件，並在事件發生時觸發 Javascript 的回呼函式 。更多資訊，參見 http://solidity.readthedocs.io/en/develop/contracts.html#events。
 
 以太坊虛擬機 EVM::
-    以太坊虛擬機（Ethereum Virtual Machine）。 一種以棧（Stack）為基底，執行字節碼的虛擬機。在以太坊中，執行模型明確說明了系統狀態在給定一系列字節碼指令和少量環境數據的情況下該如何發生改變。
+    以太坊虛擬機（Ethereum Virtual Machine）。 一種以棧（Stack）為基底，執行 Bytecode 的虛擬機。在以太坊中，執行模型明確說明了系統狀態在給定一系列 Bytecode 指令和少量環境數據的情況下該如何發生改變。
     這是通過虛擬狀態機的正式模型指定的。
 
 EVM彙編語言 EVM Assembly Language::
-    人類可讀形式的字節碼。
+    人類可讀形式的 Bytecode 。
 
 後備函式 Fallback function::
     預設的函式，當缺少數據或無法取得指定的函式時執行。
@@ -245,7 +245,7 @@ Gavin Wood::
     Gavin Wood 是英國的開發者，以太坊的聯合創始人和前 CTO。在2014年8月他提出了 Solidity，用於編寫智能合約的面向合約的程式語言。
 
 密鑰（私鑰） Secret key (aka private key)::
-    允許以太坊用戶通過創建數字簽名（參見公鑰，地址，ECDSA）證明賬戶或合約的所有權的加密數字。
+    允許以太坊用戶通過創建數位簽章（參見公鑰，地址，ECDSA）證明賬戶或合約的所有權的加密數字。
 
 SHA::
     安全雜湊演算法（SHA, Secure Hash Algorithm） 是美國國家標準與技術研究院（NIST）發佈的一系列加密雜湊函數。
