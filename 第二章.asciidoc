@@ -159,7 +159,7 @@ Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程�
 [[getting_test_eth]]
 === 獲得一些測試以太
 
-我們的首要任務是給我們的錢包充值。我們不會在主網上這樣做，因為真正的以太網需要花費金錢，處理它需要更多的經驗。現在，我們將使用一些testnet ether加載我們的錢包。
+我們的首要任務是給我們的錢包儲值。我們不會在主網上這樣做，因為真正的以太網需要花費金錢，處理它需要更多的經驗。現在，我們將使用一些testnet ether加載我們的錢包。
 
 將MetaMask切換到_Ropsten測試網路_。然後點擊“Buy”，然後點擊“Ropsten Test Faucet”。MetaMask將打開一個新的網頁：
 
@@ -513,7 +513,7 @@ msg.sender.transfer(withdraw_amount);
 [[intro_conclusion]]
 === 總結
 
-本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網路上的一個faucet為它充值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。
+本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網路上的一個faucet為它儲值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。
 
 接下來，我們在Solidity中寫了一個faucet合約。使用Remix IDE將合約編譯為EVM Bytecode 。使用Remix進行交易，並在Ropsten區塊鏈上登記faucet合約。一旦登記，faucet合約有一個以太坊地址，我們發送一些ether。最後，我們構建了一個交易來調用 +withdraw+ 函數，併成功請求了0.1 ether。該合約檢查了我們的請求，發送給我們0.1 ether並進行內部交易。
 
