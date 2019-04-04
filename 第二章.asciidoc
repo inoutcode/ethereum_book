@@ -67,11 +67,11 @@
 
 MetaMask:: MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chrome、Firefox、Opera或Brave Browser）中運行。它易於使用且便於測試，因為它可以連接到各種以太坊節點和測試區塊鏈（請參閱“testnets”）。
 
-Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運行，包括Android，iOS，Windows，Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。
+Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運行，包括Android、iOS、Windows、Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。
 
 MyEtherWallet (MEW):: MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多範例中探討這些功能。
 
-Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程式，適用於Windows，Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
+Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程式，適用於Windows、Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。
 
 我們將首先在桌面上安裝MetaMask
 
