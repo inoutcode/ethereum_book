@@ -627,13 +627,13 @@ contract METFaucet {
 
 
 [[MET_owner_var]]
-我們在這裡聲明這兩個變量：
+我們在這裡宣告這兩個變量：
 ----
 StandardToken public METoken;
 address public METOwner;
 ----
 
-由於我們的Faucet需要使用+METoken+和+METOwner+的正確地址進行初始化，因此我們需要聲明一個自定義構造函數：
+由於我們的Faucet需要使用+METoken+和+METOwner+的正確地址進行初始化，因此我們需要宣告一個自定義構造函數：
 
 [[custom_constructor]]
 ----

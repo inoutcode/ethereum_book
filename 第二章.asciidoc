@@ -290,16 +290,16 @@ include::code/Solidity/Faucet.sol[]
 contract Faucet {
 ----
 
-該行聲明瞭一個合約物件，類似於JavaScript，Java或Cpass:[++]等其他面嚮物件語言中的 +class+ 聲明。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
+該行宣告瞭一個合約物件，類似於JavaScript，Java或Cpass:[++]等其他面嚮物件語言中的 +class+ 宣告。合約的定義包含了大括號中的所有行 pass:[{}]，它定義了 +範圍 +，就像在其他許多程式語言中使用花括號一樣。
 
-接下來，我們聲明faucet合約的第一個函數：
+接下來，我們宣告faucet合約的第一個函數：
 
 [[withdraw_function]]
 ----
 function withdraw(uint withdraw_amount) public {
 ----
 
-函數名為 +withdraw+，它接收一個無符號整數（+uint+）名為 +withdraw_amount+ 的參數。它被聲明為 +public+ 函數，意味著它可以被其他合約調用。函數定義在花括號之間：
+函數名為 +withdraw+，它接收一個無符號整數（+uint+）名為 +withdraw_amount+ 的參數。它被宣告為 +public+ 函數，意味著它可以被其他合約調用。函數定義在花括號之間：
 
 [[withdraw_limit]]
 ----
@@ -316,18 +316,18 @@ Next comes the actual withdrawal:
 msg.sender.transfer(withdraw_amount);
 ----
 
-這裡發生了一些有趣的事情。+msg+ 物件是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內建函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前聲明為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
+這裡發生了一些有趣的事情。+msg+ 物件是所有合約可以訪問的輸入之一。它代表觸發執行此合約的交易。屬性 +sender+ 是交易的發件人地址。函數 +transfer+ 是一個內建函數，它將ether從合約傳遞到調用它的地址。從後往前讀，表示 +transfer+ 到觸發此合約執行的 +msg+ 的 +sender+。+transfer+ 函數將一個金額作為唯一的參數。我們傳遞之前宣告為 +withdraw+ 方法的參數的 +withdraw_amount+ 值。
 
 緊接著的一行是結束大括號，表示 +withdraw+ 函數定義的結束。
 
-下面我們又聲明瞭一個函數：
+下面我們又宣告瞭一個函數：
 
 [[fallback_function]]
 ----
 function () public payable {}
 ----
 
-此函數是所謂的_“fallback”_或_default_函數，如果合約的交易沒有命名合約中任何已聲明的功能或任何功能，或者不包含數據，則觸發此函數。合約可以有一個這樣的預設功能（沒有名字），它通常是接收ether的那個。這就是為什麼它被定義為 +public+ 和 +payable+ 函數，這意味著它可以接受合約中的ether。除了大括號中的空白定義 pass:[{}] 所指示的以外，它不會執行任何操作。如果我們進行一次向這個合約地址發送ether的交易，就好像它是一個錢包一樣，該函數將處理它。
+此函數是所謂的_“fallback”_或_default_函數，如果合約的交易沒有命名合約中任何已宣告的功能或任何功能，或者不包含數據，則觸發此函數。合約可以有一個這樣的預設功能（沒有名字），它通常是接收ether的那個。這就是為什麼它被定義為 +public+ 和 +payable+ 函數，這意味著它可以接受合約中的ether。除了大括號中的空白定義 pass:[{}] 所指示的以外，它不會執行任何操作。如果我們進行一次向這個合約地址發送ether的交易，就好像它是一個錢包一樣，該函數將處理它。
 
 在我們的預設函數下面是最後一個關閉花括號，它關閉了合約 +faucet+ 的定義。就是這樣！
 
@@ -452,7 +452,7 @@ image::images/metamask_send_to_contract.png[""]
 function () public payable {}
 ----
 
-當你將交易發送到合約地址時，沒有指定要調用哪個函數的數據，它將調用預設函數。由於我們將它聲明為+payable+，因此它接受1 ether並存入合約賬戶餘額中。你的交易導致合約在EVM中運行，更新其餘額。我們資助了我們的faucet！
+當你將交易發送到合約地址時，沒有指定要調用哪個函數的數據，它將調用預設函數。由於我們將它宣告為+payable+，因此它接受1 ether並存入合約賬戶餘額中。你的交易導致合約在EVM中運行，更新其餘額。我們資助了我們的faucet！
 
 [[withdraw_from_contract]]
 ==== 從我們的合約中提取
