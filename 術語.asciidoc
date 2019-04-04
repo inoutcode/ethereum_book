@@ -108,7 +108,7 @@ EVM組合語言 EVM Assembly Language::
 Finney::
 	以太幣的一種單位。10^15^ finney = 1 ether。
 
-分叉 Frok::
+分叉 Fork::
 	指因協議改變造成原始鏈一分為二，或指挖礦時因為兩條潛在區塊鏈而產生的暫時分歧。
 
 前沿 Frontier::
