@@ -82,7 +82,7 @@ Emerald Wallet:: Emerald錢包設計用於以太坊經典區塊鏈，但與其�
 
 https://chrome.google.com/webstore/category/extensions
 
-搜索“MetaMask”並點擊狐狸的標誌。你應該看到這樣的擴展的詳細信息頁面：
+搜索“MetaMask”並點擊狐狸的標誌。你應該看到這樣的擴展的詳細資訊頁面：
 
 [[metamask_download]]
 .The detail page of the MetaMask Chrome Extension
@@ -122,7 +122,7 @@ image::images/metamask_mnemonic.png["MetaMask Mnemonic Page"]
 在紙上備份助記符（12個字），兩次。將兩份紙張備份存放在兩個單獨的安全位置，例如防火安全櫃，鎖定的抽屜或保險箱。將紙質備份視為你在Ethereum錢包中儲存的相同價值的現金。任何能夠訪問這些文字的人都可以訪問並竊取你的資金。
 ====
 
-一旦確認你已安全儲存助記符，MetaMask將顯示你的以太坊帳戶詳細信息：
+一旦確認你已安全儲存助記符，MetaMask將顯示你的以太坊帳戶詳細資訊：
 
 [[metamask_account]]
 .Your Ethereum account in MetaMask
@@ -149,7 +149,7 @@ Localhost 8545:: 連接到與瀏覽器在同一臺計算機上運行的節點。
 
 Custom RPC:: 允許你將MetaMask連接到任何具有geth兼容的遠程過程調用（RPC）接口的節點。該節點可以是任何公共或私有區塊鏈的一部分。
 
-有關各種以太坊測試網以及如何在它們之間進行選擇的更多信息，請參見 <<testnets>>。
+有關各種以太坊測試網以及如何在它們之間進行選擇的更多資訊，請參見 <<testnets>>。
 
 [TIP]
 ====
@@ -195,7 +195,7 @@ https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f95
 
 幸運的是，我們不是測試ether的囤積者，我們希望練習發送ether。
 
-點擊橙色的“1 ether”按鈕來告訴MetaMask創建支付Faucet 1 ether的交易。MetaMask將準備一個交易並彈出一個窗口，並顯示確認信息：
+點擊橙色的“1 ether”按鈕來告訴MetaMask創建支付Faucet 1 ether的交易。MetaMask將準備一個交易並彈出一個窗口，並顯示確認資訊：
 
 [[send_to_faucet]]
 .Sending 1 ether to the faucet
@@ -234,9 +234,9 @@ image::images/metamask_account_context_menu.png["MetaMask Account Context Menu"]
 .Address Transaction History on Etherscan
 image::images/block_explorer_account_history.png["Address Transaction History on Etherscan"]
 
-在這裡你可以看到你的以太坊地址的整個交易歷史。它顯示了Ropsten區塊鏈上記錄的所有交易，其中你的地址是交易的發件人或收件人。點擊其中幾項交易即可查看更多詳細信息。
+在這裡你可以看到你的以太坊地址的整個交易歷史。它顯示了Ropsten區塊鏈上記錄的所有交易，其中你的地址是交易的發件人或收件人。點擊其中幾項交易即可查看更多詳細資訊。
 
-你可以瀏覽任何地址的交易歷史記錄。查看你是否可以瀏覽Ropsten Test Faucet地址的交易歷史記錄（提示：它是在你的地址中最早付款中列出的“發件人”地址）。你可以看到從faucet發送給你的和其他地址的測試ether。你看到的每筆交易都可能帶給你更多的地址和交易。不久之後，你將迷失在相互關聯的數據迷宮中。公共區塊鏈包含大量的信息，所有這些都可以通過編程方式進行探索，我們將在未來的例子中看到。
+你可以瀏覽任何地址的交易歷史記錄。查看你是否可以瀏覽Ropsten Test Faucet地址的交易歷史記錄（提示：它是在你的地址中最早付款中列出的“發件人”地址）。你可以看到從faucet發送給你的和其他地址的測試ether。你看到的每筆交易都可能帶給你更多的地址和交易。不久之後，你將迷失在相互關聯的數據迷宮中。公共區塊鏈包含大量的資訊，所有這些都可以通過編程方式進行探索，我們將在未來的例子中看到。
 
 [[intro_world_computer]]
 === 世界計算機簡介

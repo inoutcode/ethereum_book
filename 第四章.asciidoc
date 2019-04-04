@@ -29,7 +29,7 @@ Infura為Ethereum主網，Ropsten，Kovan，Rinkeby和INFURAnet（用於Infura�
 
 要通過MetaMask使用Infura進行較低級別的活動，你不需要賬戶。要直接使用API，你需要註冊一個賬戶並使用Infura提供的API密鑰。
 
-有關Infura的更多信息，請訪問：
+有關Infura的更多資訊，請訪問：
 
 https://infura.io/
 
@@ -132,13 +132,13 @@ https://ropsten.etherscan.io/
 === Rinkeby
 
 Rinkeby水龍頭位於https://faucet.rinkeby.io/。
-要請求測試ether，有必要在Twitter，Google Plus或Facebook上發佈公開信息。https://www.rinkeby.io/
+要請求測試ether，有必要在Twitter，Google Plus或Facebook上發佈公開資訊。https://www.rinkeby.io/
 https://rinkeby.etherscan.io/
 
 === Kovan
 
 Kovan testnet支持各種方法來請求測試ether。
-更多信息可以在 https://github.com/kovan-testnet/faucet/blob/master/README.md 找到。
+更多資訊可以在 https://github.com/kovan-testnet/faucet/blob/master/README.md 找到。
 
 https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f
 

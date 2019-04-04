@@ -21,7 +21,7 @@
 [[evm_bytecode_overview]]
 ==== EVM機器語言（ Bytecode 操作）
 
-EVM機器語言分為特定的指令集組，例如算術運算，邏輯和比較運算，控制流，系統調用，堆棧操作和儲存器操作。除典型的 Bytecode 操作外，EVM還必須管理賬戶信息（即地址和餘額），當前gas價格和區塊信息。
+EVM機器語言分為特定的指令集組，例如算術運算，邏輯和比較運算，控制流，系統調用，堆棧操作和儲存器操作。除典型的 Bytecode 操作外，EVM還必須管理賬戶資訊（即地址和餘額），當前gas價格和區塊資訊。
 
 [[common_stack_opcodes]]
 通用堆棧操作:: 堆棧和記憶體管理的操作碼指令：
@@ -68,7 +68,7 @@ STOP //停止操作
 ----
 
 [[common_environment_opcodes]]
-環境操作碼:: 處理執行環境信息的通用操作碼：
+環境操作碼:: 處理執行環境資訊的通用操作碼：
 
 ----
 ADDRESS //當前執行賬戶的地址
@@ -99,7 +99,7 @@ Account State:: 包含以下四個組件：
 
 * _codeHash_：各個賬戶的EVM程式碼的不可變雜湊值。
 
-Storage State:: 在EVM上運行時維護的賬戶特定狀態信息。
+Storage State:: 在EVM上運行時維護的賬戶特定狀態資訊。
 
 Block State:: 交易所需的狀態值包括以下內容：
 
@@ -115,7 +115,7 @@ Block State:: 交易所需的狀態值包括以下內容：
 
 * _gaslimit_：當前區塊的gas限制。
 
-Runtime Environment Information:: 用於使用交易的信息。
+Runtime Environment Information:: 用於使用交易的資訊。
 
 * _gasprice_：當前gas價格，由交易發起人指定。
 
@@ -146,7 +146,7 @@ $ solc --help
 ----
 
 [[solc_opcodes_option]]
-使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些信息（_--asm_選項會生成完整信息），但這對於第一次介紹是足夠的。例如，編譯範例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
+使用_--opcodes_命令行選項可以輕鬆實現生成Solidity源檔案的原始操作碼流。此操作碼流會遺漏一些資訊（_--asm_選項會生成完整資訊），但這對於第一次介紹是足夠的。例如，編譯範例Solidity檔案_Example.sol_並將操作碼輸出填充到名為_BytecodeDir_的目錄中，使用以下命令完成：
 
 ----
 $ solc -o BytecodeOutputDir --opcodes Example.sol
