@@ -65,7 +65,7 @@
 
 起始錢包：
 
-MetaMask:: MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chrome，Firefox，Opera或Brave Browser）中運行。它易於使用且便於測試，因為它可以連接到各種以太坊節點和測試區塊鏈（請參閱“testnets”）。
+MetaMask:: MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chrome、Firefox、Opera或Brave Browser）中運行。它易於使用且便於測試，因為它可以連接到各種以太坊節點和測試區塊鏈（請參閱“testnets”）。
 
 Jaxx:: Jaxx是一款多平臺和多幣種錢包，可在各種操作系統上運行，包括Android，iOS，Windows，Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。
 
