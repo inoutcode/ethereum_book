@@ -127,7 +127,7 @@ Serenity:: 以太坊的第四個也是最後一個階段。寧靜尚未有計劃
 
 在Ethereum中，<<blockchain_components>> 中描述的區塊鏈系統組件包括：
 
-P2P Network:: 以太坊在 _以太坊主網_ 上運行，可以通過TCP端口30303訪問，運行稱作  _ÐΞVp2p_ 的協議。
+P2P Network:: 以太坊在 _以太坊主網_ 上運行，可以通過TCP連接埠30303訪問，運行稱作  _ÐΞVp2p_ 的協議。
 
 Consensus rules:: 以太坊的共識規則，在參考規範，即 <<yellowpaper>> 中定義。
 
