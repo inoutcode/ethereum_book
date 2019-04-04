@@ -17,9 +17,9 @@
 
 存在各種基於以太坊的網路，這些網路很大程度上符合以太坊“黃皮書”中定義的正式規範，但它們可能或不能互操作。
 
-在這些以太坊網路中有：Ethereum，Ethereum Classic，Ella，Expanse，Ubiq，Musicoin等等。雖然大多數在協議級別上兼容，但這些網路通常具需要以太坊客戶端軟體維護人員進行微小更改以支持每個網路的功能或屬性。因此，並非以太坊客戶端軟體的每個版本都可以在每個以太坊區塊鏈上運行。
+在這些以太坊網路中有：Ethereum、Ethereum Classic、Ella，Expanse、Ubiq、Musicoin等等。雖然大多數在協議級別上兼容，但這些網路通常具需要以太坊客戶端軟體維護人員進行微小更改以支持每個網路的功能或屬性。因此，並非以太坊客戶端軟體的每個版本都可以在每個以太坊區塊鏈上運行。
 
-目前，以六種不同語言編寫的以太坊協議有六個主要實現：Go（Geth），Rust（parity），C ++（cpp-ethereum），Python（pyethereum），Scala（mantis）和Java（harmony）。
+目前，以六種不同語言編寫的以太坊協議有六個主要實現：Go（Geth）、Rust（parity）、C ++（cpp-ethereum）、Python（pyethereum）、Scala（mantis）和Java（harmony）。
 
 在本節中，我們將看看兩個最常見的客戶，Geth和Parity。我們將學習如何使用每個客戶端啟動一個節點，並探索他們的一些命令行和應用程式編程接口（API）。
 
