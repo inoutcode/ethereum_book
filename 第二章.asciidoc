@@ -195,7 +195,7 @@ https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f95
 
 幸運的是，我們不是測試ether的囤積者，我們希望練習發送ether。
 
-點擊橙色的“1 ether”按鈕來告訴MetaMask創建支付Faucet 1 ether的交易。MetaMask將準備一個交易並彈出一個窗口，並顯示確認資訊：
+點擊橙色的“1 ether”按鈕來告訴MetaMask創建支付Faucet 1 ether的交易。MetaMask將準備一個交易並彈出一個視窗，並顯示確認資訊：
 
 [[send_to_faucet]]
 .Sending 1 ether to the faucet
@@ -217,7 +217,7 @@ image::images/send_to_faucet.png["Sending 1 ether to the faucet"]
 
 讓我們再來測試一下吧！再次點擊綠色的“request 1 ether from the faucet”按鈕，等待幾秒鐘。別擔心，faucet應該有足夠的ether，如果你要的話，會給你更多的東西。
 
-一旦你有2 ETH的餘額，你可以再試一次。這次，當你點擊橙色的“1 ether”捐贈按鈕時，你有足夠的餘額來完成交易。MetaMask彈出付款窗口時點擊“Submit”。所有這一切之後，你應該看到0.999937 ETH的餘額，因為你使用0.000063 ETH的gas發送了1個ETH到faucet。
+一旦你有2 ETH的餘額，你可以再試一次。這次，當你點擊橙色的“1 ether”捐贈按鈕時，你有足夠的餘額來完成交易。MetaMask彈出付款視窗時點擊“Submit”。所有這一切之後，你應該看到0.999937 ETH的餘額，因為你使用0.000063 ETH的gas發送了1個ETH到faucet。
 
 [[explore_tx_history]]
 === 探索地址的交易歷史
@@ -481,7 +481,7 @@ image::images/remix_contract_interact.png["The withdraw function of Faucet.sol, 
 .Click "withdraw" in Remix to create a withdrawal transaction
 image::images/remix_withdraw.png[""]
 
-MetaMask將彈出一個交易窗口供你批准。點擊“Submit”將你的提款通知發送至合約：
+MetaMask將彈出一個交易視窗供你批准。點擊“Submit”將你的提款通知發送至合約：
 
 [[metamask_withdraw]]
 .MetaMask transaction to call the withdraw function

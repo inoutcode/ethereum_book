@@ -244,7 +244,7 @@ module.exports = function(deployer) {
 Faucet $ Truffle migrate --network localnode
 ----
 
-因為我們使用本地節點連接到以太坊網路並管理我們的錢包，所以我們必須授權Truffle創建的交易。我正在運行+parity+連接到Ropsten測試區塊鏈，所以在Trufflemigration期間，我會在parity的Web控制台上看到一個彈出窗口：
+因為我們使用本地節點連接到以太坊網路並管理我們的錢包，所以我們必須授權Truffle創建的交易。我正在運行+parity+連接到Ropsten測試區塊鏈，所以在Trufflemigration期間，我會在parity的Web控制台上看到一個彈出視窗：
 
 [[parity_deployment_confirmation]]
 .Parity asking for confirmation to deploy Faucet
@@ -331,7 +331,7 @@ Truffle(localnode)> web3.eth.sendTransaction({from:web3.eth.accounts[0], to:Fauc
 '0xf134c75b985dc0e0c27c2f0412251e0860eb530a5055e660f21e7483ab336808'
 ----
 
-切換到+parity+的Web控制台，你將看到一個彈出窗口，要求你確認該交易。等一下，一旦交易開始，你將能夠看到我們的+Faucet+合約的餘額：
+切換到+parity+的Web控制台，你將看到一個彈出視窗，要求你確認該交易。等一下，一旦交易開始，你將能夠看到我們的+Faucet+合約的餘額：
 
 ----
 Truffle(localnode)> web3.eth.getBalance(Faucet.address).toNumber()
