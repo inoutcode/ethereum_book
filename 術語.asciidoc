@@ -84,7 +84,7 @@
     以太坊註釋請求（Ethereum Request for Comments）。一些 EIP 被標記為 ERC，表示試圖定義以太坊使用的特定標準的建議。
 
 Ethash::
-    以太坊1.0的工作量證明演演算法。更多資訊，參見 https://github.com/ethereum/wiki/wiki/Ethash.
+    以太坊1.0的工作量證明演算法。更多資訊，參見 https://github.com/ethereum/wiki/wiki/Ethash.
 
 以太 Ether::
     以太（Ether），是以太坊生態系統中使用的原生貨幣，在執行智能合約時用來支付燃氣（Gas）費用。它的符合是 Ξ, 極客用的大寫 Xi 字符.

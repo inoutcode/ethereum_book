@@ -137,7 +137,7 @@ State Machine:: 以太坊的狀態轉移由 _Ethereum虛擬機（EVM）_ 處理�
 
 Data structures:: 以太坊的區塊鏈作為 _database_（通常是Google的LevelDB）儲存在每個節點上，該區塊鏈在稱作 _梅克爾帕特里夏樹_ _Merkle Patricia Tree_ 的序列化雜湊資料結構中包含交易和系統狀態，。
 
-Consensus Algorithm:: 以太坊使用的共識演演算法是比特幣的「中本聰共識(Nakamoto Consensus)」，也就是使用連續的單一簽名區塊，透過 PoW 的權重來決定最長鏈，並以此當作全網最新狀態。然而，計劃在不久的將來，將過渡到稱為_Casper_的權益證明（Proof-of-Stake）系統。
+Consensus Algorithm:: 以太坊使用的共識演算法是比特幣的「中本聰共識(Nakamoto Consensus)」，也就是使用連續的單一簽名區塊，透過 PoW 的權重來決定最長鏈，並以此當作全網最新狀態。然而，計劃在不久的將來，將過渡到稱為_Casper_的權益證明（Proof-of-Stake）系統。
 
 Economic security:: 以太坊目前使用名為_Ethash_的工作量證明（PoW）演算法，但在未來將會改為使用權益證明（PoS）。
 
