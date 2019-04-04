@@ -320,7 +320,7 @@ msg.sender.transfer(withdraw_amount);
 
 緊接著的一行是結束大括號，表示 +withdraw+ 函數定義的結束。
 
-下面我們又宣告瞭一個函數：
+下面我們又宣告了一個函數：
 
 [[fallback_function]]
 ----

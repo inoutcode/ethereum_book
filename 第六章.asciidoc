@@ -163,7 +163,7 @@ BIP-39定義了助記詞和種子的創建，我們在這裡通過九個步驟�
 5. 將每個11bits的值映射到預定義字典中的2048個詞中的一個。
 6. 助記詞就是單詞的序列。
 
-<<generating_entropy_and_encoding>> 展示瞭如何使用熵來生成助記詞。
+<<generating_entropy_and_encoding>> 展示了如何使用熵來生成助記詞。
 
 [[generating_entropy_and_encoding]]
 [role="smallerseventy"]
