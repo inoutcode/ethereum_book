@@ -24,16 +24,16 @@
 EVM機器語言分為特定的指令集組，例如算術運算，邏輯和比較運算，控制流，系統調用，堆棧操作和儲存器操作。除典型的 Bytecode 操作外，EVM還必須管理賬戶信息（即地址和餘額），當前gas價格和區塊信息。
 
 [[common_stack_opcodes]]
-通用堆棧操作:: 堆棧和內存管理的操作碼指令：
+通用堆棧操作:: 堆棧和記憶體管理的操作碼指令：
 
 ----
 POP     // 項目出棧
 PUSH    // 項目入棧
-MLOAD   // 將項目加載到內存中
-MSTORE  // 在內存中儲存項目
+MLOAD   // 將項目加載到記憶體中
+MSTORE  // 在記憶體中儲存項目
 JUMP    // 改變程式計數器的位置
 PC      // 程式計數器
-MSIZE   // 活動的內存大小
+MSIZE   // 活動的記憶體大小
 GAS     // 交易可用的gas數量
 DUP     // 複製棧項目
 SWAP    // 交換棧項目
@@ -79,7 +79,7 @@ CALLER //執行調用者的地址
 CODESIZE //執行環境程式碼大小
 GASPRICE //gas價格狀態
 EXTCODESIZE //賬戶的程式碼大小
-RETURNDATACOPY //從先前的內存調用輸出的數據的副本
+RETURNDATACOPY //從先前的記憶體調用輸出的數據的副本
 ----
 
 [[evm_state_descriptions]]
@@ -281,7 +281,7 @@ PUSH4 0x7f1baa12
 MSTORE CALLVALUE
 ----
 
-MSTORE是一個堆棧/內存操作（參見<<common_stack_opcodes>>），它將值保存到內存中，而CALLVALUE是一個環境操作碼（參見<<common_environment_opcodes>>），它返回正在執行的消息調用的存放值。
+MSTORE是一個堆棧/記憶體操作（參見<<common_stack_opcodes>>），它將值保存到記憶體中，而CALLVALUE是一個環境操作碼（參見<<common_environment_opcodes>>），它返回正在執行的消息調用的存放值。
 
 [[evm_bytecode_execution]]
 ==== 執行EVM Bytecode 
