@@ -226,7 +226,7 @@ Require::
 
 还原 Revert::
 	当需要处理与 <<require-sentence, require()>> 相同的情况，但使用更复杂的逻辑时，使用 revert()。
-	例如，如果你的代码有一些嵌套的 if/else 逻辑流程，你会发现使用 <<require-sentence, require()>> 而不是require（）是合理的。
+	例如，如果你的代码有一些嵌套的 if/else 逻辑流程，你会发现使用 <<require-sentence, revert()>> 而不是require（）是合理的。
 
 奖励 Reward::
 	Ether（ETH）的数量，包含在每个新区块中的金额作为网络对找到工作证明解决方案的矿工的奖励。
