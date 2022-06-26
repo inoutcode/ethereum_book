@@ -87,7 +87,7 @@ Ethash::
     以太坊1.0的工作量证明算法。更多信息，参见 https://github.com/ethereum/wiki/wiki/Ethash.
 
 以太 Ether::
-    以太 Ether，是以太坊生态系统中使用的本地货币，在执行智能合约时承担燃气费用。它的符合是 Ξ, 极客用的大写 Xi 字符.
+    以太 Ether，是以太坊生态系统中使用的本地货币，在执行智能合约时承担燃气费用。它的符号是 Ξ, 极客用的大写 Xi 字符.
 
 Event::
 	事件允许EVM日志工具的使用，后者可以用来在DApp的用户界面中调用JavaScript回调来监听这些事件。更多信息，参见 http://solidity.readthedocs.io/en/develop/contracts.html#events。
