@@ -263,7 +263,7 @@ EVM是一个全球性的单例，这意味着它的运作方式就好像它是�
 
 以太坊有许多不同的高级语言，所有这些语言都可用于编写合约并生成EVM字节码。你可以阅读 <<high_level_languages>>  中许多最成功和有趣的内容。一种智能合约编程的主要高级语言：Solidity。本书的合著者Gavin Wood创建了Solidity，已经成为以太坊及以太坊外最广泛使用的语言。我们将使用Solidity编写我们的第一份合约。
 
-作为我们的第一个例子，我们将编写一个控制_faucet_的合约。我们已经使用了faucent在Ropsten测试网络上获得测试ether。faucet是一件相对简单的事情：它给任何地址发放ether，可以定期补充。你可以将faucet实现为由人类（或网络服务器）控制的钱包，但我们将编写一个实现faucet的Solidity合约：
+作为我们的第一个例子，我们将编写一个控制_faucet_的合约。我们已经使用了faucet在Ropsten测试网络上获得测试ether。faucet是一件相对简单的事情：它给任何地址发放ether，可以定期补充。你可以将faucet实现为由人类（或网络服务器）控制的钱包，但我们将编写一个实现faucet的Solidity合约：
 
 [[solidity_faucet_example]]
 .Faucet.sol : A Solidity contract implementing a faucet
